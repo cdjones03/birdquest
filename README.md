@@ -1,2 +1,2 @@
 # WMCS437GameDesign
-Team 2's original Game (Name TBD), implemented with SFML.
+Team 2's original Game BirdQuest, implemented with SFML.

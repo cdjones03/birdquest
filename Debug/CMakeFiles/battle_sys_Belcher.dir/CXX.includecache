@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/chasejones/WMCS437GameDesign/bin/battle_sys_Belcher.cpp
+iostream
+-
+stdlib.h
+-
+string.h
+-
+

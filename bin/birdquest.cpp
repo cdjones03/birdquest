@@ -35,6 +35,7 @@ int main(int argc, char** argv)
       }
 
       //Display
+      App.clear(sf::Color::Black);
       App.display();
     }
 

@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/jacobloehr/Desktop/BirdQuest/bin/battle_sys_Belcher.cpp
+/Users/jacobloehr/Desktop/BirdQuest/src/battle.cpp
 iostream
 -
-stdlib.h
+cstdlib
 -
-string.h
+random
 -
 

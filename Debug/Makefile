@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.3/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.15.3/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chasejones/WMCS437GameDesign
+CMAKE_SOURCE_DIR = /Users/jacobloehr/Desktop/BirdQuest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chasejones/WMCS437GameDesign/Debug
+CMAKE_BINARY_DIR = /Users/jacobloehr/Desktop/BirdQuest/Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/chasejones/WMCS437GameDesign/Debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.15.3/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.15.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles /Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles /Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -135,6 +135,19 @@ battle_sys_Belcher: cmake_check_build_system
 battle_sys_Belcher/fast:
 	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/build
 .PHONY : battle_sys_Belcher/fast
+
+#=============================================================================
+# Target rules for targets named BirdQuest_core
+
+# Build rule for target.
+BirdQuest_core: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BirdQuest_core
+.PHONY : BirdQuest_core
+
+# fast build rule for target.
+BirdQuest_core/fast:
+	$(MAKE) -f CMakeFiles/BirdQuest_core.dir/build.make CMakeFiles/BirdQuest_core.dir/build
+.PHONY : BirdQuest_core/fast
 
 bin/battle_sys_Belcher.o: bin/battle_sys_Belcher.cpp.o
 
@@ -190,6 +203,33 @@ bin/birdquest.cpp.s:
 	$(MAKE) -f CMakeFiles/birdquest.dir/build.make CMakeFiles/birdquest.dir/bin/birdquest.cpp.s
 .PHONY : bin/birdquest.cpp.s
 
+src/battle.o: src/battle.cpp.o
+
+.PHONY : src/battle.o
+
+# target to build an object file
+src/battle.cpp.o:
+	$(MAKE) -f CMakeFiles/BirdQuest_core.dir/build.make CMakeFiles/BirdQuest_core.dir/src/battle.cpp.o
+.PHONY : src/battle.cpp.o
+
+src/battle.i: src/battle.cpp.i
+
+.PHONY : src/battle.i
+
+# target to preprocess a source file
+src/battle.cpp.i:
+	$(MAKE) -f CMakeFiles/BirdQuest_core.dir/build.make CMakeFiles/BirdQuest_core.dir/src/battle.cpp.i
+.PHONY : src/battle.cpp.i
+
+src/battle.s: src/battle.cpp.s
+
+.PHONY : src/battle.s
+
+# target to generate assembly for a file
+src/battle.cpp.s:
+	$(MAKE) -f CMakeFiles/BirdQuest_core.dir/build.make CMakeFiles/BirdQuest_core.dir/src/battle.cpp.s
+.PHONY : src/battle.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -200,12 +240,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... birdquest"
 	@echo "... battle_sys_Belcher"
+	@echo "... BirdQuest_core"
 	@echo "... bin/battle_sys_Belcher.o"
 	@echo "... bin/battle_sys_Belcher.i"
 	@echo "... bin/battle_sys_Belcher.s"
 	@echo "... bin/birdquest.o"
 	@echo "... bin/birdquest.i"
 	@echo "... bin/birdquest.s"
+	@echo "... src/battle.o"
+	@echo "... src/battle.i"
+	@echo "... src/battle.s"
 .PHONY : help
 
 

@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libBirdQuest_core.a  CMakeFiles/BirdQuest_core.dir/src/battle.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libBirdQuest_core.a

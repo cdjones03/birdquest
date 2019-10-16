@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -g -isysroot /Library/Developer/CommandLineTools/SDKs/Ma
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/chasejones/WMCS437GameDesign/include -F/Library/Frameworks 
+CXX_INCLUDES = -I/Users/jacobloehr/Desktop/BirdQuest/include -F/Library/Frameworks 
 

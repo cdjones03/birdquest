@@ -1,4 +1,5 @@
-/Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles/rebuild_cache.dir
-/Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles/edit_cache.dir
-/Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles/birdquest.dir
-/Users/chasejones/WMCS437GameDesign/Debug/CMakeFiles/battle_sys_Belcher.dir
+/Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/rebuild_cache.dir
+/Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/edit_cache.dir
+/Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/birdquest.dir
+/Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/battle_sys_Belcher.dir
+/Users/jacobloehr/Desktop/BirdQuest/Debug/CMakeFiles/BirdQuest_core.dir

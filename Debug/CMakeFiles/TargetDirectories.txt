@@ -1,0 +1,6 @@
+/Users/chasejones/birdquest/Debug/CMakeFiles/rebuild_cache.dir
+/Users/chasejones/birdquest/Debug/CMakeFiles/edit_cache.dir
+/Users/chasejones/birdquest/Debug/CMakeFiles/xmltest.dir
+/Users/chasejones/birdquest/Debug/CMakeFiles/birdquest.dir
+/Users/chasejones/birdquest/Debug/CMakeFiles/battle_sys_Belcher.dir
+/Users/chasejones/birdquest/Debug/CMakeFiles/birdquest_core.dir

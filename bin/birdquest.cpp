@@ -19,15 +19,15 @@ int main(int argc, char** argv)
 
   // create the tilemap from the level definition
   tinyxml2::XMLDocument doc;
-  doc.LoadFile("../SampleMap.xml");
+  doc.LoadFile("../resources/SampleMap.xml");
   const char* tinymap = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
 
   tinyxml2::XMLDocument doc2;
-  doc2.LoadFile("../SampleMap2.xml");
+  doc2.LoadFile("../resources/SampleMap2.xml");
   const char* tinymap2 = doc2.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
 
   TileMap map;
-  if (!map.load("../include/tileset.png", sf::Vector2u(32, 32),
+  if (!map.load("../resources/tileset.png", sf::Vector2u(32, 32),
   tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
   doc.FirstChildElement("map")->IntAttribute("height"))) //vector is size of each tile in pixel
       return -1;
@@ -62,7 +62,7 @@ int main(int argc, char** argv)
           continue;
         }
           else {
-            map.load("../include/tileset.png", sf::Vector2u(32, 32),
+            map.load("../resources/tileset.png", sf::Vector2u(32, 32),
             tinymap2, doc2.FirstChildElement("map")->IntAttribute("width"),
             doc2.FirstChildElement("map")->IntAttribute("height"));
             birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
             continue;
         }
           else {
-            map.load("../include/tileset.png", sf::Vector2u(32, 32),
+            map.load("../resources/tileset.png", sf::Vector2u(32, 32),
             tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
             doc.FirstChildElement("map")->IntAttribute("height"));
             birdSprite.setPosition(birdSprite.getPosition().x, 0);

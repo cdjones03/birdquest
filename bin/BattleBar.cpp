@@ -23,6 +23,8 @@ int main(int argc, char** argv){
 	// start main loop
 	while(BattleBar.isOpen())
 	{
+		//int deltaMs = clock.getElapsedTime().asMilliseconds();
+
 		sf::Event Event;
 
 		while(BattleBar.pollEvent(Event))
@@ -32,8 +34,12 @@ int main(int argc, char** argv){
 				BattleBar.close();
 		}
 
+	 //update battle bar
+
 
 		BattleBar.clear(sf::Color::Black);  //clear screen and set bg to black
+
+		indi.update();
 
 		borders.drawBorder(BattleBar); //draw battlebar borders to screen
 

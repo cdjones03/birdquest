@@ -87,3 +87,13 @@ void Indicator::moveIndicator()
 void Indicator::drawIndicator(sf::RenderWindow &window){
 	window.draw(indic);
 	}
+
+void Indicator::update(){
+	if(indic.getPosition().x > 950){
+		velocity *= -1;
+	}
+	else if(indic.getPosition().x < 50){
+		velocity *= -1;
+	}
+	indic.move(velocity, 0);
+}

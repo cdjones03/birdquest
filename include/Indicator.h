@@ -25,6 +25,7 @@ class Indicator {  //what i had written for the indicator class, intended to be 
 
 	sf::RectangleShape indic;
 	enum eDir {STOP = 0, LEFT = 1, RIGHT = 2};
+	int velocity = 1;
 
 	private:
 		int x, y;
@@ -60,6 +61,7 @@ class Indicator {  //what i had written for the indicator class, intended to be 
 
 		void drawIndicator(sf::RenderWindow &window);
 
+		void update();
 };
 
 

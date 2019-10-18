@@ -1,7 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o"
   "CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o"
+  "CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o"
   "CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o"
   "CMakeFiles/birdquest_core.dir/src/battle.cpp.o"
+  "CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o"
   "CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o"
   "libbirdquest_core.a"
   "libbirdquest_core.pdb"

@@ -55,7 +55,7 @@ CMAKE_BINARY_DIR = /Users/chasejones/birdquest/Debug
 # The main recursive "all" target.
 all: CMakeFiles/xmltest.dir/all
 all: CMakeFiles/birdquest.dir/all
-all: CMakeFiles/battle_sys_Belcher.dir/all
+all: CMakeFiles/BattleBar.dir/all
 all: CMakeFiles/birdquest_core.dir/all
 
 .PHONY : all
@@ -63,7 +63,7 @@ all: CMakeFiles/birdquest_core.dir/all
 # The main recursive "clean" target.
 clean: CMakeFiles/xmltest.dir/clean
 clean: CMakeFiles/birdquest.dir/clean
-clean: CMakeFiles/battle_sys_Belcher.dir/clean
+clean: CMakeFiles/BattleBar.dir/clean
 clean: CMakeFiles/birdquest_core.dir/clean
 
 .PHONY : clean
@@ -80,12 +80,12 @@ preinstall:
 CMakeFiles/xmltest.dir/all: CMakeFiles/birdquest_core.dir/all
 	$(MAKE) -f CMakeFiles/xmltest.dir/build.make CMakeFiles/xmltest.dir/depend
 	$(MAKE) -f CMakeFiles/xmltest.dir/build.make CMakeFiles/xmltest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=10,11 "Built target xmltest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=13,14 "Built target xmltest"
 .PHONY : CMakeFiles/xmltest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/xmltest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/xmltest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/xmltest.dir/rule
@@ -112,7 +112,7 @@ CMakeFiles/birdquest.dir/all: CMakeFiles/birdquest_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/birdquest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/birdquest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/birdquest.dir/rule
@@ -128,31 +128,31 @@ CMakeFiles/birdquest.dir/clean:
 .PHONY : CMakeFiles/birdquest.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/battle_sys_Belcher.dir
+# Target rules for target CMakeFiles/BattleBar.dir
 
 # All Build rule for target.
-CMakeFiles/battle_sys_Belcher.dir/all: CMakeFiles/birdquest_core.dir/all
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/depend
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=1,2 "Built target battle_sys_Belcher"
-.PHONY : CMakeFiles/battle_sys_Belcher.dir/all
+CMakeFiles/BattleBar.dir/all: CMakeFiles/birdquest_core.dir/all
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/depend
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=1,2 "Built target BattleBar"
+.PHONY : CMakeFiles/BattleBar.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/battle_sys_Belcher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 7
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/battle_sys_Belcher.dir/all
+CMakeFiles/BattleBar.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BattleBar.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
-.PHONY : CMakeFiles/battle_sys_Belcher.dir/rule
+.PHONY : CMakeFiles/BattleBar.dir/rule
 
 # Convenience name for target.
-battle_sys_Belcher: CMakeFiles/battle_sys_Belcher.dir/rule
+BattleBar: CMakeFiles/BattleBar.dir/rule
 
-.PHONY : battle_sys_Belcher
+.PHONY : BattleBar
 
 # clean rule for target.
-CMakeFiles/battle_sys_Belcher.dir/clean:
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/clean
-.PHONY : CMakeFiles/battle_sys_Belcher.dir/clean
+CMakeFiles/BattleBar.dir/clean:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/clean
+.PHONY : CMakeFiles/BattleBar.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/birdquest_core.dir
@@ -161,12 +161,12 @@ CMakeFiles/battle_sys_Belcher.dir/clean:
 CMakeFiles/birdquest_core.dir/all:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/depend
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=5,6,7,8,9 "Built target birdquest_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=5,6,7,8,9,10,11,12 "Built target birdquest_core"
 .PHONY : CMakeFiles/birdquest_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/birdquest_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/birdquest_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/birdquest_core.dir/rule

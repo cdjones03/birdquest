@@ -122,6 +122,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/xmltest.dir/DependInfo.cmake"
   "CMakeFiles/birdquest.dir/DependInfo.cmake"
-  "CMakeFiles/battle_sys_Belcher.dir/DependInfo.cmake"
+  "CMakeFiles/BattleBar.dir/DependInfo.cmake"
   "CMakeFiles/birdquest_core.dir/DependInfo.cmake"
   )

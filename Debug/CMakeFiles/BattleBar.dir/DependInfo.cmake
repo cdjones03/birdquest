@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/chasejones/birdquest/bin/battle_sys_Belcher.cpp" "/Users/chasejones/birdquest/Debug/CMakeFiles/battle_sys_Belcher.dir/bin/battle_sys_Belcher.cpp.o"
+  "/Users/chasejones/birdquest/bin/BattleBar.cpp" "/Users/chasejones/birdquest/Debug/CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+../include/BBBorder.h
+
 ../include/Indicator.h
 iostream
 -
@@ -14,11 +16,13 @@ stdio.h
 SFML/Graphics.hpp
 -
 
-/Users/chasejones/birdquest/src/Indicator.cpp
+/Users/chasejones/birdquest/bin/BattleBar.cpp
 iostream
 -
 SFML/Graphics.hpp
 -
+BBBorder.h
+/Users/chasejones/birdquest/bin/BBBorder.h
 Indicator.h
-/Users/chasejones/birdquest/src/Indicator.h
+/Users/chasejones/birdquest/bin/Indicator.h
 

@@ -57,9 +57,22 @@ include CMakeFiles/birdquest_core.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/birdquest_core.dir/flags.make
 
+CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
+CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o: ../src/BBBorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o -c /Users/chasejones/birdquest/src/BBBorder.cpp
+
+CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chasejones/birdquest/src/BBBorder.cpp > CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.i
+
+CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chasejones/birdquest/src/BBBorder.cpp -o CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.s
+
 CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
 CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o: ../src/BattleMenu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o -c /Users/chasejones/birdquest/src/BattleMenu.cpp
 
 CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.i: cmake_force
@@ -70,9 +83,22 @@ CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chasejones/birdquest/src/BattleMenu.cpp -o CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.s
 
+CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
+CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o: ../src/Indicator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o -c /Users/chasejones/birdquest/src/Indicator.cpp
+
+CMakeFiles/birdquest_core.dir/src/Indicator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/birdquest_core.dir/src/Indicator.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chasejones/birdquest/src/Indicator.cpp > CMakeFiles/birdquest_core.dir/src/Indicator.cpp.i
+
+CMakeFiles/birdquest_core.dir/src/Indicator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/birdquest_core.dir/src/Indicator.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chasejones/birdquest/src/Indicator.cpp -o CMakeFiles/birdquest_core.dir/src/Indicator.cpp.s
+
 CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
 CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o: ../src/TileMap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o -c /Users/chasejones/birdquest/src/TileMap.cpp
 
 CMakeFiles/birdquest_core.dir/src/TileMap.cpp.i: cmake_force
@@ -85,7 +111,7 @@ CMakeFiles/birdquest_core.dir/src/TileMap.cpp.s: cmake_force
 
 CMakeFiles/birdquest_core.dir/src/battle.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
 CMakeFiles/birdquest_core.dir/src/battle.cpp.o: ../src/battle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/birdquest_core.dir/src/battle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/birdquest_core.dir/src/battle.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/battle.cpp.o -c /Users/chasejones/birdquest/src/battle.cpp
 
 CMakeFiles/birdquest_core.dir/src/battle.cpp.i: cmake_force
@@ -96,9 +122,22 @@ CMakeFiles/birdquest_core.dir/src/battle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/birdquest_core.dir/src/battle.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chasejones/birdquest/src/battle.cpp -o CMakeFiles/birdquest_core.dir/src/battle.cpp.s
 
+CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
+CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o: ../src/battle_sys_Belcher.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o -c /Users/chasejones/birdquest/src/battle_sys_Belcher.cpp
+
+CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chasejones/birdquest/src/battle_sys_Belcher.cpp > CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.i
+
+CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chasejones/birdquest/src/battle_sys_Belcher.cpp -o CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.s
+
 CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o: CMakeFiles/birdquest_core.dir/flags.make
 CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o: ../src/tinyxml2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o -c /Users/chasejones/birdquest/src/tinyxml2.cpp
 
 CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.i: cmake_force
@@ -111,21 +150,27 @@ CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.s: cmake_force
 
 # Object files for target birdquest_core
 birdquest_core_OBJECTS = \
+"CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o" \
 "CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o" \
+"CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o" \
 "CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o" \
 "CMakeFiles/birdquest_core.dir/src/battle.cpp.o" \
+"CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o" \
 "CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o"
 
 # External object files for target birdquest_core
 birdquest_core_EXTERNAL_OBJECTS =
 
+libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.o
+libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/TileMap.cpp.o
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/battle.cpp.o
+libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/src/tinyxml2.cpp.o
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/build.make
 libbirdquest_core.a: CMakeFiles/birdquest_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libbirdquest_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libbirdquest_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/birdquest_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/birdquest_core.dir/link.txt --verbose=$(VERBOSE)
 

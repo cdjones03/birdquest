@@ -137,17 +137,17 @@ birdquest/fast:
 .PHONY : birdquest/fast
 
 #=============================================================================
-# Target rules for targets named battle_sys_Belcher
+# Target rules for targets named BattleBar
 
 # Build rule for target.
-battle_sys_Belcher: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 battle_sys_Belcher
-.PHONY : battle_sys_Belcher
+BattleBar: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BattleBar
+.PHONY : BattleBar
 
 # fast build rule for target.
-battle_sys_Belcher/fast:
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/build
-.PHONY : battle_sys_Belcher/fast
+BattleBar/fast:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/build
+.PHONY : BattleBar/fast
 
 #=============================================================================
 # Target rules for targets named birdquest_core
@@ -162,32 +162,32 @@ birdquest_core/fast:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/build
 .PHONY : birdquest_core/fast
 
-bin/battle_sys_Belcher.o: bin/battle_sys_Belcher.cpp.o
+bin/BattleBar.o: bin/BattleBar.cpp.o
 
-.PHONY : bin/battle_sys_Belcher.o
+.PHONY : bin/BattleBar.o
 
 # target to build an object file
-bin/battle_sys_Belcher.cpp.o:
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/bin/battle_sys_Belcher.cpp.o
-.PHONY : bin/battle_sys_Belcher.cpp.o
+bin/BattleBar.cpp.o:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.o
+.PHONY : bin/BattleBar.cpp.o
 
-bin/battle_sys_Belcher.i: bin/battle_sys_Belcher.cpp.i
+bin/BattleBar.i: bin/BattleBar.cpp.i
 
-.PHONY : bin/battle_sys_Belcher.i
+.PHONY : bin/BattleBar.i
 
 # target to preprocess a source file
-bin/battle_sys_Belcher.cpp.i:
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/bin/battle_sys_Belcher.cpp.i
-.PHONY : bin/battle_sys_Belcher.cpp.i
+bin/BattleBar.cpp.i:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.i
+.PHONY : bin/BattleBar.cpp.i
 
-bin/battle_sys_Belcher.s: bin/battle_sys_Belcher.cpp.s
+bin/BattleBar.s: bin/BattleBar.cpp.s
 
-.PHONY : bin/battle_sys_Belcher.s
+.PHONY : bin/BattleBar.s
 
 # target to generate assembly for a file
-bin/battle_sys_Belcher.cpp.s:
-	$(MAKE) -f CMakeFiles/battle_sys_Belcher.dir/build.make CMakeFiles/battle_sys_Belcher.dir/bin/battle_sys_Belcher.cpp.s
-.PHONY : bin/battle_sys_Belcher.cpp.s
+bin/BattleBar.cpp.s:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.s
+.PHONY : bin/BattleBar.cpp.s
 
 bin/birdquest.o: bin/birdquest.cpp.o
 
@@ -243,6 +243,33 @@ bin/xmltest.cpp.s:
 	$(MAKE) -f CMakeFiles/xmltest.dir/build.make CMakeFiles/xmltest.dir/bin/xmltest.cpp.s
 .PHONY : bin/xmltest.cpp.s
 
+src/BBBorder.o: src/BBBorder.cpp.o
+
+.PHONY : src/BBBorder.o
+
+# target to build an object file
+src/BBBorder.cpp.o:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.o
+.PHONY : src/BBBorder.cpp.o
+
+src/BBBorder.i: src/BBBorder.cpp.i
+
+.PHONY : src/BBBorder.i
+
+# target to preprocess a source file
+src/BBBorder.cpp.i:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.i
+.PHONY : src/BBBorder.cpp.i
+
+src/BBBorder.s: src/BBBorder.cpp.s
+
+.PHONY : src/BBBorder.s
+
+# target to generate assembly for a file
+src/BBBorder.cpp.s:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/BBBorder.cpp.s
+.PHONY : src/BBBorder.cpp.s
+
 src/BattleMenu.o: src/BattleMenu.cpp.o
 
 .PHONY : src/BattleMenu.o
@@ -269,6 +296,33 @@ src/BattleMenu.s: src/BattleMenu.cpp.s
 src/BattleMenu.cpp.s:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/BattleMenu.cpp.s
 .PHONY : src/BattleMenu.cpp.s
+
+src/Indicator.o: src/Indicator.cpp.o
+
+.PHONY : src/Indicator.o
+
+# target to build an object file
+src/Indicator.cpp.o:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/Indicator.cpp.o
+.PHONY : src/Indicator.cpp.o
+
+src/Indicator.i: src/Indicator.cpp.i
+
+.PHONY : src/Indicator.i
+
+# target to preprocess a source file
+src/Indicator.cpp.i:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/Indicator.cpp.i
+.PHONY : src/Indicator.cpp.i
+
+src/Indicator.s: src/Indicator.cpp.s
+
+.PHONY : src/Indicator.s
+
+# target to generate assembly for a file
+src/Indicator.cpp.s:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/Indicator.cpp.s
+.PHONY : src/Indicator.cpp.s
 
 src/TileMap.o: src/TileMap.cpp.o
 
@@ -324,6 +378,33 @@ src/battle.cpp.s:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/battle.cpp.s
 .PHONY : src/battle.cpp.s
 
+src/battle_sys_Belcher.o: src/battle_sys_Belcher.cpp.o
+
+.PHONY : src/battle_sys_Belcher.o
+
+# target to build an object file
+src/battle_sys_Belcher.cpp.o:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.o
+.PHONY : src/battle_sys_Belcher.cpp.o
+
+src/battle_sys_Belcher.i: src/battle_sys_Belcher.cpp.i
+
+.PHONY : src/battle_sys_Belcher.i
+
+# target to preprocess a source file
+src/battle_sys_Belcher.cpp.i:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.i
+.PHONY : src/battle_sys_Belcher.cpp.i
+
+src/battle_sys_Belcher.s: src/battle_sys_Belcher.cpp.s
+
+.PHONY : src/battle_sys_Belcher.s
+
+# target to generate assembly for a file
+src/battle_sys_Belcher.cpp.s:
+	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/src/battle_sys_Belcher.cpp.s
+.PHONY : src/battle_sys_Belcher.cpp.s
+
 src/tinyxml2.o: src/tinyxml2.cpp.o
 
 .PHONY : src/tinyxml2.o
@@ -361,26 +442,35 @@ help:
 	@echo "... edit_cache"
 	@echo "... xmltest"
 	@echo "... birdquest"
-	@echo "... battle_sys_Belcher"
+	@echo "... BattleBar"
 	@echo "... birdquest_core"
-	@echo "... bin/battle_sys_Belcher.o"
-	@echo "... bin/battle_sys_Belcher.i"
-	@echo "... bin/battle_sys_Belcher.s"
+	@echo "... bin/BattleBar.o"
+	@echo "... bin/BattleBar.i"
+	@echo "... bin/BattleBar.s"
 	@echo "... bin/birdquest.o"
 	@echo "... bin/birdquest.i"
 	@echo "... bin/birdquest.s"
 	@echo "... bin/xmltest.o"
 	@echo "... bin/xmltest.i"
 	@echo "... bin/xmltest.s"
+	@echo "... src/BBBorder.o"
+	@echo "... src/BBBorder.i"
+	@echo "... src/BBBorder.s"
 	@echo "... src/BattleMenu.o"
 	@echo "... src/BattleMenu.i"
 	@echo "... src/BattleMenu.s"
+	@echo "... src/Indicator.o"
+	@echo "... src/Indicator.i"
+	@echo "... src/Indicator.s"
 	@echo "... src/TileMap.o"
 	@echo "... src/TileMap.i"
 	@echo "... src/TileMap.s"
 	@echo "... src/battle.o"
 	@echo "... src/battle.i"
 	@echo "... src/battle.s"
+	@echo "... src/battle_sys_Belcher.o"
+	@echo "... src/battle_sys_Belcher.i"
+	@echo "... src/battle_sys_Belcher.s"
 	@echo "... src/tinyxml2.o"
 	@echo "... src/tinyxml2.i"
 	@echo "... src/tinyxml2.s"

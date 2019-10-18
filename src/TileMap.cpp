@@ -5,7 +5,7 @@
 Code taken from https://www.sfml-dev.org/tutorials/2.5/graphics-vertex-array.php
 Altered by Team 2 for birdquest
 */
-
+    //original had const int* tiles; now changed to const char*
     bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const char* tiles, unsigned int width, unsigned int height)
     {
         // load the tileset texture

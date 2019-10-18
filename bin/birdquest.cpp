@@ -11,6 +11,7 @@ int main(int argc, char** argv)
   const int windowTileHeight = 30;
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
+  const int moveVal = 8;
 
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
@@ -32,6 +33,9 @@ int main(int argc, char** argv)
   doc.FirstChildElement("map")->IntAttribute("height"))) //vector is size of each tile in pixel
       return -1;
 
+  sf::View view(sf::FloatRect(0, 0, 320, 320));
+  //App.setView(view);
+
 
   sf::Clock clock;
   int deltaMs;
@@ -42,6 +46,7 @@ int main(int argc, char** argv)
   }
   sf::Sprite birdSprite;
   birdSprite.setTexture(birdTexture);
+  //birdSprite.setScale(20,10);
 
   // start main loop
   while(App.isOpen())
@@ -57,8 +62,8 @@ int main(int argc, char** argv)
         }
         //Handle input, delegate to HumanView.cpp
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-          if(birdSprite.getPosition().y >= 32){
-          birdSprite.move(0, -32);
+          if(birdSprite.getPosition().y >= moveVal){
+          birdSprite.move(0, -moveVal);
           continue;
         }
           else {
@@ -70,8 +75,8 @@ int main(int argc, char** argv)
         }
 
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-          if(birdSprite.getPosition().y < windowPixelHeight-32){
-            birdSprite.move(0, 32);
+          if(birdSprite.getPosition().y < windowPixelHeight-moveVal){
+            birdSprite.move(0, moveVal);
             continue;
         }
           else {
@@ -81,18 +86,20 @@ int main(int argc, char** argv)
             birdSprite.setPosition(birdSprite.getPosition().x, 0);
           }
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-32){
-          birdSprite.move(32, 0);
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-moveVal){
+          //view.move(32, 0);
+          birdSprite.move(moveVal, 0);
           continue;
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= 32){
-          birdSprite.move(-32, 0);
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= moveVal){
+          birdSprite.move(-moveVal, 0);
           continue;
         }
       }
 
       //Display
       App.clear(sf::Color::Black);
+      //App.setView(view);
       App.draw(map);
       App.draw(birdSprite);
       App.display();

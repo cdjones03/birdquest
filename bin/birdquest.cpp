@@ -2,6 +2,7 @@
 #include <TileMap.hpp>
 #include <iostream>
 #include <tinyxml2.h>
+#include "BattleMenu.h"
 
 using namespace std;
 
@@ -13,10 +14,16 @@ int main(int argc, char** argv)
   const int windowPixelHeight = windowTileHeight*32;
   const int moveVal = 8;
 
+
+
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
   sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelWidth, 32), "BirdQuest!");//, sf::Style::Close);
   App.setFramerateLimit(60);
+
+  //Create battleMenu object
+  BattleMenu battleMenu(App.getSize().x, App.getSize().y);
+  bool toBattleMenu = false;
 
   // create the tilemap from the level definition
   tinyxml2::XMLDocument doc;
@@ -60,6 +67,9 @@ int main(int argc, char** argv)
         if(Event.type == sf::Event::Closed){
           App.close();
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
+          toBattleMenu = true;
+        }
         //Handle input, delegate to HumanView.cpp
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
           if(birdSprite.getPosition().y >= moveVal){
@@ -100,8 +110,16 @@ int main(int argc, char** argv)
       //Display
       App.clear(sf::Color::Black);
       //App.setView(view);
-      App.draw(map);
-      App.draw(birdSprite);
+      //
+      if (!toBattleMenu){
+        App.draw(map);
+        App.draw(birdSprite);
+      }
+      else{
+        battleMenu.draw(App);
+      }
+        
+      
       App.display();
     }
 

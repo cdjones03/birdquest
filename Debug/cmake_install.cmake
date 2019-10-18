@@ -1,4 +1,4 @@
-# Install script for directory: /Users/chasejones/birdquest
+# Install script for directory: /Users/jacobloehr/Desktop/birdquest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/chasejones/birdquest/Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/jacobloehr/Desktop/birdquest/Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

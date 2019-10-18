@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/chasejones/birdquest/bin/BattleBar.cpp" "/Users/chasejones/birdquest/Debug/CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.o"
+  "/Users/jacobloehr/Desktop/birdquest/bin/BattleBar.cpp" "/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -16,7 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/chasejones/birdquest/Debug/CMakeFiles/birdquest_core.dir/DependInfo.cmake"
+  "/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/birdquest_core.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../include/BattleMenu.h
+SFML/Graphics.hpp
+../include/SFML/Graphics.hpp
+
 ../include/TileMap.hpp
 
 ../include/tinyxml2.h
@@ -38,7 +42,7 @@ android/log.h
 assert.h
 -
 
-/Users/chasejones/birdquest/bin/birdquest.cpp
+/Users/jacobloehr/Desktop/birdquest/bin/birdquest.cpp
 SFML/Graphics.hpp
 -
 TileMap.hpp
@@ -47,4 +51,6 @@ iostream
 -
 tinyxml2.h
 -
+BattleMenu.h
+/Users/jacobloehr/Desktop/birdquest/bin/BattleMenu.h
 

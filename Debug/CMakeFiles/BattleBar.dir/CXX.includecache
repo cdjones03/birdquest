@@ -16,13 +16,13 @@ stdio.h
 SFML/Graphics.hpp
 -
 
-/Users/chasejones/birdquest/bin/BattleBar.cpp
+/Users/jacobloehr/Desktop/birdquest/bin/BattleBar.cpp
 iostream
 -
 SFML/Graphics.hpp
 -
 BBBorder.h
-/Users/chasejones/birdquest/bin/BBBorder.h
+/Users/jacobloehr/Desktop/birdquest/bin/BBBorder.h
 Indicator.h
-/Users/chasejones/birdquest/bin/Indicator.h
+/Users/jacobloehr/Desktop/birdquest/bin/Indicator.h
 

@@ -35,19 +35,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.3/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.15.3/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chasejones/birdquest
+CMAKE_SOURCE_DIR = /Users/jacobloehr/Desktop/birdquest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chasejones/birdquest/Debug
+CMAKE_BINARY_DIR = /Users/jacobloehr/Desktop/birdquest/Debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -80,14 +80,14 @@ preinstall:
 CMakeFiles/xmltest.dir/all: CMakeFiles/birdquest_core.dir/all
 	$(MAKE) -f CMakeFiles/xmltest.dir/build.make CMakeFiles/xmltest.dir/depend
 	$(MAKE) -f CMakeFiles/xmltest.dir/build.make CMakeFiles/xmltest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=13,14 "Built target xmltest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles --progress-num=13,14 "Built target xmltest"
 .PHONY : CMakeFiles/xmltest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/xmltest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/xmltest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/xmltest.dir/rule
 
 # Convenience name for target.
@@ -107,14 +107,14 @@ CMakeFiles/xmltest.dir/clean:
 CMakeFiles/birdquest.dir/all: CMakeFiles/birdquest_core.dir/all
 	$(MAKE) -f CMakeFiles/birdquest.dir/build.make CMakeFiles/birdquest.dir/depend
 	$(MAKE) -f CMakeFiles/birdquest.dir/build.make CMakeFiles/birdquest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=3,4 "Built target birdquest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles --progress-num=3,4 "Built target birdquest"
 .PHONY : CMakeFiles/birdquest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/birdquest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/birdquest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/birdquest.dir/rule
 
 # Convenience name for target.
@@ -134,14 +134,14 @@ CMakeFiles/birdquest.dir/clean:
 CMakeFiles/BattleBar.dir/all: CMakeFiles/birdquest_core.dir/all
 	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/depend
 	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=1,2 "Built target BattleBar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles --progress-num=1,2 "Built target BattleBar"
 .PHONY : CMakeFiles/BattleBar.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/BattleBar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BattleBar.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/BattleBar.dir/rule
 
 # Convenience name for target.
@@ -161,14 +161,14 @@ CMakeFiles/BattleBar.dir/clean:
 CMakeFiles/birdquest_core.dir/all:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/depend
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/chasejones/birdquest/Debug/CMakeFiles --progress-num=5,6,7,8,9,10,11,12 "Built target birdquest_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles --progress-num=5,6,7,8,9,10,11,12 "Built target birdquest_core"
 .PHONY : CMakeFiles/birdquest_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/birdquest_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/birdquest_core.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 0
 .PHONY : CMakeFiles/birdquest_core.dir/rule
 
 # Convenience name for target.

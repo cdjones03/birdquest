@@ -115,6 +115,23 @@ int main(int argc, char** argv)
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             battleMenu.moveDown();
           }
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+            switch (battleMenu.getSelectedOption())
+            {
+              case 0: 
+                cout << "Attack pressed" << endl;
+                break;
+              case 1: 
+                cout << "Magic pressed" << endl;
+                break;
+              case 2: 
+                cout << "Evade pressed" << endl;
+                break;
+              case 3: 
+                cout << "Item pressed" << endl;
+                break;
+            }
+          }
 
         }
       }

@@ -8,11 +8,11 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  const int windowTileWidth = 30;
-  const int windowTileHeight = 30;
+  const int windowTileWidth = 20;
+  const int windowTileHeight = 20;
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
-  const int moveVal = 8;
+  const int moveVal = 32;
 
 
 
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
       return -1;
 
   sf::View view(sf::FloatRect(0, 0, 320, 320));
-  //App.setView(view);
+  App.setView(view);
 
 
   sf::Clock clock;

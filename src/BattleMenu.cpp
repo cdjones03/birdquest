@@ -11,22 +11,22 @@ BattleMenu::BattleMenu(float width, float height){
   optionText[0].setFont(font);
   optionText[0].setColor(sf::Color::Red);
   optionText[0].setString("Attack");
-  optionText[0].setPosition(sf::Vector2f(width/4, 400+height/(maxOptions+1)*1/2));
+  optionText[0].setPosition(sf::Vector2f(width/4, height/(maxOptions+1)*1/2));
 
   optionText[1].setFont(font);
   optionText[1].setColor(sf::Color::Blue);
   optionText[1].setString("Magic");
-  optionText[1].setPosition(sf::Vector2f(width/4, 400+height/(maxOptions+1)*1));
+  optionText[1].setPosition(sf::Vector2f(width/4, height/(maxOptions+1)*1));
 
   optionText[2].setFont(font);
   optionText[2].setColor(sf::Color::Blue);
   optionText[2].setString("Evade");
-  optionText[2].setPosition(sf::Vector2f(width/4, 400+height/(maxOptions+1)*3/2));
+  optionText[2].setPosition(sf::Vector2f(width/4, height/(maxOptions+1)*3/2));
 
   optionText[3].setFont(font);
   optionText[3].setColor(sf::Color::Blue);
   optionText[3].setString("Item");
-  optionText[3].setPosition(sf::Vector2f(width/4, 400+height/(maxOptions+1)*4/2));
+  optionText[3].setPosition(sf::Vector2f(width/4, height/(maxOptions+1)*4/2));
 
 }
 

@@ -2,7 +2,7 @@
 #include <TileMap.hpp>
 #include <iostream>
 #include <tinyxml2.h>
-#include "BattleMenu.h"
+#include <BattleMenu.h>
 
 using namespace std;
 
@@ -112,22 +112,22 @@ int main(int argc, char** argv)
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             battleMenu.moveUp();
           }
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             battleMenu.moveDown();
           }
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             switch (battleMenu.getSelectedOption())
             {
-              case 0: 
+              case 0:
                 cout << "Attack pressed" << endl;
                 break;
-              case 1: 
+              case 1:
                 cout << "Magic pressed" << endl;
                 break;
-              case 2: 
+              case 2:
                 cout << "Evade pressed" << endl;
                 break;
-              case 3: 
+              case 3:
                 cout << "Item pressed" << endl;
                 break;
             }

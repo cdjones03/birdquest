@@ -1,9 +1,9 @@
 /*
-    First iteration of this done by Sydnee Belcher
+    2nd iteration: update method fixed by Chase
+				   indicator stops based on uder input (enter)
 
 	Creates the main loop for the battle bar
 
-	NOTE: incomplete, no movement, need help
 */
 
 #include <iostream>
@@ -32,18 +32,23 @@ int main(int argc, char** argv){
 
 			if(Event.type == sf::Event::Closed)  //exit window
 				BattleBar.close();
+				
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+			{
+				indi.changeToStop(); //stop indicator where it's at when enter is pressed
+			}
+				
 		}
 
 	 //update battle bar
 
-
 		BattleBar.clear(sf::Color::Black);  //clear screen and set bg to black
 
-		indi.update();
+		indi.update();  //update indicator for movement
 
 		borders.drawBorder(BattleBar); //draw battlebar borders to screen
 
-		indi.drawIndicator(BattleBar);
+		indi.drawIndicator(BattleBar); //draw indicator
 
 		BattleBar.display();  //display window
 

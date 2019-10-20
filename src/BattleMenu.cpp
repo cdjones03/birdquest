@@ -34,7 +34,7 @@ BattleMenu:: ~BattleMenu(){
 
 }
 void BattleMenu::draw(sf::RenderWindow &window){
-  
+
   window.clear(sf::Color::Black);
 
   int i = 0;

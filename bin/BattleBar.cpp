@@ -32,12 +32,12 @@ int main(int argc, char** argv){
 
 			if(Event.type == sf::Event::Closed)  //exit window
 				BattleBar.close();
-				
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
 				indi.changeToStop(); //stop indicator where it's at when enter is pressed
 			}
-				
+
 		}
 
 	 //update battle bar

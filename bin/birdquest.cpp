@@ -14,8 +14,6 @@ int main(int argc, char** argv)
   const int windowPixelHeight = windowTileHeight*32;
   const int moveVal = 32;
 
-
-
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
   sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelWidth, 32), "BirdQuest!");//, sf::Style::Close);
@@ -107,7 +105,7 @@ int main(int argc, char** argv)
             birdSprite.move(-moveVal, 0);
             continue;
           }
-        
+
         }
         //if we are in the battleMenu
         else{
@@ -130,12 +128,12 @@ int main(int argc, char** argv)
         App.draw(birdSprite);
       }
       else{
-        
+
         battleMenu.draw(App);
 
       }
-        
-      
+
+
       App.display();
     }
 

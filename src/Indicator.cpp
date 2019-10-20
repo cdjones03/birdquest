@@ -3,10 +3,10 @@
 
 	Creates the class for making the indicator, which is the blue
 	bar that moves back and forth across the battle bar and waits for
-	user input (enter key) to be pressed. 
-	
-	The indicator will stop where it's at and the coordinates 
-	corresponding to that color will be registered so that proper 
+	user input (enter key) to be pressed.
+
+	The indicator will stop where it's at and the coordinates
+	corresponding to that color will be registered so that proper
 	damaged can be logged
 
 	NOTE: Indicator update now works an lets the indicator move thanks to Chase's help,
@@ -91,19 +91,20 @@ void Indicator::drawIndicator(sf::RenderWindow &window){
 	window.draw(indic);
 }
 
-void Indicator::changeToStop(){  //makes the update function stop moving 
-	stopGo = 0; 
+void Indicator::changeToStop(){  //makes the update function stop moving
+	stopGo = 0;
 }
 
 void Indicator::update(){
-	
+
 	if (stopGo == 0)
 	{
 		//do nothing really, just stops the indicator from moving anymore
 		//indic.move(0, 0);
-		//std::cout << "stop position (x,y): " << indic.getPosition().x << ", " << indic.getPosition().y << std::endl;
+		std::cout << "stop position (x,y): " << indic.getPosition().x << ", " << indic.getPosition().y << std::endl;
+		exit(0);
 	}
-	
+
 	else
 	{
 		if(indic.getPosition().x > 999){     //change direction of indicator when reaches edge

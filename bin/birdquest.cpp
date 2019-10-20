@@ -72,6 +72,7 @@ int main(int argc, char** argv)
         }
         //Handle input, delegate to HumanView.cpp
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+          battleMenu.moveUp();
           if(birdSprite.getPosition().y >= moveVal){
           birdSprite.move(0, -moveVal);
           continue;
@@ -85,6 +86,7 @@ int main(int argc, char** argv)
         }
 
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+          battleMenu.moveDown();
           if(birdSprite.getPosition().y < windowPixelHeight-moveVal){
             birdSprite.move(0, moveVal);
             continue;
@@ -105,6 +107,8 @@ int main(int argc, char** argv)
           birdSprite.move(-moveVal, 0);
           continue;
         }
+        
+        
       }
 
       //Display
@@ -116,7 +120,9 @@ int main(int argc, char** argv)
         App.draw(birdSprite);
       }
       else{
+        
         battleMenu.draw(App);
+
       }
         
       

@@ -1,15 +1,18 @@
 /*
-    First iteration of this done by Sydnee Belcher
+    2nd iteration, done by Sydnee Belcher
 
 	Creates the class for making the indicator, which is the blue
 	bar that moves back and forth across the battle bar and waits for
-	user input (enter key?) to be pressed. The indicator will stop where
-	it's at and the amount of damage corresponding to that color will be
-	registered
+	user input (enter key) to be pressed. 
+	
+	The indicator will stop where it's at and the coordinates 
+	corresponding to that color will be registered so that proper 
+	damaged can be logged
 
-	NOTE: creates the indicator and sets up functions for movement, but I
-	      am not sure if any of the moving functions actually work
-		  Need help from other team members
+	NOTE: Indicator update now works an lets the indicator move thanks to Chase's help,
+	      indicator update function now has a stopGo variable and there is a stopGo
+		  function that changes it from 1 to 0, which keeps it from moving anymore
+		  when the main loop in BattleBar.cpp detects the enter key has been pressed
 */
 
 #include <iostream>
@@ -28,16 +31,16 @@ Indicator::Indicator(int posX, int posY)
 	startY = posY;  //useful for resetting the bar in between uses
 	x = posX;
 	y = posY;
-	direction = STOP; //no initial movement
+	//direction = STOP; //no initial movement
 	}
 
 void Indicator::reset()
 	{
 	x = startX;
 	y = startY;
-	direction = STOP;
+	//direction = STOP;
 	}
-
+/*
 void Indicator::changeDirection(eDir d)
 	{
 	direction = d;
@@ -83,17 +86,32 @@ void Indicator::moveIndicator()
 			break;
 		}
 	}
-
+*/
 void Indicator::drawIndicator(sf::RenderWindow &window){
 	window.draw(indic);
-	}
+}
+
+void Indicator::changeToStop(){  //makes the update function stop moving 
+	stopGo = 0; 
+}
 
 void Indicator::update(){
-	if(indic.getPosition().x > 950){
-		velocity *= -1;
+	
+	if (stopGo == 0)
+	{
+		//do nothing really, just stops the indicator from moving anymore
+		//indic.move(0, 0);
+		//std::cout << "stop position (x,y): " << indic.getPosition().x << ", " << indic.getPosition().y << std::endl;
 	}
-	else if(indic.getPosition().x < 50){
-		velocity *= -1;
+	
+	else
+	{
+		if(indic.getPosition().x > 999){     //change direction of indicator when reaches edge
+			velocity *= -1;
+		}
+		else if(indic.getPosition().x < 1){
+			velocity *= -1;
+		}
+		indic.move(velocity, 0);
 	}
-	indic.move(velocity, 0);
 }

@@ -14,6 +14,9 @@ public:
     void moveDown();
     void moveLeft();
     void moveRight();
+    int getSelectedOption(){
+        return selectedIndex;
+    }
 private:
     int selectedIndex;
     sf::Font font;

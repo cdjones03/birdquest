@@ -3,18 +3,17 @@
 #include <iostream>
 #include <tinyxml2.h>
 #include "BattleMenu.h"
+#include <LevelManager.hpp>
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-  const int windowTileWidth = 30;
-  const int windowTileHeight = 30;
+  const int windowTileWidth = 20;
+  const int windowTileHeight = 20;
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
   const int moveVal = 8;
-
-
 
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
@@ -25,25 +24,11 @@ int main(int argc, char** argv)
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
   bool inBattleMenu = false;
 
-  // create the tilemap from the level definition
-  tinyxml2::XMLDocument doc;
-  doc.LoadFile("../resources/SampleMap.xml");
-  const char* tinymap = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
-
-  tinyxml2::XMLDocument doc2;
-  doc2.LoadFile("../resources/SampleMap2.xml");
-  const char* tinymap2 = doc2.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
-
-  TileMap map;
-  if (!map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-  tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
-  doc.FirstChildElement("map")->IntAttribute("height"))) //vector is size of each tile in pixel
-      return -1;
-
   sf::View view(sf::FloatRect(0, 0, 320, 320));
   //App.setView(view);
 
-
+  LevelManager levelManager;
+  levelManager.loadLevels();
   sf::Clock clock;
   int deltaMs;
 
@@ -53,7 +38,6 @@ int main(int argc, char** argv)
   }
   sf::Sprite birdSprite;
   birdSprite.setTexture(birdTexture);
-  //birdSprite.setScale(20,10);
 
   // start main loop
   while(App.isOpen())
@@ -79,9 +63,7 @@ int main(int argc, char** argv)
             continue;
           }
             else {
-              map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-              tinymap2, doc2.FirstChildElement("map")->IntAttribute("width"),
-              doc2.FirstChildElement("map")->IntAttribute("height"));
+              levelManager.switchMap(2);
               birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);
             }
           }
@@ -92,9 +74,7 @@ int main(int argc, char** argv)
               continue;
           }
             else {
-              map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-              tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
-              doc.FirstChildElement("map")->IntAttribute("height"));
+              levelManager.switchMap(1);
               birdSprite.setPosition(birdSprite.getPosition().x, 0);
             }
           }
@@ -144,14 +124,14 @@ int main(int argc, char** argv)
       //App.setView(view);
       //
       if (!inBattleMenu){
-        App.draw(map);
+        levelManager.drawMap(App);
         App.draw(birdSprite);
       }
       else{
         battleMenu.draw(App);
       }
-        
-      
+
+
       App.display();
     }
 

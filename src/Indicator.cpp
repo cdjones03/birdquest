@@ -73,17 +73,21 @@ float Indicator::damage(){
 	
 	if ((0 <= curX && curX <= 150) || (490 <= curX && curX <= 640)){
 		std::cout << "You did " << red << " points of damage!" << std::endl;
+		damageDealt = red;
 	}
 	
 	else if ((151 <= curX && curX <= 250) || (390 <= curX && curX <= 489)){
 		std::cout << "You did " << orange << " points of damage!" << std::endl;
+		damageDealt = orange;
 	}
 	
 	else if ((251 <= curX && curX <= 300) || (340 <= curX && curX <= 389)){
 		std::cout << "You did " << yellow << " points of damage!" << std::endl;
+		damageDealt = yellow;
 	}
 	
 	else if ((301 <= curX && curX <= 339)){
 		std::cout << "You did " << green << " points of damage!" << std::endl;
+		damageDealt = green;
 	}
 }

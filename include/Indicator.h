@@ -54,6 +54,9 @@ class Indicator {
 		void update();
 		
 		float damage();   //deal damage
+
+		//int that will store the damage dealt
+		int damageDealt;
 		
 };
 

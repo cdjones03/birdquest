@@ -4,6 +4,10 @@
 BattleMenu::BattleMenu(float width, float height){
 
   selectedIndex = 0;
+  damage = indicator.damageDealt;
+  playerTurn = true;
+  userHP = maxHP;
+  enemyHP = maxHP;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
@@ -22,15 +26,20 @@ BattleMenu::BattleMenu(float width, float height){
   bird_battle.setPosition(width - width/2.8, height - height/2.2);
 
   // HP text placement in battle menu
-  userHP.setFont(font);
-  userHP.setCharacterSize(18);
-  userHP.setString("HP:");
-  userHP.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
+  userHP_Text.setFont(font);
+  userHP_Text.setCharacterSize(18);
+  //userHP_Text.setString("HP: " + userHP);
+  userHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
+
+  enemyHP_Text.setFont(font);
+  enemyHP_Text.setCharacterSize(18);
+  //enemyHP_Text.setString("HP: " + enemyHP);
+  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height + 100));
 
   // health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
   healthBar.setFillColor(sf::Color(50, 255, 50));
-  healthBar.setPosition(width - width/2.8, height - height/8);
+  healthBar.setPosition(width - width/2.8, height - height/12);
   healthBar.setOutlineThickness(3);
 
   //position each option on the screen, with the color red if it is highlighted
@@ -59,8 +68,24 @@ BattleMenu::BattleMenu(float width, float height){
 BattleMenu:: ~BattleMenu(){
 
 }
-void BattleMenu::updateHP(int userHP, int enemyHP)
+
+//updates the text that displays the user and enemy HP, based on whose turn it is.
+void BattleMenu::updateHPText()
 {
+  
+  if (playerTurn){
+    logic.updateHP(userHP, damage);
+    std::string userHP_string = std::to_string(userHP);
+    userHP_Text.setString("HP: " + userHP_string); 
+    playerTurn = false;   
+  }
+  else{
+    logic.updateHP(enemyHP, damage);
+    std::string enemyHP_string = std::to_string(enemyHP);
+    enemyHP_Text.setString("HP: " + enemyHP_string);
+    playerTurn = true;
+  }
+  
 
 }
 
@@ -69,7 +94,8 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.clear(sf::Color::Black);
   window.draw(rectangle);
   window.draw(bird_battle);
-  window.draw(userHP);
+  window.draw(userHP_Text);
+  window.draw(enemyHP_Text);
   window.draw(healthBar);
   int i = 0;
   for (; i< maxOptions; i++){

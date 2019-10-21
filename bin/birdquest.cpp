@@ -5,6 +5,7 @@
 #include "BattleMenu.h"
 #include "BattleBar.h"
 #include <LevelManager.hpp>
+#include "BattleLogic.h"
 
 using namespace std;
 
@@ -95,6 +96,7 @@ int main(int argc, char** argv)
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
           //moving up,down, left, right to select options
+          battleMenu.updateHPText();
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             battleMenu.moveUp();
           }

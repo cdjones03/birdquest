@@ -1,9 +1,6 @@
 #include "BattleLogic.h"
 
-BattleLogic::BattleLogic()
-{
 
-}
 void BattleLogic::updateHP(int damage, int HP)
 {
     if (damage <= HP){

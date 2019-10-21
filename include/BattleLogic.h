@@ -9,7 +9,7 @@ public:
     BattleLogic() = default;
     ~BattleLogic() = default;
     
-    void updateHP(int damage, int HP);
+    int updateHP(int damage, int HP);
     int whoWon(int enemyHP, int userHP);
 
 private:

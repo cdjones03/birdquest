@@ -1,7 +1,7 @@
 #include "BattleLogic.h"
 
 
-void BattleLogic::updateHP(int damage, int HP)
+int BattleLogic::updateHP(int damage, int HP)
 {
     if (damage <= HP){
         HP -= damage;
@@ -9,6 +9,7 @@ void BattleLogic::updateHP(int damage, int HP)
     if (damage > HP){
         HP = 0;
     }
+    return HP;
 }
 
 //returns who has won based on if the HP is 0, returns 2 if nobody has won
@@ -23,5 +24,5 @@ int BattleLogic::whoWon(int enemyHP, int userHP)
     else if (enemyHP > 0 && userHP > 0){
         return 2;
     }
-
+    return 3;
 }

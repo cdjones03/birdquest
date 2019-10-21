@@ -4,10 +4,11 @@
 BattleMenu::BattleMenu(float width, float height){
 
   selectedIndex = 0;
-  damage = indicator.damageDealt;
+  //damage = indicator.damageDealt;
+  damage = 6;
   playerTurn = true;
-  userHP = maxHP;
-  enemyHP = maxHP;
+  userHP = 100;
+  enemyHP = 100;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
@@ -28,13 +29,15 @@ BattleMenu::BattleMenu(float width, float height){
   // HP text placement in battle menu
   userHP_Text.setFont(font);
   userHP_Text.setCharacterSize(18);
-  //userHP_Text.setString("HP: " + userHP);
+  std::string userHP_string1 = std::to_string(userHP);
+  userHP_Text.setString("HP: " + userHP_string1);
   userHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
 
   enemyHP_Text.setFont(font);
   enemyHP_Text.setCharacterSize(18);
-  //enemyHP_Text.setString("HP: " + enemyHP);
-  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height + 100));
+  std::string enemyHP_string1 = std::to_string(enemyHP);
+  enemyHP_Text.setString("HP: " + enemyHP_string1);
+  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height + 30));
 
   // health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
@@ -74,13 +77,13 @@ void BattleMenu::updateHPText()
 {
   
   if (playerTurn){
-    logic.updateHP(userHP, damage);
+    userHP = logic.updateHP(damage, userHP);
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string); 
     playerTurn = false;   
   }
   else{
-    logic.updateHP(enemyHP, damage);
+    enemyHP = logic.updateHP(damage, enemyHP);
     std::string enemyHP_string = std::to_string(enemyHP);
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;

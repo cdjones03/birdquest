@@ -21,4 +21,5 @@ private:
     int selectedIndex;
     sf::Font font;
     sf::Text optionText[maxOptions];
+    sf::RectangleShape rectangle;
 };

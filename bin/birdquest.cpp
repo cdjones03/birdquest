@@ -3,11 +3,11 @@
 #include <iostream>
 #include <tinyxml2.h>
 #include "BattleMenu.h"
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #include "BattleBar.h"
-=======
+//=======
 #include <LevelManager.hpp>
->>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
+//>>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
 
 using namespace std;
 
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
   bool inBattleMenu = false;
-<<<<<<< HEAD
+//<<<<<<< HEAD
   
   // create the tilemap from the level definition
   tinyxml2::XMLDocument doc;
@@ -43,8 +43,8 @@ int main(int argc, char** argv)
   tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
   doc.FirstChildElement("map")->IntAttribute("height"))) //vector is size of each tile in pixel
       return -1;
-=======
->>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
+//=======
+//>>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
 
   sf::View view(sf::FloatRect(0, 0, 320, 320));
   //App.setView(view);
@@ -118,6 +118,12 @@ int main(int argc, char** argv)
           }
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             battleMenu.moveDown();
+          }
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+            battleMenu.moveRight();
+          }
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+            battleMenu.moveLeft();
           }
           //once option is selected, do something
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {

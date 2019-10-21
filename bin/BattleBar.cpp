@@ -1,6 +1,9 @@
 /*
-    2nd iteration: update method fixed by Chase
-				   indicator stops based on uder input (enter)
+    3rd iteration: - indicator slowed down to resonable speed
+				   - window has no title bar so it will fit better inside
+				     the main game screen 
+				   - hitting the escape key exits the window now since there's no 
+				     title bar
 
 	Creates the main loop for the battle bar
 
@@ -14,17 +17,15 @@
 
 int main(int argc, char** argv){
 
-	sf::RenderWindow BattleBar(sf::VideoMode(1000,150,32), "Battle Bar", sf::Style::Titlebar | sf::Style::Close);
+	sf::RenderWindow BattleBar(sf::VideoMode(1000,150,32), "Battle Bar", sf::Style::None); //no style/title bar
 
-	BBBorder borders; //create borders
+	BBBorder borders; //create colored borders
 
 	Indicator indi; //create indicator
 
 	// start main loop
 	while(BattleBar.isOpen())
 	{
-		//int deltaMs = clock.getElapsedTime().asMilliseconds();
-
 		sf::Event Event;
 
 		while(BattleBar.pollEvent(Event))
@@ -36,8 +37,19 @@ int main(int argc, char** argv){
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
 				indi.changeToStop(); //stop indicator where it's at when enter is pressed
+				indi.damage();     //get damage and out put to terminal
 			}
 
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			{
+				indi.reset();  //start moving bar again when hit r
+			}
+			
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				BattleBar.close(); //exit window by hitting escape
+			}
+		
 		}
 
 	 //update battle bar
@@ -45,7 +57,7 @@ int main(int argc, char** argv){
 		BattleBar.clear(sf::Color::Black);  //clear screen and set bg to black
 
 		indi.update();  //update indicator for movement
-
+		
 		borders.drawBorder(BattleBar); //draw battlebar borders to screen
 
 		indi.drawIndicator(BattleBar); //draw indicator

@@ -1,8 +1,10 @@
 /*
-    First iteration of this done by Sydnee Belcher
+    2nd interation, done by Sydnee Belcher
 	
 	Creates the class for making the "borders" or blocks of colors that
 	denote the damage on the battle bar
+	
+	NOTE: - removed functions that were unused/not needed  
 */
 
 #include <SFML/Graphics.hpp>
@@ -18,11 +20,3 @@ void BBBorder::drawBorder(sf::RenderWindow &window){
 	window.draw(value5R);
 	window.draw(value7);
 	}
-
-float BBBorder::getEdgeLeft (void){  //get left edge of bar
-	return value1L.getPosition().x;
-}
-
-float BBBorder::getEdgeRight (void){  //get right edge of bar
-	return value1R.getPosition().x;
-}

@@ -1,8 +1,10 @@
 /*
-    First iteration of this done by Sydnee Belcher
+    2nd interation, done by Sydnee Belcher
 	
 	Creates the class for making the "borders" or blocks of colors that
 	denote the damage on the battle bar
+	
+	NOTE: - removed functions that were unused/not needed  
 */
 
 #ifndef BBBORDER_H
@@ -33,11 +35,11 @@ class BBBorder {
 	
 			value3L.setPosition(200, 25);
 			value3L.setSize(sf::Vector2f(150, 100));
-			value3L.setFillColor (sf::Color(222, 132, 31));  //color orange
+			value3L.setFillColor (sf::Color(255, 153, 51));  //color orange
 			
 			value3R.setPosition(650, 25);
 			value3R.setSize(sf::Vector2f(150, 100));
-			value3R.setFillColor (sf::Color(222, 132, 31));  //color orange
+			value3R.setFillColor (sf::Color(255, 153, 51));  //color orange
 			
 			value5L.setPosition(350, 25);
 			value5L.setSize (sf::Vector2f(120, 100));
@@ -56,8 +58,6 @@ class BBBorder {
 	
 	void drawBorder(sf::RenderWindow &window);
 
-	float getEdgeLeft (void);   //get left and right edges of the bar
-	float getEdgeRight (void);
 };
 
 #endif

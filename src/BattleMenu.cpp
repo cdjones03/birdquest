@@ -1,4 +1,5 @@
 #include "../include/BattleMenu.h"
+#include <iostream>
 
 BattleMenu::BattleMenu(float width, float height){
 

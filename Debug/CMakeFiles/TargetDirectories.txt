@@ -1,6 +1,0 @@
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/rebuild_cache.dir
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/edit_cache.dir
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/xmltest.dir
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/birdquest.dir
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/BattleBar.dir
-/Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/birdquest_core.dir

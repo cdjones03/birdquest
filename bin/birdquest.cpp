@@ -3,13 +3,14 @@
 #include <iostream>
 #include <tinyxml2.h>
 #include "BattleMenu.h"
+#include "BattleBar.h"
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-  const int windowTileWidth = 30;
-  const int windowTileHeight = 30;
+  const int windowTileWidth = 20;
+  const int windowTileHeight = 20;
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
   const int moveVal = 8;
@@ -24,7 +25,7 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
   bool inBattleMenu = false;
-
+  
   // create the tilemap from the level definition
   tinyxml2::XMLDocument doc;
   doc.LoadFile("../resources/SampleMap.xml");
@@ -123,7 +124,9 @@ int main(int argc, char** argv)
             switch (battleMenu.getSelectedOption()){
               case 0:
                 cout << "Attack pressed" << endl;
-                break;
+                BattleBar();   //run the battle bar 
+				
+				break;
               case 1:
                 cout << "Magic pressed" << endl;
                 break;

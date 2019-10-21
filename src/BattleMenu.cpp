@@ -3,7 +3,7 @@
 
 BattleMenu::BattleMenu(float width, float height){
 
-  //selectedIndex = 0;
+  selectedIndex = 0;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error

@@ -6,33 +6,34 @@
 				     title bar
 
 	Creates the main loop for the battle bar
-
 */
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "BBBorder.h"
 #include "Indicator.h"
+#include "BattleBar.h"
 
 
-int main(int argc, char** argv){
-
-	sf::RenderWindow BattleBar(sf::VideoMode(1000,150,32), "Battle Bar", sf::Style::None); //no style/title bar
+BattleBar::BattleBar(){
+ 
+	sf::RenderWindow BatBar(sf::VideoMode(640,150,32), "Battle Bar", sf::Style::None); //no style/title bar
 
 	BBBorder borders; //create colored borders
 
 	Indicator indi; //create indicator
-
+	
 	// start main loop
-	while(BattleBar.isOpen())
+	
+	while(BatBar.isOpen())
 	{
 		sf::Event Event;
 
-		while(BattleBar.pollEvent(Event))
+		while(BatBar.pollEvent(Event))
 		{
 
 			if(Event.type == sf::Event::Closed)  //exit window
-				BattleBar.close();
+				BatBar.close();
 
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
@@ -47,24 +48,22 @@ int main(int argc, char** argv){
 			
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
-				BattleBar.close(); //exit window by hitting escape
+				BatBar.close(); //exit window by hitting escape
 			}
 		
 		}
 
 	 //update battle bar
 
-		BattleBar.clear(sf::Color::Black);  //clear screen and set bg to black
+		BatBar.clear(sf::Color::Black);  //clear screen and set bg to black
 
 		indi.update();  //update indicator for movement
 		
-		borders.drawBorder(BattleBar); //draw battlebar borders to screen
+		borders.drawBorder(BatBar); //draw battlebar borders to screen
 
-		indi.drawIndicator(BattleBar); //draw indicator
+		indi.drawIndicator(BatBar); //draw indicator
 
-		BattleBar.display();  //display window
+		BatBar.display();  //display window
 
 	}
-
-	return 0;
 }

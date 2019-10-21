@@ -22,4 +22,7 @@ private:
     sf::Font font;
     sf::Text optionText[maxOptions];
     sf::RectangleShape rectangle;
+    sf::CircleShape bird_battle;
+    sf::Text HP;
+    sf::RectangleShape healthBar;
 };

@@ -10,6 +10,7 @@ public:
     ~BattleMenu();
 
     void draw(sf::RenderWindow &window);
+    void updateHP(int userHP, int enemyHP);
     void moveUp();
     void moveDown();
     void moveLeft();
@@ -23,6 +24,7 @@ private:
     sf::Text optionText[maxOptions];
     sf::RectangleShape rectangle;
     sf::CircleShape bird_battle;
-    sf::Text HP;
+    sf::Text userHP;
+    sf::Text enemyHP;
     sf::RectangleShape healthBar;
 };

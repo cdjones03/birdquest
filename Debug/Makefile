@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.3/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E remove -f
+RM = /usr/local/Cellar/cmake/3.15.3/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chasejones/birdquest
+CMAKE_SOURCE_DIR = /Users/jacobloehr/Desktop/birdquest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chasejones/birdquest/Debug
+CMAKE_BINARY_DIR = /Users/jacobloehr/Desktop/birdquest/Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/chasejones/birdquest/Debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.15.3/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.15.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles /Users/chasejones/birdquest/Debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chasejones/birdquest/Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jacobloehr/Desktop/birdquest/Debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -137,6 +137,19 @@ birdquest/fast:
 .PHONY : birdquest/fast
 
 #=============================================================================
+# Target rules for targets named BattleBar
+
+# Build rule for target.
+BattleBar: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BattleBar
+.PHONY : BattleBar
+
+# fast build rule for target.
+BattleBar/fast:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/build
+.PHONY : BattleBar/fast
+
+#=============================================================================
 # Target rules for targets named birdquest_core
 
 # Build rule for target.
@@ -148,6 +161,33 @@ birdquest_core: cmake_check_build_system
 birdquest_core/fast:
 	$(MAKE) -f CMakeFiles/birdquest_core.dir/build.make CMakeFiles/birdquest_core.dir/build
 .PHONY : birdquest_core/fast
+
+bin/BattleBar.o: bin/BattleBar.cpp.o
+
+.PHONY : bin/BattleBar.o
+
+# target to build an object file
+bin/BattleBar.cpp.o:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.o
+.PHONY : bin/BattleBar.cpp.o
+
+bin/BattleBar.i: bin/BattleBar.cpp.i
+
+.PHONY : bin/BattleBar.i
+
+# target to preprocess a source file
+bin/BattleBar.cpp.i:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.i
+.PHONY : bin/BattleBar.cpp.i
+
+bin/BattleBar.s: bin/BattleBar.cpp.s
+
+.PHONY : bin/BattleBar.s
+
+# target to generate assembly for a file
+bin/BattleBar.cpp.s:
+	$(MAKE) -f CMakeFiles/BattleBar.dir/build.make CMakeFiles/BattleBar.dir/bin/BattleBar.cpp.s
+.PHONY : bin/BattleBar.cpp.s
 
 bin/birdquest.o: bin/birdquest.cpp.o
 
@@ -456,7 +496,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... xmltest"
 	@echo "... birdquest"
+	@echo "... BattleBar"
 	@echo "... birdquest_core"
+	@echo "... bin/BattleBar.o"
+	@echo "... bin/BattleBar.i"
+	@echo "... bin/BattleBar.s"
 	@echo "... bin/birdquest.o"
 	@echo "... bin/birdquest.i"
 	@echo "... bin/birdquest.s"

@@ -7,9 +7,6 @@ BattleMenu::BattleMenu(float width, float height){
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
-  //create BattleMenu object
-  //BattleMenu battleMenu(App.getSize().x, App.getSize().y);
-  //#include "BattleMenu.h"
   }
 
   // border around the option in battle screen
@@ -25,10 +22,10 @@ BattleMenu::BattleMenu(float width, float height){
   bird_battle.setPosition(width - width/2.8, height - height/2.2);
 
   // HP text placement in battle menu
-  HP.setFont(font);
-  HP.setCharacterSize(18);
-  HP.setString("HP:");
-  HP.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
+  userHP.setFont(font);
+  userHP.setCharacterSize(18);
+  userHP.setString("HP:");
+  userHP.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
 
   // health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
@@ -62,12 +59,17 @@ BattleMenu::BattleMenu(float width, float height){
 BattleMenu:: ~BattleMenu(){
 
 }
+void BattleMenu::updateHP(int userHP, int enemyHP)
+{
+
+}
+
 void BattleMenu::draw(sf::RenderWindow &window){
 
   window.clear(sf::Color::Black);
   window.draw(rectangle);
   window.draw(bird_battle);
-  window.draw(HP);
+  window.draw(userHP);
   window.draw(healthBar);
   int i = 0;
   for (; i< maxOptions; i++){

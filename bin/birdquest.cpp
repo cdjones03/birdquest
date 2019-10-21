@@ -3,11 +3,8 @@
 #include <iostream>
 #include <tinyxml2.h>
 #include "BattleMenu.h"
-//<<<<<<< HEAD
 #include "BattleBar.h"
-//=======
 #include <LevelManager.hpp>
-//>>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
 
 using namespace std;
 
@@ -27,30 +24,15 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
   bool inBattleMenu = false;
-//<<<<<<< HEAD
-  
+
   // create the tilemap from the level definition
-  tinyxml2::XMLDocument doc;
-  doc.LoadFile("../resources/SampleMap.xml");
-  const char* tinymap = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
+  LevelManager levelManager;
+  levelManager.loadLevels();
 
-  tinyxml2::XMLDocument doc2;
-  doc2.LoadFile("../resources/SampleMap2.xml");
-  const char* tinymap2 = doc2.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
-
-  TileMap map;
-  if (!map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-  tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
-  doc.FirstChildElement("map")->IntAttribute("height"))) //vector is size of each tile in pixel
-      return -1;
-//=======
-//>>>>>>> 5342334a5d42e6026dd50ce22af94a3168b72c3d
 
   sf::View view(sf::FloatRect(0, 0, 320, 320));
   //App.setView(view);
 
-  LevelManager levelManager;
-  levelManager.loadLevels();
   sf::Clock clock;
   int deltaMs;
 
@@ -131,8 +113,8 @@ int main(int argc, char** argv)
             switch (battleMenu.getSelectedOption()){
               case 0:
                 cout << "Attack pressed" << endl;
-                BattleBar();   //run the battle bar 
-				
+                BattleBar();   //run the battle bar
+
 				break;
               case 1:
                 cout << "Magic pressed" << endl;

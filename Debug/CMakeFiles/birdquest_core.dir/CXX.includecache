@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/chasejones/birdquest/include/BattleMenu.h
+SFML/Graphics.hpp
+/Users/chasejones/birdquest/include/SFML/Graphics.hpp
+
+/Users/chasejones/birdquest/src/BattleMenu.cpp
+../include/BattleMenu.h
+/Users/chasejones/birdquest/include/BattleMenu.h
+iostream
+-
+

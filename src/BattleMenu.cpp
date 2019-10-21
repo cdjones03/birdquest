@@ -3,7 +3,7 @@
 
 BattleMenu::BattleMenu(float width, float height){
 
-  selectedIndex = 0;
+  //selectedIndex = 0;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
@@ -49,7 +49,6 @@ void BattleMenu::draw(sf::RenderWindow &window){
 }
 
 void BattleMenu::moveUp(){
-  std::cout << selectedIndex << std::endl;
   if (selectedIndex - 1 >= 0){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex --;

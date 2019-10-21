@@ -21,9 +21,9 @@ int main(int argc, char** argv)
   sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelWidth, 32), "BirdQuest!");//, sf::Style::Close);
   App.setFramerateLimit(60);
 
-  //Create battleMenu object
+  //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
-  bool toBattleMenu = false;
+  bool inBattleMenu = false;
 
   // create the tilemap from the level definition
   tinyxml2::XMLDocument doc;
@@ -68,42 +68,54 @@ int main(int argc, char** argv)
           App.close();
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
-          toBattleMenu = true;
+          inBattleMenu = true;
         }
-        //Handle input, delegate to HumanView.cpp
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-          if(birdSprite.getPosition().y >= moveVal){
-          birdSprite.move(0, -moveVal);
-          continue;
-        }
-          else {
-            map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-            tinymap2, doc2.FirstChildElement("map")->IntAttribute("width"),
-            doc2.FirstChildElement("map")->IntAttribute("height"));
-            birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);
-          }
-        }
-
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-          if(birdSprite.getPosition().y < windowPixelHeight-moveVal){
-            birdSprite.move(0, moveVal);
+        //keypresses for when we are in the Stage
+        if (!inBattleMenu){
+          //Handle input, delegate to HumanView.cpp
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if(birdSprite.getPosition().y >= moveVal){
+            birdSprite.move(0, -moveVal);
             continue;
-        }
-          else {
-            map.load("../resources/tileset.png", sf::Vector2u(32, 32),
-            tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
-            doc.FirstChildElement("map")->IntAttribute("height"));
-            birdSprite.setPosition(birdSprite.getPosition().x, 0);
+          }
+            else {
+              map.load("../resources/tileset.png", sf::Vector2u(32, 32),
+              tinymap2, doc2.FirstChildElement("map")->IntAttribute("width"),
+              doc2.FirstChildElement("map")->IntAttribute("height"));
+              birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);
+            }
+          }
+
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+            if(birdSprite.getPosition().y < windowPixelHeight-moveVal){
+              birdSprite.move(0, moveVal);
+              continue;
+          }
+            else {
+              map.load("../resources/tileset.png", sf::Vector2u(32, 32),
+              tinymap, doc.FirstChildElement("map")->IntAttribute("width"),
+              doc.FirstChildElement("map")->IntAttribute("height"));
+              birdSprite.setPosition(birdSprite.getPosition().x, 0);
+            }
+          }
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-moveVal){
+            //view.move(32, 0);
+            birdSprite.move(moveVal, 0);
+            continue;
+          }
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= moveVal){
+            birdSprite.move(-moveVal, 0);
+            continue;
           }
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-moveVal){
-          //view.move(32, 0);
-          birdSprite.move(moveVal, 0);
-          continue;
-        }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= moveVal){
-          birdSprite.move(-moveVal, 0);
-          continue;
+        //key presses for when we are in the battle menu
+        else if (inBattleMenu){
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            battleMenu.moveUp();
+          }
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            battleMenu.moveDown();
+          }
         }
       }
 
@@ -111,7 +123,7 @@ int main(int argc, char** argv)
       App.clear(sf::Color::Black);
       //App.setView(view);
       //
-      if (!toBattleMenu){
+      if (!inBattleMenu){
         App.draw(map);
         App.draw(birdSprite);
       }

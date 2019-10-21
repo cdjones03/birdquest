@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/BBBorder.h
+
+../include/Indicator.h
+iostream
+-
+stdio.h
+-
+SFML/Graphics.hpp
+-
+
+/Users/jacobloehr/Desktop/birdquest/bin/BattleBar.cpp
+iostream
+-
+SFML/Graphics.hpp
+-
+BBBorder.h
+/Users/jacobloehr/Desktop/birdquest/bin/BBBorder.h
+Indicator.h
+/Users/jacobloehr/Desktop/birdquest/bin/Indicator.h
+

@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/BBBorder.h
+
+../include/BattleBar.h
+BBBorder.h
+-
+Indicator.h
+-
+
+../include/Indicator.h
+iostream
+-
+stdio.h
+-
+SFML/Graphics.hpp
+-
+
+/Users/chasejones/birdquest/include/BattleLogic.h
+
+/Users/chasejones/birdquest/include/BattleMenu.h
+SFML/Graphics.hpp
+/Users/chasejones/birdquest/include/SFML/Graphics.hpp
+BattleLogic.h
+/Users/chasejones/birdquest/include/BattleLogic.h
+BattleBar.h
+-
+
+/Users/chasejones/birdquest/src/BattleMenu.cpp
+../include/BattleMenu.h
+/Users/chasejones/birdquest/include/BattleMenu.h
+iostream
+-
+

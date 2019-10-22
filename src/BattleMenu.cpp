@@ -5,11 +5,13 @@ BattleMenu::BattleMenu(float width, float height){
 
   selectedIndex = 0;
   //damage = indicator.damageDealt;
-  userDamage = 6;
-  enemyDamage = 6;
+  userDamage = 0;
+  enemyDamage = 0;
   playerTurn = true;
   userHP = maxHP;
   enemyHP = maxHP;
+  showBattleBar = 0;
+  returnJustPressed = false;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
@@ -45,9 +47,6 @@ BattleMenu::BattleMenu(float width, float height){
   outputText.setCharacterSize(22);
   outputText.setString("output test");
   outputText.setPosition(sf::Vector2f(width/2 - 200, height/2 -50));
-
-
-
 
   // health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
@@ -86,20 +85,23 @@ BattleMenu:: ~BattleMenu(){
 void BattleMenu::updateHPText()
 {
 
+  std::string userDamageString = std::to_string(userDamage);
+  std::string enemyDamageString = std::to_string(enemyDamage);
+
   if (playerTurn){
-    userHP = logic.updateHP(enemyDamage, userHP);
+  //userHP = logic.updateHP(enemyDamage, userHP);
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
     playerTurn = false;
   }
   else{
-    enemyHP = logic.updateHP(userDamage, enemyHP);
+    //enemyHP = logic.updateHP(userDamage, enemyHP);
     std::string enemyHP_string = std::to_string(enemyHP);
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;
   }
 
-
+  outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
 }
 
 /**
@@ -113,6 +115,7 @@ void BattleMenu::updateOutputText(int input){
 
 void BattleMenu::draw(sf::RenderWindow &window){
 
+  updateHPText();
   window.draw(rectangle);
   window.draw(bird_battle);
   window.draw(userHP_Text);
@@ -123,7 +126,10 @@ void BattleMenu::draw(sf::RenderWindow &window){
   for (; i< maxOptions; i++){
     window.draw(optionText[i]);
   }
+  // std::cout << showBattleBar << std::endl;
+  if(showBattleBar == 1){
   battleBar.update(window);
+}
 }
 
 void BattleMenu::moveUp(){
@@ -158,39 +164,40 @@ void BattleMenu::moveLeft(){
   }
 }
 
-int BattleMenu::processInputs(sf::Event event){
-  std::string userDamageString = std::to_string(userDamage);
-  std::string enemyDamageString = std::to_string(enemyDamage);
+int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
   //moving up,down, left, right to select options
 
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+  if(event.key.code == sf::Keyboard::Up) {
     moveUp();
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+  if(event.key.code == sf::Keyboard::Down) {
     moveDown();
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+  if(event.key.code == sf::Keyboard::Right){
     moveRight();
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+  if(event.key.code == sf::Keyboard::Left){
     moveLeft();
   }
   //once option is selected, do something
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+  if(event.key.code == sf::Keyboard::Return) {
+    std::cout << "return" << std::endl;
+
+    if(showBattleBar == 0){
 
     switch (getSelectedOption()){
       case 0:
         updateHPText();
         std::cout << "Attack pressed" << std::endl;
-        //BattleBar();   //run the battle bar
-
-        outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
+        showBattleBar = 1;
+        //outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
+        returnJustPressed = true;
         break;
       case 1:
         updateHPText();
         std::cout << "Magic pressed" << std::endl;
-        outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
+        //outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
         break;
       case 2:
         std::cout << "Evade pressed" << std::endl;
@@ -199,6 +206,22 @@ int BattleMenu::processInputs(sf::Event event){
         std::cout << "Item pressed" << std::endl;
         break;
     }
-
   }
 }
+
+  else if (showBattleBar == 1 && returnJustPressed){
+    if(event.key.code == sf::Keyboard::Space){
+      std::cout << "pressed" << std::endl;
+      battleBar.barPressed();
+      showBattleBar = 0;
+      returnJustPressed = false;
+      userDamage = battleBar.getDamageDealt();
+      //enemyDamage = battleBar.getDamageDealt();
+      userHP -= enemyDamage;
+      enemyHP -= userDamage;
+      updateHPText();
+
+  }
+  }
+
+  }

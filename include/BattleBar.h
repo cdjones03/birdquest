@@ -10,6 +10,7 @@ class BattleBar {
 		BattleBar();
 		void update(sf::RenderWindow &window);
 		void barPressed();
+		int getDamageDealt();
 
 	private:
 

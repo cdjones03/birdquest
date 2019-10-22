@@ -3,8 +3,8 @@
 
 	Creates the class for making the indicator, which is the blue
 	bar that moves back and forth across the battle bar and waits for
-	user input (enter key) to be pressed. 
-	
+	user input (enter key) to be pressed.
+
 	The indicator will stop where it's at and the damage function can
 	be called for proper damage assiciated with the corresponding color
 
@@ -12,7 +12,7 @@
 		  - Code has been cleaned up to get rid of all unused/uneeded functions and variables
 		  - update function now multiplies the velocity by a number less than 1 to slow the
 		    speed of the indicator bar, as it was too fast before
-		  - reset function now resets the indicator bar back to the center and turns the 
+		  - reset function now resets the indicator bar back to the center and turns the
             the velocity back to -1, which means the indicator will always start by going
 			right
 		  - damage and current x position printed to terminal
@@ -27,7 +27,7 @@
 #include <SFML/Graphics.hpp>
 
 
-class Indicator { 
+class Indicator {
 
 	sf::RectangleShape indic;
 	int velocity = 1;
@@ -40,7 +40,7 @@ class Indicator {
 		int orange = 3;
 		int yellow = 5;
 		int green = 7;
-		
+
 
 	public:  //constructor
 		Indicator();
@@ -49,15 +49,15 @@ class Indicator {
 
 		void drawIndicator(sf::RenderWindow &window);
 
-		void changeToStop();  //change movement of indicator to stop 
+		void changeToStop();  //change movement of indicator to stop
 
 		void update();
-		
-		float damage();   //deal damage
+
+		int damage();   //deal damage
 
 		//int that will store the damage dealt
 		int damageDealt;
-		
+
 };
 
 

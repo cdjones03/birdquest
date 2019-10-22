@@ -22,12 +22,15 @@ public:
         return selectedIndex;
     }
     bool playerTurn;
-    int processInputs(sf::Event event);
+    int processInputs(sf::Event event, sf::RenderWindow &window);
     //bool whoseTurn();
+    
+
 private:
 
     BattleBar battleBar;
-    int damage;
+    int userDamage;
+    int enemyDamage;
     int userHP;
     int enemyHP;
     BattleLogic logic;
@@ -40,4 +43,6 @@ private:
     sf::Text enemyHP_Text;
     sf::Text outputText;
     sf::RectangleShape healthBar;
+    int showBattleBar;
+    bool returnJustPressed;
 };

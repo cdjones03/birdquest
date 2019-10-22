@@ -42,3 +42,7 @@ void BattleBar::update(sf::RenderWindow &window){
 		indi.drawIndicator(window); //draw indicator
 
 	}
+
+int BattleBar::getDamageDealt(){
+  return indi.damage();
+}

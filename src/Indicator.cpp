@@ -25,7 +25,7 @@
 #include <cmath>   //for pow function
 
 Indicator::Indicator() {
-	indic.setSize(sf::Vector2f(10, 100));
+	indic.setSize(sf::Vector2f(width, height));
 	indic.setFillColor (sf::Color::Blue);
 	indic.setPosition(315, 240);  //center the indicator
 	startX = indic.getPosition().x;
@@ -56,7 +56,7 @@ void Indicator::update(){
 
 	else
 	{
-		if(indic.getPosition().x > 639){     //change direction of indicator when reaches edge
+		if(indic.getPosition().x+getWidth() > 639){     //change direction of indicator when reaches edge
 			velocity *= -1;
 		}
 		else if(indic.getPosition().x < 1){
@@ -93,4 +93,8 @@ int Indicator::damage(){
 
 	return damageDealt;
 
+}
+
+int Indicator::getWidth(){
+	return width;
 }

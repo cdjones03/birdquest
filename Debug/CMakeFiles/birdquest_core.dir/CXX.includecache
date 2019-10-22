@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Indicator.h
+iostream
+-
+stdio.h
+-
+SFML/Graphics.hpp
+-
+
+/Users/chasejones/birdquest/src/Indicator.cpp
+iostream
+-
+SFML/Graphics.hpp
+-
+Indicator.h
+/Users/chasejones/birdquest/src/Indicator.h
+cmath
+-
+

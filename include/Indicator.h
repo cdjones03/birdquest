@@ -40,6 +40,8 @@ class Indicator {
 		int orange = 3;
 		int yellow = 5;
 		int green = 7;
+		int width = 10;
+		int height = 100;
 
 
 	public:  //constructor
@@ -57,6 +59,8 @@ class Indicator {
 
 		//int that will store the damage dealt
 		int damageDealt;
+
+		int getWidth();
 
 };
 

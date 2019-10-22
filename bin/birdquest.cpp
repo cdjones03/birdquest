@@ -21,7 +21,7 @@ int main(int argc, char** argv)
   //The game should be played in an 800x600 window. Changing the size of the window sh
   sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelWidth, 32), "BirdQuest!");//, sf::Style::Close);
   App.setFramerateLimit(60);
-  App.setKeyRepeatEnabled(false);
+  //App.setKeyRepeatEnabled(false);
 
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);

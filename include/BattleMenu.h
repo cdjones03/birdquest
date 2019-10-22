@@ -13,6 +13,7 @@ public:
 
     void draw(sf::RenderWindow &window);
     void updateHPText();
+    void updateOutputText(int input);
     void moveUp();
     void moveDown();
     void moveLeft();
@@ -25,7 +26,8 @@ public:
     //bool whoseTurn();
 private:
     Indicator indicator;
-    int damage;
+    int userDamage;
+    int enemyDamage;
     int userHP;
     int enemyHP;
     BattleLogic logic;

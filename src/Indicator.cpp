@@ -25,9 +25,9 @@
 #include <cmath>   //for pow function
 
 Indicator::Indicator() {
-	indic.setSize(sf::Vector2f(10, 150));
+	indic.setSize(sf::Vector2f(10, 100));
 	indic.setFillColor (sf::Color::Blue);
-	indic.setPosition(315, 0);  //center the indicator
+	indic.setPosition(315, 240);  //center the indicator
 	startX = indic.getPosition().x;
 	startY = indic.getPosition().y;
 }
@@ -62,7 +62,7 @@ void Indicator::update(){
 		else if(indic.getPosition().x < 1){
 			velocity *= -1;
 		}
-		indic.move(velocity*(-0.25), 0);  //mult by number less than 1 to slow down movement speed
+		indic.move(velocity*(-8.00), 0);  //mult by number less than 1 to slow down movement speed
 	}
 }
 

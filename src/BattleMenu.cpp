@@ -97,7 +97,7 @@ BattleMenu::BattleMenu(float width, float height){
 
   optionText[2].setFont(font);
   optionText[2].setFillColor(sf::Color::Blue);
-  optionText[2].setString("Evade");
+  optionText[2].setString("Flee");
   optionText[2].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*4));
 
   optionText[3].setFont(font);
@@ -273,7 +273,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         
         showAttack = false;
         std::cout << "Item pressed" << std::endl;
-        outputText.setString("You healed for 10 HP.\nEnemy attacked for 5 damage.");
+        outputText.setString("You healed for 20 HP.\nEnemy attacked for 10 damage.");
         break;
     }
   }

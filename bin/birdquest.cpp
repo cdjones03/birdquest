@@ -93,7 +93,12 @@ int main(int argc, char** argv)
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
           //std::cout << "hello" << std::endl;
+          
           battleMenu.processInputs(Event, App);
+          if (!battleMenu.inMenu){
+            inBattleMenu = false;
+          }
+
         }
       }
 
@@ -105,7 +110,7 @@ int main(int argc, char** argv)
         levelManager.drawMap(App);
         App.draw(birdSprite);
       }
-      else{
+      else if (inBattleMenu && battleMenu.inMenu){
         battleMenu.draw(App);
       }
 

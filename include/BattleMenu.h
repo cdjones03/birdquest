@@ -22,11 +22,16 @@ public:
         return selectedIndex;
     }
     bool playerTurn;
+    bool inMenu;
     int processInputs(sf::Event event, sf::RenderWindow &window);
     //bool whoseTurn();
     
 
 private:
+    bool showAttack;
+    bool show;
+    
+
     BattleBar battleBar;
     int userDamage;
     int enemyDamage;

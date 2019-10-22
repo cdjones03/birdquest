@@ -21,6 +21,7 @@ public:
         return selectedIndex;
     }
     bool playerTurn;
+    int processInputs(sf::Event event);
     //bool whoseTurn();
 private:
     Indicator indicator;
@@ -35,5 +36,6 @@ private:
     sf::CircleShape bird_battle;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
+    sf::Text outputText;
     sf::RectangleShape healthBar;
 };

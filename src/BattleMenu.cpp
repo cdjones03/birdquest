@@ -7,8 +7,8 @@ BattleMenu::BattleMenu(float width, float height){
   //damage = indicator.damageDealt;
   damage = 6;
   playerTurn = true;
-  userHP = 100;
-  enemyHP = 100;
+  userHP = maxHP;
+  enemyHP = maxHP;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
   //error
@@ -38,6 +38,15 @@ BattleMenu::BattleMenu(float width, float height){
   std::string enemyHP_string1 = std::to_string(enemyHP);
   enemyHP_Text.setString("HP: " + enemyHP_string1);
   enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height + 30));
+
+  //setup output text
+  outputText.setFont(font);
+  outputText.setCharacterSize(18);
+  outputText.setString("output test");
+  outputText.setPosition(sf::Vector2f(width/2 - 100, height/2 -50));
+
+
+
 
   // health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
@@ -100,6 +109,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(userHP_Text);
   window.draw(enemyHP_Text);
   window.draw(healthBar);
+  window.draw(outputText);
   int i = 0;
   for (; i< maxOptions; i++){
     window.draw(optionText[i]);
@@ -135,5 +145,45 @@ void BattleMenu::moveLeft(){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex -= 2;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
+  }
+}
+
+int BattleMenu::processInputs(sf::Event event){
+
+  //moving up,down, left, right to select options
+
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    moveUp();
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    moveDown();
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+    moveRight();
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+    moveLeft();
+  }
+  //once option is selected, do something
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+
+    switch (getSelectedOption()){
+      case 0:
+        updateHPText();
+        std::cout << "Attack pressed" << std::endl;
+        //BattleBar();   //run the battle bar
+        break;
+      case 1:
+        updateHPText();
+        std::cout << "Magic pressed" << std::endl;
+        break;
+      case 2:
+        std::cout << "Evade pressed" << std::endl;
+        break;
+      case 3:
+        std::cout << "Item pressed" << std::endl;
+        break;
+    }
+    
   }
 }

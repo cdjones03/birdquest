@@ -95,42 +95,7 @@ int main(int argc, char** argv)
         }
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
-          //moving up,down, left, right to select options
-
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            battleMenu.moveUp();
-          }
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            battleMenu.moveDown();
-          }
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-            battleMenu.moveRight();
-          }
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-            battleMenu.moveLeft();
-          }
-          //once option is selected, do something
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-
-            switch (battleMenu.getSelectedOption()){
-              case 0:
-                battleMenu.updateHPText();
-                cout << "Attack pressed" << endl;
-                //BattleBar();   //run the battle bar
-				        break;
-              case 1:
-                battleMenu.updateHPText();
-                cout << "Magic pressed" << endl;
-                break;
-              case 2:
-                cout << "Evade pressed" << endl;
-                break;
-              case 3:
-                cout << "Item pressed" << endl;
-                break;
-            }
-            continue;
-          }
+          battleMenu.processInputs(Event);
         }
       }
 

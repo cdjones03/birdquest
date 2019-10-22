@@ -5,7 +5,8 @@ BattleMenu::BattleMenu(float width, float height){
 
   selectedIndex = 0;
   //damage = indicator.damageDealt;
-  damage = 6;
+  userDamage = 6;
+  enemyDamage = 6;
   playerTurn = true;
   userHP = maxHP;
   enemyHP = maxHP;
@@ -41,9 +42,9 @@ BattleMenu::BattleMenu(float width, float height){
 
   //setup output text
   outputText.setFont(font);
-  outputText.setCharacterSize(18);
+  outputText.setCharacterSize(22);
   outputText.setString("output test");
-  outputText.setPosition(sf::Vector2f(width/2 - 100, height/2 -50));
+  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2 -50));
 
 
 
@@ -86,13 +87,13 @@ void BattleMenu::updateHPText()
 {
 
   if (playerTurn){
-    userHP = logic.updateHP(damage, userHP);
+    userHP = logic.updateHP(enemyDamage, userHP);
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
     playerTurn = false;
   }
   else{
-    enemyHP = logic.updateHP(damage, enemyHP);
+    enemyHP = logic.updateHP(userDamage, enemyHP);
     std::string enemyHP_string = std::to_string(enemyHP);
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;
@@ -100,6 +101,15 @@ void BattleMenu::updateHPText()
 
 
 }
+
+/**
+void BattleMenu::updateOutputText(int input){
+  switch (input){
+    case 0:
+
+  }
+}
+*/
 
 void BattleMenu::draw(sf::RenderWindow &window){
 
@@ -149,6 +159,8 @@ void BattleMenu::moveLeft(){
 }
 
 int BattleMenu::processInputs(sf::Event event){
+  std::string userDamageString = std::to_string(userDamage);
+  std::string enemyDamageString = std::to_string(enemyDamage);
 
   //moving up,down, left, right to select options
 
@@ -172,10 +184,13 @@ int BattleMenu::processInputs(sf::Event event){
         updateHPText();
         std::cout << "Attack pressed" << std::endl;
         //BattleBar();   //run the battle bar
+
+        outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
         break;
       case 1:
         updateHPText();
         std::cout << "Magic pressed" << std::endl;
+        outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
         break;
       case 2:
         std::cout << "Evade pressed" << std::endl;

@@ -13,6 +13,7 @@ public:
 
     void draw(sf::RenderWindow &window);
     void updateHPText();
+    void updateOutputText(int input);
     void moveUp();
     void moveDown();
     void moveLeft();

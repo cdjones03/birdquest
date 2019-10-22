@@ -30,10 +30,6 @@ int main(int argc, char** argv)
   LevelManager levelManager;
   levelManager.loadLevels();
 
-
-  sf::View view(sf::FloatRect(0, 0, 320, 320));
-  //App.setView(view);
-
   sf::Clock clock;
   int deltaMs;
 
@@ -101,8 +97,7 @@ int main(int argc, char** argv)
 
       //Display
       App.clear(sf::Color::Black);
-      //App.setView(view);
-      //
+
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);

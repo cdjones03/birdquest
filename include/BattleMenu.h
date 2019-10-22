@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "BattleLogic.h"
-#include "Indicator.h"
+#include <BattleBar.h>
 
 #define maxOptions 4
 
@@ -24,7 +24,8 @@ public:
     int processInputs(sf::Event event);
     //bool whoseTurn();
 private:
-    Indicator indicator;
+
+    BattleBar battleBar;
     int damage;
     int userHP;
     int enemyHP;

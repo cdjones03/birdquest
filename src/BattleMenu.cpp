@@ -84,12 +84,12 @@ BattleMenu:: ~BattleMenu(){
 //updates the text that displays the user and enemy HP, based on whose turn it is.
 void BattleMenu::updateHPText()
 {
-  
+
   if (playerTurn){
     userHP = logic.updateHP(damage, userHP);
     std::string userHP_string = std::to_string(userHP);
-    userHP_Text.setString("HP: " + userHP_string); 
-    playerTurn = false;   
+    userHP_Text.setString("HP: " + userHP_string);
+    playerTurn = false;
   }
   else{
     enemyHP = logic.updateHP(damage, enemyHP);
@@ -97,13 +97,12 @@ void BattleMenu::updateHPText()
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;
   }
-  
+
 
 }
 
 void BattleMenu::draw(sf::RenderWindow &window){
 
-  window.clear(sf::Color::Black);
   window.draw(rectangle);
   window.draw(bird_battle);
   window.draw(userHP_Text);
@@ -114,6 +113,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
   for (; i< maxOptions; i++){
     window.draw(optionText[i]);
   }
+  battleBar.update(window);
 }
 
 void BattleMenu::moveUp(){
@@ -184,6 +184,6 @@ int BattleMenu::processInputs(sf::Event event){
         std::cout << "Item pressed" << std::endl;
         break;
     }
-    
+
   }
 }

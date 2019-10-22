@@ -29,6 +29,18 @@ BattleMenu::BattleMenu(float width, float height){
   bird_battle.setFillColor(sf::Color(30, 30, 255));
   bird_battle.setPosition(width - width/2.8, height - height/2.2);
 
+  // temporary placement for enemy sprite in battle screen
+  enemy_sample.setRadius(80);
+  enemy_sample.setFillColor(sf::Color::White);
+  enemy_sample.setPosition(width/7, height/15);
+
+  // name for enemy sprite
+  enemy_Text.setFont(font);
+  enemy_Text.setFillColor(sf::Color::Black);
+  enemy_Text.setCharacterSize(25);
+  enemy_Text.setString("ENEMY");
+  enemy_Text.setPosition(sf::Vector2f(width/5.1, height/5.8));
+
   // HP text placement in battle menu
   userHP_Text.setFont(font);
   userHP_Text.setCharacterSize(18);
@@ -40,7 +52,7 @@ BattleMenu::BattleMenu(float width, float height){
   enemyHP_Text.setCharacterSize(18);
   std::string enemyHP_string1 = std::to_string(enemyHP);
   enemyHP_Text.setString("HP: " + enemyHP_string1);
-  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height + 30));
+  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, 30));
 
   //setup output text
   outputText.setFont(font);
@@ -48,11 +60,27 @@ BattleMenu::BattleMenu(float width, float height){
   outputText.setString("output test");
   outputText.setPosition(sf::Vector2f(width/2 - 200, height/2 -50));
 
-  // health bar placement in battle menu
+  // red health bar for player in battle menu
+  remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
+  remainingBar.setFillColor(sf::Color::Red);
+  remainingBar.setPosition(width - width/2.8 , height - height/12);
+  remainingBar.setOutlineThickness(3);
+
+  // green health bar placement in battle menu
   healthBar.setSize(sf::Vector2f(width/3.5, height/30));
   healthBar.setFillColor(sf::Color(50, 255, 50));
   healthBar.setPosition(width - width/2.8, height - height/12);
-  healthBar.setOutlineThickness(3);
+
+  // red health bar for enemy in battle menu
+  enemy_remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
+  enemy_remainingBar.setFillColor(sf::Color::Red);
+  enemy_remainingBar.setPosition(sf::Vector2f(width - width/2.8, 55));
+  enemy_remainingBar.setOutlineThickness(3);
+
+  // green health bar for enemy in battle menu
+  enemy_healthBar.setSize(sf::Vector2f(width/3.5, height/30));
+  enemy_healthBar.setFillColor(sf::Color(50, 255, 50));
+  enemy_healthBar.setPosition(sf::Vector2f(width - width/2.8, 55));
 
   //position each option on the screen, with the color red if it is highlighted
   optionText[0].setFont(font);
@@ -93,12 +121,18 @@ void BattleMenu::updateHPText()
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
     playerTurn = false;
+
+    // change later for variable width and height
+    healthBar.setSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
   }
   else{
     //enemyHP = logic.updateHP(userDamage, enemyHP);
     std::string enemyHP_string = std::to_string(enemyHP);
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;
+
+    // change later for variable width and height
+    enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
 
   outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
@@ -118,9 +152,14 @@ void BattleMenu::draw(sf::RenderWindow &window){
   updateHPText();
   window.draw(rectangle);
   window.draw(bird_battle);
+  window.draw(enemy_sample);
+  window.draw(enemy_Text);
   window.draw(userHP_Text);
   window.draw(enemyHP_Text);
+  window.draw(remainingBar);
   window.draw(healthBar);
+  window.draw(enemy_remainingBar);
+  window.draw(enemy_healthBar);  
   window.draw(outputText);
   int i = 0;
   for (; i< maxOptions; i++){
@@ -128,8 +167,8 @@ void BattleMenu::draw(sf::RenderWindow &window){
   }
   // std::cout << showBattleBar << std::endl;
   if(showBattleBar == 1){
-  battleBar.update(window);
-}
+    battleBar.update(window);
+  }
 }
 
 void BattleMenu::moveUp(){
@@ -221,7 +260,6 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       enemyHP -= userDamage;
       updateHPText();
 
+    }
   }
-  }
-
-  }
+}

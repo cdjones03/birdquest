@@ -27,7 +27,6 @@ public:
     
 
 private:
-
     BattleBar battleBar;
     int userDamage;
     int enemyDamage;
@@ -39,10 +38,15 @@ private:
     sf::Text optionText[maxOptions];
     sf::RectangleShape rectangle;
     sf::CircleShape bird_battle;
+    sf::CircleShape enemy_sample;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
     sf::Text outputText;
+    sf::Text enemy_Text;
     sf::RectangleShape healthBar;
+    sf::RectangleShape remainingBar;
+    sf::RectangleShape enemy_healthBar;
+    sf::RectangleShape enemy_remainingBar;
     int showBattleBar;
     bool returnJustPressed;
 };

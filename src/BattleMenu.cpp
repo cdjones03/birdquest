@@ -216,7 +216,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       showBattleBar = 0;
       returnJustPressed = false;
       userDamage = battleBar.getDamageDealt();
-      //enemyDamage = battleBar.getDamageDealt();
+      enemyDamage = userDamage - 1;
       userHP -= enemyDamage;
       enemyHP -= userDamage;
       updateHPText();

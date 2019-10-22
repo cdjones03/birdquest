@@ -44,5 +44,5 @@ void BattleBar::update(sf::RenderWindow &window){
 	}
 
 int BattleBar::getDamageDealt(){
-  return indi.damage();
+  	return indi.damage();
 }

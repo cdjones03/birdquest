@@ -62,9 +62,9 @@ int main(int argc, char** argv)
           //Handle input, delegate to HumanView.cpp
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             if(birdSprite.getPosition().y >= moveVal){
-            birdSprite.move(0, -moveVal);
-            continue;
-          }
+              birdSprite.move(0, -moveVal);
+              continue;
+            }
             else {
               levelManager.switchMap(2);
               birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);

@@ -80,7 +80,7 @@ BattleMenu::BattleMenu(float width, float height){
   // green health bar for enemy in battle menu
   enemy_healthBar.setSize(sf::Vector2f(width/3.5, height/30));
   enemy_healthBar.setFillColor(sf::Color(50, 255, 50));
-  enemy_healthBar.setPosition(sf::Vector2f(width - width/2.8, 55));
+  enemy_healthBar.setPosition(sf::Vector2f(width - width/2.8, 55.5));
 
   //position each option on the screen, with the color red if it is highlighted
   optionText[0].setFont(font);
@@ -117,7 +117,7 @@ void BattleMenu::updateHPText()
   std::string enemyDamageString = std::to_string(enemyDamage);
 
   if (playerTurn){
-  //userHP = logic.updateHP(enemyDamage, userHP);
+    //userHP = logic.updateHP(enemyDamage, userHP);
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
     playerTurn = false;
@@ -251,10 +251,10 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   else if (showBattleBar == 1 && returnJustPressed){
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
+      userDamage = battleBar.getDamageDealt();
       battleBar.barPressed();
       showBattleBar = 0;
       returnJustPressed = false;
-      userDamage = battleBar.getDamageDealt();
       enemyDamage = userDamage - 1;
       userHP -= enemyDamage;
       enemyHP -= userDamage;

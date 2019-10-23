@@ -11,6 +11,7 @@ public:
 
   bool load(const std::string& tileset, sf::Vector2u tileSize, const char* tiles, unsigned int width, unsigned int height);
   virtual ~TileMap();
+  int getTexCoord(int x, int y);
 
 private:
 

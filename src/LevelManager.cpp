@@ -42,3 +42,7 @@ void LevelManager::switchMap(int mapVal){
       }
   }
 }
+
+TileMap LevelManager::getMap(){
+  return map;
+}

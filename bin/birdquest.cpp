@@ -15,7 +15,7 @@ int main(int argc, char** argv)
   const int windowTileHeight = 20;
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
-  const int moveVal = 8;
+  const int moveVal = 32;
 
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
@@ -82,8 +82,12 @@ int main(int argc, char** argv)
             }
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-moveVal){
+            if(levelManager.getMap().getTexCoord(birdSprite.getPosition().x+32, birdSprite.getPosition().y) != 32){//if moving right, and tile to right is water, won't allow movement
             birdSprite.move(moveVal, 0);
+            std::cout << birdSprite.getPosition().x << " " << birdSprite.getPosition().y << std::endl;
+            std::cout << levelManager.getMap().getTexCoord(birdSprite.getPosition().x, birdSprite.getPosition().y) << std::endl;
             continue;
+          }
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= moveVal){
             birdSprite.move(-moveVal, 0);
@@ -93,7 +97,7 @@ int main(int argc, char** argv)
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
           //std::cout << "hello" << std::endl;
-          
+
           battleMenu.processInputs(Event, App);
           if (!battleMenu.inMenu){
             inBattleMenu = false;

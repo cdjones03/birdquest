@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <TileMap.hpp>
+#include <iostream>
 
 /*
 Code taken from https://www.sfml-dev.org/tutorials/2.5/graphics-vertex-array.php
@@ -49,6 +50,9 @@ Altered by Team 2 for birdquest
                 quad[1].texCoords = sf::Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
                 quad[2].texCoords = sf::Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
                 quad[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
+
+                std::cout << m_vertices[(i+j*width)*4].texCoords.x << std::endl;
+                //std::cout << quad[0].position.x << " " << quad[0].position.y << " " << quad[0].texCoords.x << " " << quad[0].texCoords.y << std::endl;
             }
 
         return true;
@@ -66,4 +70,8 @@ Altered by Team 2 for birdquest
 
         // draw the vertex array
         target.draw(m_vertices, states);
+    }
+
+    int TileMap::getTexCoord(int x, int y){
+      return m_vertices[((y/32)+((x/32)*20))*4].texCoords.x;
     }

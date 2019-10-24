@@ -2,7 +2,7 @@
 #include <iostream>
 
 BattleMenu::BattleMenu(float width, float height){
-  show = true;
+  showMenu = true;
   inMenu = true;
   showAttack = false;
   selectedIndex = 0;
@@ -43,7 +43,7 @@ BattleMenu::BattleMenu(float width, float height){
   enemy_Text.setString("ENEMY");
   enemy_Text.setPosition(sf::Vector2f(width/5.1, height/5.8));
 
-  // HP text placement in battle menu
+  // setup user and enemy HP text placement in battle menu
   userHP_Text.setFont(font);
   userHP_Text.setCharacterSize(18);
   std::string userHP_string1 = std::to_string(userHP);
@@ -56,7 +56,7 @@ BattleMenu::BattleMenu(float width, float height){
   enemyHP_Text.setString("HP: " + enemyHP_string1);
   enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, 30));
 
-  //setup output text
+  //setup output text that will say what happened last turn
   outputText.setFont(font);
   outputText.setCharacterSize(22);
   outputText.setString(" ");
@@ -111,15 +111,15 @@ BattleMenu:: ~BattleMenu(){
 
 }
 
-//updates the text that displays the user and enemy HP, based on whose turn it is.
-void BattleMenu::updateHPText()
+//updates the text that displays the user and enemy HP, as well as the output text which
+//says what happened last turn, and updates the health bar for visual
+void BattleMenu::updateOutput()
 {
 
   std::string userDamageString = std::to_string(userDamage);
   std::string enemyDamageString = std::to_string(enemyDamage);
   std::cout << playerTurn << std::endl;
   if (playerTurn){
-    //userHP = logic.updateHP(enemyDamage, userHP);
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
     playerTurn = false;
@@ -128,7 +128,6 @@ void BattleMenu::updateHPText()
     healthBar.setSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
   }
   else{
-    //enemyHP = logic.updateHP(userDamage, enemyHP);
     std::string enemyHP_string = std::to_string(enemyHP);
     enemyHP_Text.setString("HP: " + enemyHP_string);
     playerTurn = true;
@@ -139,10 +138,18 @@ void BattleMenu::updateHPText()
   if (showAttack){
     outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
   }
-
+  //if you won, output text
   if (logic.whoWon(enemyHP, userHP) == 0){
-    show = false;
+    showMenu = false;
     outputText.setString("You won!\nPress Enter to continue");
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+      inMenu = false;
+    }
+  }
+  //if you lost
+  else if (logic.whoWon(enemyHP, userHP) == 1){
+    showMenu = false;
+    outputText.setString("You lost!\nPress Enter to continue");
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
       inMenu = false;
     }
@@ -152,19 +159,10 @@ void BattleMenu::updateHPText()
 }
 
 
-/**
-void BattleMenu::updateOutputText(int input){
-  switch (input){
-    case 0:
-
-  }
-}
-*/
-
 void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(outputText);
-  if (show){
-    updateHPText();
+  if (showMenu){
+    updateOutput();
     window.draw(rectangle);
     window.draw(bird_battle);
     window.draw(enemy_sample);
@@ -180,7 +178,6 @@ void BattleMenu::draw(sf::RenderWindow &window){
     for (; i< maxOptions; i++){
       window.draw(optionText[i]);
     }
-    // std::cout << showBattleBar << std::endl;
     if(showBattleBar == 1){
       battleBar.update(window);
     }
@@ -188,6 +185,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
 
 }
 
+//functions to navigate through menu options
 void BattleMenu::moveUp(){
   if (selectedIndex - 1 == 0 || selectedIndex - 1 == 2){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
@@ -247,33 +245,31 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     if(showBattleBar == 0){
 
     switch (getSelectedOption()){
+      //attack
       case 0:
         showAttack = true;
-        //updateHPText();
         std::cout << "Attack pressed" << std::endl;
         showBattleBar = 1;
-        //outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
         returnJustPressed = true;
         break;
+      //magic
       case 1:
         showAttack = true;
-
-        //updateHPText();
         std::cout << "Magic pressed" << std::endl;
         showBattleBar = 1;
         returnJustPressed = true;
-        //outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
         break;
+      //evade
       case 2:
         std::cout << "Evade pressed" << std::endl;
         inMenu = false;
         break;
+      //item
       case 3:
         //healing with potion, need to fix this
         if (userHP <= 90){
           userHP += 5;
         }
-
         showAttack = false;
         std::cout << "Item pressed" << std::endl;
         outputText.setString("You healed for 20 HP.\nEnemy attacked for 10 damage.");
@@ -281,7 +277,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     }
   }
 }
-
+  //we should move this to battleLogic
   else if (showBattleBar == 1 && returnJustPressed){
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
@@ -295,6 +291,6 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     }
   }
 
-  updateHPText();
+  updateOutput();
 }
 }

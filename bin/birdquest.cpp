@@ -6,6 +6,7 @@
 #include "BattleBar.h"
 #include <LevelManager.hpp>
 #include "BattleLogic.h"
+#include <HumanView.hpp>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main(int argc, char** argv)
   const int windowPixelWidth = windowTileWidth*32;
   const int windowPixelHeight = windowTileHeight*32;
   const int moveVal = 32;
+
 
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
@@ -30,6 +32,8 @@ int main(int argc, char** argv)
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
+
+  HumanView humanView;
 
   sf::Clock clock;
   int deltaMs;
@@ -60,40 +64,21 @@ int main(int argc, char** argv)
         //keypresses for when we are in the Stage
         if (!inBattleMenu){
           //Handle input, delegate to HumanView.cpp
-          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            if(birdSprite.getPosition().y >= moveVal){
-              birdSprite.move(0, -moveVal);
-              continue;
-            }
-            else {
-              levelManager.switchMap(2);
-              birdSprite.setPosition(birdSprite.getPosition().x, windowPixelHeight-32);
-            }
+          if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            humanView.move(birdSprite, HumanView::UP, levelManager);
+          }
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+            humanView.move(birdSprite, HumanView::DOWN, levelManager);
+          }
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+            humanView.move(birdSprite, HumanView::LEFT, levelManager);
+          }
+          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+            humanView.move(birdSprite, HumanView::RIGHT, levelManager);
           }
 
-          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            if(birdSprite.getPosition().y < windowPixelHeight-moveVal){
-              birdSprite.move(0, moveVal);
-              continue;
-          }
-            else {
-              levelManager.switchMap(1);
-              birdSprite.setPosition(birdSprite.getPosition().x, 0);
-            }
-          }
-          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && birdSprite.getPosition().x < windowPixelWidth-moveVal){
-            if(levelManager.getMap().getTexCoord(birdSprite.getPosition().x+32, birdSprite.getPosition().y) != 32){//if moving right, and tile to right is water, won't allow movement
-            birdSprite.move(moveVal, 0);
-            std::cout << birdSprite.getPosition().x << " " << birdSprite.getPosition().y << std::endl;
-            std::cout << levelManager.getMap().getTexCoord(birdSprite.getPosition().x, birdSprite.getPosition().y) << std::endl;
-            continue;
-          }
-          }
-          else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && birdSprite.getPosition().x >= moveVal){
-            birdSprite.move(-moveVal, 0);
-            continue;
-          }
         }
+
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
           //std::cout << "hello" << std::endl;

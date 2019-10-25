@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <TileMap.hpp>
+#include <tinyxml2.h>
 
 class LevelManager {
 

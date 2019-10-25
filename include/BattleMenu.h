@@ -12,8 +12,7 @@ public:
     ~BattleMenu();
 
     void draw(sf::RenderWindow &window);
-    void updateHPText();
-    void updateOutputText(int input);
+    void updateOutput();
     void moveUp();
     void moveDown();
     void moveLeft();
@@ -29,7 +28,7 @@ public:
 
 private:
     bool showAttack;
-    bool show;
+    bool showMenu;
     
 
     BattleBar battleBar;

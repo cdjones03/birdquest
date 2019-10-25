@@ -57,9 +57,10 @@ int main(int argc, char** argv)
         if(Event.type == sf::Event::Closed){
           App.close();
         }
-
+        //press b to get to battleMenu.
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
           inBattleMenu = true;
+          battleMenu.inMenu = true;
         }
         //keypresses for when we are in the Stage
         if (!inBattleMenu){
@@ -81,7 +82,6 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
-          //std::cout << "hello" << std::endl;
 
           battleMenu.processInputs(Event, App);
           if (!battleMenu.inMenu){
@@ -95,10 +95,12 @@ int main(int argc, char** argv)
       //Display
       App.clear(sf::Color::Black);
 
+      //draw map if not in battle
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
       }
+      //draw battleMenu
       else if (inBattleMenu && battleMenu.inMenu){
         battleMenu.draw(App);
       }

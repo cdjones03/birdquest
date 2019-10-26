@@ -51,7 +51,7 @@ Altered by Team 2 for birdquest
                 quad[2].texCoords = sf::Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
                 quad[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
 
-                std::cout << m_vertices[(i+j*width)*4].texCoords.x << std::endl;
+                //std::cout << m_vertices[(i+j*width)*4].texCoords.x << std::endl;
                 //std::cout << quad[0].position.x << " " << quad[0].position.y << " " << quad[0].texCoords.x << " " << quad[0].texCoords.y << std::endl;
             }
 

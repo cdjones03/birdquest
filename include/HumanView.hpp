@@ -11,6 +11,7 @@ public:
   enum Dir { UP, DOWN, LEFT, RIGHT };
 
   void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
+  bool checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
 
 private:
 

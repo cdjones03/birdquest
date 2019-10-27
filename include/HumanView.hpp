@@ -13,6 +13,8 @@ public:
   void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
   bool checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
 
+  int curScreen;
+
 private:
 
   const int windowTileWidth = 20;

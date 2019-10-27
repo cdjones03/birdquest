@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <TileMap.hpp>
 #include <tinyxml2.h>
+#include <Screen.hpp>
 
 class LevelManager {
 
@@ -17,10 +18,14 @@ public:
 
 private:
 
+
+
   tinyxml2::XMLDocument doc1;
   const char* tinymap1;
   tinyxml2::XMLDocument doc2;
   const char* tinymap2;
+
+  Screen section1[12];
   TileMap map;
 
 

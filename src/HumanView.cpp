@@ -12,7 +12,7 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
   int x = thisSprite.getPosition().x;
   int y = thisSprite.getPosition().y;
 
-  std::cout << y << std::endl;
+  //std::cout << y << std::endl;
 
   switch(direction) {
     case UP :

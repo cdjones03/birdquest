@@ -18,9 +18,11 @@ public:
 	}
 	bool inPause;
 	int processInputs(sf::Event event, sf::RenderWindow &window);
+
 private:
 	sf::Font font;
 	sf::Text optionText[maxPauseOptions];
 	int selectedIndex;
+	sf::RectangleShape border;
 
 };

@@ -1,5 +1,0 @@
-C:/CSCI437_GameDesign/Game_Project/birdquest/debug/CMakeFiles/birdquest_core.dir
-C:/CSCI437_GameDesign/Game_Project/birdquest/debug/CMakeFiles/birdquest.dir
-C:/CSCI437_GameDesign/Game_Project/birdquest/debug/CMakeFiles/xmltest.dir
-C:/CSCI437_GameDesign/Game_Project/birdquest/debug/CMakeFiles/edit_cache.dir
-C:/CSCI437_GameDesign/Game_Project/birdquest/debug/CMakeFiles/rebuild_cache.dir

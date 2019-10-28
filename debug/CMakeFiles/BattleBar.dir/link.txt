@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E remove -f CMakeFiles\BattleBar.dir/objects.a
-C:\mingw64\bin\ar.exe cr CMakeFiles\BattleBar.dir/objects.a @CMakeFiles\BattleBar.dir\objects1.rsp
-C:\mingw64\bin\g++.exe  -std=c++11 -g   -Wl,--whole-archive CMakeFiles\BattleBar.dir/objects.a -Wl,--no-whole-archive  -o BattleBar.exe -Wl,--out-implib,libBattleBar.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BattleBar.dir\linklibs.rsp

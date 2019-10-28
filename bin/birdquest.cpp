@@ -100,8 +100,9 @@ int main(int argc, char** argv)
 
         }
 
+        //key presses for when we are in the pause menu
         else if (inPauseMenu){
-          //pauseMenu.processInputs(Event, App);
+          pauseMenu.processInputs(Event, App);
           if (!pauseMenu.inPause){
             inPauseMenu = false;
           }
@@ -121,7 +122,7 @@ int main(int argc, char** argv)
         if (inPauseMenu && pauseMenu.inPause){
           pauseMenu.draw(App);
         }
-        
+
       }
       //draw battleMenu
       else if (inBattleMenu && battleMenu.inMenu){

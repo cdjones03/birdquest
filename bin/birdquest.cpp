@@ -6,6 +6,7 @@
 #include "BattleBar.h"
 #include <LevelManager.hpp>
 #include "BattleLogic.h"
+#include "PauseMenu.h"
 #include <HumanView.hpp>
 
 using namespace std;
@@ -28,6 +29,10 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu(App.getSize().x, App.getSize().y);
   bool inBattleMenu = false;
+
+  // Create pauseMenu object and boolean for if we are in the battle menu
+  PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
+  bool inPauseMenu = false;
 
   // create the tilemap from the level definition
   LevelManager levelManager;
@@ -62,8 +67,13 @@ int main(int argc, char** argv)
           inBattleMenu = true;
           battleMenu.inMenu = true;
         }
+        //press p to get to pauseMenu
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+          inPauseMenu = true;
+          pauseMenu.inPause = true;
+        }
         //keypresses for when we are in the Stage
-        if (!inBattleMenu){
+        if (!inBattleMenu && !inPauseMenu){
           //Handle input, delegate to HumanView.cpp
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             humanView.move(birdSprite, HumanView::UP, levelManager);
@@ -89,6 +99,13 @@ int main(int argc, char** argv)
           }
 
         }
+
+        else if (inPauseMenu){
+          //pauseMenu.processInputs(Event, App);
+          if (!pauseMenu.inPause){
+            inPauseMenu = false;
+          }
+        }
       }
 
 
@@ -99,11 +116,20 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
+
+        //draw pauseMenu
+        if (inPauseMenu && pauseMenu.inPause){
+          pauseMenu.draw(App);
+        }
+        
       }
       //draw battleMenu
       else if (inBattleMenu && battleMenu.inMenu){
         battleMenu.draw(App);
       }
+
+
+
 
 
       App.display();

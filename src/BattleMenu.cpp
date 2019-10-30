@@ -118,7 +118,7 @@ void BattleMenu::updateOutput()
 
   std::string userDamageString = std::to_string(userDamage);
   std::string enemyDamageString = std::to_string(enemyDamage);
-  //std::cout << playerTurn << std::endl;
+  std::cout << playerTurn << std::endl;
   if (playerTurn){
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);

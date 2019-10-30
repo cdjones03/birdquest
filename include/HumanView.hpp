@@ -2,13 +2,16 @@
 #define HUMANVIEW_HPP_INCLUDED
 
 #include <LevelManager.hpp>
+#include <LevelManager.fwd.hpp>
+//#include <HumanView.fwd.hpp>
+
 
 class HumanView {
 
 public:
 
   HumanView();
-  enum Dir { UP, DOWN, LEFT, RIGHT };
+  enum Dir { UP=0, DOWN=1, LEFT=2, RIGHT=3 };
 
   void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
   bool checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);

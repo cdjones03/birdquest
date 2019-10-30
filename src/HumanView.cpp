@@ -23,7 +23,7 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
     }
     else {
       if(y < moveVal) {
-        thisLevelManager.switchMap(2);
+        thisLevelManager.switchMap(0);
         thisSprite.setPosition(x, windowPixelHeight-32);
       }
     }
@@ -36,7 +36,7 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
       }
     else {
       if(y >= windowPixelHeight-moveVal) {
-        thisLevelManager.switchMap(2);
+        thisLevelManager.switchMap(1);
         thisSprite.setPosition(x, 0);
       }
     }
@@ -65,7 +65,7 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
       }
       else {
         if(x >= windowPixelWidth-moveVal) {
-          thisLevelManager.switchMap(2);
+          thisLevelManager.switchMap(3);
           thisSprite.setPosition(0, y);
         }
       }
@@ -80,33 +80,34 @@ bool HumanView::checkCollision(int thisXPos, int thisYPos, Dir direction, LevelM
   switch(direction){
     case UP :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 32) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) != 32)
         ret = true;
 
     break;
 
     case DOWN :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 32) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) != 32)
         ret = true;
 
     break;
 
     case LEFT :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos - 32, thisYPos) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) != 32)
         ret = true;
 
     break;
 
     case RIGHT :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos + 32, thisYPos) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) != 32)
         ret = true;
 
     break;
   }
 
+  ret = true;
   return ret;
 }
 

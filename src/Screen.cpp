@@ -8,6 +8,19 @@ Screen::Screen() {
 Screen::Screen(const char* fileName) {
   doc.LoadFile(fileName);
   tileString = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
+  upScreen = doc.FirstChildElement("map")->IntAttribute("upScreen");
+  downScreen = doc.FirstChildElement("map")->IntAttribute("downScreen");
+  leftScreen = doc.FirstChildElement("map")->IntAttribute("leftScreen");
+  rightScreen = doc.FirstChildElement("map")->IntAttribute("rightScreen");
+}
+
+Screen::~Screen() = default;
+
+Screen::Screen(const Screen &s) {
+}
+
+Screen& Screen::operator= (const Screen &s) {
+  return *this;
 }
 
 void Screen::loadXMLFile() {
@@ -31,7 +44,11 @@ int Screen::getHeight() {
 }
 
 const char* Screen::getTileset() {
-  return doc.FirstChildElement("map")->FirstChildElement("tileset")->Attribute("source");
+  return doc.FirstChildElement("map")->FirstChildElement("properties")->FirstChildElement("property")->Attribute("value");
+}
+
+const char* Screen::getTileString(){
+  return tileString;
 }
 
 int Screen::getRightScreen() {
@@ -46,6 +63,6 @@ int Screen::getUpScreen() {
   return upScreen;
 }
 
-int Screen::getDonwScreen() {
+int Screen::getDownScreen() {
   return downScreen;
 }

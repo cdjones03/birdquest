@@ -5,6 +5,10 @@
 #include <TileMap.hpp>
 #include <tinyxml2.h>
 #include <Screen.hpp>
+#include <HumanView.hpp>
+#include <string>
+//#include <HumanView.fwd.hpp>
+//#include <LevelManager.fwd.hpp>
 
 class LevelManager {
 
@@ -13,21 +17,14 @@ public:
   LevelManager();
   void loadLevels();
   void drawMap(sf::RenderWindow &window); //will be gone once HumanView is made
-  void switchMap(int mapVal);
+  void switchMap(int mapDir); 
   TileMap getMap();
 
 private:
 
-
-
-  tinyxml2::XMLDocument doc1;
-  const char* tinymap1;
-  tinyxml2::XMLDocument doc2;
-  const char* tinymap2;
-
-  Screen section1[12];
+  const char* curScreenString;
+  const char* section1[12];
   TileMap map;
-
 
 };
 

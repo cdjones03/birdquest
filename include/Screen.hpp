@@ -9,6 +9,9 @@ public:
 
   Screen();
   Screen(const char* fileName);
+  Screen(const Screen &s);
+  Screen& operator=(const Screen &s);
+  virtual ~Screen();
   void loadXMLFile();
 
   int getTileWidth();
@@ -16,11 +19,12 @@ public:
   int getWidth();
   int getHeight();
   const char* getTileset();
+  const char* getTileString();
 
   int getRightScreen();
   int getLeftScreen();
   int getUpScreen();
-  int getDonwScreen();
+  int getDownScreen();
 
 
 
@@ -30,9 +34,7 @@ private:
   const char* tileString; //string to array with tile values for screen
   int width;
   int height;
-
   int section;
-  int screenNum;
 
   int leftScreen; //value of map connected by going left; -1 if none
   int rightScreen;

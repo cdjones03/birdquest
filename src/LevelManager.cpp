@@ -23,6 +23,7 @@ void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
   Screen screen0("../resources/HubScreen.xml");
+  std::cout << "here" << std::endl;
   curScreenString = "../resources/HubScreen.xml";
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
@@ -41,7 +42,10 @@ void LevelManager::loadLevels() {
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel
       exit(0);
     }
+
   }
+
+
 
 void LevelManager::drawMap(sf::RenderWindow &window) {
   window.draw(map);
@@ -52,7 +56,7 @@ void LevelManager::drawMap(sf::RenderWindow &window) {
 //should assume that collision checking has been already done
 //void LevelManager::switchMap(HumanView::dir direction){
 
-void LevelManager::switchMap(int mapDir) {
+bool LevelManager::switchMap(int mapDir) {
 
   int newMap;
 
@@ -72,7 +76,6 @@ void LevelManager::switchMap(int mapDir) {
 
     case 2 :
     newMap = curScreen.getLeftScreen();
-    std::cout << "left " << curScreen.getLeftScreen() << std::endl;
 
     break;
 
@@ -82,9 +85,12 @@ void LevelManager::switchMap(int mapDir) {
     break;
   }
 
+  if(newMap == -1) { //no room next to; won't switch map
+    return false;
+  }
+
 
   const char* newScreenString = section1[newMap];
-  std::cout << "newstring " << newScreenString << " newmap " << newMap << std::endl;
 
   Screen newScreen(newScreenString);
   int curTileWidth = newScreen.getTileWidth();
@@ -99,6 +105,8 @@ void LevelManager::switchMap(int mapDir) {
     }
 
   curScreenString = newScreenString;
+
+  return true;
 }
 
 

@@ -23,8 +23,8 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
     }
     else {
       if(y < moveVal) {
-        thisLevelManager.switchMap(0);
-        thisSprite.setPosition(x, windowPixelHeight-32);
+        if(thisLevelManager.switchMap(0))
+          thisSprite.setPosition(x, windowPixelHeight-32);
       }
     }
       break;
@@ -36,8 +36,8 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
       }
     else {
       if(y >= windowPixelHeight-moveVal) {
-        thisLevelManager.switchMap(1);
-        thisSprite.setPosition(x, 0);
+        if(thisLevelManager.switchMap(1))
+          thisSprite.setPosition(x, 0);
       }
     }
       break;
@@ -50,8 +50,8 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
       }
       else {
         if(x < moveVal) {
-          thisLevelManager.switchMap(2);
-          thisSprite.setPosition(windowPixelWidth-32, y);
+          if(thisLevelManager.switchMap(2))
+            thisSprite.setPosition(windowPixelWidth-32, y);
         }
       }
 
@@ -65,8 +65,8 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
       }
       else {
         if(x >= windowPixelWidth-moveVal) {
-          thisLevelManager.switchMap(3);
-          thisSprite.setPosition(0, y);
+          if(thisLevelManager.switchMap(3))
+            thisSprite.setPosition(0, y);
         }
       }
       break;

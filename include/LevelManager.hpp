@@ -17,7 +17,7 @@ public:
   LevelManager();
   void loadLevels();
   void drawMap(sf::RenderWindow &window); //will be gone once HumanView is made
-  void switchMap(int mapDir); 
+  bool switchMap(int mapDir); 
   TileMap getMap();
 
 private:

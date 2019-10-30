@@ -12,7 +12,7 @@ BattleMenu::BattleMenu(float width, float height){
   playerTurn = true;
   userHP = maxHP;
   enemyHP = maxHP;
-  showBattleBar = 0;
+  showBattleBar = false;
   returnJustPressed = false;
 
   if (!font.loadFromFile("../src/Gameplay.ttf")) {
@@ -118,7 +118,7 @@ void BattleMenu::updateOutput()
 
   std::string userDamageString = std::to_string(userDamage);
   std::string enemyDamageString = std::to_string(enemyDamage);
-  std::cout << playerTurn << std::endl;
+  
   if (playerTurn){
     std::string userHP_string = std::to_string(userHP);
     userHP_Text.setString("HP: " + userHP_string);
@@ -136,7 +136,14 @@ void BattleMenu::updateOutput()
     enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
   if (showAttack){
-    outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attack you for "+enemyDamageString+" damage.");
+    if (logic.enemyDefend){
+      //later change, so that it will reflect how much your attack was and how much damage enemy defended
+      outputText.setString("Enemy defended your attack");
+    }
+    else{
+      outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attacked you for "+enemyDamageString+" damage.");
+    }
+    
   }
   //if you won, output text
   if (logic.whoWon(enemyHP, userHP) == 0){
@@ -178,7 +185,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
     for (; i< maxOptions; i++){
       window.draw(optionText[i]);
     }
-    if(showBattleBar == 1){
+    if(showBattleBar){
       battleBar.update(window);
     }
   }
@@ -242,21 +249,21 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
     std::cout << "return" << std::endl;
 
-    if(showBattleBar == 0){
+    if(!showBattleBar){
 
     switch (getSelectedOption()){
       //attack
       case 0:
         showAttack = true;
         std::cout << "Attack pressed" << std::endl;
-        showBattleBar = 1;
+        showBattleBar = true;
         returnJustPressed = true;
         break;
       //magic
       case 1:
         showAttack = true;
         std::cout << "Magic pressed" << std::endl;
-        showBattleBar = 1;
+        showBattleBar = true;
         returnJustPressed = true;
         break;
       //evade
@@ -266,28 +273,38 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         break;
       //item
       case 3:
-        //healing with potion, need to fix this
-        if (userHP <= 90){
-          userHP += 5;
+        //healing with potion, need to fix
+        userHP = logic.updateHP(enemyDamage, userHP) + 20;
+        if (userHP > 100){
+          userHP = 100;
         }
+        std::string enemyDamageString = std::to_string(enemyDamage);
         showAttack = false;
         std::cout << "Item pressed" << std::endl;
-        outputText.setString("You healed for 20 HP.\nEnemy attacked for 10 damage.");
+        outputText.setString("You healed for 20 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
         break;
     }
   }
 }
   //we should move this to battleLogic
-  else if (showBattleBar == 1 && returnJustPressed){
+  else if (showBattleBar && returnJustPressed){
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
-      userDamage = battleBar.getDamageDealt() + 10;
+      userDamage = battleBar.getDamageDealt();
+      enemyDamage = logic.getEnemyDamage();
+      //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
+      if (logic.enemyDefend){
+        userDamage = 0;
+      }
+      
       battleBar.barPressed();
-      showBattleBar = 0;
+      showBattleBar = false;
       returnJustPressed = false;
-      enemyDamage = userDamage - 1;
-      userHP -= enemyDamage;
-      enemyHP -= userDamage;
+      
+      userHP = logic.updateHP(enemyDamage, userHP);
+      
+      enemyHP = logic.updateHP(userDamage, enemyHP);
+     
     }
   }
 

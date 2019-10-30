@@ -51,6 +51,7 @@ private:
     sf::RectangleShape remainingBar;
     sf::RectangleShape enemy_healthBar;
     sf::RectangleShape enemy_remainingBar;
-    int showBattleBar;
+    bool showBattleBar;
     bool returnJustPressed;
+    bool enemyDefend;
 };

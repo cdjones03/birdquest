@@ -44,7 +44,7 @@ int main(int argc, char** argv)
   int deltaMs;
 
   sf::Texture birdTexture;
-  if(!birdTexture.loadFromFile("../resources/birdsprite.png")){
+  if(!birdTexture.loadFromFile("../resources/BirdKnight_spritesheet.png")){
     return -1;
   }
   sf::Sprite birdSprite;

@@ -1,5 +1,10 @@
 #include "BattleLogic.h"
-
+#include <iostream>
+#include <cstdlib>
+#include <random>
+BattleLogic::BattleLogic(){
+    enemyDefend = false;
+}
 
 int BattleLogic::updateHP(int damage, int HP)
 {
@@ -25,4 +30,25 @@ int BattleLogic::whoWon(int enemyHP, int userHP)
         return 2;
     }
     return 3;
+}
+
+
+//enemy will either choose to defend and attack for 0, or attack with damage between 1-20
+int BattleLogic::getEnemyDamage()
+{   
+    enemyDefend = false;
+    int defend = (rand()%5);
+    std::cout << "defend " << defend << std::endl;
+    int damage;
+    if (defend == 2){
+        enemyDefend = true;
+    }
+    if (enemyDefend == true){
+        damage = 0;
+    }
+    else{
+        damage = 1+(rand()%19);
+    }
+    
+    return damage;
 }

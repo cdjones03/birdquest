@@ -1,17 +1,32 @@
 #include <Screen.hpp>
 #include <iostream>
 
+/*
+screen value of -1 = can't go that way
+*/
+
 Screen::Screen() {
 
 }
 
 Screen::Screen(const char* fileName) {
   doc.LoadFile(fileName);
+  tinyxml2::XMLElement *curElement = doc.FirstChildElement("map")->FirstChildElement("properties")->FirstChildElement("property");
+  tileSetImage = curElement->Attribute("value");
+
+  curElement = curElement->NextSibling()->ToElement();
+  upScreen = curElement->IntAttribute("value");
+
+  curElement = curElement->NextSibling()->ToElement();
+  downScreen = curElement->IntAttribute("value");
+
+  curElement = curElement->NextSibling()->ToElement();
+  leftScreen = curElement->IntAttribute("value");
+
+  curElement = curElement->NextSibling()->ToElement();
+  rightScreen = curElement->IntAttribute("value");
+
   tileString = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
-  upScreen = doc.FirstChildElement("map")->IntAttribute("upScreen");
-  downScreen = doc.FirstChildElement("map")->IntAttribute("downScreen");
-  leftScreen = doc.FirstChildElement("map")->IntAttribute("leftScreen");
-  rightScreen = doc.FirstChildElement("map")->IntAttribute("rightScreen");
 }
 
 Screen::~Screen() = default;

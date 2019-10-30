@@ -31,7 +31,8 @@ public:
 private:
 
   tinyxml2::XMLDocument doc; //actual xml file
-  const char* tileString; //string to array with tile values for screen
+  const char* tileSetImage; //string to array with tile values for screen
+  const char* tileString;
   int width;
   int height;
   int section;

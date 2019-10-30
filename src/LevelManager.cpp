@@ -35,6 +35,7 @@ void LevelManager::loadLevels() {
   section1[2] = "../resources/Sec1Scr2.xml";
   section1[3] = "../resources/Sec1Scr3.xml";
   section1[4] = "../resources/Sec1Scr4.xml";
+  section1[5] = "../resources/Sec1Scr5.xml";
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel
@@ -71,6 +72,7 @@ void LevelManager::switchMap(int mapDir) {
 
     case 2 :
     newMap = curScreen.getLeftScreen();
+    std::cout << "left " << curScreen.getLeftScreen() << std::endl;
 
     break;
 
@@ -80,8 +82,9 @@ void LevelManager::switchMap(int mapDir) {
     break;
   }
 
-  std::cout << newMap << std::endl;
+
   const char* newScreenString = section1[newMap];
+  std::cout << "newstring " << newScreenString << " newmap " << newMap << std::endl;
 
   Screen newScreen(newScreenString);
   int curTileWidth = newScreen.getTileWidth();
@@ -94,6 +97,8 @@ void LevelManager::switchMap(int mapDir) {
   newScreen.getTileString(), curWidth, curHeight)) { //vector is size of each tile in pixel
       exit(0);
     }
+
+  curScreenString = newScreenString;
 }
 
 

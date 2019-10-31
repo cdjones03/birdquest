@@ -3,6 +3,7 @@
 
 PauseMenu::PauseMenu(float width, float height){
 	inPause = true;
+	inItem = false;
 	selectedIndex = 0;
 
 	if (!font.loadFromFile("../src/Gameplay.ttf")) {
@@ -15,6 +16,13 @@ PauseMenu::PauseMenu(float width, float height){
   	border.setFillColor(sf::Color::Black);
   	border.setOutlineThickness(4);
   	border.setOutlineColor(sf::Color::White);
+
+  	//border around the item option in pause screen
+  	itemBorder.setSize(sf::Vector2f(width/3.25, height/2.1));
+  	itemBorder.setPosition(sf::Vector2f(width/1.5, height/2.2));
+  	itemBorder.setFillColor(sf::Color::Black);
+  	itemBorder.setOutlineThickness(4);
+  	itemBorder.setOutlineColor(sf::Color::White);
 
   	//position each option on the screen, with the color red if it is highlighted
   	optionText[0].setFont(font);
@@ -39,8 +47,12 @@ void PauseMenu::draw(sf::RenderWindow &window){
 	window.draw(border);
 
 	int i = 0;
-	for(; i < maxPauseOptions; i++){
+	for (; i < maxPauseOptions; i++){
 		window.draw(optionText[i]);
+	}
+
+	if (inItem){
+		window.draw(itemBorder);
 	}
 }
 
@@ -76,6 +88,7 @@ int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 			//item
 			case 0:
 				std::cout << "Item Pressed" << std::endl;
+				inItem = true;
 				break;
 
 			//save

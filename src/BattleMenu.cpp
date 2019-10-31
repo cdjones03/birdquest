@@ -3,10 +3,10 @@
 
 BattleMenu::BattleMenu(float width, float height){
   showMenu = true;
+  firstMove = true;
   inMenu = true;
   showAttack = false;
   selectedIndex = 0;
-  //damage = indicator.damageDealt;
   userDamage = 0;
   enemyDamage = 0;
   playerTurn = true;
@@ -59,7 +59,6 @@ BattleMenu::BattleMenu(float width, float height){
   //setup output text that will say what happened last turn
   outputText.setFont(font);
   outputText.setCharacterSize(22);
-  outputText.setString(" ");
   outputText.setPosition(sf::Vector2f(width/2 - 200, height/2 -50));
 
   // red health bar for player in battle menu
@@ -115,8 +114,10 @@ BattleMenu:: ~BattleMenu(){
 //says what happened last turn, and updates the health bar for visual
 void BattleMenu::updateOutput()
 {
-
-  std::string userDamageString = std::to_string(userDamage);
+  if (firstMove){
+    outputText.setString("You are in Battle!\nChoose your move.");
+  }
+  std::string userDamageString = std::to_string(userDamageStored);
   std::string enemyDamageString = std::to_string(enemyDamage);
   
   if (playerTurn){
@@ -135,10 +136,10 @@ void BattleMenu::updateOutput()
     // change later for variable width and height
     enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
-  if (showAttack){
+  if (showAttack && !firstMove){
     if (logic.enemyDefend){
-      //later change, so that it will reflect how much your attack was and how much damage enemy defended
-      outputText.setString("Enemy defended your attack");
+      //reflect how much your attack was and how much damage enemy defended. Make defended damage random
+      outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy blocked 10 damage.");
     }
     else{
       outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attacked you for "+enemyDamageString+" damage.");
@@ -150,24 +151,42 @@ void BattleMenu::updateOutput()
     showMenu = false;
     outputText.setString("You won!\nPress Enter to continue");
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+      //exit battleMenu and reset everything. later, maybe dont reset userHP
       inMenu = false;
+      enemyHP = logic.resetHP(enemyHP);
+      userHP = logic.resetHP(userHP);
+      returnJustPressed = false;
+      showBattleBar = false;
+      firstMove = true;
+
     }
   }
   //if you lost
   else if (logic.whoWon(enemyHP, userHP) == 1){
     showMenu = false;
+    showAttack = false;
     outputText.setString("You lost!\nPress Enter to continue");
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+      //exit battleMenu and reset everything. later, make it so it resets at checkpoint
       inMenu = false;
+      enemyHP = logic.resetHP(enemyHP);
+      userHP = logic.resetHP(userHP);
+      returnJustPressed = false;
+      showBattleBar = false; 
+      firstMove = true;
     }
   }
+  
+
 
 
 }
 
 
 void BattleMenu::draw(sf::RenderWindow &window){
+
   window.draw(outputText);
+
   if (showMenu){
     updateOutput();
     window.draw(rectangle);
@@ -188,6 +207,9 @@ void BattleMenu::draw(sf::RenderWindow &window){
     if(showBattleBar){
       battleBar.update(window);
     }
+  }
+  else{
+    
   }
 
 }
@@ -226,10 +248,11 @@ void BattleMenu::moveLeft(){
 }
 
 int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
+  
 
   sf::Event battleEvent;
   //while(window.waitEvent(battleEvent)){
-  {
+  
   //moving up,down, left, right to select options
 
   if(event.key.code == sf::Keyboard::Up) {
@@ -246,6 +269,8 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
+    firstMove = false;
+
 
     std::cout << "return" << std::endl;
 
@@ -291,10 +316,16 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
+      userDamageStored = userDamage;
       enemyDamage = logic.getEnemyDamage();
       //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
       if (logic.enemyDefend){
-        userDamage = 0;
+        if (userDamage >= 10){
+          userDamage -=10;
+        }
+        else{
+          userDamage = 0;
+        }
       }
       
       battleBar.barPressed();
@@ -310,4 +341,4 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
   updateOutput();
 }
-}
+

@@ -11,6 +11,7 @@ public:
     int updateHP(int damage, int HP);
     int whoWon(int enemyHP, int userHP);
     int getEnemyDamage();
+    int resetHP(int HP);
 
     bool enemyDefend;
 

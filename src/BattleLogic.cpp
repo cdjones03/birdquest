@@ -4,6 +4,7 @@
 #include <random>
 BattleLogic::BattleLogic(){
     enemyDefend = false;
+
 }
 
 int BattleLogic::updateHP(int damage, int HP)
@@ -51,4 +52,8 @@ int BattleLogic::getEnemyDamage()
     }
     
     return damage;
+}
+
+int BattleLogic::resetHP(int HP){
+    return (HP = maxHP);
 }

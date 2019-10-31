@@ -44,11 +44,15 @@ int main(int argc, char** argv)
   int deltaMs;
 
   sf::Texture birdTexture;
-  if(!birdTexture.loadFromFile("../resources/BirdKnight_spritesheet.png")){
+  if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png")){
     return -1;
   }
   sf::Sprite birdSprite;
   birdSprite.setTexture(birdTexture);
+  birdSprite.setScale(2,2);
+
+  //sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
+  //App.setView(view1);
 
   // start main loop
   while(App.isOpen())
@@ -112,6 +116,7 @@ int main(int argc, char** argv)
 
       //Display
       App.clear(sf::Color::Black);
+      //App.setView(view1);
 
       //draw map if not in battle
       if (!inBattleMenu){

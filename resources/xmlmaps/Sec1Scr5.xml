@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <properties>
-  <property name="a-tileSetImage" value="../resources/forest_tiles.png"/>
+  <property name="a-tileSetImage" value="../resources/tilesets/forest_tiles.png"/>
   <property name="b-upScreen" type="int" value="-1"/>
   <property name="c-downScreen" type="int" value="4"/>
   <property name="d-leftScreen" type="int" value="-1"/>

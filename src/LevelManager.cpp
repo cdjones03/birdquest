@@ -22,21 +22,20 @@ LevelManager::LevelManager(){
 void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
-  Screen screen0("../resources/HubScreen.xml");
-  std::cout << "here" << std::endl;
-  curScreenString = "../resources/HubScreen.xml";
+  Screen screen0("../resources/xmlmaps/HubScreen.xml");
+  curScreenString = "../resources/xmlmaps/HubScreen.xml";
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
   int width = screen0.getWidth();
   int height = screen0.getHeight();
   const char* tileset = screen0.getTileset();
 
-  section1[0] = "../resources/HubScreen.xml";
-  section1[1] = "../resources/Sec1Scr1.xml";
-  section1[2] = "../resources/Sec1Scr2.xml";
-  section1[3] = "../resources/Sec1Scr3.xml";
-  section1[4] = "../resources/Sec1Scr4.xml";
-  section1[5] = "../resources/Sec1Scr5.xml";
+  section1[0] = "../resources/xmlmaps/HubScreen.xml";
+  section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
+  section1[2] = "../resources/xmlmaps/Sec1Scr2.xml";
+  section1[3] = "../resources/xmlmaps/Sec1Scr3.xml";
+  section1[4] = "../resources/xmlmaps/Sec1Scr4.xml";
+  section1[5] = "../resources/xmlmaps/Sec1Scr5.xml";
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel

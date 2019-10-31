@@ -66,6 +66,7 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
           inBattleMenu = true;
           battleMenu.inMenu = true;
+          battleMenu.showMenu = true;
         }
         //press p to get to pauseMenu
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){

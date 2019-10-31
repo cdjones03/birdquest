@@ -24,11 +24,13 @@ public:
     bool inMenu;
     int processInputs(sf::Event event, sf::RenderWindow &window);
     //bool whoseTurn();
+    bool showMenu;
     
 
 private:
     bool showAttack;
-    bool showMenu;
+    bool firstMove;
+    
     
 
     BattleBar battleBar;
@@ -54,4 +56,5 @@ private:
     bool showBattleBar;
     bool returnJustPressed;
     bool enemyDefend;
+    int userDamageStored;
 };

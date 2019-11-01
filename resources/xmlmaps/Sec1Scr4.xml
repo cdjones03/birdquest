@@ -7,7 +7,7 @@
   <property name="d-leftScreen" type="int" value="-1"/>
   <property name="e-rightScreen" type="int" value="-1"/>
  </properties>
- <tileset firstgid="1" source="foresttiles.tsx"/>
+ <tileset firstgid="1" source="forest_tiles.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="csv">
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,

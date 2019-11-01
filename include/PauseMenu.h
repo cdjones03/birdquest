@@ -2,7 +2,7 @@
 #include "SFML/Graphics.hpp"
 
 #define maxPauseOptions 3
-#define maxItemOptions 4
+#define maxItemOptions 5
 
 class PauseMenu
 {
@@ -17,6 +17,11 @@ public:
 	int getSelectedOption(){
 		return selectedIndex;
 	}
+
+	int getSelectedItem(){
+		return itemIndex;
+	}
+
 	bool inPause;
 	bool inItem;
 	int processInputs(sf::Event event, sf::RenderWindow &window);
@@ -26,6 +31,7 @@ private:
 	sf::Text optionText[maxPauseOptions];
 	sf::Text itemText[maxItemOptions];
 	int selectedIndex;
+	int itemIndex;
 	sf::RectangleShape border;
 	sf::RectangleShape itemBorder;
 

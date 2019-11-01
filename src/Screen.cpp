@@ -1,5 +1,6 @@
 #include <Screen.hpp>
 #include <iostream>
+#include <tinyxml2.h>
 
 /*
 screen value of -1 = can't go that way
@@ -10,8 +11,11 @@ Screen::Screen() {
 }
 
 Screen::Screen(const char* fileName) {
+
   doc.LoadFile(fileName);
+
   tinyxml2::XMLElement *curElement = doc.FirstChildElement("map")->FirstChildElement("properties")->FirstChildElement("property");
+
   tileSetImage = curElement->Attribute("value");
 
   curElement = curElement->NextSibling()->ToElement();

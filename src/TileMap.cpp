@@ -17,6 +17,7 @@ Altered by Team 2 for birdquest
             return false;
           }
 
+        std::cout << "hello" << std::endl;
         // resize the vertex array to fit the level size
         m_vertices.setPrimitiveType(sf::Quads);
         m_vertices.resize(width * height * 4);

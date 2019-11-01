@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="1">
- <tileset firstgid="1" source="sewer2.tsx"/>
- <layer id="15" name="base" width="40" height="40">
   <properties>
-   <property name="a-tileSetImage" value="../resources/sewer_1_alter.png"/>
+   <property name="a-tileSetImage" value="../resources/tilesets/sewer_1_alter.png"/>
    <property name="b-upScreen" type="int" value="-1"/>
    <property name="c-downScreen" type="int" value="-1"/>
    <property name="d-leftScreen" type="int" value="1"/>
    <property name="e-rightScreen" type="int" value="-1"/>
   </properties>
-  <data encoding="csv">
+  <tileset firstgid="1" source="sewer2.tsx"/>
+  <layer id="15" name="base" width="40" height="40">
+    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

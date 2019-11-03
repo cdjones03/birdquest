@@ -9,6 +9,11 @@
 #include "PauseMenu.h"
 #include <HumanView.hpp>
 
+/*
+Note: for items, place sprite on map
+player walks over, press i, if coords are = , get item and remove sprite
+*/
+
 using namespace std;
 
 int main(int argc, char** argv)
@@ -44,20 +49,37 @@ int main(int argc, char** argv)
   int deltaMs;
 
   sf::Texture birdTexture;
-  if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png")){
+  if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16))){
     return -1;
   }
   sf::Sprite birdSprite;
   birdSprite.setTexture(birdTexture);
   birdSprite.setScale(2,2);
 
+  sf::Texture blockTexture;
+  if(!blockTexture.loadFromFile("../resources/spritesheets/birdnpc.png", sf::IntRect(0, 0, 32, 32))){
+  }
+  sf::Sprite blockSprite;
+  blockSprite.setTexture(blockTexture);
+  blockSprite.setPosition(320, 320);
+  blockSprite.setScale(2,2);
+
   //sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
   //App.setView(view1);
 
   // start main loop
+  deltaMs = clock.getElapsedTime().asMilliseconds();
   while(App.isOpen())
   {
       deltaMs = clock.getElapsedTime().asMilliseconds();
+      //std::cout << deltaMs << std::endl;
+      if(deltaMs >= 2000) {
+        deltaMs -= 2000;
+        //birdSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
+      }
+      if(birdSprite.getPosition().x == blockSprite.getPosition().x && birdSprite.getPosition().y == blockSprite.getPosition().y){
+        blockSprite.move(32, 0);
+      }
       // process events
       sf::Event Event;
       while(App.pollEvent(Event))
@@ -123,6 +145,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
+        App.draw(blockSprite);
 
         //draw pauseMenu
         if (inPauseMenu && pauseMenu.inPause){
@@ -134,10 +157,6 @@ int main(int argc, char** argv)
       else if (inBattleMenu && battleMenu.inMenu){
         battleMenu.draw(App);
       }
-
-
-
-
 
       App.display();
     }

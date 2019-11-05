@@ -20,11 +20,11 @@ public:
 
 private:
 
-  const int windowTileWidth = 20;
-  const int windowTileHeight = 20;
-  const int windowPixelWidth = windowTileWidth*32;
-  const int windowPixelHeight = windowTileHeight*32;
-  const int moveVal = 32;
+  const int windowTileWidth = 16;
+  const int windowTileHeight = 16;
+  const int windowPixelWidth = windowTileWidth*40;
+  const int windowPixelHeight = windowTileHeight*40;
+  const int moveVal = 16;
 
 
 };

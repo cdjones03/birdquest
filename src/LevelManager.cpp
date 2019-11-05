@@ -22,17 +22,17 @@ LevelManager::LevelManager(){
 void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
-  Screen screen0("../resources/xmlmaps/HubScreen.xml");
-  curScreenString = "../resources/xmlmaps/HubScreen.xml";
+  Screen screen0("../resources/xmlmaps/D_Entrance_simple.xml");
+  curScreenString = "../resources/xmlmaps/D_Entrance_simple.xml";
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
   int width = screen0.getWidth();
   int height = screen0.getHeight();
   const char* tileset = screen0.getTileset();
 
-  section1[0] = "../resources/xmlmaps/HubScreen.xml";
-  section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
-  section1[2] = "../resources/xmlmaps/Sec1Scr2.xml";
+  section1[0] = "../resources/xmlmaps/D_Entrance_simple.xml";
+  section1[1] = "../resources/xmlmaps/Left_1.xml";
+  section1[2] = "../resources/xmlmaps/Left_2.xml";
   section1[3] = "../resources/xmlmaps/Sec1Scr3.xml";
   section1[4] = "../resources/xmlmaps/Sec1Scr4.xml";
   section1[5] = "../resources/xmlmaps/Sec1Scr5.xml";

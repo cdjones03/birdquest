@@ -54,7 +54,7 @@ int main(int argc, char** argv)
   }
   sf::Sprite birdSprite;
   birdSprite.setTexture(birdTexture);
-  birdSprite.setScale(2,2);
+  //birdSprite.setScale(2,2);
 
   sf::Texture blockTexture;
   if(!blockTexture.loadFromFile("../resources/spritesheets/birdnpc.png", sf::IntRect(0, 0, 32, 32))){

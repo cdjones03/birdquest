@@ -45,8 +45,8 @@ Altered by Team 2 for birdquest
 
 
               // find its position in the tileset texture
-              int row = ceil(tileNumber / 5.0); // row
-              int col = (tileNumber%5); //column
+              int row = ceil(tileNumber / 16.0); // row
+              int col = (tileNumber%16); //column
               row -= 1;
               col -= 1;
 

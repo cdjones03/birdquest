@@ -114,36 +114,42 @@ void PauseMenu::moveDown(){
 int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 	sf:: Event pauseEvent;
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-		moveUp();
-	}
+	if(event.type == sf::Event::KeyPressed){
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-		moveDown();
-	}
+		if(event.key.code == sf::Keyboard::Up){
+			moveUp();
+		}
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && inItem == false){
-		switch (getSelectedOption()){
-			//item
-			case 0:
-				std::cout << "Item Pressed" << std::endl;
-				inItem = true;
-				break;
+		else if(event.key.code == sf::Keyboard::Down){
+			moveDown();
+		}
 
-			//save
-			case 1:
-				std::cout << "Save Pressed" << std::endl;
-				break;
+		else if(event.key.code == sf::Keyboard::Return && inItem == false){
+			switch (getSelectedOption()){
+				//item
+				case 0:
+					std::cout << "Item Pressed" << std::endl;
+					itemText[itemIndex].setFillColor(sf::Color::White);
+					itemIndex = 0;
+					itemText[itemIndex].setFillColor(sf::Color::Red);
+					inItem = true;
+					break;
 
-			//resume
-			case 2:
-				std::cout << "Resume Pressed" << std::endl;
-				inPause = false;
-				break;
+				//save
+				case 1:
+					std::cout << "Save Pressed" << std::endl;
+					break;
+
+				//resume
+				case 2:
+					std::cout << "Resume Pressed" << std::endl;
+					inPause = false;
+					break;
+			}
 		}
 	}
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && inItem == true){
+	else if(event.key.code == sf::Keyboard::Return && inItem == true){
 		switch (getSelectedItem()){
 			//item 1
 			case 0:

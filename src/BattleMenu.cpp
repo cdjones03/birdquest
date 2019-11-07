@@ -249,10 +249,8 @@ void BattleMenu::moveLeft(){
 
 int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   
-
-  sf::Event battleEvent;
-  //while(window.waitEvent(battleEvent)){
-  
+  if(event.type == sf::Event::KeyPressed)
+  {
   //moving up,down, left, right to select options
 
   if(event.key.code == sf::Keyboard::Up) {
@@ -340,5 +338,6 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
 
   updateOutput();
+}
 }
 

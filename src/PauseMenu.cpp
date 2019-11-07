@@ -112,7 +112,6 @@ void PauseMenu::moveDown(){
 }
 
 int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
-	sf:: Event pauseEvent;
 
 	if(event.type == sf::Event::KeyPressed){
 

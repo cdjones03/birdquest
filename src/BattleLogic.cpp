@@ -9,22 +9,20 @@ BattleLogic::BattleLogic(){
 
 int BattleLogic::updateHP(int damage, int HP)
 {
-    if (damage <= HP){
-        HP -= damage;
-    }
-    if (damage > HP){
-        HP = 0;
-    }
+    
+    HP -= damage;
+    
+    
     return HP;
 }
 
 //returns who has won based on if the HP is 0, returns 2 if nobody has won
 int BattleLogic::whoWon(int enemyHP, int userHP)
 {
-    if (enemyHP <= 0 && (enemyHP < userHP)){
+    if ((enemyHP <= 0) && (enemyHP < userHP)){
         return 0;
     }
-    if (userHP <= 0 && (enemyHP >userHP)){
+    if ((userHP <= 0) && (enemyHP >userHP)){
         return 1;
     }
     else if (enemyHP > 0 && userHP > 0){
@@ -64,4 +62,19 @@ int BattleLogic::healItem(int damage, int HP){
           HP = 100;
         }
     return HP;
+}
+
+int BattleLogic::getUserDamage(int damage, bool magic){
+    if (enemyDefend){
+        if (damage >= 10){
+          damage -=10;
+        }
+        else{
+          damage = 0;
+        }
+      }
+    if (magic){
+        damage *= 1.5;
+    }
+    return damage;
 }

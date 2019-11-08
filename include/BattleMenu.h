@@ -62,4 +62,5 @@ private:
     bool returnJustPressed;
     bool enemyDefend;
     int userDamageStored;
+    bool magic;
 };

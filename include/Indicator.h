@@ -36,7 +36,7 @@ class Indicator {
 		//int x, y;
 		int startX, startY;  //initial x and y coordinates
 		int red = 0;      //damage values that coordinate with battle bar color
-		int orange = 5;
+		int orange = 4;
 		int yellow = 10;
 		int green = 20;
 		int width = 10;

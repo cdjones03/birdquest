@@ -8,7 +8,7 @@ HumanView::HumanView(){
 
 }
 
-void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager){
+void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, sf::Sprite &otherSprite){
   int x = thisSprite.getPosition().x;
   int y = thisSprite.getPosition().y;
 
@@ -76,39 +76,73 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
 
 //true = no collision; i.e. not a water tile in tilset.png
 bool HumanView::checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager){
+  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos) << std::endl;
+  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) << std::endl;
+  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) << std::endl;
+  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) << std::endl;
+  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) << std::endl << std::endl;
+
   bool ret = false;
   switch(direction){
     case UP :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) >= 0)
         ret = true;
 
     break;
 
     case DOWN :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) >= 0)
         ret = true;
 
     break;
 
     case LEFT :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) >= 0)
         ret = true;
 
     break;
 
     case RIGHT :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) != 32)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) >= 0)
         ret = true;
 
     break;
   }
 
-  ret = true;
+  //ret = true;
   return ret;
+}
+
+void HumanView::checkSpriteCollision(Dir direction, LevelManager &thisLevelManager) {
+  switch(direction){
+    case UP :
+
+      thisLevelManager.switchMap(0);
+
+    break;
+
+    case DOWN :
+
+      thisLevelManager.switchMap(1);
+
+    break;
+
+    case LEFT :
+
+      thisLevelManager.switchMap(2);
+
+    break;
+
+    case RIGHT :
+
+      thisLevelManager.switchMap(3);
+
+    break;
+  }
 }
 
 //Switch map IF

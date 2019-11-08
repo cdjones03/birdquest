@@ -31,7 +31,8 @@ void LevelManager::loadLevels() {
   const char* tileset = screen0.getTileset();
 
   section1[0] = "../resources/xmlmaps/D_Entrance_simple.xml";
-  section1[1] = "../resources/xmlmaps/Left_1.xml";
+  //section1[1] = "../resources/xmlmaps/Left_1.xml";
+  section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
   section1[2] = "../resources/xmlmaps/Left_2.xml";
   section1[3] = "../resources/xmlmaps/Right_1.xml";
   section1[4] = "../resources/xmlmaps/Right_2.xml";

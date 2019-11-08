@@ -97,5 +97,7 @@ Altered by Team 2 for birdquest
     }
 
     int TileMap::getTexCoord(int x, int y){
-      return m_vertices[((y/32)+((x/32)*20))*4].texCoords.x;
+      int n = ((y/16)+((x/16)*40))*4;
+      std::cout << " n " << n << std::endl;
+      return m_vertices[n].texCoords.x;
     }

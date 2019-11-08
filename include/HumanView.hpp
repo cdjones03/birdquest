@@ -13,8 +13,9 @@ public:
   HumanView();
   enum Dir { UP=0, DOWN=1, LEFT=2, RIGHT=3 };
 
-  void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
+  void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, sf::Sprite &otherSprite);
   bool checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
+  void checkSpriteCollision(Dir direction, LevelManager &thisLevelManager);
 
   int curScreen;
 

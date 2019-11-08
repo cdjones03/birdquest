@@ -18,11 +18,14 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  const int windowTileWidth = 20;
-  const int windowTileHeight = 20;
-  const int windowPixelWidth = windowTileWidth*32;
-  const int windowPixelHeight = windowTileHeight*32;
+  const int windowTileWidth = 40;
+  const int windowTileHeight = 40;
+  const int windowPixelWidth = windowTileWidth*16;
+  const int windowPixelHeight = windowTileHeight*16;
   const int moveVal = 32;
+  bool view = false;
+  int lastX = 352;
+  int lastY = 352;
 
 
   // create main window; Style::Close disables resizing
@@ -58,15 +61,20 @@ int main(int argc, char** argv)
   sf::Sprite birdSprite;
   birdSprite.setPosition(320, 624); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
+  birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
 
   sf::Texture blockTexture;
-  if(!blockTexture.loadFromFile("../resources/spritesheets/birdnpc.png", sf::IntRect(0, 0, 32, 32))){
+  if(!blockTexture.loadFromFile("../resources/tilesets/sewer_1_alter.png", sf::IntRect(0, 48, 16, 16))){
   }
   sf::Sprite blockSprite;
   blockSprite.setTexture(blockTexture);
-  blockSprite.setPosition(320, 320);
-  blockSprite.setScale(2,2);
+  blockSprite.setPosition(16*35, 16*20);
+  //blockSprite.setScale(2,2);
+  sf::Sprite blockSprite2;
+  blockSprite2.setTexture(blockTexture);
+  blockSprite2.setPosition(336, 320);
+  //blockSprite2.setScale(2,2);
 
   sf::Texture keyTexture;
   if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
@@ -77,21 +85,37 @@ int main(int argc, char** argv)
   keySprite.setScale(0.5, 0.5);
 
 
-  //sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
+  sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
   //App.setView(view1);
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
   while(App.isOpen())
   {
-      deltaMs = clock.getElapsedTime().asMilliseconds();
+      //std::cout << "x " << lastX << " y " << lastY << std::endl;
+      //deltaMs = clock.getElapsedTime().asMilliseconds();
       //std::cout << deltaMs << std::endl;
       if(deltaMs >= 2000) {
         deltaMs -= 2000;
         //birdSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
       }
       if(birdSprite.getPosition().x == blockSprite.getPosition().x && birdSprite.getPosition().y == blockSprite.getPosition().y){
-        blockSprite.move(32, 0);
+      //  humanView.checkSpriteCollision(HumanView::UP, levelManager);
+        //if(blockSprite.getPosition().x + 16 != blockSprite2.getPosition().x){
+        if(lastX < blockSprite.getPosition().x) {
+          humanView.move(blockSprite, HumanView::RIGHT, levelManager, birdSprite);
+        }
+        else if(lastX > blockSprite.getPosition().x) {
+          humanView.move(blockSprite, HumanView::LEFT, levelManager, birdSprite);
+        }
+        else if(lastY < blockSprite.getPosition().y) {
+          humanView.move(blockSprite, HumanView::DOWN, levelManager, birdSprite);
+        }
+        else if(lastY > blockSprite.getPosition().y) {
+          humanView.move(blockSprite, HumanView::UP, levelManager, birdSprite);
+        }
+
+      //}
       }
 
       if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
@@ -122,16 +146,24 @@ int main(int argc, char** argv)
         if (!inBattleMenu && !inPauseMenu){
           //Handle input, delegate to HumanView.cpp
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            humanView.move(birdSprite, HumanView::UP, levelManager);
+            lastY = birdSprite.getPosition().y;
+            lastX = birdSprite.getPosition().x;
+            humanView.move(birdSprite, HumanView::UP, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            humanView.move(birdSprite, HumanView::DOWN, levelManager);
+            lastY = birdSprite.getPosition().y;
+            lastX = birdSprite.getPosition().x;
+            humanView.move(birdSprite, HumanView::DOWN, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-            humanView.move(birdSprite, HumanView::LEFT, levelManager);
+            lastY = birdSprite.getPosition().y;
+            lastX = birdSprite.getPosition().x;
+            humanView.move(birdSprite, HumanView::LEFT, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-            humanView.move(birdSprite, HumanView::RIGHT, levelManager);
+            lastY = birdSprite.getPosition().y;
+            lastX = birdSprite.getPosition().x;
+            humanView.move(birdSprite, HumanView::RIGHT, levelManager, blockSprite);
           }
 
         }
@@ -158,7 +190,8 @@ int main(int argc, char** argv)
 
       //Display
       App.clear(sf::Color::Black);
-      //App.setView(view1);
+      if(view)
+        App.setView(view1);
 
       //draw map if not in battle
       if (!inBattleMenu){

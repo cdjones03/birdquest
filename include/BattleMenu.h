@@ -30,6 +30,9 @@ public:
 private:
     bool showAttack;
     bool firstMove;
+
+    sf::Texture birdTexture;
+    sf::Sprite birdSprite;
     
     
 

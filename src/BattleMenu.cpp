@@ -14,8 +14,9 @@ BattleMenu::BattleMenu(float width, float height){
   enemyHP = maxHP;
   showBattleBar = false;
   returnJustPressed = false;
+  
 
-  if (!font.loadFromFile("../src/Gameplay.ttf")) {
+  if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
   }
 
@@ -33,33 +34,33 @@ BattleMenu::BattleMenu(float width, float height){
 
   // temporary placement for enemy sprite in battle screen
   enemy_sample.setRadius(80);
-  enemy_sample.setFillColor(sf::Color::White);
+  enemy_sample.setFillColor(sf::Color::Blue);
   enemy_sample.setPosition(width/7, height/15);
 
   // name for enemy sprite
   enemy_Text.setFont(font);
-  enemy_Text.setFillColor(sf::Color::Black);
-  enemy_Text.setCharacterSize(25);
+  enemy_Text.setFillColor(sf::Color::White);
+  enemy_Text.setCharacterSize(75);
   enemy_Text.setString("ENEMY");
   enemy_Text.setPosition(sf::Vector2f(width/5.1, height/5.8));
 
   // setup user and enemy HP text placement in battle menu
   userHP_Text.setFont(font);
-  userHP_Text.setCharacterSize(18);
+  userHP_Text.setCharacterSize(65);
   std::string userHP_string1 = std::to_string(userHP);
   userHP_Text.setString("HP: " + userHP_string1);
-  userHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height/8));
+  userHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height/5));
 
   enemyHP_Text.setFont(font);
-  enemyHP_Text.setCharacterSize(18);
+  enemyHP_Text.setCharacterSize(65);
   std::string enemyHP_string1 = std::to_string(enemyHP);
   enemyHP_Text.setString("HP: " + enemyHP_string1);
-  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, 30));
+  enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, 45));
 
   //setup output text that will say what happened last turn
   outputText.setFont(font);
-  outputText.setCharacterSize(22);
-  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2 -50));
+  outputText.setCharacterSize(75);
+  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2-110));
 
   // red health bar for player in battle menu
   remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
@@ -85,24 +86,28 @@ BattleMenu::BattleMenu(float width, float height){
 
   //position each option on the screen, with the color red if it is highlighted
   optionText[0].setFont(font);
+  optionText[0].setCharacterSize(85);
   optionText[0].setFillColor(sf::Color::Red);
   optionText[0].setString("Attack");
-  optionText[0].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*4));
+  optionText[0].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*3.5));
 
   optionText[1].setFont(font);
+  optionText[1].setCharacterSize(85);
   optionText[1].setFillColor(sf::Color::Blue);
   optionText[1].setString("Magic");
-  optionText[1].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*9/2));
+  optionText[1].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*4));
 
   optionText[2].setFont(font);
+  optionText[2].setCharacterSize(85);
   optionText[2].setFillColor(sf::Color::Blue);
   optionText[2].setString("Flee");
-  optionText[2].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*4));
+  optionText[2].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*3.5));
 
   optionText[3].setFont(font);
+  optionText[3].setCharacterSize(85);
   optionText[3].setFillColor(sf::Color::Blue);
   optionText[3].setString("Item");
-  optionText[3].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*9/2));
+  optionText[3].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*4));
 
 }
 

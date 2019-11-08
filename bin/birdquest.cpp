@@ -53,6 +53,7 @@ int main(int argc, char** argv)
     return -1;
   }
   sf::Sprite birdSprite;
+  birdSprite.setPosition(320, 624); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
   //birdSprite.setScale(2,2);
 

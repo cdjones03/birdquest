@@ -5,10 +5,10 @@
   <property name="b-upScreen" type="int" value="-1"/>
   <property name="c-downScreen" type="int" value="-1"/>
   <property name="d-leftScreen" type="int" value="0"/>
-  <property name="e-rightScreen" type="int" value="22"/>
+  <property name="e-rightScreen" type="int" value="4"/>
  </properties>
  <tileset firstgid="1" source="../tsxfiles/sewer2.tsx"/>
- <layer id="21" name="base" width="40" height="40">
+ <layer id="3" name="base" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

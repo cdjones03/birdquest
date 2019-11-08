@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <string>
 
 #define maxPauseOptions 3
 #define maxItemOptions 5
@@ -13,6 +14,7 @@ public:
 	void draw(sf::RenderWindow &window);
 	void moveUp();
 	void moveDown();
+	void addItem(std::string item);
 
 	int getSelectedOption(){
 		return selectedIndex;
@@ -32,6 +34,7 @@ private:
 	sf::Text itemText[maxItemOptions];
 	int selectedIndex;
 	int itemIndex;
+	int itemCount;
 	sf::RectangleShape border;
 	sf::RectangleShape itemBorder;
 

@@ -1,11 +1,13 @@
 #include "../include/PauseMenu.h"
 #include <iostream>
+#include <string>
 
 PauseMenu::PauseMenu(float width, float height){
 	inPause = true;
 	inItem = false;
 	selectedIndex = 0;
 	itemIndex = 0;
+	itemCount = 0;
 
 	if (!font.loadFromFile("../src/Gameplay.ttf")) {
   	//error
@@ -42,19 +44,19 @@ PauseMenu::PauseMenu(float width, float height){
   	//position each item option on the screen, with the color red if it is highlighted
   	itemText[0].setFont(font);
   	itemText[0].setFillColor(sf::Color::Red);
-  	itemText[0].setString("Item 1");
+  	itemText[0].setString("-");
   	itemText[0].setPosition(sf::Vector2f(width/1.4, height/2));
 
   	itemText[1].setFont(font);
-  	itemText[1].setString("Item 2");
+  	itemText[1].setString("-");
   	itemText[1].setPosition(sf::Vector2f(width/1.4, height/1.7));
 
   	itemText[2].setFont(font);
-  	itemText[2].setString("Item 3");
+  	itemText[2].setString("-");
   	itemText[2].setPosition(sf::Vector2f(width/1.4, height/1.48));
 
   	itemText[3].setFont(font);
-  	itemText[3].setString("Item 4");
+  	itemText[3].setString("-");
   	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32));
 
   	itemText[4].setFont(font);
@@ -84,6 +86,11 @@ void PauseMenu::draw(sf::RenderWindow &window){
 	}
 }
 
+void PauseMenu::addItem(std::string item){
+	std::cout << item;
+	itemText[itemCount].setString(item);
+	itemCount++;
+}
 
 void PauseMenu::moveUp(){
 	if (selectedIndex - 1 >= 0 && inItem == false){

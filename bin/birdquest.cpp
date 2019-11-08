@@ -39,6 +39,9 @@ int main(int argc, char** argv)
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
   bool inPauseMenu = false;
 
+  // Remains true untill item is picked up
+  bool itemView = true;
+
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
@@ -65,6 +68,15 @@ int main(int argc, char** argv)
   blockSprite.setPosition(320, 320);
   blockSprite.setScale(2,2);
 
+  sf::Texture keyTexture;
+  if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
+  }
+  sf::Sprite keySprite;
+  keySprite.setTexture(keyTexture);
+  keySprite.setPosition(288, 400);
+  keySprite.setScale(0.5, 0.5);
+
+
   //sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
   //App.setView(view1);
 
@@ -81,6 +93,12 @@ int main(int argc, char** argv)
       if(birdSprite.getPosition().x == blockSprite.getPosition().x && birdSprite.getPosition().y == blockSprite.getPosition().y){
         blockSprite.move(32, 0);
       }
+
+      if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
+        pauseMenu.addItem("Key");
+        itemView = false;
+      }
+
       // process events
       sf::Event Event;
       while(App.pollEvent(Event))
@@ -147,6 +165,9 @@ int main(int argc, char** argv)
         levelManager.drawMap(App);
         App.draw(birdSprite);
         App.draw(blockSprite);
+        if (itemView == true){
+          App.draw(keySprite);
+        }
 
         //draw pauseMenu
         if (inPauseMenu && pauseMenu.inPause){

@@ -33,8 +33,8 @@ void LevelManager::loadLevels() {
   section1[0] = "../resources/xmlmaps/D_Entrance_simple.xml";
   section1[1] = "../resources/xmlmaps/Left_1.xml";
   section1[2] = "../resources/xmlmaps/Left_2.xml";
-  section1[3] = "../resources/xmlmaps/Sec1Scr3.xml";
-  section1[4] = "../resources/xmlmaps/Sec1Scr4.xml";
+  section1[3] = "../resources/xmlmaps/Right_1.xml";
+  section1[4] = "../resources/xmlmaps/Right_2.xml";
   section1[5] = "../resources/xmlmaps/Sec1Scr5.xml";
   section1[6] = "../resources/xmlmaps/Sec1Scr6.xml";
   section1[7] = "../resources/xmlmaps/Sec1Scr7.xml";

@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="../tsxfiles/sewer_1.tsx"/>
  <tileset firstgid="353" source="../tsxfiles/sewer2.tsx"/>
  <tileset firstgid="705" source="../tsxfiles/dungeon2_alter.tsx"/>
- <layer id="17" name="base" width="40" height="40">
+ <layer id="0" name="base" width="40" height="40">
   <data encoding="csv">
 28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
 28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,

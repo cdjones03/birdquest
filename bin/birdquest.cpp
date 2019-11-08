@@ -64,6 +64,15 @@ int main(int argc, char** argv)
   blockSprite.setPosition(320, 320);
   blockSprite.setScale(2,2);
 
+  sf::Texture keyTexture;
+  if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
+  }
+  sf::Sprite keySprite;
+  keySprite.setTexture(keyTexture);
+  keySprite.setPosition(290, 400);
+  keySprite.setScale(0.5, 0.5);
+
+
   //sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
   //App.setView(view1);
 
@@ -146,6 +155,7 @@ int main(int argc, char** argv)
         levelManager.drawMap(App);
         App.draw(birdSprite);
         App.draw(blockSprite);
+        App.draw(keySprite);
 
         //draw pauseMenu
         if (inPauseMenu && pauseMenu.inPause){

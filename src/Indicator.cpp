@@ -30,6 +30,7 @@ Indicator::Indicator() {
 	indic.setPosition(315, 240);  //center the indicator
 	startX = indic.getPosition().x;
 	startY = indic.getPosition().y;
+	velocity =1;
 }
 
 void Indicator::reset()  //reset the indicator to move again after stop

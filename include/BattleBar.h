@@ -11,12 +11,13 @@ class BattleBar {
 		void update(sf::RenderWindow &window);
 		void barPressed();
 		int getDamageDealt();
+		Indicator indi;
 
 	private:
 
 		BBBorder borders; //create colored borders
 
-		Indicator indi; //create indicator
+		 //create indicator
 
 };
 

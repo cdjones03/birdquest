@@ -12,8 +12,11 @@ public:
     int whoWon(int enemyHP, int userHP);
     int getEnemyDamage();
     int resetHP(int HP);
+    int healItem(int damage, int HP);
 
     bool enemyDefend;
+    //add a poison attack, that will cause consistent damage.
+    bool enemyPoison;
 
 
 private:

@@ -30,7 +30,6 @@
 class Indicator {
 
 	sf::RectangleShape indic;
-	int velocity = 1;
 	int stopGo = 1;
 
 	private:
@@ -45,6 +44,7 @@ class Indicator {
 
 
 	public:  //constructor
+		int velocity;
 		Indicator();
 
 		void reset();

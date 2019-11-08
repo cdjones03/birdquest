@@ -57,3 +57,11 @@ int BattleLogic::getEnemyDamage()
 int BattleLogic::resetHP(int HP){
     return (HP = maxHP);
 }
+
+int BattleLogic::healItem(int damage, int HP){
+    HP = updateHP(damage, HP) + 20;
+        if (HP > 100){
+          HP = 100;
+        }
+    return HP;
+}

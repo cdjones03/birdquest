@@ -100,7 +100,7 @@ BattleMenu::BattleMenu(float width, float height){
   optionText[2].setFont(font);
   optionText[2].setCharacterSize(85);
   optionText[2].setFillColor(sf::Color::Blue);
-  optionText[2].setString("Flee");
+  optionText[2].setString("Defend");
   optionText[2].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*3.5));
 
   optionText[3].setFont(font);
@@ -273,6 +273,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
+    enemyDamage = logic.getEnemyDamage();
 
 
     std::cout << "return" << std::endl;
@@ -282,6 +283,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     switch (getSelectedOption()){
       //attack
       case 0:
+        battleBar.indi.velocity = 1;
         showAttack = true;
         std::cout << "Attack pressed" << std::endl;
         showBattleBar = true;
@@ -289,6 +291,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         break;
       //magic
       case 1:
+        battleBar.indi.velocity = 2;
         showAttack = true;
         std::cout << "Magic pressed" << std::endl;
         showBattleBar = true;
@@ -296,16 +299,14 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         break;
       //evade
       case 2:
-        std::cout << "Evade pressed" << std::endl;
-        inMenu = false;
+        std::cout << "Defend pressed" << std::endl;
+        //inMenu = false;
+
         break;
       //item
       case 3:
         //healing with potion, need to fix
-        userHP = logic.updateHP(enemyDamage, userHP) + 20;
-        if (userHP > 100){
-          userHP = 100;
-        }
+        userHP = logic.healItem(enemyDamage, userHP);
         std::string enemyDamageString = std::to_string(enemyDamage);
         showAttack = false;
         std::cout << "Item pressed" << std::endl;
@@ -320,7 +321,7 @@ int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
       userDamageStored = userDamage;
-      enemyDamage = logic.getEnemyDamage();
+      
       //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
       if (logic.enemyDefend){
         if (userDamage >= 10){

@@ -28,10 +28,21 @@ BattleMenu::BattleMenu(float width, float height){
   rectangle.setOutlineThickness(4);
   rectangle.setOutlineColor(sf::Color::White);
 
+  
+  //player's battle sprite 
+  if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
+  }
+  birdSprite.setTexture(birdTexture);
+  birdSprite.setPosition(420, 400);
+  birdSprite.setScale(2.0, 2.0);
+
+
+/*
   // temporary placement for birdknight sprite in battle screen
   bird_battle.setRadius(80);
   bird_battle.setFillColor(sf::Color(30, 30, 255));
   bird_battle.setPosition(width - width/2.8, height - height/2.2);
+*/
 
   // temporary placement for enemy sprite in battle screen
   enemy_sample.setRadius(80);
@@ -193,7 +204,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
   if (showMenu){
     updateOutput();
     window.draw(rectangle);
-    window.draw(bird_battle);
+    window.draw(birdSprite);
     window.draw(enemy_sample);
     window.draw(enemy_Text);
     window.draw(userHP_Text);

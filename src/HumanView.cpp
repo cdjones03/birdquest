@@ -86,7 +86,7 @@ bool HumanView::checkCollision(int thisXPos, int thisYPos, Dir direction, LevelM
   switch(direction){
     case UP :
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) >= 0)
+      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) >= 0) //check if tile is empty
         ret = true;
 
     break;

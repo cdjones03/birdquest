@@ -48,7 +48,7 @@ int main(int argc, char** argv)
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
-
+  
   HumanView humanView;
 
   sf::Clock clock;

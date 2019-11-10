@@ -53,31 +53,32 @@ void LevelManager::loadLevels() {
   docu.LoadFile(name);
   tinyxml2::XMLElement *curElement = docu.FirstChildElement("section1")->FirstChildElement("textures");
   int length = curElement->IntAttribute("length");
-  curElement = curElement->FirstChildElement("texture1");
+  curElement = curElement->FirstChildElement("texture0");
 
   //load textures for section
   int x1, y1, x2, y2;
-  for(int x = 0; x < length; x++) {
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     sf::Texture texture;
-    x1 = curElement->IntAttribute("x1");
-    y1 = curElement->IntAttribute("y1");
-    x2 = curElement->IntAttribute("x2");
-    y2 = curElement->IntAttribute("y2");
-    if(!texture.loadFromFile(curElement->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
+    x1 = e->IntAttribute("x1");
+    y1 = e->IntAttribute("y1");
+    x2 = e->IntAttribute("x2");
+    y2 = e->IntAttribute("y2");
+    if(!texture.loadFromFile(e->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
       std::cout << " error " << std::endl;
     }
     curTextures.push_back(texture);
-    curElement = curElement->NextSiblingElement();
   }
 
   //load textures for sprites for screen
   curElement = docu.FirstChildElement("section1")->FirstChildElement("Scr1Sec1")->FirstChildElement();
   int textNum;
-  for(int x = 0; x < curSprites.size(); x++){
-    textNum = curElement->IntAttribute("texture");
-    curSprites.at(x).setTexture(curTextures.at(textNum));
-    curElement = curElement->NextSiblingElement();
+  int x = 0;
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    textNum = e->IntAttribute("texture");
+    curSprites.at(0).setTexture(curTextures.at(textNum));
+    x++;
   }
+
 
   }
 

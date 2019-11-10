@@ -1,6 +1,7 @@
 #include <Screen.hpp>
 #include <iostream>
 #include <tinyxml2.h>
+#include <string>
 
 /*
 screen value of -1 = can't go that way
@@ -37,6 +38,7 @@ Screen::Screen(const char* fileName) {
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     int x = e->IntAttribute("positionx");
     int y = e->IntAttribute("positiony");
+    std::cout << x << " " << y << std::endl;
     sf::Sprite newSprite;
     newSprite.setPosition(x, y);
     spriteArr.push_back(newSprite);

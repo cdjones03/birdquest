@@ -40,7 +40,7 @@ BattleMenu::BattleMenu(float width, float height){
   }
   bossSprite.setTexture(bossTexture);
   bossSprite.setPosition(100, 30);
-  bossSprite.setScale(2.5, 2.5);
+  bossSprite.setScale(2.0, 2.0);
 
 
 

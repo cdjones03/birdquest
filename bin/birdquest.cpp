@@ -58,6 +58,7 @@ int main(int argc, char** argv)
   if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16))){
     return -1;
   }
+  
   sf::Sprite birdSprite;
   birdSprite.setPosition(320, 624); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
@@ -104,6 +105,7 @@ int main(int argc, char** argv)
         //if(blockSprite.getPosition().x + 16 != blockSprite2.getPosition().x){
         if(lastX < blockSprite.getPosition().x) {
           humanView.move(blockSprite, HumanView::RIGHT, levelManager, birdSprite);
+		  
         }
         else if(lastX > blockSprite.getPosition().x) {
           humanView.move(blockSprite, HumanView::LEFT, levelManager, birdSprite);
@@ -146,23 +148,32 @@ int main(int argc, char** argv)
         if (!inBattleMenu && !inPauseMenu){
           //Handle input, delegate to HumanView.cpp
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            lastY = birdSprite.getPosition().y;
+            birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 48, 16, 16));
+			birdSprite.setTexture(birdTexture);
+			lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::UP, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            lastY = birdSprite.getPosition().y;
+            birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
+			birdSprite.setTexture(birdTexture);
+			lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::DOWN, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-            lastY = birdSprite.getPosition().y;
+            birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
+			birdSprite.setTexture(birdTexture);
+			lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::LEFT, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-            lastY = birdSprite.getPosition().y;
+            birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
+			birdSprite.setTexture(birdTexture);
+			lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
+			
             humanView.move(birdSprite, HumanView::RIGHT, levelManager, blockSprite);
           }
 

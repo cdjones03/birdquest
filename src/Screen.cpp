@@ -31,6 +31,16 @@ Screen::Screen(const char* fileName) {
   rightScreen = curElement->IntAttribute("value");
 
   tileString = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
+
+  infoDoc.LoadFile("../resources/info.xml");
+  curElement = infoDoc.FirstChildElement("section1")->FirstChildElement("Scr1Sec1")->FirstChildElement("sprite1");
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    int x = e->IntAttribute("positionx");
+    int y = e->IntAttribute("positiony");
+    sf::Sprite newSprite;
+    newSprite.setPosition(x, y);
+    spriteArr.push_back(newSprite);
+  }
 }
 
 Screen::~Screen() = default;
@@ -84,4 +94,8 @@ int Screen::getUpScreen() {
 
 int Screen::getDownScreen() {
   return downScreen;
+}
+
+std::vector<sf::Sprite> Screen::getSprites() {
+  return spriteArr;
 }

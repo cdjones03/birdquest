@@ -1,8 +1,8 @@
-#include <tinyxml2.h>
 #include <LevelManager.hpp>
 #include <SFML/Graphics.hpp>
 #include <Screen.hpp>
 #include <HumanView.hpp>
+#include <tinyxml2.h>
 #include <iostream>
 
 /*
@@ -29,6 +29,7 @@ void LevelManager::loadLevels() {
   int width = screen0.getWidth();
   int height = screen0.getHeight();
   const char* tileset = screen0.getTileset();
+  curSprites = screen0.getSprites();
 
   section1[0] = "../resources/xmlmaps/D_Entrance_simple.xml";
   //section1[1] = "../resources/xmlmaps/Left_1.xml";
@@ -48,30 +49,48 @@ void LevelManager::loadLevels() {
       exit(0);
     }
 
+  const char* name = "../resources/info.xml";
+  docu.LoadFile(name);
+  tinyxml2::XMLElement *curElement = docu.FirstChildElement("section1")->FirstChildElement("textures");
+  int length = curElement->IntAttribute("length");
+  curElement = curElement->FirstChildElement("texture1");
+
+  //load textures for section
+  int x1, y1, x2, y2;
+  for(int x = 0; x < length; x++) {
+    sf::Texture texture;
+    x1 = curElement->IntAttribute("x1");
+    y1 = curElement->IntAttribute("y1");
+    x2 = curElement->IntAttribute("x2");
+    y2 = curElement->IntAttribute("y2");
+    if(!texture.loadFromFile(curElement->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
+      std::cout << " error " << std::endl;
+    }
+    curTextures.push_back(texture);
+    curElement = curElement->NextSiblingElement();
+  }
+
+  //load textures for sprites for screen
+  curElement = docu.FirstChildElement("section1")->FirstChildElement("Scr1Sec1")->FirstChildElement();
+  int textNum;
+  for(int x = 0; x < curSprites.size(); x++){
+    textNum = curElement->IntAttribute("texture");
+    curSprites.at(x).setTexture(curTextures.at(textNum));
+    curElement = curElement->NextSiblingElement();
+  }
+
   }
 
 
 
 void LevelManager::drawMap(sf::RenderWindow &window) {
   window.draw(map);
-}
-/*
-  Screen screen0("../resources/xmlmaps/hub_test.xml");
-  curScreenString = "../resources/xmlmaps/hub_test.xml";
-  int tileWidth = screen0.getTileWidth();
-  int tileHeight = screen0.getTileHeight();
-  int width = screen0.getWidth();
-  int height = screen0.getHeight();
-  const char* tileset = screen0.getTileset();
-  if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
-  screen0.getTileString(), width, height)) { //vector is size of each tile in pixel
-      exit(0);
+  if(!curSprites.empty()) {
+    for(int x = 0; x < curSprites.size(); x++) {
+      window.draw(curSprites.at(x));
     }
-
-  window.draw(map);
-*/
-
-
+  }
+}
 
 //needs to switch based on given direction
 //should assume that collision checking has been already done
@@ -110,6 +129,10 @@ bool LevelManager::switchMap(int mapDir) {
     return false;
   }
 
+  if(newMap == 1) {
+
+  }
+
 
   const char* newScreenString = section1[newMap];
 
@@ -119,6 +142,7 @@ bool LevelManager::switchMap(int mapDir) {
   int curWidth = newScreen.getWidth();
   int curHeight = newScreen.getHeight();
   const char* curTileset = newScreen.getTileset();
+  curSprites = newScreen.getSprites();
 
   if (!map.load(curTileset, sf::Vector2u(curTileWidth, curTileHeight),
   newScreen.getTileString(), curWidth, curHeight)) { //vector is size of each tile in pixel

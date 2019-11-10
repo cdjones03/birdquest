@@ -36,18 +36,26 @@ BattleMenu::BattleMenu(float width, float height){
   birdSprite.setPosition(420, 400);
   birdSprite.setScale(2.0, 2.0);
 
+  if(!bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){
+  }
+  bossSprite.setTexture(bossTexture);
+  bossSprite.setPosition(100, 30);
+  bossSprite.setScale(2.5, 2.5);
+
+
 
 /*
   // temporary placement for birdknight sprite in battle screen
   bird_battle.setRadius(80);
   bird_battle.setFillColor(sf::Color(30, 30, 255));
   bird_battle.setPosition(width - width/2.8, height - height/2.2);
-*/
+
 
   // temporary placement for enemy sprite in battle screen
   enemy_sample.setRadius(80);
   enemy_sample.setFillColor(sf::Color::Blue);
   enemy_sample.setPosition(width/7, height/15);
+*/
 
   // name for enemy sprite
   enemy_Text.setFont(font);
@@ -205,7 +213,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
     updateOutput();
     window.draw(rectangle);
     window.draw(birdSprite);
-    window.draw(enemy_sample);
+    window.draw(bossSprite);
     window.draw(enemy_Text);
     window.draw(userHP_Text);
     window.draw(enemyHP_Text);

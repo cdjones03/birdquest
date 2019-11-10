@@ -35,6 +35,9 @@ private:
 
     sf::Texture birdTexture;
     sf::Sprite birdSprite;
+	
+	sf::Texture bossTexture;
+	sf::Sprite bossSprite;
     
     
 
@@ -48,8 +51,8 @@ private:
     sf::Font font;
     sf::Text optionText[maxOptions];
     sf::RectangleShape rectangle;
-    sf::CircleShape bird_battle;
-    sf::CircleShape enemy_sample;
+    //sf::CircleShape bird_battle;
+    //sf::CircleShape enemy_sample;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
     sf::Text outputText;

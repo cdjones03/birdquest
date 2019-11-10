@@ -17,7 +17,7 @@ public:
   LevelManager();
   void loadLevels();
   void drawMap(sf::RenderWindow &window); //will be gone once HumanView is made
-  bool switchMap(int mapDir); 
+  bool switchMap(int mapDir);
   TileMap getMap();
 
 private:
@@ -25,6 +25,9 @@ private:
   const char* curScreenString;
   const char* section1[12];
   TileMap map;
+  std::vector<sf::Sprite> curSprites;
+  std::vector<sf::Texture> curTextures;
+  tinyxml2::XMLDocument docu;
 
 };
 

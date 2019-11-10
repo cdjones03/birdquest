@@ -2,6 +2,7 @@
 #define SCREEN_HPP_INCLUDED
 
 #include <tinyxml2.h>
+#include <SFML/Graphics.hpp>
 
 class Screen {
 
@@ -26,11 +27,14 @@ public:
   int getUpScreen();
   int getDownScreen();
 
+  std::vector<sf::Sprite> getSprites();
+
 
 
 private:
 
   tinyxml2::XMLDocument doc; //actual xml file
+  tinyxml2::XMLDocument infoDoc;
   const char* tileSetImage; //string to array with tile values for screen
   const char* tileString;
   int width;
@@ -41,7 +45,7 @@ private:
   int rightScreen;
   int upScreen;
   int downScreen;
-
+  std::vector<sf::Sprite> spriteArr;
 
 };
 

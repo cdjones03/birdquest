@@ -67,7 +67,9 @@ BattleMenu::BattleMenu(){
   enemy_Text.setFillColor(sf::Color::White);
   enemy_Text.setCharacterSize(75);
   enemy_Text.setString("ENEMY");
-  enemy_Text.setPosition(sf::Vector2f(width/15, height/5.8));
+  enemy_Text.setStyle(sf::Text::Bold);
+  enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
+  
 
   // setup user and enemy HP text placement in battle menu
   userHP_Text.setFont(font);
@@ -84,8 +86,17 @@ BattleMenu::BattleMenu(){
 
   //setup output text that will say what happened last turn
   outputText.setFont(font);
+  outputText.setFillColor(sf::Color::Yellow);
   outputText.setCharacterSize(75);
-  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2-110));
+  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2-105));
+
+  //setup instruction text to tell players how to select an option
+  instructions.setFont(font);
+  instructions.setFillColor(sf::Color::Magenta);
+  instructions.setStyle(sf::Text::Italic);
+  instructions.setCharacterSize(55);
+  instructions.setPosition(sf::Vector2f(width/2 - 300, height/2));
+  instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
 
   // red health bar for player in battle menu
   remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
@@ -146,7 +157,18 @@ void BattleMenu::updateOutput()
 {
   
   if (firstMove){
-    outputText.setString("You are in Battle!\nChoose your move.");
+    outputText.setString("You are in Battle!");
+  }
+  if (showBattleBar){
+    instructions.setString("Press Space to stop the blue bar.\nLand in the Green for maximum effectiveness!");
+  }
+  else{
+    //for now, I think we only need to give the user instructions on navigating the menu once.
+    if (!firstMove){
+      instructions.setString(" ");
+    }
+    
+    //instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
   }
   std::string userDamageString = std::to_string(userDamageStored);
   std::string enemyDamageString = std::to_string(enemyDamageStored);
@@ -171,7 +193,7 @@ void BattleMenu::updateOutput()
   if (item){
       outputText.setString("You healed for 20 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
     }
-  if (showAttack && !firstMove){
+  if (inMenu&&!firstMove){
     
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random
@@ -190,34 +212,48 @@ void BattleMenu::updateOutput()
     
     
   }
-  //if you won, output text
+  //if you won or lost, output text
   if (logic.whoWon(enemyHP, userHP) != 2){
     showMenu = false;
+    
     std::cout<<"userHP"<<userHP<<" enemyHP"<<enemyHP<<" userDamage"<<userDamage<<" enemyDamage"<<enemyDamage<<std::endl;
     
     
     //if you won
     if (logic.whoWon(enemyHP, userHP) == 0){
+      //sometimes we will win even though our HP is 0 or negative because we attacked the enemy first for
+      //more damage, so we will check if our HP is 0 or less and replace the damage taken.
+      if (userHP <=0){
+        userHP += enemyDamage;
+      }
     
       outputText.setString("You won!\nPress Enter to continue");
     
     }
     //if you lost
     else if (logic.whoWon(enemyHP, userHP) == 1){
-      userHP = logic.resetHP(userHP);
-      outputText.setString("You lost!\nPress Enter to continue");
       
+      outputText.setString("You lost!\nPress Enter to continue");
+
     }
-    
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
       //exit battleMenu and reset everything. later, maybe dont reset userHP
+      if (userHP <= 0){
+        userHP = logic.resetHP(userHP);
+      }
+      //reset selection to be top left
+      moveUp();
+      moveLeft();
+      showAttack = false;
       inMenu = false;
-      enemyHP = logic.resetHP(enemyHP);
       returnJustPressed = false;
       showBattleBar = false;
       firstMove = true;
-
+      enemyHP = logic.resetHP(enemyHP);
+      
     }
+    
+    
     
   }
 
@@ -228,6 +264,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(outputText);
 
   if (showMenu){
+    window.draw(instructions);
     updateOutput();
     window.draw(rectangle);
     window.draw(birdSprite);
@@ -373,7 +410,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   
 }
   
-  //we should move this to battleLogic
+  //once we are in the battle bar view
   else if (showBattleBar && returnJustPressed){
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
@@ -400,8 +437,10 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
      
     }
   }
-
+  
   updateOutput();
+  
+  
 }
 }
 

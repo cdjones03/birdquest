@@ -34,6 +34,7 @@ public:
 private:
     bool showAttack;
     bool firstMove;
+    
 
     sf::Texture birdTexture;
     sf::Sprite birdSprite;
@@ -58,6 +59,7 @@ private:
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
     sf::Text outputText;
+    sf::Text instructions;
     sf::Text enemy_Text;
     sf::RectangleShape healthBar;
     sf::RectangleShape remainingBar;

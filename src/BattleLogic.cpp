@@ -19,9 +19,11 @@ int BattleLogic::updateHP(int damage, int HP)
 //returns who has won based on if the HP is 0, returns 2 if nobody has won
 int BattleLogic::whoWon(int enemyHP, int userHP)
 {
-    if ((enemyHP <= 0) && (enemyHP < userHP)){
+    //if you win
+    if ((enemyHP <= 0) && (enemyHP <= userHP)){
         return 0;
     }
+    //if you lose
     if ((userHP <= 0) && (enemyHP >userHP)){
         return 1;
     }
@@ -46,7 +48,7 @@ int BattleLogic::getEnemyDamage()
         damage = 0;
     }
     else{
-        damage = 1+(rand()%19);
+        damage = 1+(rand()%29);
     }
     
     return damage;

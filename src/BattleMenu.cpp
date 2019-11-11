@@ -2,7 +2,7 @@
 #include <iostream>
 //fix enemy block output
 
-BattleMenu::BattleMenu(float width, float height){
+BattleMenu::BattleMenu(){
   showMenu = true;
   firstMove = true;
   inMenu = true;
@@ -15,6 +15,9 @@ BattleMenu::BattleMenu(float width, float height){
   enemyHP = maxHP;
   showBattleBar = false;
   returnJustPressed = false;
+  width = 640.0;
+  height = 640.0;
+
   
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
@@ -56,6 +59,7 @@ BattleMenu::BattleMenu(float width, float height){
   enemy_sample.setFillColor(sf::Color::Blue);
   enemy_sample.setPosition(width/7, height/15);
 */
+
 
   // name for enemy sprite
   enemy_Text.setFont(font);
@@ -205,7 +209,7 @@ void BattleMenu::updateOutput()
       //exit battleMenu and reset everything. later, maybe dont reset userHP
       inMenu = false;
       enemyHP = logic.resetHP(enemyHP);
-      userHP = logic.resetHP(userHP);
+      //userHP = logic.resetHP(userHP);
       returnJustPressed = false;
       showBattleBar = false;
       firstMove = true;

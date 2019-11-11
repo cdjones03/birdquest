@@ -35,7 +35,7 @@ int main(int argc, char** argv)
   //App.setKeyRepeatEnabled(false);
 
   //Create battleMenu object and boolean for if we are in the battle menu
-  BattleMenu battleMenu(App.getSize().x, App.getSize().y);
+  BattleMenu battleMenu;
   bool inBattleMenu = false;
 
   // Create pauseMenu object and boolean for if we are in the battle menu

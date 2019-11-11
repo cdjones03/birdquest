@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "BattleMenu.h"
 #include <iostream>
 #include <string>
 
@@ -43,5 +44,6 @@ private:
 	sf::RectangleShape itemBorder;
 	sf::Texture keyTexture;
 	sf::Sprite keySprite;
+	BattleMenu bMenu;
 
 };

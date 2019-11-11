@@ -9,7 +9,7 @@
 class BattleMenu
 {
 public:
-    BattleMenu(float width, float height);
+    BattleMenu();
     ~BattleMenu();
 
     void draw(sf::RenderWindow &window);
@@ -27,6 +27,7 @@ public:
     //bool whoseTurn();
     bool showMenu;
     Indicator indicator;
+    int userHP;
     
 
 private:
@@ -39,12 +40,12 @@ private:
 	sf::Texture bossTexture;
 	sf::Sprite bossSprite;
     
-    
+    float width;
+    float height;
 
     BattleBar battleBar;
     int userDamage;
     int enemyDamage;
-    int userHP;
     int enemyHP;
     BattleLogic logic;
     int selectedIndex;

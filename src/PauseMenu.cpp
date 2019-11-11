@@ -36,7 +36,7 @@ PauseMenu::PauseMenu(float width, float height){
   	optionText[0].setPosition(sf::Vector2f(width/1.4, height/8));
 
   	optionText[1].setFont(font);
-  	optionText[1].setString("Save");
+  	optionText[1].setString("Status");
   	optionText[1].setPosition(sf::Vector2f(width/1.4, height/4.5));
 
   	optionText[2].setFont(font);
@@ -149,7 +149,8 @@ int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 				//save
 				case 1:
-					std::cout << "Save Pressed" << std::endl;
+					std::cout << "Status Pressed" << std::endl;
+					std::cout << bMenu.userHP;
 					break;
 
 				//resume

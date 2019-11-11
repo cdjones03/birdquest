@@ -65,6 +65,18 @@ int main(int argc, char** argv)
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
 
+  //owl enemy sprite
+  sf::Texture owlTexture;
+  if(!owlTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))){
+    return -1;
+  }
+  
+  sf::Sprite owlSprite;
+  owlSprite.setPosition(304, 176); //stand at door of hub
+  owlSprite.setTexture(owlTexture);
+
+
+
   sf::Texture blockTexture;
   if(!blockTexture.loadFromFile("../resources/tilesets/sewer_1_alter.png", sf::IntRect(0, 48, 16, 16))){
   }
@@ -208,6 +220,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
+		App.draw(owlSprite);
         App.draw(blockSprite);
         if (itemView == true){
           App.draw(keySprite);

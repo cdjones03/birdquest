@@ -35,11 +35,14 @@ PauseMenu::PauseMenu(float width, float height){
   	remainingBar.setOutlineThickness(3);
 
   	//text that shows user HP in status menu
-	HP = std::to_string(bMenu.userHP);
+	HP = bMenu.userHP;
+	std::cout<<"here:"<<HP;
+	HPstr = std::to_string(HP);
+
   	HP_string.setFont(font);
   	HP_string.setCharacterSize(50);
   	HP_string.setFillColor(sf::Color::White);
-  	HP_string.setString("HP: "+HP);
+  	HP_string.setString("HP: "+HPstr);
   	HP_string.setPosition(sf::Vector2f(width/2.1, height/5-45));
 
   	//border around status screen
@@ -205,8 +208,8 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 				//save
 				case 1:
 					std::cout << "Status Pressed" << std::endl;
-					
-					std::cout << bMenu.userHP;
+					HP = bMenu.userHP;
+					std::cout<<"herehehe:"<<HP;
 
 
 					if (inStatus == false){
@@ -262,3 +265,8 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 	}
 
 }
+/**
+void getUserHP(int HP1){
+	HP = HP1;
+}
+*/

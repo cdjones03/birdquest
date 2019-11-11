@@ -25,6 +25,7 @@ public:
 	int getSelectedItem(){
 		return itemIndex;
 	}
+	void getUserHP(int HP);
 
 	bool inPause;
 	bool inItem;
@@ -32,11 +33,12 @@ public:
 	// inventory and itemCount
 	std::string inventory [4] = {"-", "-", "-", "-"};
 	int itemCount;
-
+	
 	void processInputs(sf::Event event, sf::RenderWindow &window);
-
+	int HP;
 private:
-	std::string HP;
+	
+	std::string HPstr;
 	sf::Font font;
 	sf::Text optionText[maxPauseOptions];
 	sf::Text itemText[maxItemOptions];
@@ -53,5 +55,7 @@ private:
 	sf::RectangleShape remainingBar;
 	sf::RectangleShape statusBorder;
 	sf::Text HP_string;
+
+	
 
 };

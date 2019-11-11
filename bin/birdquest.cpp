@@ -26,6 +26,7 @@ int main(int argc, char** argv)
   bool view = false;
   int lastX = 352;
   int lastY = 352;
+  int userHP;
 
 
   // create main window; Style::Close disables resizing
@@ -146,6 +147,7 @@ int main(int argc, char** argv)
           App.close();
         }
         //press b to get to battleMenu.
+        //later, make it so that this can only occur when near an
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
           inBattleMenu = true;
           battleMenu.inMenu = true;
@@ -153,6 +155,8 @@ int main(int argc, char** argv)
         }
         //press p to get to pauseMenu
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+          //userHP = battleMenu.userHP;
+          //pauseMenu.getUserHP(userHP);
           inPauseMenu = true;
           pauseMenu.inPause = true;
         }
@@ -161,29 +165,29 @@ int main(int argc, char** argv)
           //Handle input, delegate to HumanView.cpp
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 48, 16, 16));
-			birdSprite.setTexture(birdTexture);
-			lastY = birdSprite.getPosition().y;
+			      birdSprite.setTexture(birdTexture);
+			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::UP, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
-			birdSprite.setTexture(birdTexture);
-			lastY = birdSprite.getPosition().y;
+			      birdSprite.setTexture(birdTexture);
+			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::DOWN, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
-			birdSprite.setTexture(birdTexture);
-			lastY = birdSprite.getPosition().y;
+			      birdSprite.setTexture(birdTexture);
+			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
             humanView.move(birdSprite, HumanView::LEFT, levelManager, blockSprite);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
-			birdSprite.setTexture(birdTexture);
-			lastY = birdSprite.getPosition().y;
+			      birdSprite.setTexture(birdTexture);
+			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
 			
             humanView.move(birdSprite, HumanView::RIGHT, levelManager, blockSprite);
@@ -200,11 +204,17 @@ int main(int argc, char** argv)
           }
 
         }
-
+        
         //key presses for when we are in the pause menu
         else if (inPauseMenu){
+          //here!
+          
+          
           pauseMenu.processInputs(Event, App);
+          //std::cout<<battleMenu.userHP<<std::endl;
+
           if (!pauseMenu.inPause){
+            
             inPauseMenu = false;
           }
         }

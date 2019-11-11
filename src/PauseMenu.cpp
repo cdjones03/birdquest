@@ -218,9 +218,13 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					break;
 
 				//resume
+				
 				case 2:
 					std::cout << "Resume Pressed" << std::endl;
 					inPause = false;
+					//reset so items is selected first
+					moveUp();
+					moveUp();
 					break;
 			}
 		}

@@ -42,7 +42,7 @@ PauseMenu::PauseMenu(float width, float height){
 	
 
   	HP_string.setFont(font);
-  	HP_string.setCharacterSize(50);
+  	HP_string.setCharacterSize(60);
   	HP_string.setFillColor(sf::Color::White);
   	HP_string.setString("HP: "+HPstr);
   	HP_string.setPosition(sf::Vector2f(width/2.1, height/5-45));
@@ -223,6 +223,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					//reset so items is selected first
 					moveUp();
 					moveUp();
+					inStatus = false;
 					break;
 			}
 		}
@@ -260,8 +261,4 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 	}
 
 }
-/**
-void getUserHP(int HP1){
-	HP = HP1;
-}
-*/
+

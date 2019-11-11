@@ -83,13 +83,13 @@ void getAction(char action, int &enemyHP)
 		
 	}
 
-int print_HP(int enemyHP, int playerHP)
+void print_HP(int enemyHP, int playerHP)
 	{
 		std::cout << "Enemy HP: " << enemyHP << " out of 100" << std::endl;
 		std::cout << "Player HP: " << playerHP << " out of 100" << std::endl;
 	}
 
-char print_menu (void) // print menu and get option
+void print_menu (void) // print menu and get option
     {
     
 	std::cout << "Enter one of the following: " << std::endl;

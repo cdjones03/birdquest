@@ -6,6 +6,7 @@
 PauseMenu::PauseMenu(float width, float height){
 	inPause = true;
 	inItem = false;
+	inStatus = false;
 	selectedIndex = 0;
 	itemIndex = 0;
 	itemCount = 0;
@@ -25,6 +26,7 @@ PauseMenu::PauseMenu(float width, float height){
   	//birdSprite.setScale(0.25, 0.25);
 
   	//health bar for the status update
+	  
   	healthBar.setSize(sf::Vector2f(width/3.5, height/30));
   	healthBar.setFillColor(sf::Color(50, 255, 50));
   	healthBar.setPosition(sf::Vector2f(width/3.2, height/4.25));
@@ -207,17 +209,10 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 				//save
 				case 1:
-					std::cout << "Status Pressed" << std::endl;
-					//HP = bMenu.userHP;
-					std::cout<<"herehehe:"<<HP;
-
-
-					if (inStatus == false){
-						inStatus = true;
-					}
-					else{
-						inStatus = false;
-					}
+					std::cout << "Status Pressed" << std::endl;		
+					//std::cout<<"here1:"<<HP;				
+					inStatus = !inStatus;
+									
 					break;
 
 				//resume

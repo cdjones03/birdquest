@@ -37,6 +37,7 @@ public:
 	void processInputs(sf::Event event, sf::RenderWindow &window);
 	int HP;
 	sf::Text HP_string;
+	sf::RectangleShape healthBar;
 private:
 	
 	std::string HPstr;
@@ -52,7 +53,7 @@ private:
 	BattleMenu bMenu;
 	sf::Texture birdTexture;
 	sf::Sprite birdSprite;
-	sf::RectangleShape healthBar;
+	//sf::RectangleShape healthBar;
 	sf::RectangleShape remainingBar;
 	sf::RectangleShape statusBorder;
 	

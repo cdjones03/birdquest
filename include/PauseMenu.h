@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <iostream>
 #include <string>
 
 #define maxPauseOptions 3
@@ -26,6 +27,10 @@ public:
 
 	bool inPause;
 	bool inItem;
+	// inventory and itemCount
+	std::string inventory [4] = {"-", "-", "-", "-"};
+	int itemCount;
+
 	int processInputs(sf::Event event, sf::RenderWindow &window);
 
 private:
@@ -34,8 +39,9 @@ private:
 	sf::Text itemText[maxItemOptions];
 	int selectedIndex;
 	int itemIndex;
-	int itemCount;
 	sf::RectangleShape border;
 	sf::RectangleShape itemBorder;
+	sf::Texture keyTexture;
+	sf::Sprite keySprite;
 
 };

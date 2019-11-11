@@ -12,6 +12,8 @@ PauseMenu::PauseMenu(float width, float height){
 	if (!font.loadFromFile("../src/Gameplay.ttf")) {
   	//error
   	}
+  	if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
+  	}
 
   	//border around the option in pause screen
   	border.setSize(sf::Vector2f(width/3.25, height/3));
@@ -82,14 +84,18 @@ void PauseMenu::draw(sf::RenderWindow &window){
 		int j = 0;
 		for (; j < maxItemOptions; j++){
 			window.draw(itemText[j]);
-		}	
+		}
+		window.draw(keySprite);	
 	}
 }
 
 void PauseMenu::addItem(std::string item){
-	std::cout << item;
-	itemText[itemCount].setString(item);
+	inventory[itemCount] = item;
+	itemText[itemCount].setString(inventory[itemCount]);
 	itemCount++;
+
+	keySprite.setTexture(keyTexture);
+	keySprite.setPosition(550,320);
 }
 
 void PauseMenu::moveUp(){

@@ -24,7 +24,7 @@ public:
     int getHP();
     bool playerTurn;
     bool inMenu;
-    int processInputs(sf::Event event, sf::RenderWindow &window);
+    void processInputs(sf::Event event, sf::RenderWindow &window);
     //bool whoseTurn();
     bool showMenu;
     Indicator indicator;

@@ -201,6 +201,7 @@ void BattleMenu::updateOutput()
     }
     //if you lost
     else if (logic.whoWon(enemyHP, userHP) == 1){
+      userHP = logic.resetHP(userHP);
       outputText.setString("You lost!\nPress Enter to continue");
       
     }
@@ -209,7 +210,6 @@ void BattleMenu::updateOutput()
       //exit battleMenu and reset everything. later, maybe dont reset userHP
       inMenu = false;
       enemyHP = logic.resetHP(enemyHP);
-      //userHP = logic.resetHP(userHP);
       returnJustPressed = false;
       showBattleBar = false;
       firstMove = true;
@@ -284,7 +284,7 @@ void BattleMenu::moveLeft(){
   }
 }
 
-int BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
+void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   
   if(event.type == sf::Event::KeyPressed)
   {

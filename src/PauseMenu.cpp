@@ -35,10 +35,11 @@ PauseMenu::PauseMenu(float width, float height){
   	remainingBar.setOutlineThickness(3);
 
   	//text that shows user HP in status menu
+	HP = std::to_string(bMenu.userHP);
   	HP_string.setFont(font);
   	HP_string.setCharacterSize(50);
   	HP_string.setFillColor(sf::Color::White);
-  	HP_string.setString("HP: 100");
+  	HP_string.setString("HP: "+HP);
   	HP_string.setPosition(sf::Vector2f(width/2.1, height/5-45));
 
   	//border around status screen

@@ -36,6 +36,7 @@ public:
 	void processInputs(sf::Event event, sf::RenderWindow &window);
 
 private:
+	std::string HP;
 	sf::Font font;
 	sf::Text optionText[maxPauseOptions];
 	sf::Text itemText[maxItemOptions];

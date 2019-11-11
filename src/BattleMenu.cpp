@@ -7,6 +7,7 @@ BattleMenu::BattleMenu(){
   firstMove = true;
   inMenu = true;
   showAttack = false;
+  item = false;
   selectedIndex = 0;
   userDamage = 0;
   enemyDamage = 0;
@@ -167,10 +168,11 @@ void BattleMenu::updateOutput()
     // change later for variable width and height
     enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
-  if (showAttack && !firstMove){
-    if (item){
+  if (item){
       outputText.setString("You healed for 20 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
     }
+  if (showAttack && !firstMove){
+    
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random
       outputText.setString("Enemy blocked your attack.\nYou did "+userDamageString+" damage.");
@@ -185,6 +187,7 @@ void BattleMenu::updateOutput()
     if (!logic.enemyDefend && userDefend){
       outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDefendString+" damage.");
     }
+    
     
   }
   //if you won, output text
@@ -323,6 +326,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         std::cout << "Attack pressed" << std::endl;
         showBattleBar = true;
         returnJustPressed = true;
+        item = false;
         break;
       //magic
       case 1:
@@ -334,6 +338,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         std::cout << "Magic pressed" << std::endl;
         showBattleBar = true;
         returnJustPressed = true;
+        item = false;
         break;
       //evade
       case 2:
@@ -347,6 +352,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         magic = false;
         showBattleBar = true;
         returnJustPressed = true;
+        item = false;
 
         //inMenu = false;
 
@@ -354,11 +360,12 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       //item
       case 3:
         //healing with potion, need to fix
+        item = true;
         userHP = logic.healItem(enemyDamage, userHP);
         //std::string enemyDamageString = std::to_string(enemyDamage);
         showAttack = false;
         std::cout << "Item pressed" << std::endl;
-        item = true;
+        
         
         break;
     }

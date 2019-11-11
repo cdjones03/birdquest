@@ -66,4 +66,8 @@ private:
     bool enemyDefend;
     int userDamageStored;
     bool magic;
+    bool userDefend;
+    bool item;
+    int userDefendStored;
+    int enemyDamageStored;
 };

@@ -15,7 +15,8 @@ public:
     int getEnemyDamage();
     int resetHP(int HP);
     int healItem(int damage, int HP);
-    int getUserDamage(int damage, bool magic);
+    int getUserDamage(int damage, bool magic, bool userDefend);
+    int userDefend(int enemyDamage, int userDamage, bool defend);
 
 
     bool enemyDefend;

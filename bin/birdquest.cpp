@@ -157,6 +157,10 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
           //userHP = battleMenu.userHP;
           //pauseMenu.getUserHP(userHP);
+          //pauseMenu.HP = battleMenu.userHP;
+          userHP = battleMenu.userHP;
+          pauseMenu.HP_string.setString("HP: "+std::to_string(userHP));
+          //pauseMenu.HPstr = std::to_string(battleMenu.userHP);
           inPauseMenu = true;
           pauseMenu.inPause = true;
         }

@@ -37,7 +37,7 @@ PauseMenu::PauseMenu(float width, float height){
   	//text that shows user HP in status menu
 	HP = bMenu.userHP;
 	std::cout<<"here:"<<HP;
-	HPstr = std::to_string(HP);
+	
 
   	HP_string.setFont(font);
   	HP_string.setCharacterSize(50);
@@ -208,7 +208,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 				//save
 				case 1:
 					std::cout << "Status Pressed" << std::endl;
-					HP = bMenu.userHP;
+					//HP = bMenu.userHP;
 					std::cout<<"herehehe:"<<HP;
 
 

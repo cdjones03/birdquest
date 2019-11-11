@@ -33,7 +33,7 @@ public:
 	std::string inventory [4] = {"-", "-", "-", "-"};
 	int itemCount;
 
-	int processInputs(sf::Event event, sf::RenderWindow &window);
+	void processInputs(sf::Event event, sf::RenderWindow &window);
 
 private:
 	sf::Font font;

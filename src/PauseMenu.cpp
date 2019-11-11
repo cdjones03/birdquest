@@ -10,7 +10,7 @@ PauseMenu::PauseMenu(float width, float height){
 	itemIndex = 0;
 	itemCount = 0;
 
-	if (!font.loadFromFile("../src/Gameplay.ttf")) {
+	if (!font.loadFromFile("../resources/game_over.ttf")) {
   	//error
   	}
   	if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
@@ -36,10 +36,10 @@ PauseMenu::PauseMenu(float width, float height){
 
   	//text that shows user HP in status menu
   	HP_string.setFont(font);
-  	HP_string.setCharacterSize(15);
+  	HP_string.setCharacterSize(50);
   	HP_string.setFillColor(sf::Color::White);
   	HP_string.setString("HP: 100");
-  	HP_string.setPosition(sf::Vector2f(width/2.1, height/5));
+  	HP_string.setPosition(sf::Vector2f(width/2.1, height/5-45));
 
   	//border around status screen
   	statusBorder.setSize(sf::Vector2f(width/2.9, height/4.8));
@@ -62,41 +62,53 @@ PauseMenu::PauseMenu(float width, float height){
   	itemBorder.setOutlineThickness(4);
   	itemBorder.setOutlineColor(sf::Color::White);
 
+  
   	//position each option on the screen, with the color red if it is highlighted
   	optionText[0].setFont(font);
+	optionText[0].setCharacterSize(90);
   	optionText[0].setFillColor(sf::Color::Red);
   	optionText[0].setString("Items");
-  	optionText[0].setPosition(sf::Vector2f(width/1.4, height/8));
+  	optionText[0].setPosition(sf::Vector2f(width/1.4, height/8 - 65));
 
   	optionText[1].setFont(font);
+	optionText[1].setCharacterSize(90);
   	optionText[1].setString("Status");
-  	optionText[1].setPosition(sf::Vector2f(width/1.4, height/4.5));
+  	optionText[1].setPosition(sf::Vector2f(width/1.4, height/4.5 - 65));
 
   	optionText[2].setFont(font);
+	optionText[2].setCharacterSize(90);
   	optionText[2].setString("Resume");
-  	optionText[2].setPosition(sf::Vector2f(width/1.4, height/3.1));
+  	optionText[2].setPosition(sf::Vector2f(width/1.4, height/3.1 - 65));
 
   	//position each item option on the screen, with the color red if it is highlighted
   	itemText[0].setFont(font);
+	itemText[0].setCharacterSize(80);
   	itemText[0].setFillColor(sf::Color::Red);
   	itemText[0].setString("-");
-  	itemText[0].setPosition(sf::Vector2f(width/1.4, height/2));
+  	itemText[0].setPosition(sf::Vector2f(width/1.4, height/2-55));
 
   	itemText[1].setFont(font);
+	itemText[1].setCharacterSize(80);
   	itemText[1].setString("-");
-  	itemText[1].setPosition(sf::Vector2f(width/1.4, height/1.7));
+  	itemText[1].setPosition(sf::Vector2f(width/1.4, height/1.7-55));
 
   	itemText[2].setFont(font);
+	itemText[2].setCharacterSize(80);
   	itemText[2].setString("-");
-  	itemText[2].setPosition(sf::Vector2f(width/1.4, height/1.48));
+  	itemText[2].setPosition(sf::Vector2f(width/1.4, height/1.48-55));
 
   	itemText[3].setFont(font);
+	itemText[3].setCharacterSize(80);
   	itemText[3].setString("-");
-  	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32));
+  	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32-55));
 
   	itemText[4].setFont(font);
-  	itemText[4].setString("Return");
-  	itemText[4].setPosition(sf::Vector2f(width/1.4, height/1.18));
+	//want to make return a different color or style, 
+	//so that it doesn't look like it's in the list of items
+	//itemText[4].setFillColor(sf::Color::Green);
+	itemText[4].setCharacterSize(80);
+  	itemText[4].setString("-Return-");
+  	itemText[4].setPosition(sf::Vector2f(width/1.4, height/1.18-55));
   }
 
 PauseMenu:: ~PauseMenu(){
@@ -166,7 +178,7 @@ void PauseMenu::moveDown(){
 	}
 }
 
-int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
+void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 	if(event.type == sf::Event::KeyPressed){
 

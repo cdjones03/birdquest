@@ -21,6 +21,7 @@ public:
     int getSelectedOption(){
         return selectedIndex;
     }
+    int getHP();
     bool playerTurn;
     bool inMenu;
     int processInputs(sf::Event event, sf::RenderWindow &window);

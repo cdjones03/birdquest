@@ -1,4 +1,5 @@
 #include "../include/PauseMenu.h"
+#include "../include/BattleMenu.h"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,38 @@ PauseMenu::PauseMenu(float width, float height){
   	}
   	if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
   	}
+
+  	if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
+  	}
+
+  	//health bar for the status update
+  	birdSprite.setTexture(birdTexture);
+  	birdSprite.setPosition(sf::Vector2f(width/3.1, height/11));
+  	//birdSprite.setScale(0.25, 0.25);
+
+  	//health bar for the status update
+  	healthBar.setSize(sf::Vector2f(width/3.5, height/30));
+  	healthBar.setFillColor(sf::Color(50, 255, 50));
+  	healthBar.setPosition(sf::Vector2f(width/3.2, height/4.25));
+
+  	remainingBar.setSize(sf::Vector2f(width/3.5, height/30));
+  	remainingBar.setFillColor(sf::Color::Red);
+  	remainingBar.setPosition(width/3.2, height/4.25);
+  	remainingBar.setOutlineThickness(3);
+
+  	//text that shows user HP in status menu
+  	HP_string.setFont(font);
+  	HP_string.setCharacterSize(15);
+  	HP_string.setFillColor(sf::Color::White);
+  	HP_string.setString("HP: 100");
+  	HP_string.setPosition(sf::Vector2f(width/2.1, height/5));
+
+  	//border around status screen
+  	statusBorder.setSize(sf::Vector2f(width/2.9, height/4.8));
+  	statusBorder.setPosition(sf::Vector2f(width/3.5, height/12));
+  	statusBorder.setFillColor(sf::Color::Black);
+  	statusBorder.setOutlineThickness(4);
+  	statusBorder.setOutlineColor(sf::Color::White);
 
   	//border around the option in pause screen
   	border.setSize(sf::Vector2f(width/3.25, height/3));
@@ -76,6 +109,15 @@ void PauseMenu::draw(sf::RenderWindow &window){
 	int i = 0;
 	for (; i < maxPauseOptions; i++){
 		window.draw(optionText[i]);
+
+	}
+
+	if (inStatus){
+		window.draw(statusBorder);
+		window.draw(HP_string);
+		window.draw(birdSprite);
+		window.draw(remainingBar);
+		window.draw(healthBar);
 	}
 
 	if (inItem){
@@ -150,7 +192,16 @@ int PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 				//save
 				case 1:
 					std::cout << "Status Pressed" << std::endl;
+					
 					std::cout << bMenu.userHP;
+
+
+					if (inStatus == false){
+						inStatus = true;
+					}
+					else{
+						inStatus = false;
+					}
 					break;
 
 				//resume

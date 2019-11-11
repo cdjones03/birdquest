@@ -28,6 +28,7 @@ public:
 
 	bool inPause;
 	bool inItem;
+	bool inStatus;
 	// inventory and itemCount
 	std::string inventory [4] = {"-", "-", "-", "-"};
 	int itemCount;
@@ -45,5 +46,11 @@ private:
 	sf::Texture keyTexture;
 	sf::Sprite keySprite;
 	BattleMenu bMenu;
+	sf::Texture birdTexture;
+	sf::Sprite birdSprite;
+	sf::RectangleShape healthBar;
+	sf::RectangleShape remainingBar;
+	sf::RectangleShape statusBorder;
+	sf::Text HP_string;
 
 };

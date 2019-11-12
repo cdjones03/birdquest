@@ -192,8 +192,14 @@ void BattleMenu::updateOutput()
   }
   if (item){
     //for future, allow enemy to defend if you choose item, so he does no damage and you heal
+    if (!logic.enemyDefend){
+      outputText.setString("You healed for 30 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
+    }
+    else if (logic.enemyDefend){
+      outputText.setString("You healed for 30 HP.\nEnemy tried to defend and did 0 damage.");
+    }
 
-      outputText.setString("You healed for 20 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
+    
     }
   if (inMenu&&!firstMove&&!item){
     

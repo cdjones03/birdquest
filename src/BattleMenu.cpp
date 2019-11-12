@@ -75,13 +75,13 @@ BattleMenu::BattleMenu(){
   userHP_Text.setFont(font);
   userHP_Text.setCharacterSize(65);
   std::string userHP_string1 = std::to_string(userHP);
-  userHP_Text.setString("HP: " + userHP_string1);
+  userHP_Text.setString("HP: " + userHP_string1 + "/100");
   userHP_Text.setPosition(sf::Vector2f(width - width/2.3, height - height/5));
 
   enemyHP_Text.setFont(font);
   enemyHP_Text.setCharacterSize(65);
   std::string enemyHP_string1 = std::to_string(enemyHP);
-  enemyHP_Text.setString("HP: " + enemyHP_string1);
+  enemyHP_Text.setString("HP: " + enemyHP_string1 + "/100");
   enemyHP_Text.setPosition(sf::Vector2f(width - width/2.3, 45));
 
   //setup output text that will say what happened last turn
@@ -176,7 +176,7 @@ void BattleMenu::updateOutput()
   
   if (playerTurn){
     std::string userHP_string = std::to_string(userHP);
-    userHP_Text.setString("HP: " + userHP_string);
+    userHP_Text.setString("HP: " + userHP_string + "/100");
     playerTurn = false;
 
     // change later for variable width and height
@@ -184,7 +184,7 @@ void BattleMenu::updateOutput()
   }
   else{
     std::string enemyHP_string = std::to_string(enemyHP);
-    enemyHP_Text.setString("HP: " + enemyHP_string);
+    enemyHP_Text.setString("HP: " + enemyHP_string + "/100");
     playerTurn = true;
 
     // change later for variable width and height

@@ -163,7 +163,7 @@ int main(int argc, char** argv)
           std::cout<<"pmenu:"<<pauseMenu.HP<<std::endl;
 
           //pauseMenu.HP
-          pauseMenu.HP_string.setString("HP: "+std::to_string(userHP));
+          pauseMenu.HP_string.setString("HP: "+std::to_string(userHP) + "/100");
 
           //pauseMenu.HPstr = std::to_string(battleMenu.userHP);
           inPauseMenu = true;

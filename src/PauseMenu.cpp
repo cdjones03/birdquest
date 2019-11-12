@@ -42,10 +42,10 @@ PauseMenu::PauseMenu(float width, float height){
 	
 
   	HP_string.setFont(font);
-  	HP_string.setCharacterSize(60);
+  	HP_string.setCharacterSize(50);
   	HP_string.setFillColor(sf::Color::White);
-  	HP_string.setString("HP: "+HPstr);
-  	HP_string.setPosition(sf::Vector2f(width/2.1, height/5-45));
+  	HP_string.setString("HP: "+HPstr + "/100");
+  	HP_string.setPosition(sf::Vector2f(width/2.1 - 10, height/5-40));
 
   	//border around status screen
   	statusBorder.setSize(sf::Vector2f(width/2.9, height/4.8));

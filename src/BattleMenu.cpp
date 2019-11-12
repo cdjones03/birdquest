@@ -191,9 +191,11 @@ void BattleMenu::updateOutput()
     enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
   if (item){
+    //for future, allow enemy to defend if you choose item, so he does no damage and you heal
+
       outputText.setString("You healed for 20 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
     }
-  if (inMenu&&!firstMove){
+  if (inMenu&&!firstMove&&!item){
     
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random
@@ -346,6 +348,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
     enemyDamage = logic.getEnemyDamage();
+    enemyDamageStored = enemyDamage;
 
     
 
@@ -416,7 +419,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
       userDefendStored = userDamage;
-      enemyDamageStored = enemyDamage;
+      
       enemyDamage = logic.userDefend(enemyDamage, userDamage, userDefend);
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
       userDamageStored = userDamage;

@@ -215,7 +215,7 @@ void BattleMenu::updateOutput()
     }
     //if user defended
     if (!logic.enemyDefend && userDefend){
-      outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDamageString+" damage.");
+      outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDefendString+" damage.");
     }
     
     

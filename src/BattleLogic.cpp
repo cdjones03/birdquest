@@ -68,11 +68,14 @@ int BattleLogic::healItem(int damage, int HP){
 }
 
 int BattleLogic::getUserDamage(int damage, bool magic, bool userDefend){
+    if (magic){
+        damage *= 1.5;
+    }
     if (userDefend){
         damage = 0;
-        return damage;
+        //return damage;
     }
-    if (enemyDefend){
+    if (enemyDefend && !userDefend){
         if (damage >= 10){
           damage -=10;
         }
@@ -80,9 +83,7 @@ int BattleLogic::getUserDamage(int damage, bool magic, bool userDefend){
           damage = 0;
         }
       }
-    if (magic){
-        damage *= 1.5;
-    }
+    
     return damage;
 }
 //could try to add this to getEnemyDamage, but for now this requires less refactoring

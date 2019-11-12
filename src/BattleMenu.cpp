@@ -88,7 +88,7 @@ BattleMenu::BattleMenu(){
   outputText.setFont(font);
   outputText.setFillColor(sf::Color::Yellow);
   outputText.setCharacterSize(75);
-  outputText.setPosition(sf::Vector2f(width/2 - 200, height/2-105));
+  outputText.setPosition(sf::Vector2f(width/2 - 250, height/2-105));
 
   //setup instruction text to tell players how to select an option
   instructions.setFont(font);
@@ -215,7 +215,7 @@ void BattleMenu::updateOutput()
     }
     //if user defended
     if (!logic.enemyDefend && userDefend){
-      outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDefendString+" damage.");
+      outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDamageString+" damage.");
     }
     
     

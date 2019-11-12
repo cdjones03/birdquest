@@ -67,28 +67,6 @@ int main(int argc, char** argv)
   //birdSprite.setScale(2,2);
 
   //owl enemy sprite
-  sf::Texture owlTexture;
-  if(!owlTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))){
-    return -1;
-  }
-
-  sf::Sprite owlSprite;
-  owlSprite.setPosition(304, 176); //stand at door of hub
-  owlSprite.setTexture(owlTexture);
-
-
-
-  sf::Texture blockTexture;
-  if(!blockTexture.loadFromFile("../resources/tilesets/sewer_1_alter.png", sf::IntRect(0, 48, 16, 16))){
-  }
-  sf::Sprite blockSprite;
-  blockSprite.setTexture(blockTexture);
-  blockSprite.setPosition(16*35, 16*20);
-  //blockSprite.setScale(2,2);
-  sf::Sprite blockSprite2;
-  blockSprite2.setTexture(blockTexture);
-  blockSprite2.setPosition(336, 320);
-  //blockSprite2.setScale(2,2);
 
   sf::Texture keyTexture;
   if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
@@ -112,24 +90,6 @@ int main(int argc, char** argv)
       if(deltaMs >= 2000) {
         deltaMs -= 2000;
         //birdSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
-      }
-      if(birdSprite.getPosition().x == blockSprite.getPosition().x && birdSprite.getPosition().y == blockSprite.getPosition().y){
-      //  humanView.checkSpriteCollision(HumanView::UP, levelManager);
-        //if(blockSprite.getPosition().x + 16 != blockSprite2.getPosition().x){
-        if(lastX < blockSprite.getPosition().x) {
-          //humanView.move(blockSprite, HumanView::RIGHT, levelManager);
-        }
-        else if(lastX > blockSprite.getPosition().x) {
-          //humanView.move(blockSprite, HumanView::LEFT, levelManager);
-        }
-        else if(lastY < blockSprite.getPosition().y) {
-          //humanView.move(blockSprite, HumanView::DOWN, levelManager);
-        }
-        else if(lastY > blockSprite.getPosition().y) {
-          //humanView.move(blockSprite, HumanView::UP, levelManager);
-        }
-
-      //}
       }
 
       if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
@@ -238,8 +198,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
-		    App.draw(owlSprite);
-        App.draw(blockSprite);
+		    //App.draw(owlSprite);
         if (itemView == true){
           App.draw(keySprite);
         }

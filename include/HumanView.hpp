@@ -14,12 +14,10 @@ public:
   enum Dir { UP=0, DOWN=1, LEFT=2, RIGHT=3 };
 
   void movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
-  bool move(sf::Sprite &thisSprite, int spriteNum, Dir direction, LevelManager &thisLevelManager);
+  bool moveObject(sf::Sprite &thisSprite, int spriteNum, Dir direction, LevelManager &thisLevelManager);
   bool checkTileCollisionForPlayer(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
   bool checkTileCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
   bool checkSpriteCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
-
-  int curScreen;
 
 private:
 

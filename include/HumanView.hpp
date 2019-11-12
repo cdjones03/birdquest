@@ -13,9 +13,11 @@ public:
   HumanView();
   enum Dir { UP=0, DOWN=1, LEFT=2, RIGHT=3 };
 
-  void move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, sf::Sprite &otherSprite);
-  bool checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
-  void checkSpriteCollision(Dir direction, LevelManager &thisLevelManager);
+  void movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
+  bool move(sf::Sprite &thisSprite, int spriteNum, Dir direction, LevelManager &thisLevelManager);
+  bool checkTileCollisionForPlayer(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
+  bool checkTileCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
+  bool checkSpriteCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager);
 
   int curScreen;
 
@@ -25,7 +27,7 @@ private:
   const int windowTileHeight = 16;
   const int windowPixelWidth = windowTileWidth*40;
   const int windowPixelHeight = windowTileHeight*40;
-  const int moveVal = 16;
+  const int moveVal = 16;  //change to 16!!
 
 
 };

@@ -19,6 +19,9 @@ public:
   void drawMap(sf::RenderWindow &window); //will be gone once HumanView is made
   bool switchMap(int mapDir);
   TileMap getMap();
+  std::vector<sf::Sprite> getSprites();
+  std::vector<sf::Texture> getTextures();
+  void moveSprite(int spriteNum, int moveX, int moveY);
 
 private:
 

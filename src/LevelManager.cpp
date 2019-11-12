@@ -13,17 +13,16 @@ Should make an array of screens per section of temple
 
 LevelManager::LevelManager(){
 
-  //Screen Sec0Screen0;
-
-  //loadLevels();
 }
 
 //should be done once per branch of temple; total of 3 (?) times
 void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
-  Screen screen0("../resources/xmlmaps/D_Entrance_simple.xml");
-  curScreenString = "../resources/xmlmaps/D_Entrance_simple.xml";
+  //Screen screen0("../resources/xmlmaps/D_Entrance_simple.xml");
+  //curScreenString = "../resources/xmlmaps/D_Entrance_simple.xml";
+  Screen screen0("../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml");
+  curScreenString = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
   int width = screen0.getWidth();
@@ -31,12 +30,16 @@ void LevelManager::loadLevels() {
   const char* tileset = screen0.getTileset();
   curSprites = screen0.getSprites();
 
-  section1[0] = "../resources/xmlmaps/D_Entrance_simple.xml";
+  section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
   //section1[1] = "../resources/xmlmaps/Left_1.xml";
+  //section1[0] = "../resources/xmlmaps/Sec1Scr1.xml";
   section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
-  section1[2] = "../resources/xmlmaps/Left_2.xml";
-  section1[3] = "../resources/xmlmaps/Right_1.xml";
-  section1[4] = "../resources/xmlmaps/Right_2.xml";
+  //section1[2] = "../resources/xmlmaps/Left_2.xml";
+  section1[2] = "../resources/xmlmaps/Sec1Scr2.xml";
+  //section1[3] = "../resources/xmlmaps/Right_1.xml";
+  section1[3] = "../resources/xmlmaps/Sec1Scr3.xml";
+  //section1[4] = "../resources/xmlmaps/Right_2.xml";
+  section1[4] = "../resources/xmlmaps/Sec1Scr4.xml";
   section1[5] = "../resources/xmlmaps/Sec1Scr5.xml";
   section1[6] = "../resources/xmlmaps/Sec1Scr6.xml";
   section1[7] = "../resources/xmlmaps/Sec1Scr7.xml";
@@ -49,14 +52,15 @@ void LevelManager::loadLevels() {
       exit(0);
     }
 
+  //load textures for section
   const char* name = "../resources/info.xml";
   docu.LoadFile(name);
   tinyxml2::XMLElement *curElement = docu.FirstChildElement("section1")->FirstChildElement("textures");
   int length = curElement->IntAttribute("length");
   curElement = curElement->FirstChildElement("texture0");
 
-  //load textures for section
   int x1, y1, x2, y2;
+  //cycle through textures in info.xml, add to array curTextures
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     sf::Texture texture;
     x1 = e->IntAttribute("x1");
@@ -69,16 +73,15 @@ void LevelManager::loadLevels() {
     curTextures.push_back(texture);
   }
 
-  //load textures for sprites for screen
-  curElement = docu.FirstChildElement("section1")->FirstChildElement("Scr1Sec1")->FirstChildElement();
+  //load textures for sprites for initial screen
+  curElement = docu.FirstChildElement("section1")->FirstChildElement("Sec1Scr0_D_Entrance_simple.xml")->FirstChildElement();
   int textNum;
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     textNum = e->IntAttribute("texture");
-    curSprites.at(0).setTexture(curTextures.at(textNum));
+    curSprites.at(x).setTexture(curTextures.at(textNum));
     x++;
   }
-
 
   }
 
@@ -88,7 +91,7 @@ void LevelManager::drawMap(sf::RenderWindow &window) {
   window.draw(map);
   if(!curSprites.empty()) {
     for(int x = 0; x < curSprites.size(); x++) {
-      window.draw(curSprites.at(x));
+      window.draw(curSprites.at(x)); //draw screen's sprites
     }
   }
 }
@@ -130,11 +133,6 @@ bool LevelManager::switchMap(int mapDir) {
     return false;
   }
 
-  if(newMap == 1) {
-
-  }
-
-
   const char* newScreenString = section1[newMap];
 
   Screen newScreen(newScreenString);
@@ -150,6 +148,22 @@ bool LevelManager::switchMap(int mapDir) {
       exit(0);
     }
 
+  //load textures for new screen's sprites
+  std::string str { newScreenString };
+  std::string str2 ("Sec");
+  std::size_t found = str.find(str2);
+  std::string newStr = str.substr(found);
+	const char *c = newStr.c_str(); //name of file without path
+
+  tinyxml2::XMLElement* curElement = docu.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
+  int textNum;
+  int x = 0;
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    textNum = e->IntAttribute("texture");
+    curSprites.at(x).setTexture(curTextures.at(textNum));
+    x++;
+  }
+
   curScreenString = newScreenString;
 
   return true;
@@ -158,4 +172,16 @@ bool LevelManager::switchMap(int mapDir) {
 
 TileMap LevelManager::getMap(){
   return map;
+}
+
+std::vector<sf::Sprite> LevelManager::getSprites() {
+  return curSprites;
+}
+
+std::vector<sf::Texture> LevelManager::getTextures() {
+  return curTextures;
+}
+
+void LevelManager::moveSprite(int spriteNum, int moveX, int moveY) {
+  curSprites.at(spriteNum).move(moveX, moveY);
 }

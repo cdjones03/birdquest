@@ -33,12 +33,17 @@ Screen::Screen(const char* fileName) {
 
   tileString = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->GetText();
 
+  //find sprites for screen in info.xml
+  std::string str { fileName };
+  std::string str2 ("Sec");
+  std::size_t found = str.find(str2);
+  std::string newStr = str.substr(found);
+	const char *c = newStr.c_str(); //name of file without path
   infoDoc.LoadFile("../resources/info.xml");
-  curElement = infoDoc.FirstChildElement("section1")->FirstChildElement("Scr1Sec1")->FirstChildElement("sprite1");
+  curElement = infoDoc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement("sprite1");
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
-    int x = e->IntAttribute("positionx");
-    int y = e->IntAttribute("positiony");
-    std::cout << x << " " << y << std::endl;
+    int x = 16*e->IntAttribute("positionx");
+    int y = 16*e->IntAttribute("positiony");
     sf::Sprite newSprite;
     newSprite.setPosition(x, y);
     spriteArr.push_back(newSprite);

@@ -8,21 +8,20 @@ HumanView::HumanView(){
 
 }
 
-void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, sf::Sprite &otherSprite){
+void HumanView::movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager) {
   int x = thisSprite.getPosition().x;
   int y = thisSprite.getPosition().y;
-
-  //std::cout << y << std::endl;
 
   switch(direction) {
     case UP :
     if(y >= moveVal) {
-      if (checkCollision(x, y, direction, thisLevelManager)) {
+      if (checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && checkSpriteCollision(x, y, direction, thisLevelManager)) { //true = no collision
+        std::cout << "here" << std::endl;
         thisSprite.move(0, -moveVal);
       }
     }
     else {
-      if(y < moveVal) {
+      if(y < moveVal) { //at top edge of map
         if(thisLevelManager.switchMap(0))
           thisSprite.setPosition(x, windowPixelHeight-32);
       }
@@ -31,11 +30,12 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
 
     case DOWN :
     if(y < windowPixelHeight-moveVal){
-      if(checkCollision(x, y, direction, thisLevelManager))
+      if(checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && checkSpriteCollision(x, y, direction, thisLevelManager)) {
         thisSprite.move(0, moveVal);
       }
+    }
     else {
-      if(y >= windowPixelHeight-moveVal) {
+      if(y >= windowPixelHeight-moveVal) { //at bottom edge of map
         if(thisLevelManager.switchMap(1))
           thisSprite.setPosition(x, 0);
       }
@@ -44,12 +44,12 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
 
     case LEFT :
       if(x >= moveVal) {
-        if(checkCollision(x, y, direction, thisLevelManager)) {
+        if(checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && checkSpriteCollision(x, y, direction, thisLevelManager)) {
           thisSprite.move(-moveVal, 0);
         }
       }
       else {
-        if(x < moveVal) {
+        if(x < moveVal) { //at left edge of map
           if(thisLevelManager.switchMap(2))
             thisSprite.setPosition(windowPixelWidth-32, y);
         }
@@ -59,90 +59,311 @@ void HumanView::move(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLe
 
     case RIGHT :
       if(x < windowPixelWidth-moveVal) {
-        if(checkCollision(x, y, direction, thisLevelManager)){//if moving right, and tile to right is water, won't allow movement
+        if(checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && checkSpriteCollision(x, y, direction, thisLevelManager)) {//if moving right, and tile to right is water, won't allow movement
           thisSprite.move(moveVal, 0);
         }
       }
       else {
-        if(x >= windowPixelWidth-moveVal) {
+        if(x >= windowPixelWidth-moveVal) { //at right edge of map
           if(thisLevelManager.switchMap(3))
             thisSprite.setPosition(0, y);
         }
       }
       break;
-
-  }
+    }
 }
 
-//true = no collision; i.e. not a water tile in tilset.png
-bool HumanView::checkCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager){
-  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos) << std::endl;
-  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) << std::endl;
-  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) << std::endl;
-  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) << std::endl;
-  std::cout << thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) << std::endl << std::endl;
+//returns true if move occurred
+//false otherwise
+bool HumanView::move(sf::Sprite &thisSprite, int spriteNum, Dir direction, LevelManager &thisLevelManager){
+  int thisX = thisSprite.getPosition().x;
+  int thisY = thisSprite.getPosition().y;
+  std::cout << "x " << thisX << " y " << thisY << std::endl;
+  std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
+  bool moveRet = false;
+
+  switch(direction) {
+
+    case UP:
+
+    if(checkTileCollision(thisX, thisY, UP, thisLevelManager)) {
+      moveRet = true;
+      if(!checkSprites.empty()) {
+        for(int x = 0; x < checkSprites.size(); x++) {
+          if(thisX == checkSprites.at(x).getPosition().x && thisY-16 == checkSprites.at(x).getPosition().y) {
+            std::cout << "true" << std::endl;
+            moveRet = false;
+            break;
+          }
+          else {
+            std::cout << "false" << std::endl;
+          }
+        }
+      }
+    }
+
+    if(moveRet) {
+      std::cout << "moveret" << std::endl;
+      thisLevelManager.moveSprite(spriteNum, 0, -16);
+    }
+
+    break;
+
+    case DOWN:
+
+    if(checkTileCollision(thisX, thisY, DOWN, thisLevelManager)) {
+      moveRet = true;
+      if(!checkSprites.empty()) {
+        for(int x = 0; x < checkSprites.size(); x++) {
+          if(thisX == checkSprites.at(x).getPosition().x && thisY+16 == checkSprites.at(x).getPosition().y) {
+            std::cout << "true" << std::endl;
+            moveRet = false;
+            break;
+          }
+          else {
+            std::cout << "false" << std::endl;
+          }
+        }
+      }
+    }
+
+    if(moveRet) {
+      std::cout << "moveret" << std::endl;
+      thisLevelManager.moveSprite(spriteNum, 0, 16);
+    }
+
+    break;
+
+    case LEFT:
+
+    if(checkTileCollision(thisX, thisY, LEFT, thisLevelManager)) {
+      moveRet = true;
+      if(!checkSprites.empty()) {
+        for(int x = 0; x < checkSprites.size(); x++) {
+          if(thisX-16 == checkSprites.at(x).getPosition().x && thisY == checkSprites.at(x).getPosition().y) {
+            std::cout << "true" << std::endl;
+            moveRet = false;
+            break;
+          }
+          else {
+            std::cout << "false" << std::endl;
+          }
+        }
+      }
+    }
+
+    if(moveRet) {
+      std::cout << "moveret" << std::endl;
+      thisLevelManager.moveSprite(spriteNum, -16, 0);
+    }
+
+    break;
+
+    case RIGHT:
+
+    if(checkTileCollision(thisX, thisY, RIGHT, thisLevelManager)) {
+      moveRet = true;
+      if(!checkSprites.empty()) {
+        for(int x = 0; x < checkSprites.size(); x++) {
+          if(thisX+16 == checkSprites.at(x).getPosition().x && thisY == checkSprites.at(x).getPosition().y) {
+            std::cout << "true" << std::endl;
+            moveRet = false;
+            break;
+          }
+          else {
+            std::cout << "false" << std::endl;
+          }
+        }
+      }
+    }
+
+    if(moveRet) {
+      std::cout << "moveret" << std::endl;
+      thisLevelManager.moveSprite(spriteNum, 16, 0);
+    }
+
+    break;
+
+  }
+
+  return moveRet;
+
+}
+
+//true = no collision; i.e. not an empty tile (collision of tiles in tilset)
+bool HumanView::checkTileCollisionForPlayer(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager){
 
   bool ret = false;
   switch(direction){
-    case UP :
-
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16) >= 0) //check if tile is empty
+    case UP : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
+      if(checkX >= 0 && checkY >= 0) { //check if tile is empty
+        std::cout << "good to go - tile up here" << std::endl;
         ret = true;
+      }
+    }
 
     break;
 
-    case DOWN :
-
-      if(thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16) >= 0)
-        ret = true;
-
-    break;
-
-    case LEFT :
-
-      if(thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos) >= 0)
-        ret = true;
+    case DOWN : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).y;
+      if(checkX >= 0 && checkY >= 0) {
+          ret = true;
+        }
+    }
 
     break;
 
-    case RIGHT :
+    case LEFT : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
+      if(checkX >= 0 && checkY >= 0) {
+          ret = true;
+        }
+      }
 
-      if(thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos) >= 0)
-        ret = true;
+    break;
+
+    case RIGHT : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
+      if(checkX >= 0 && checkY >= 0) {
+          ret = true;
+        }
+    }
 
     break;
   }
 
-  //ret = true;
   return ret;
 }
 
-void HumanView::checkSpriteCollision(Dir direction, LevelManager &thisLevelManager) {
+//true = no collision; i.e. not an empty tile (collision of tiles in tilset)
+bool HumanView::checkTileCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager){
+
+  bool ret = false;
+  switch(direction){
+    case UP : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
+      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
+        std::cout << "good to go - tile up here" << std::endl;
+        ret = true;
+      }
+    }
+
+    break;
+
+    case DOWN : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).y;
+      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
+          ret = true;
+    }
+  }
+
+    break;
+
+    case LEFT : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
+      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
+          ret = true;
+      }
+    }
+
+    break;
+
+    case RIGHT : {
+      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
+      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
+      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
+          ret = true;
+    }
+  }
+
+    break;
+  }
+
+  return ret;
+}
+
+//collision of current screen's sprites
+bool HumanView::checkSpriteCollision(int thisXPos, int thisYPos, Dir direction, LevelManager &thisLevelManager) {
+  std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
+  bool thisRet = true;
   switch(direction){
     case UP :
-
-      thisLevelManager.switchMap(0);
+    if(!checkSprites.empty()) {
+      std::cout << "not empty" << std::endl;
+      for(int x = 0; x < checkSprites.size(); x++) {
+        if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
+          std::cout << "sprite here up" << std::endl;
+          if(!move(checkSprites.at(x), x, UP, thisLevelManager)) { //if sprite moves, bird can move too
+            thisRet = false;
+            break;
+          }
+        }
+      }
+    }
 
     break;
 
     case DOWN :
+    if(!checkSprites.empty()) {
+      std::cout << "not empty" << std::endl;
+      for(int x = 0; x < checkSprites.size(); x++) {
+        if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos+16 == checkSprites.at(x).getPosition().y) {
+          std::cout << "sprite here up" << std::endl;
+          if(!move(checkSprites.at(x), x, DOWN, thisLevelManager)) { //if sprite moves, bird can move too
+            thisRet = false;
+            break;
+          }
+        }
+      }
+    }
 
-      thisLevelManager.switchMap(1);
 
     break;
 
     case LEFT :
+    if(!checkSprites.empty()) {
+      std::cout << "not empty" << std::endl;
+      for(int x = 0; x < checkSprites.size(); x++) {
+        if(thisXPos-16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
+          std::cout << "sprite here up" << std::endl;
+          if(!move(checkSprites.at(x), x, LEFT, thisLevelManager)) { //if sprite moves, bird can move too
+            thisRet = false;
+            break;
+          }
+        }
+      }
+    }
 
-      thisLevelManager.switchMap(2);
 
     break;
 
     case RIGHT :
+    if(!checkSprites.empty()) {
+      std::cout << "not empty" << std::endl;
+      for(int x = 0; x < checkSprites.size(); x++) {
+        if(thisXPos+16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
+          std::cout << "sprite here up" << std::endl;
+          if(!move(checkSprites.at(x), x, RIGHT, thisLevelManager)) { //if sprite moves, bird can move too
+            thisRet = false;
+            break;
+          }
+        }
+      }
+    }
 
-      thisLevelManager.switchMap(3);
 
     break;
   }
+
+  return thisRet;
 }
 
 //Switch map IF

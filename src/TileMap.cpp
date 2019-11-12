@@ -96,8 +96,8 @@ Altered by Team 2 for birdquest
         target.draw(m_vertices, states);
     }
 
-    int TileMap::getTexCoord(int x, int y){
+    sf::Vector2f TileMap::getTexCoord(int x, int y){
       int n = ((y/16)+((x/16)*40))*4;
-      std::cout << " n " << n << std::endl;
-      return m_vertices[n].texCoords.x;
+      //std::cout << " n " << n << std::endl;
+      return m_vertices[n].texCoords;
     }

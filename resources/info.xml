@@ -4,8 +4,33 @@
    <texture0 name="../resources/spritesheets/BirdKnight_spritesheet.png" x1="0" y1="0" x2="16" y2="16"/>
    <texture1 name="../resources/tilesets/sewer_1_alter.png" x1="0" y1="48" x2="16" y2="16"/>
  </textures>
- <Scr1Sec1 name="yes">
-  <sprite1 texture="0" positionx="300" positiony="300"/>
-  <sprite2 texture="1" positionx="332" positiony="332"/>
- </Scr1Sec1>
+ <Sec1Scr0_D_Entrance_simple.xml>
+   <sprite1 texture="0" positionx="10" positiony="10"/>
+   <sprite2 texture="1" positionx="21" positiony="21"/>
+ </Sec1Scr0_D_Entrance_simple.xml>
+ <Sec1Scr1.xml>
+  <sprite1 texture="1" positionx="20" positiony="11"/>
+  <sprite1 texture="1" positionx="28" positiony="11"/>
+  <sprite1 texture="1" positionx="11" positiony="20"/>
+  <sprite1 texture="1" positionx="20" positiony="20"/>
+  <sprite1 texture="1" positionx="35" positiony="20"/>
+  <sprite1 texture="1" positionx="20" positiony="28"/>
+  <sprite1 texture="1" positionx="28" positiony="28"/>
+</Sec1Scr1.xml>
+<Sec1Scr2.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+  <sprite2 texture="1" positionx="132" positiony="132"/>
+</Sec1Scr2.xml>
+<Sec1Scr3.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+  <sprite2 texture="1" positionx="132" positiony="132"/>
+</Sec1Scr3.xml>
+<Sec1Scr4.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+  <sprite2 texture="1" positionx="132" positiony="132"/>
+</Sec1Scr4.xml>
+<Sec1Scr5.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+  <sprite2 texture="1" positionx="132" positiony="132"/>
+</Sec1Scr5.xml>
 </section1>

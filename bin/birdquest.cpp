@@ -49,7 +49,7 @@ int main(int argc, char** argv)
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
-  
+
   HumanView humanView;
 
   sf::Clock clock;
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
   if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16))){
     return -1;
   }
-  
+
   sf::Sprite birdSprite;
   birdSprite.setPosition(320, 624); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
@@ -71,7 +71,7 @@ int main(int argc, char** argv)
   if(!owlTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))){
     return -1;
   }
-  
+
   sf::Sprite owlSprite;
   owlSprite.setPosition(304, 176); //stand at door of hub
   owlSprite.setTexture(owlTexture);
@@ -117,17 +117,16 @@ int main(int argc, char** argv)
       //  humanView.checkSpriteCollision(HumanView::UP, levelManager);
         //if(blockSprite.getPosition().x + 16 != blockSprite2.getPosition().x){
         if(lastX < blockSprite.getPosition().x) {
-          humanView.move(blockSprite, HumanView::RIGHT, levelManager, birdSprite);
-		  
+          //humanView.move(blockSprite, HumanView::RIGHT, levelManager);
         }
         else if(lastX > blockSprite.getPosition().x) {
-          humanView.move(blockSprite, HumanView::LEFT, levelManager, birdSprite);
+          //humanView.move(blockSprite, HumanView::LEFT, levelManager);
         }
         else if(lastY < blockSprite.getPosition().y) {
-          humanView.move(blockSprite, HumanView::DOWN, levelManager, birdSprite);
+          //humanView.move(blockSprite, HumanView::DOWN, levelManager);
         }
         else if(lastY > blockSprite.getPosition().y) {
-          humanView.move(blockSprite, HumanView::UP, levelManager, birdSprite);
+          //humanView.move(blockSprite, HumanView::UP, levelManager);
         }
 
       //}
@@ -162,7 +161,7 @@ int main(int argc, char** argv)
           pauseMenu.healthBar.setSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
           std::cout<<"bmenu:"<<battleMenu.userHP<<std::endl;
           std::cout<<"pmenu:"<<pauseMenu.HP<<std::endl;
-          
+
           //pauseMenu.HP
           pauseMenu.HP_string.setString("HP: "+std::to_string(userHP));
 
@@ -178,29 +177,28 @@ int main(int argc, char** argv)
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.move(birdSprite, HumanView::UP, levelManager, blockSprite);
+            humanView.movePlayer(birdSprite, HumanView::UP, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.move(birdSprite, HumanView::DOWN, levelManager, blockSprite);
+            humanView.movePlayer(birdSprite, HumanView::DOWN, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.move(birdSprite, HumanView::LEFT, levelManager, blockSprite);
+            humanView.movePlayer(birdSprite, HumanView::LEFT, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-			
-            humanView.move(birdSprite, HumanView::RIGHT, levelManager, blockSprite);
+            humanView.movePlayer(birdSprite, HumanView::RIGHT, levelManager);
           }
 
         }
@@ -214,17 +212,17 @@ int main(int argc, char** argv)
           }
 
         }
-        
+
         //key presses for when we are in the pause menu
         else if (inPauseMenu){
           //here!
-          
-          
+
+
           pauseMenu.processInputs(Event, App);
           //std::cout<<battleMenu.userHP<<std::endl;
 
           if (!pauseMenu.inPause){
-            
+
             inPauseMenu = false;
           }
         }
@@ -240,7 +238,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
-		App.draw(owlSprite);
+		    App.draw(owlSprite);
         App.draw(blockSprite);
         if (itemView == true){
           App.draw(keySprite);

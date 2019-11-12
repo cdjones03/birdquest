@@ -16,8 +16,9 @@ Inventory::Inventory(float width, float height)
 };
 
 string Inventory::getItem(string itemArray[], int itemIndex){
-    
+    return itemArray[0];
 }
 int Inventory::getItemCount(int itemCount[], int itemIndex){
     int i;
+    return itemIndex;
 }

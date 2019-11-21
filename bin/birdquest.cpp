@@ -54,6 +54,7 @@ int main(int argc, char** argv)
 
   sf::Clock clock;
   int deltaMs;
+  int otherMs;
 
   sf::Texture birdTexture;
   if(!birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16))){
@@ -61,7 +62,7 @@ int main(int argc, char** argv)
   }
 
   sf::Sprite birdSprite;
-  birdSprite.setPosition(320, 624); //start at bottom of hub
+  birdSprite.setPosition(200, 624); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
@@ -82,8 +83,33 @@ int main(int argc, char** argv)
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
+  otherMs = clock.getElapsedTime().asMilliseconds();
   while(App.isOpen())
   {
+      deltaMs = clock.getElapsedTime().asMilliseconds();
+      if(deltaMs > otherMs + 300) {
+        otherMs += 300;
+        if(levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y)) { //if it sees you, start battle
+          //inBattleMenu = true;
+          //battleMenu.inMenu = true;
+          //battleMenu.showMenu = true;
+        }
+      }
+      //std::cout << deltaMs << " " << otherMs << std::endl;
+      /*
+      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+        humanView.movePlayer(birdSprite, HumanView::UP, levelManager);
+      }
+      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+        humanView.movePlayer(birdSprite, HumanView::DOWN, levelManager);
+      }
+      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        humanView.movePlayer(birdSprite, HumanView::LEFT, levelManager);
+      }
+      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        humanView.movePlayer(birdSprite, HumanView::RIGHT, levelManager);
+      }
+      */
       //std::cout << "x " << lastX << " y " << lastY << std::endl;
       //deltaMs = clock.getElapsedTime().asMilliseconds();
       //std::cout << deltaMs << std::endl;
@@ -187,7 +213,6 @@ int main(int argc, char** argv)
           }
         }
       }
-
 
       //Display
       App.clear(sf::Color::Black);

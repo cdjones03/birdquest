@@ -7,8 +7,6 @@
 #include <Screen.hpp>
 #include <HumanView.hpp>
 #include <string>
-//#include <HumanView.fwd.hpp>
-//#include <LevelManager.fwd.hpp>
 
 class LevelManager {
 
@@ -22,6 +20,8 @@ public:
   std::vector<sf::Sprite> getSprites();
   std::vector<sf::Texture> getTextures();
   void moveSprite(int spriteNum, int moveX, int moveY);
+  bool updateSprite(int x, int y);
+  int getTexture(int num);
 
 private:
 
@@ -31,6 +31,8 @@ private:
   std::vector<sf::Sprite> curSprites;
   std::vector<sf::Texture> curTextures;
   tinyxml2::XMLDocument docu;
+  int velocity = 16;
+  std::vector<int> textNums;
 
 };
 

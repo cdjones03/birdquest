@@ -4,6 +4,7 @@
 #include <HumanView.hpp>
 #include <tinyxml2.h>
 #include <iostream>
+#include <LevelLogic.hpp>
 
 /*
 
@@ -79,6 +80,7 @@ void LevelManager::loadLevels() {
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     textNum = e->IntAttribute("texture");
+    textNums.push_back(textNum);
     curSprites.at(x).setTexture(curTextures.at(textNum));
     x++;
   }
@@ -98,7 +100,7 @@ void LevelManager::drawMap(sf::RenderWindow &window) {
 
 //needs to switch based on given direction
 //should assume that collision checking has been already done
-//void LevelManager::switchMap(HumanView::dir direction){
+//and loads new screen's sprites
 
 bool LevelManager::switchMap(int mapDir) {
 
@@ -155,11 +157,13 @@ bool LevelManager::switchMap(int mapDir) {
   std::string newStr = str.substr(found);
 	const char *c = newStr.c_str(); //name of file without path
 
+  textNums.clear();
   tinyxml2::XMLElement* curElement = docu.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
   int textNum;
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
     textNum = e->IntAttribute("texture");
+    textNums.push_back(textNum);
     curSprites.at(x).setTexture(curTextures.at(textNum));
     x++;
   }
@@ -184,4 +188,26 @@ std::vector<sf::Texture> LevelManager::getTextures() {
 
 void LevelManager::moveSprite(int spriteNum, int moveX, int moveY) {
   curSprites.at(spriteNum).move(moveX, moveY);
+}
+
+bool LevelManager::updateSprite(int x, int y) {
+  if(curSprites[0].getPosition().x > 25*16-16) {
+    velocity *= -1;
+  }
+  else if(curSprites[0].getPosition().x < 14*16+16) {
+    velocity *= -1;
+  }
+  //std::cout << curSprites[0].getPosition().x << std::endl;
+  //curSprites[0].move(velocity, 0);
+
+  if(curSprites[0].getPosition().x == x && curSprites[0].getPosition().y < y){
+    std::cout << "I See You!" << std::endl;
+    return true;
+  }
+
+  return false;
+}
+
+int LevelManager::getTexture(int num) {
+  return textNums[num];
 }

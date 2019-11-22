@@ -197,7 +197,6 @@ bool LevelManager::updateSprite(int x, int y) {
   else if(curSprites[0].getPosition().x < 14*16+16) {
     velocity *= -1;
   }
-  //std::cout << curSprites[0].getPosition().x << std::endl;
   //curSprites[0].move(velocity, 0);
 
   if(curSprites[0].getPosition().x == x && curSprites[0].getPosition().y < y){

@@ -3,11 +3,6 @@
 #include <cstdlib>
 #include <random>
 
-//For different enemyies, we want different status effects:
-//Snake: lingereing poison damage
-//Cat: Erratic velocity
-//owl: Freezes a random option for a turn
-
 BattleLogic::BattleLogic(){
     enemyDefend = false;
 

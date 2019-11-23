@@ -1,4 +1,0 @@
-/Users/jacobloehr/Desktop/birdquest/d/CMakeFiles/rebuild_cache.dir
-/Users/jacobloehr/Desktop/birdquest/d/CMakeFiles/edit_cache.dir
-/Users/jacobloehr/Desktop/birdquest/d/CMakeFiles/birdquest.dir
-/Users/jacobloehr/Desktop/birdquest/d/CMakeFiles/birdquest_core.dir

@@ -67,8 +67,6 @@ int main(int argc, char** argv)
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
 
-  //owl enemy sprite
-
   sf::Texture keyTexture;
   if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
   }
@@ -78,8 +76,14 @@ int main(int argc, char** argv)
   keySprite.setScale(0.5, 0.5);
 
 
-  sf::View view1(sf::FloatRect(0.f, 0.f, 200.f, 200.f));
+  sf::View view1(sf::FloatRect(150.f, 150.f, 250.f, 250.f));
   //App.setView(view1);
+
+  sf::RectangleShape test;
+  test.setPosition(0, 240);
+  test.setSize(sf::Vector2f(150,100));
+  //test.setFillColor
+
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -90,26 +94,13 @@ int main(int argc, char** argv)
       if(deltaMs > otherMs + 300) {
         otherMs += 300;
         if(levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y)) { //if it sees you, start battle
-          //inBattleMenu = true;
-          //battleMenu.inMenu = true;
-          //battleMenu.showMenu = true;
+          inBattleMenu = true;
+          battleMenu.inMenu = true;
+          battleMenu.showMenu = true;
         }
       }
       //std::cout << deltaMs << " " << otherMs << std::endl;
-      /*
-      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        humanView.movePlayer(birdSprite, HumanView::UP, levelManager);
-      }
-      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-        humanView.movePlayer(birdSprite, HumanView::DOWN, levelManager);
-      }
-      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        humanView.movePlayer(birdSprite, HumanView::LEFT, levelManager);
-      }
-      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        humanView.movePlayer(birdSprite, HumanView::RIGHT, levelManager);
-      }
-      */
+
       //std::cout << "x " << lastX << " y " << lastY << std::endl;
       //deltaMs = clock.getElapsedTime().asMilliseconds();
       //std::cout << deltaMs << std::endl;
@@ -223,7 +214,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
-		    //App.draw(owlSprite);
+        
         if (itemView == true){
           App.draw(keySprite);
         }

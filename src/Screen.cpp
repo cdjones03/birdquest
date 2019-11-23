@@ -41,12 +41,14 @@ Screen::Screen(const char* fileName) {
 	const char *c = newStr.c_str(); //name of file without path
   infoDoc.LoadFile("../resources/info.xml");
   curElement = infoDoc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
-  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
-    int x = 16*e->IntAttribute("positionx");
-    int y = 16*e->IntAttribute("positiony");
-    sf::Sprite newSprite;
-    newSprite.setPosition(x, y);
-    spriteArr.push_back(newSprite);
+  if(curElement != NULL) {
+    for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+      int x = 16*e->IntAttribute("positionx");
+      int y = 16*e->IntAttribute("positiony");
+      sf::Sprite newSprite;
+      newSprite.setPosition(x, y);
+      spriteArr.push_back(newSprite);
+    }
   }
 }
 

@@ -26,7 +26,7 @@ public:
 private:
 
   const char* curScreenString;
-  const char* section1[12];
+  const char* section1[34];
   TileMap map;
   std::vector<sf::Sprite> curSprites;
   std::vector<sf::Texture> curTextures;

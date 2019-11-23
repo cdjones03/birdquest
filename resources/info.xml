@@ -4,15 +4,17 @@
    <texture0 name="../resources/spritesheets/BirdKnight_spritesheet.png" x1="0" y1="0" x2="16" y2="16"/>
    <texture1 name="../resources/tilesets/sewer_1_alter.png" x1="0" y1="48" x2="16" y2="16"/>
    <texture2 name="../resources/spritesheets/Owl_OW.png" x1="0" y1="0" x2="16" y2="16"/>
-   <!--Same texture but just different to be able to differentiate-->
+   <!--3 and 4 are Same texture but just different to be able to differentiate between fake and real-->
    <texture3 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
    <texture4 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
    <texture5 name="../resources/spritesheets/Snake_OW.png" x1="0" y1="0" x2="16" y2="16"/>
+   <texture6 name="../resources/spritesheets/owl_1.png" x1="0" y1="0" x2="90" y2="90"/>
  </textures>
  <Sec1Scr0_D_Entrance_simple.xml>
    <sprite1 texture="2" positionx="19" positiony="11"/>
    <realkey texture="3" positionx="24" positiony="22"/>
    <snake texture = "5" positionx="20" positiony="20"/>
+   <owl texture = "6" positionx="20" positiony="25"/>
  </Sec1Scr0_D_Entrance_simple.xml>
  <Sec1Scr1.xml>
   <sprite texture="1" positionx="20" positiony="11"/>
@@ -103,4 +105,73 @@
 <Sec1Scr10.xml>
   <sprite1 texture="0" positionx="100" positiony="100"/>
 </Sec1Scr10.xml>
+<Sec2Scr1.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr1.xml>
+<Sec2Scr2.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr2.xml>
+<Sec2Scr3.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr3.xml>
+<Sec2Scr4.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr4.xml>
+<Sec2Scr5.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr5.xml>
+<Sec2Scr6.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr6.xml>
+<Sec2Scr7.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr7.xml>
+<Sec2Scr8.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr8.xml>
+<Sec2Scr9.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr9.xml>
+<Sec2Scr10.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr10.xml>
+<Sec2Scr11.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr11.xml>
+<Sec2Scr12.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec2Scr12.xml>
+<Sec3Scr1.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr1.xml>
+<Sec3Scr2.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr2.xml>
+<Sec3Scr3.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr3.xml>
+<Sec3Scr4.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr4.xml>
+<Sec3Scr5.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr5.xml>
+<Sec3Scr6.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr6.xml>
+<Sec3Scr7.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr7.xml>
+<Sec3Scr8.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr8.xml>
+<Sec3Scr9.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr9.xml>
+<Sec3Scr10.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr10.xml>
+<Sec3Scr11.xml>
+  <sprite1 texture="0" positionx="100" positiony="100"/>
+</Sec3Scr11.xml>
 </section1>

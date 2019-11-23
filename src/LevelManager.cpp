@@ -20,10 +20,8 @@ LevelManager::LevelManager(){
 void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
-  //Screen screen0("../resources/xmlmaps/D_Entrance_simple.xml");
-  //curScreenString = "../resources/xmlmaps/D_Entrance_simple.xml";
-  Screen screen0("../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml");
   curScreenString = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
+  Screen screen0(curScreenString);
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
   int width = screen0.getWidth();
@@ -31,15 +29,10 @@ void LevelManager::loadLevels() {
   const char* tileset = screen0.getTileset();
   curSprites = screen0.getSprites();
 
-  section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
-  //section1[1] = "../resources/xmlmaps/Left_1.xml";
-  //section1[0] = "../resources/xmlmaps/Sec1Scr1.xml";
+  section1[0] = curScreenString;
   section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
-  //section1[2] = "../resources/xmlmaps/Left_2.xml";
   section1[2] = "../resources/xmlmaps/Sec1Scr2.xml";
-  //section1[3] = "../resources/xmlmaps/Right_1.xml";
   section1[3] = "../resources/xmlmaps/Sec1Scr3.xml";
-  //section1[4] = "../resources/xmlmaps/Right_2.xml";
   section1[4] = "../resources/xmlmaps/Sec1Scr4.xml";
   section1[5] = "../resources/xmlmaps/Sec1Scr5.xml";
   section1[6] = "../resources/xmlmaps/Sec1Scr6.xml";
@@ -47,6 +40,31 @@ void LevelManager::loadLevels() {
   section1[8] = "../resources/xmlmaps/Sec1Scr8.xml";
   section1[9] = "../resources/xmlmaps/Sec1Scr9.xml";
   section1[10] = "../resources/xmlmaps/Sec1Scr10.xml";
+
+  section1[11] = "../resources/xmlmaps/Sec2Scr1.xml";
+  section1[12] = "../resources/xmlmaps/Sec2Scr2.xml";
+  section1[13] = "../resources/xmlmaps/Sec2Scr3.xml";
+  section1[14] = "../resources/xmlmaps/Sec2Scr4.xml";
+  section1[15] = "../resources/xmlmaps/Sec2Scr5.xml";
+  section1[16] = "../resources/xmlmaps/Sec2Scr6.xml";
+  section1[17] = "../resources/xmlmaps/Sec2Scr7.xml";
+  section1[18] = "../resources/xmlmaps/Sec2Scr8.xml";
+  section1[19] = "../resources/xmlmaps/Sec2Scr9.xml";
+  section1[20] = "../resources/xmlmaps/Sec2Scr10.xml";
+  section1[21] = "../resources/xmlmaps/Sec2Scr11.xml";
+  section1[22] = "../resources/xmlmaps/Sec2Scr12.xml";
+
+  section1[23] = "../resources/xmlmaps/Sec3Scr1.xml";
+  section1[24] = "../resources/xmlmaps/Sec3Scr2.xml";
+  section1[25] = "../resources/xmlmaps/Sec3Scr3.xml";
+  section1[26] = "../resources/xmlmaps/Sec3Scr4.xml";
+  section1[27] = "../resources/xmlmaps/Sec3Scr5.xml";
+  section1[28] = "../resources/xmlmaps/Sec3Scr6.xml";
+  section1[29] = "../resources/xmlmaps/Sec3Scr7.xml";
+  section1[30] = "../resources/xmlmaps/Sec3Scr8.xml";
+  section1[31] = "../resources/xmlmaps/Sec3Scr9.xml";
+  section1[32] = "../resources/xmlmaps/Sec3Scr10.xml";
+  section1[33] = "../resources/xmlmaps/Sec3Scr11.xml";
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel
@@ -194,10 +212,12 @@ bool LevelManager::updateSprite(int x, int y) {
   if(curSprites[0].getPosition().x > 25*16-16) {
     velocity *= -1;
   }
+
   else if(curSprites[0].getPosition().x < 14*16+16) {
     velocity *= -1;
   }
-  //curSprites[0].move(velocity, 0);
+  
+  curSprites[0].move(velocity, 0);
 
   if(curSprites[0].getPosition().x == x && curSprites[0].getPosition().y < y){
     std::cout << "I See You!" << std::endl;

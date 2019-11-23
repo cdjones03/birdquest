@@ -5,7 +5,7 @@
   <property name="b-upScreen" type="int" value="-1"/>
   <property name="c-downScreen" type="int" value="-1"/>
   <property name="d-leftScreen" type="int" value="-1"/>
-  <property name="e-rightScreen" type="int" value="-1"/>
+  <property name="e-rightScreen" type="int" value="18"/>
  </properties>
  <tileset firstgid="1" source="../tsxfiles/sewer2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">

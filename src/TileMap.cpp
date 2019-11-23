@@ -30,7 +30,7 @@ Altered by Team 2 for birdquest
               int n;
               stream >> n;
               stream.ignore(1, ',');
-              std::cout << "Found integer: " << n << "\n";
+              //std::cout << "Found integer: " << n << "\n";
 
               // get the current tile number
               int tileNumber = n;

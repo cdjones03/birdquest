@@ -3,7 +3,7 @@
  <properties>
   <property name="a-tileSetImage" value="../resources/tilesets/sewer_1_alter.png"/>
   <property name="b-upScreen" type="int" value="-1"/>
-  <property name="c-downScreen" type="int" value="-1"/>
+  <property name="c-downScreen" type="int" value="17"/>
   <property name="d-leftScreen" type="int" value="-1"/>
   <property name="e-rightScreen" type="int" value="-1"/>
  </properties>

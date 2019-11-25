@@ -1,7 +1,6 @@
 #pragma once
 #include "BattleLogic.h"
-#include "BattleBar.h"
-#include "Indicator.h"
+
 
 //For different enemyies, we want different status effects:
 //Snake: lingereing poison damage

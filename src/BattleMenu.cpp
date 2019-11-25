@@ -367,7 +367,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       case 0:
         magic = false;
         userDefend = false;
-        battleBar.indi.velocity = 1;
+        battleBar.indi.velocity = 1.5;
         showAttack = true;
         std::cout << "Attack pressed" << std::endl;
         showBattleBar = true;
@@ -379,7 +379,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         magic = true;
         userDefend = false;
         //speed up battlebar
-        battleBar.indi.velocity = 2;
+        battleBar.indi.velocity = 2.5;
         showAttack = true;
         std::cout << "Magic pressed" << std::endl;
         showBattleBar = true;
@@ -392,7 +392,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
         //also, maybe get enemy to defend for a random amount of damage
         //still might adjust speed for the indicator
-        battleBar.indi.velocity = 1;
+        battleBar.indi.velocity = 2.2;
         std::cout << "Defend pressed" << std::endl;
         userDefend = true;
         magic = false;
@@ -453,3 +453,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 }
 }
 
+bool BattleMenu::isInMenu()
+{
+  return inMenu;
+}

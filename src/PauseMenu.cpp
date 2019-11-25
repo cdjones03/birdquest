@@ -121,6 +121,7 @@ PauseMenu:: ~PauseMenu(){
 
 }
 
+
 void PauseMenu::draw(sf::RenderWindow &window){
 	window.draw(border);
 
@@ -261,4 +262,6 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 	}
 
 }
-
+bool PauseMenu::isInPause(){
+	return inPause;
+}

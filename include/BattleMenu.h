@@ -18,6 +18,8 @@ public:
     void moveDown();
     void moveLeft();
     void moveRight();
+    bool isInMenu();
+    
     int getSelectedOption(){
         return selectedIndex;
     }

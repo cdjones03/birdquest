@@ -230,7 +230,7 @@ int main(int argc, char** argv)
 
       }
       //draw battleMenu
-      else if (inBattleMenu && battleMenu.inMenu){
+      else if (inBattleMenu && battleMenu.isInMenu()){
         battleMenu.draw(App);
       }
 

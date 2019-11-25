@@ -44,7 +44,7 @@ class Indicator {
 
 
 	public:  //constructor
-		int velocity;
+		float velocity;
 		Indicator();
 
 		void reset();

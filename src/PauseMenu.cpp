@@ -1,5 +1,6 @@
 #include "../include/PauseMenu.h"
 #include "../include/BattleMenu.h"
+#include "../include/Inventory.h"
 #include <iostream>
 #include <string>
 
@@ -9,7 +10,6 @@ PauseMenu::PauseMenu(float width, float height){
 	inStatus = false;
 	selectedIndex = 0;
 	itemIndex = 0;
-	itemCount = 0;
 
 	if (!font.loadFromFile("../resources/game_over.ttf")) {
   	//error
@@ -90,22 +90,22 @@ PauseMenu::PauseMenu(float width, float height){
   	itemText[0].setFont(font);
 	itemText[0].setCharacterSize(80);
   	itemText[0].setFillColor(sf::Color::Red);
-  	itemText[0].setString("-");
+  	itemText[0].setString(inventory.itemArray[0]);
   	itemText[0].setPosition(sf::Vector2f(width/1.4, height/2-55));
 
   	itemText[1].setFont(font);
 	itemText[1].setCharacterSize(80);
-  	itemText[1].setString("-");
+  	itemText[1].setString(inventory.itemArray[0]);
   	itemText[1].setPosition(sf::Vector2f(width/1.4, height/1.7-55));
 
   	itemText[2].setFont(font);
 	itemText[2].setCharacterSize(80);
-  	itemText[2].setString("-");
+  	itemText[2].setString(inventory.itemArray[0]);
   	itemText[2].setPosition(sf::Vector2f(width/1.4, height/1.48-55));
 
   	itemText[3].setFont(font);
 	itemText[3].setCharacterSize(80);
-  	itemText[3].setString("-");
+  	itemText[3].setString(inventory.itemArray[0]);
   	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32-55));
 
   	itemText[4].setFont(font);
@@ -149,14 +149,14 @@ void PauseMenu::draw(sf::RenderWindow &window){
 	}
 }
 
-void PauseMenu::addItem(std::string item){
-	inventory[itemCount] = item;
-	itemText[itemCount].setString(inventory[itemCount]);
-	itemCount++;
+//void PauseMenu::addItem(std::string item){
+//	inventory[itemCount] = item;
+//	itemText[itemCount].setString(inventory[itemCount]);
+//	itemCount++;
 
-	keySprite.setTexture(keyTexture);
-	keySprite.setPosition(550,320);
-}
+//	keySprite.setTexture(keyTexture);
+//	keySprite.setPosition(550,320);
+//}
 
 void PauseMenu::moveUp(){
 	if (selectedIndex - 1 >= 0 && inItem == false){

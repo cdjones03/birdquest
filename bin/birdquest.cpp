@@ -7,6 +7,7 @@
 #include <LevelManager.hpp>
 #include "BattleLogic.h"
 #include "PauseMenu.h"
+#include "Inventory.h"
 #include <HumanView.hpp>
 
 /*
@@ -42,6 +43,9 @@ int main(int argc, char** argv)
   // Create pauseMenu object and boolean for if we are in the battle menu
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
   bool inPauseMenu = false;
+
+  // Create inventory object
+  Inventory inventory;
 
   // Remains true untill item is picked up
   bool itemView = true;
@@ -110,7 +114,7 @@ int main(int argc, char** argv)
       }
 
       if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
-        pauseMenu.addItem("Key");
+        inventory.addItem("Key");
         itemView = false;
       }
 
@@ -193,7 +197,7 @@ int main(int argc, char** argv)
         //key presses for when we are in the pause menu
         else if (inPauseMenu){
           //here!
-
+ 
 
           pauseMenu.processInputs(Event, App);
           //std::cout<<battleMenu.userHP<<std::endl;

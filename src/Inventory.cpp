@@ -1,24 +1,20 @@
 #include "../include/Inventory.h"
-#include "../include/BattleMenu.h"
 #include <iostream>
 #include <string>
 #include <array>
 
-using namespace std;
-
-Inventory::Inventory(float width, float height)
+Inventory::Inventory()
 {
-    //pMenu.itemIndex = 0;
-	//pMenu.itemCount = 0;
-    
-
-
+	itemCount = 0;
 };
 
-string Inventory::getItem(string itemArray[], int itemIndex){
-    return itemArray[0];
+Inventory:: ~Inventory(){
+
 }
-int Inventory::getItemCount(int itemCount[], int itemIndex){
-    int i;
-    return itemIndex;
+
+void Inventory::addItem(std::string item){
+	itemArray[itemCount] = item;
+	itemCount++;
+	
 }
+

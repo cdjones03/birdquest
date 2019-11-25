@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "BattleMenu.h"
+#include "Inventory.h"
 #include <iostream>
 #include <string>
 
@@ -16,7 +17,7 @@ public:
 	void draw(sf::RenderWindow &window);
 	void moveUp();
 	void moveDown();
-	void addItem(std::string item);
+	//void addItem(std::string item);
 
 	int getSelectedOption(){
 		return selectedIndex;
@@ -31,13 +32,15 @@ public:
 	bool inItem;
 	bool inStatus;
 	// inventory and itemCount
-	std::string inventory [4] = {"-", "-", "-", "-"};
-	int itemCount;
+	//std::string inventory [4] = {"-", "-", "-", "-"};
+	//int itemCount;
 	
 	void processInputs(sf::Event event, sf::RenderWindow &window);
 	int HP;
 	sf::Text HP_string;
 	sf::RectangleShape healthBar;
+
+	Inventory inventory;
 private:
 	
 	std::string HPstr;

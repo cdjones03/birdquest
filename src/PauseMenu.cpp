@@ -90,22 +90,22 @@ PauseMenu::PauseMenu(float width, float height){
   	itemText[0].setFont(font);
 	itemText[0].setCharacterSize(80);
   	itemText[0].setFillColor(sf::Color::Red);
-  	itemText[0].setString(inventory.itemArray[0]);
+  	itemText[0].setString("-");
   	itemText[0].setPosition(sf::Vector2f(width/1.4, height/2-55));
 
   	itemText[1].setFont(font);
 	itemText[1].setCharacterSize(80);
-  	itemText[1].setString(inventory.itemArray[0]);
+  	itemText[1].setString("-");
   	itemText[1].setPosition(sf::Vector2f(width/1.4, height/1.7-55));
 
   	itemText[2].setFont(font);
 	itemText[2].setCharacterSize(80);
-  	itemText[2].setString(inventory.itemArray[0]);
+  	itemText[2].setString("-");
   	itemText[2].setPosition(sf::Vector2f(width/1.4, height/1.48-55));
 
   	itemText[3].setFont(font);
 	itemText[3].setCharacterSize(80);
-  	itemText[3].setString(inventory.itemArray[0]);
+  	itemText[3].setString("-");
   	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32-55));
 
   	itemText[4].setFont(font);
@@ -206,6 +206,16 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					itemIndex = 0;
 					itemText[itemIndex].setFillColor(sf::Color::Red);
 					inItem = true;
+
+					itemText[0].setString(inventory.itemArray[0]);
+					itemText[1].setString(inventory.itemArray[1]);
+					itemText[2].setString(inventory.itemArray[2]);
+					itemText[3].setString(inventory.itemArray[3]);
+
+					std::cout << "ITEM 1: " << inventory.itemArray[0] << '\n';
+					std::cout << "ITEM 2: " << inventory.itemArray[1] << '\n';
+					std::cout << "ITEM 3: " << inventory.itemArray[2] << '\n';
+					std::cout << "ITEM 4: " << inventory.itemArray[3] << '\n';
 					break;
 
 				//save

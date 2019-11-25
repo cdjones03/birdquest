@@ -31,9 +31,6 @@ public:
 	bool inPause;
 	bool inItem;
 	bool inStatus;
-	// inventory and itemCount
-	//std::string inventory [4] = {"-", "-", "-", "-"};
-	//int itemCount;
 	
 	void processInputs(sf::Event event, sf::RenderWindow &window);
 	int HP;

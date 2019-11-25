@@ -15,6 +15,8 @@ Inventory:: ~Inventory(){
 void Inventory::addItem(std::string item){
 	itemArray[itemCount] = item;
 	itemCount++;
+
 	
+
 }
 

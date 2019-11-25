@@ -453,3 +453,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 }
 }
 
+bool BattleMenu::isInMenu()
+{
+  return inMenu;
+}

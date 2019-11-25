@@ -26,7 +26,7 @@ public:
 		return itemIndex;
 	}
 	void getUserHP(int HP);
-
+	bool isInPause();
 	bool inPause;
 	bool inItem;
 	bool inStatus;

@@ -28,6 +28,7 @@ int main(int argc, char** argv)
   int lastX = 352;
   int lastY = 352;
   int userHP;
+  string item;
 
 
   // create main window; Style::Close disables resizing
@@ -140,8 +141,11 @@ int main(int argc, char** argv)
           userHP = battleMenu.userHP;
           //pauseMenu.HP = userHP;
           pauseMenu.healthBar.setSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
-          std::cout<<"bmenu:"<<battleMenu.userHP<<std::endl;
-          std::cout<<"pmenu:"<<pauseMenu.HP<<std::endl;
+
+          pauseMenu.itemText[0].setString(inventory.itemArray[0]);
+          pauseMenu.itemText[1].setString(inventory.itemArray[1]);
+          pauseMenu.itemText[2].setString(inventory.itemArray[2]);
+          pauseMenu.itemText[3].setString(inventory.itemArray[3]);
 
           //pauseMenu.HP
           pauseMenu.HP_string.setString("HP: "+std::to_string(userHP) + "/100");

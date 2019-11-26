@@ -206,16 +206,6 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					itemIndex = 0;
 					itemText[itemIndex].setFillColor(sf::Color::Red);
 					inItem = true;
-
-					itemText[0].setString(inventory.itemArray[0]);
-					itemText[1].setString(inventory.itemArray[1]);
-					itemText[2].setString(inventory.itemArray[2]);
-					itemText[3].setString(inventory.itemArray[3]);
-
-					std::cout << "ITEM 1: " << inventory.itemArray[0] << '\n';
-					std::cout << "ITEM 2: " << inventory.itemArray[1] << '\n';
-					std::cout << "ITEM 3: " << inventory.itemArray[2] << '\n';
-					std::cout << "ITEM 4: " << inventory.itemArray[3] << '\n';
 					break;
 
 				//save

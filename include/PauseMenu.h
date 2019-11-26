@@ -38,12 +38,12 @@ public:
 	sf::RectangleShape healthBar;
 
 	Inventory inventory;
+	sf::Text itemText[maxItemOptions];
 private:
 	
 	std::string HPstr;
 	sf::Font font;
 	sf::Text optionText[maxPauseOptions];
-	sf::Text itemText[maxItemOptions];
 	int selectedIndex;
 	int itemIndex;
 	sf::RectangleShape border;

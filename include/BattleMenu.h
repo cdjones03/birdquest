@@ -23,6 +23,11 @@ public:
     int getSelectedOption(){
         return selectedIndex;
     }
+
+    int getSelectedItem(){
+        return itemIndex;
+    }
+
     int getHP();
     bool playerTurn;
     bool inMenu;
@@ -32,7 +37,11 @@ public:
     Indicator indicator;
     int userHP;
     sf::Text itemText[maxOptions];
-    
+
+    std::string item_0;
+    std::string item_1;
+    std::string item_2;
+    std::string item_3;
 
 private:
     bool showAttack;

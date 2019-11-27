@@ -103,12 +103,17 @@ int main(int argc, char** argv)
           battleMenu.showMenu = true;
         }
       }
-      
+
       // update inventory in battle menu
       battleMenu.itemText[0].setString(inventory.itemArray[0]);
       battleMenu.itemText[1].setString(inventory.itemArray[1]);
       battleMenu.itemText[2].setString(inventory.itemArray[2]);
       battleMenu.itemText[3].setString(inventory.itemArray[3]);
+
+      battleMenu.item_0 = inventory.itemArray[0];
+      battleMenu.item_1 = inventory.itemArray[1];
+      battleMenu.item_2 = inventory.itemArray[2];
+      battleMenu.item_3 = inventory.itemArray[3];
 
       //std::cout << deltaMs << " " << otherMs << std::endl;
 

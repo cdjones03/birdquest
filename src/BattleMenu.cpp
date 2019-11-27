@@ -417,6 +417,9 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if(event.key.code == sf::Keyboard::Left){
     moveLeft();
   }
+  if(event.key.code == sf::Keyboard::BackSpace){
+    showItem = false;
+  }
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
@@ -427,65 +430,99 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
     std::cout << "return" << std::endl;
 
-    if(!showBattleBar){
+    if(!showBattleBar && !showItem){
 
-    switch (getSelectedOption()){
-      //attack
-      case 0:
-        magic = false;
-        userDefend = false;
-        battleBar.indi.velocity = 1.5;
-        showAttack = true;
-        std::cout << "Attack pressed" << std::endl;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
-        break;
-      //magic
-      case 1:
-        magic = true;
-        userDefend = false;
-        //speed up battlebar
-        battleBar.indi.velocity = 2.5;
-        showAttack = true;
-        std::cout << "Magic pressed" << std::endl;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
-        break;
-      //evade
-      case 2:
+      switch (getSelectedOption()){
+        //attack
+        case 0:
+          magic = false;
+          userDefend = false;
+          battleBar.indi.velocity = 1.5;
+          showAttack = true;
+          std::cout << "Attack pressed" << std::endl;
+          showBattleBar = true;
+          returnJustPressed = true;
+          item = false;
+          break;
+        //magic
+        case 1:
+          magic = true;
+          userDefend = false;
+          //speed up battlebar
+          battleBar.indi.velocity = 2.5;
+          showAttack = true;
+          std::cout << "Magic pressed" << std::endl;
+          showBattleBar = true;
+          returnJustPressed = true;
+          item = false;
+          break;
+        //evade
+        case 2:
         
-        //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
-        //also, maybe get enemy to defend for a random amount of damage
-        //still might adjust speed for the indicator
-        battleBar.indi.velocity = 2.2;
-        std::cout << "Defend pressed" << std::endl;
-        userDefend = true;
-        magic = false;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
+          //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
+          //also, maybe get enemy to defend for a random amount of damage
+          //still might adjust speed for the indicator
+          battleBar.indi.velocity = 2.2;
+          std::cout << "Defend pressed" << std::endl;
+          userDefend = true;
+          magic = false;
+          showBattleBar = true;
+          returnJustPressed = true;
+          item = false;
 
-        //inMenu = false;
+          //inMenu = false;
 
-        break;
-      //item
-      case 3:
-        //healing with potion, need to fix
-        item = true;
-        showItem = true;
-        userHP = logic.healItem(enemyDamage, userHP);
-        //std::string enemyDamageString = std::to_string(enemyDamage);
-        showAttack = false;
-        std::cout << "Item pressed" << std::endl;
-        
-        
-        break;
+          break;
+        //item
+        case 3:
+          //healing with potion, need to fix
+          //item = true;
+          showItem = true;
+          //userHP = logic.healItem(enemyDamage, userHP);
+          //std::string enemyDamageString = std::to_string(enemyDamage);
+          showAttack = false;
+          std::cout << "Item pressed" << std::endl;
+          
+          
+          break;
+      }
     }
+    else if (showItem){
+
+      switch (getSelectedItem()){
+
+        case 0:
+
+          if (item_0 == "Key"){
+            item = true;
+            userHP = logic.healItem(enemyDamage, userHP);
+          }
+
+        case 1:
+
+          if (item_1 == "Key"){
+            item = true;
+            userHP = logic.healItem(enemyDamage, userHP);
+          }
+
+        case 2:
+
+          if (item_2 == "Key"){
+            item = true;
+            userHP = logic.healItem(enemyDamage, userHP);
+          }
+
+        case 3:
+
+          if (item_3 == "Key"){
+            item = true;
+            userHP = logic.healItem(enemyDamage, userHP);
+          }
+
+      }
+    }
+
   }
-  
-}
   
   //once we are in the battle bar view
   else if (showBattleBar && returnJustPressed){

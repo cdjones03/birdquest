@@ -46,6 +46,7 @@ public:
 private:
     bool showAttack;
     bool firstMove;
+    bool invalid;
     
 
     sf::Texture birdTexture;

@@ -17,6 +17,7 @@ BattleMenu::BattleMenu(){
   enemyHP = maxHP;
   showBattleBar = false;
   returnJustPressed = false;
+  invalid = false;
   width = 640.0;
   height = 640.0;
   itemIndex = 0;
@@ -336,14 +337,8 @@ void BattleMenu::draw(sf::RenderWindow &window){
       for (; j< maxOptions; j++){
         window.draw(itemText[j]);
       }
-
     }
-
   }
-  else{
-    
-  }
-
 }
 
 //functions to navigate through menu options
@@ -497,12 +492,18 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
           }
+          else{
+            invalid = true;
+          }
 
         case 1:
 
           if (item_1 == "Key"){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+          }
+          else{
+            invalid = true;
           }
 
         case 2:
@@ -511,12 +512,18 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
           }
+          else{
+            invalid = true;
+          }
 
         case 3:
 
           if (item_3 == "Key"){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+          }
+          else{
+            invalid = true;
           }
 
       }
@@ -535,11 +542,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
       userDamageStored = userDamage;
       
-      
-      
       //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
-      
-      
+            
       
       battleBar.barPressed();
       showBattleBar = false;
@@ -552,10 +556,11 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     }
   }
   
-  updateOutput();
+  if (!invalid){
+    updateOutput();
+  }
   
-  
-}
+  }
 }
 
 bool BattleMenu::isInMenu()

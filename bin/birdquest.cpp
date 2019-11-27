@@ -89,7 +89,6 @@ int main(int argc, char** argv)
   test.setSize(sf::Vector2f(150,100));
   //test.setFillColor
 
-
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
   otherMs = clock.getElapsedTime().asMilliseconds();
@@ -104,6 +103,13 @@ int main(int argc, char** argv)
           battleMenu.showMenu = true;
         }
       }
+      
+      // update inventory in battle menu
+      battleMenu.itemText[0].setString(inventory.itemArray[0]);
+      battleMenu.itemText[1].setString(inventory.itemArray[1]);
+      battleMenu.itemText[2].setString(inventory.itemArray[2]);
+      battleMenu.itemText[3].setString(inventory.itemArray[3]);
+
       //std::cout << deltaMs << " " << otherMs << std::endl;
 
       //std::cout << "x " << lastX << " y " << lastY << std::endl;

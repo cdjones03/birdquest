@@ -6,6 +6,7 @@ BattleMenu::BattleMenu(){
   showMenu = true;
   firstMove = true;
   inMenu = true;
+  showItem = false;
   showAttack = false;
   item = false;
   selectedIndex = 0;
@@ -18,6 +19,7 @@ BattleMenu::BattleMenu(){
   returnJustPressed = false;
   width = 640.0;
   height = 640.0;
+  itemIndex = 0;
 
   
 
@@ -31,6 +33,12 @@ BattleMenu::BattleMenu(){
   rectangle.setFillColor(sf::Color::Black);
   rectangle.setOutlineThickness(4);
   rectangle.setOutlineColor(sf::Color::White);
+
+  item_menu_box.setSize(sf::Vector2f(width/2, height/4.5));
+  item_menu_box.setPosition(width/60, height - height/4.1);
+  item_menu_box.setFillColor(sf::Color::Black);
+  item_menu_box.setOutlineThickness(4);
+  item_menu_box.setOutlineColor(sf::Color::White);
 
   
   //player's battle sprite 
@@ -144,6 +152,33 @@ BattleMenu::BattleMenu(){
   optionText[3].setFillColor(sf::Color::Blue);
   optionText[3].setString("Item");
   optionText[3].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*4));
+
+  // Draws texts for items
+
+  itemText[0].setFont(font);
+  itemText[0].setCharacterSize(85);
+  itemText[0].setFillColor(sf::Color::Red);
+  itemText[0].setString("-");
+  itemText[0].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*3.5));
+
+  itemText[1].setFont(font);
+  itemText[1].setCharacterSize(85);
+  itemText[1].setFillColor(sf::Color::Blue);
+  itemText[1].setString("-");
+  itemText[1].setPosition(sf::Vector2f(width/35, height/(maxOptions+1)*4));
+
+  itemText[2].setFont(font);
+  itemText[2].setCharacterSize(85);
+  itemText[2].setFillColor(sf::Color::Blue);
+  itemText[2].setString("-");
+  itemText[2].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*3.5));
+
+  itemText[3].setFont(font);
+  itemText[3].setCharacterSize(85);
+  itemText[3].setFillColor(sf::Color::Blue);
+  itemText[3].setString("-");
+  itemText[3].setPosition(sf::Vector2f(width/3, height/(maxOptions+1)*4));
+
 
 }
 
@@ -289,9 +324,21 @@ void BattleMenu::draw(sf::RenderWindow &window){
     for (; i< maxOptions; i++){
       window.draw(optionText[i]);
     }
+
     if(showBattleBar){
       battleBar.update(window);
     }
+
+    if(showItem){
+      window.draw(item_menu_box);
+
+      int j = 0;
+      for (; j< maxOptions; j++){
+        window.draw(itemText[j]);
+      }
+
+    }
+
   }
   else{
     
@@ -301,34 +348,54 @@ void BattleMenu::draw(sf::RenderWindow &window){
 
 //functions to navigate through menu options
 void BattleMenu::moveUp(){
-  if (selectedIndex - 1 == 0 || selectedIndex - 1 == 2){
+  if (selectedIndex - 1 == 0 || selectedIndex - 1 == 2 && showItem == false){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex --;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
+  else if (itemIndex - 1 == 0 || itemIndex - 1 == 2 && showItem == true){
+    itemText[itemIndex].setFillColor(sf::Color::Blue);
+    itemIndex --;
+    itemText[itemIndex].setFillColor(sf::Color::Red);
+  }
 }
 
 void BattleMenu::moveDown(){
-  if (selectedIndex + 1 == 1 || selectedIndex + 1 == 3){
+  if (selectedIndex + 1 == 1 || selectedIndex + 1 == 3 && showItem == false){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex ++;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
+  else if (itemIndex + 1 == 1 || itemIndex + 1 == 3 && showItem == true){
+    itemText[itemIndex].setFillColor(sf::Color::Blue);
+    itemIndex ++;
+    itemText[itemIndex].setFillColor(sf::Color::Red);
+  }
 }
 
 void BattleMenu::moveRight(){
-  if (selectedIndex + 2 == 3 || selectedIndex + 2 == 2){
+  if (selectedIndex + 2 == 3 || selectedIndex + 2 == 2 && showItem == false){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex += 2;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
+  else if (itemIndex + 2 == 3 || itemIndex + 2 == 2 && showItem == true){
+    itemText[itemIndex].setFillColor(sf::Color::Blue);
+    itemIndex += 2;
+    itemText[itemIndex].setFillColor(sf::Color::Red);
+  }
 }
 
 void BattleMenu::moveLeft(){
-  if (selectedIndex - 2 == 0 || selectedIndex - 2 == 1){
+  if (selectedIndex - 2 == 0 || selectedIndex - 2 == 1 && showItem == false){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex -= 2;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
+  }
+  else if (itemIndex - 2 == 0 || itemIndex - 2 == 1 && showItem == true){
+    itemText[itemIndex].setFillColor(sf::Color::Blue);
+    itemIndex -= 2;
+    itemText[itemIndex].setFillColor(sf::Color::Red);
   }
 }
 
@@ -407,6 +474,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       case 3:
         //healing with potion, need to fix
         item = true;
+        showItem = true;
         userHP = logic.healItem(enemyDamage, userHP);
         //std::string enemyDamageString = std::to_string(enemyDamage);
         showAttack = false;

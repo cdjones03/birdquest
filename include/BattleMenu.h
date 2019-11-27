@@ -31,6 +31,7 @@ public:
     bool showMenu;
     Indicator indicator;
     int userHP;
+    sf::Text itemText[maxOptions];
     
 
 private:
@@ -55,6 +56,7 @@ private:
     int selectedIndex;
     sf::Font font;
     sf::Text optionText[maxOptions];
+
     sf::RectangleShape rectangle;
     //sf::CircleShape bird_battle;
     //sf::CircleShape enemy_sample;
@@ -67,6 +69,8 @@ private:
     sf::RectangleShape remainingBar;
     sf::RectangleShape enemy_healthBar;
     sf::RectangleShape enemy_remainingBar;
+    sf::RectangleShape item_menu_box;
+    bool showItem;
     bool showBattleBar;
     bool returnJustPressed;
     bool enemyDefend;
@@ -76,4 +80,6 @@ private:
     bool item;
     int userDefendStored;
     int enemyDamageStored;
+
+    int itemIndex;
 };

@@ -43,6 +43,13 @@ public:
     std::string item_2;
     std::string item_3;
 
+    sf::Text enemySpecialMove;
+    int userDamage;
+    int enemyDamage;
+    bool userDefend;
+    bool item;
+    bool showBattleBar;
+
 private:
     bool showAttack;
     bool firstMove;
@@ -59,8 +66,7 @@ private:
     float height;
 
     BattleBar battleBar;
-    int userDamage;
-    int enemyDamage;
+    
     int enemyHP;
     BattleLogic logic;
     int selectedIndex;
@@ -81,13 +87,13 @@ private:
     sf::RectangleShape enemy_remainingBar;
     sf::RectangleShape item_menu_box;
     bool showItem;
-    bool showBattleBar;
+    
     bool returnJustPressed;
     bool enemyDefend;
     int userDamageStored;
     bool magic;
-    bool userDefend;
-    bool item;
+    
+    
     int userDefendStored;
     int enemyDamageStored;
 

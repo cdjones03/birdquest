@@ -35,17 +35,17 @@ int BattleLogic::whoWon(int enemyHP, int userHP)
 }
 
 
-//enemy will either choose to defend and attack for 0, or attack with damage between 1-20
+//enemy will either choose to defend and attack for 0, or attack with damage between 1-30
 int BattleLogic::getEnemyDamage()
 {   
     enemyDefend = false;
-    int defend = (rand()%5);
+    defend = (rand()%5);
     std::cout << "defend " << defend << std::endl;
-    int damage;
+    
     if (defend == 2){
         enemyDefend = true;
     }
-    if (enemyDefend == true){
+    if (enemyDefend){
         damage = 0;
     }
     else{

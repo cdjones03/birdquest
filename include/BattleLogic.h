@@ -2,6 +2,7 @@
 #include "Indicator.h"
 #include "BattleBar.h"
 
+
 #define maxHP 100
 
 class BattleLogic
@@ -25,7 +26,10 @@ public:
 
     Indicator indi;
     BattleBar bar;
+    //Enemy enemy;
 private:
+    int defend;
+    int damage;
     
     int userHP_;
     int enemyHP_;

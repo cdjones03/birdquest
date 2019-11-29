@@ -57,20 +57,6 @@ BattleMenu::BattleMenu(){
 
 
 
-/*
-  // temporary placement for birdknight sprite in battle screen
-  bird_battle.setRadius(80);
-  bird_battle.setFillColor(sf::Color(30, 30, 255));
-  bird_battle.setPosition(width - width/2.8, height - height/2.2);
-
-
-  // temporary placement for enemy sprite in battle screen
-  enemy_sample.setRadius(80);
-  enemy_sample.setFillColor(sf::Color::Blue);
-  enemy_sample.setPosition(width/7, height/15);
-*/
-
-
   // name for enemy sprite
   enemy_Text.setFont(font);
   enemy_Text.setFillColor(sf::Color::White);
@@ -98,6 +84,13 @@ BattleMenu::BattleMenu(){
   outputText.setFillColor(sf::Color::Yellow);
   outputText.setCharacterSize(75);
   outputText.setPosition(sf::Vector2f(width/2 - 250, height/2-105));
+
+  //setup text to display the enemy's special move based on its type (freeze, poison, etc.)
+  enemySpecialMove.setFont(font);
+  enemySpecialMove.setFillColor(sf::Color::Cyan);
+  enemySpecialMove.setCharacterSize(75);
+  enemySpecialMove.setPosition(sf::Vector2f(width/2 - 250, height/2-50));
+  enemySpecialMove.setString("enemy special move");
 
   //setup instruction text to tell players how to select an option
   instructions.setFont(font);
@@ -308,8 +301,10 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(outputText);
 
   if (showMenu){
+    
     window.draw(instructions);
     updateOutput();
+    window.draw(enemySpecialMove);
     window.draw(rectangle);
     window.draw(birdSprite);
     window.draw(bossSprite);
@@ -533,6 +528,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   
   //once we are in the battle bar view
   else if (showBattleBar && returnJustPressed){
+    
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();

@@ -1,5 +1,6 @@
 #pragma once
 #include "BattleLogic.h"
+#include "BattleMenu.h"
 
 
 //For different enemyies, we want different status effects:
@@ -13,10 +14,20 @@ class Enemy
 public:
     Enemy();
     ~Enemy() = default;
+    enum EnemyType
+    {
+        Regular, Owl, Snake, Cat
+    };
+    EnemyType type;
+    void setEnemyType(EnemyType newType);
+
+    void enemyEffect(EnemyType type);
     void snakeEffect();
     void catEffect();
     void owlEffect();
-    int types;
+    //BattleLogic logic;
+    //int types;
+    BattleMenu bMenu;
 private:
-
+    int freeze;
 };

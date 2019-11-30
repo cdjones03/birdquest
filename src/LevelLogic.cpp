@@ -208,19 +208,48 @@ bool LevelLogic::checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir d
 bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager){
   std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
   bool thisRet = true;
+  
+  int floorPuz [4] = {21,17,19,23}; //answer to the puzzle: x-value for switches 3,1,2,4
+  std::vector<int> buttonArray(4); //array for given answer
+ // int buttonArray [4] = {}; 
+  int max_length = 4; //max number of button pushes
+  
   switch(direction){
 
     case HumanView::UP :
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
            //sprite to tile above
-          if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
+          
+		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
             if(thisLevelManager.getTexture(x) == 4) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;
               break;
             }
+			
+			if (thisLevelManager.getTexture(x) == 8) {  //8 = texture number for the button
+				buttonArray.push_back(x);  //supposed to push current x onto array
+				std::cout << "button: " << buttonArray[0] << std::endl;  //print statements just for testing
+				std::cout << "button: " << buttonArray[1] << std::endl;
+				std::cout << "button: " << buttonArray[2] << std::endl;
+				std::cout << "button: " << buttonArray[3] << std::endl;
+				if(buttonArray.size() == max_length) {
+					for (int i = 0; i < 5; i++){ //loop thru both arrays to compare
+						if (buttonArray[i] != floorPuz[i]){
+							std::cout << "Wrong" << std::endl;
+							//reset puzzle code here
+						}
+						else{
+							std::cout << "Solved!" << std::endl;
+							//solved, remove lava from screen here
+						}
+					}
+				}
+			}
+			
+			
             if(!moveObject(checkSprites.at(x), x, HumanView::UP, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;

@@ -73,7 +73,7 @@ int main(int argc, char** argv)
   //birdSprite.setScale(2,2);
 
   sf::Texture keyTexture;
-  if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
+  if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(0, 0, 16, 16))){
   }
   sf::Sprite keySprite;
   keySprite.setTexture(keyTexture);

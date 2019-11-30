@@ -1,6 +1,9 @@
 #include "../include/BattleMenu.h"
 #include <iostream>
+#include <cstdlib>
+#include <random>
 //fix enemy block output
+//need to fix output for Special Moves, also for Ice Owl, try to have enemy never defend if you are frozen
 
 BattleMenu::BattleMenu(){
   showMenu = true;
@@ -21,7 +24,14 @@ BattleMenu::BattleMenu(){
   width = 640.0;
   height = 640.0;
   itemIndex = 0;
-
+  
+  
+  //create enemy object, right now setting type to ice owl
+  type = Enemy::Owl;
+  enemy.setEnemyType(type);
+  type = enemy.getEnemyType();
+  
+  std::cout<<type<<std::endl;
   
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
@@ -88,16 +98,16 @@ BattleMenu::BattleMenu(){
   //setup text to display the enemy's special move based on its type (freeze, poison, etc.)
   enemySpecialMove.setFont(font);
   enemySpecialMove.setFillColor(sf::Color::Cyan);
-  enemySpecialMove.setCharacterSize(75);
-  enemySpecialMove.setPosition(sf::Vector2f(width/2 - 250, height/2-50));
-  enemySpecialMove.setString("enemy special move");
+  enemySpecialMove.setCharacterSize(85);
+  enemySpecialMove.setPosition(sf::Vector2f(width/2 - 250, height/2-25));
+  enemySpecialMove.setString(" ");
 
   //setup instruction text to tell players how to select an option
   instructions.setFont(font);
   instructions.setFillColor(sf::Color::Magenta);
   instructions.setStyle(sf::Text::Italic);
   instructions.setCharacterSize(55);
-  instructions.setPosition(sf::Vector2f(width/2 - 300, height/2));
+  instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
   instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
 
   // red health bar for player in battle menu
@@ -185,6 +195,7 @@ BattleMenu:: ~BattleMenu(){
 void BattleMenu::updateOutput()
 {
   
+  
   if (firstMove){
     outputText.setString("You are in Battle!");
   }
@@ -249,9 +260,15 @@ void BattleMenu::updateOutput()
     
     
   }
+  /**
+  if (type == Enemy::Owl && (enemy.freeze == 0)){
+    enemySpecialMove.setString("The icy owl froze you!");
+  }
+  */
   //if you won or lost, output text
   if (logic.whoWon(enemyHP, userHP) != 2){
     showMenu = false;
+    enemySpecialMove.setString(" ");
     
     std::cout<<"userHP"<<userHP<<" enemyHP"<<enemyHP<<" userDamage"<<userDamage<<" enemyDamage"<<enemyDamage<<std::endl;
     
@@ -413,8 +430,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
-    enemyDamage = logic.getEnemyDamage();
-    enemyDamageStored = enemyDamage;
+    
 
     
 
@@ -476,7 +492,9 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           
           break;
       }
+    
     }
+    
     else if (showItem){
 
       switch (getSelectedItem()){
@@ -523,7 +541,18 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
       }
     }
+  //after pressing a button, make sure the enemy special effect is in place.
 
+  
+  enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar);
+  enemyDamage = logic.getEnemyDamage();
+  enemyDamageStored = enemyDamage;
+  
+  userDamageStored = userDamage;
+  if (!showBattleBar){
+    userHP = logic.updateHP(enemyDamage, userHP);
+    enemyHP = logic.updateHP(userDamage, enemyHP);
+  }
   }
   
   //once we are in the battle bar view
@@ -553,6 +582,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
   
   if (!invalid){
+    
     updateOutput();
   }
   

@@ -3,6 +3,7 @@
 #include "BattleLogic.h"
 #include "BattleBar.h"
 #include "Indicator.h"
+#include "Enemy.h"
 
 #define maxOptions 4
 
@@ -19,6 +20,7 @@ public:
     void moveLeft();
     void moveRight();
     bool isInMenu();
+    void enemyEffect(sf::Text outpt, int userDamage, bool userDefend, bool item, bool showBattleBar);
     
     int getSelectedOption(){
         return selectedIndex;
@@ -44,13 +46,19 @@ public:
     std::string item_3;
 
     sf::Text enemySpecialMove;
+    sf::Text outputText;
     int userDamage;
     int enemyDamage;
     bool userDefend;
+    bool enemyDefend;
     bool item;
     bool showBattleBar;
+    Enemy enemy;
+    Enemy::EnemyType type;
+
 
 private:
+    int freeze;
     bool showAttack;
     bool firstMove;
     bool invalid;
@@ -78,7 +86,7 @@ private:
     //sf::CircleShape enemy_sample;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
-    sf::Text outputText;
+    
     sf::Text instructions;
     sf::Text enemy_Text;
     sf::RectangleShape healthBar;
@@ -89,7 +97,7 @@ private:
     bool showItem;
     
     bool returnJustPressed;
-    bool enemyDefend;
+    
     int userDamageStored;
     bool magic;
     

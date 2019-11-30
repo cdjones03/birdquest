@@ -13,7 +13,7 @@ void Enemy::setEnemyType(EnemyType newType)
     type = newType;
 }
 
-void Enemy::enemyEffect(EnemyType type){
+void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, bool& item, bool& showBattleBar){
     switch(type){
         case Regular:
             break;
@@ -21,21 +21,30 @@ void Enemy::enemyEffect(EnemyType type){
         //freeze the user 1 out of 4 times (can change for balance)
             freeze = (rand()%4);
             if (freeze == 0){
-                bMenu.userDamage = 0;
-                bMenu.userDefend = false;
-                bMenu.item = false;
-                bMenu.showBattleBar = false;
-                bMenu.enemySpecialMove.setString("The icy owl froze you!");
+                userDamage = 0;
+                userDefend = false;
+                item = false;
+                showBattleBar = false;
+                //logic.enemyDefend = false;
+                output.setString("The icy owl froze you!");
+            }
+            else{
+                output.setString(" ");
             }
             break;
         case Snake:
-            bMenu.enemySpecialMove.setString("The snake poisoned you!");
+            output.setString("The snake poisoned you!");
             break;
         case Cat:
-            bMenu.enemySpecialMove.setString("The cat confused you!");
+            output.setString("The cat confused you!");
             break;
 
 
     }
+}
+
+Enemy::EnemyType Enemy::getEnemyType()
+{
+    return type;
 }
 

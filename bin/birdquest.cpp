@@ -8,6 +8,7 @@
 #include "BattleLogic.h"
 #include "PauseMenu.h"
 #include "Inventory.h"
+#include "Enemy.h"
 #include <HumanView.hpp>
 
 /*
@@ -40,6 +41,8 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu;
   bool inBattleMenu = false;
+
+  
 
   // Create pauseMenu object and boolean for if we are in the battle menu
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);

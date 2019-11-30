@@ -65,6 +65,8 @@ void LevelManager::loadLevels() {
   section1[31] = "../resources/xmlmaps/Sec3Scr9.xml";
   section1[32] = "../resources/xmlmaps/Sec3Scr10.xml";
   section1[33] = "../resources/xmlmaps/Sec3Scr11.xml";
+  
+  //section1[34] = "../resources/xmlmaps/Sec4Scr1.xml"; //final boss room
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel

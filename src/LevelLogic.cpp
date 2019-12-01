@@ -206,19 +206,19 @@ bool LevelLogic::checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir d
 bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager){
   std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
   bool thisRet = true;
-  
+
   int floorPuz [4] = {21,17,19,23}; //answer to the puzzle: x-value for switches 3,1,2,4
   std::vector<int> buttonArray(4); //array for given answer
- // int buttonArray [4] = {}; 
+ // int buttonArray [4] = {};
   int max_length = 4; //max number of button pushes
-  
+
   switch(direction){
 
     case HumanView::UP :
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
            //sprite to tile above
-          
+
 		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
             if(thisLevelManager.getTexture(x) == 4) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
@@ -226,8 +226,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               std::cout << "You found the real key!" << std::endl;
               break;
             }
-<<<<<<< Updated upstream
-			
+
 			if (thisLevelManager.getTexture(x) == 8) {  //8 = texture number for the button
 				buttonArray.push_back(x);  //supposed to push current x onto array
 				std::cout << "button: " << buttonArray[0] << std::endl;  //print statements just for testing
@@ -247,9 +246,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
 					}
 				}
 			}
-			
-			
-=======
+
             /*
             else if(button) {
               buttonArray.push(x)
@@ -260,7 +257,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               }
             }
             */
->>>>>>> Stashed changes
+
             if(!moveObject(checkSprites.at(x), x, HumanView::UP, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;
@@ -356,7 +353,7 @@ bool LevelLogic::checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir dire
       checkY = thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos).y;
       break;
   }
-  std::cout << checkX << " " << checkY << std::endl;
+  std::cout << " x " << checkX << " " << checkY << std::endl;
   if(checkX == 576 && checkY == 192) { //ice tile texture
     return true;
   }

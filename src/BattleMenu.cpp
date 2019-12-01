@@ -23,21 +23,15 @@ BattleMenu::BattleMenu(){
   invalid = false;
   width = 640.0;
   height = 640.0;
-<<<<<<< Updated upstream
   itemIndex = 0;
-  
-  
+
+
   //create enemy object, right now setting type to ice owl
   type = Enemy::Owl;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
-  
-  std::cout<<type<<std::endl;
-  
-=======
 
-
->>>>>>> Stashed changes
+  std::cout<<"type " << type<<std::endl;
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
@@ -50,19 +44,16 @@ BattleMenu::BattleMenu(){
   rectangle.setOutlineThickness(4);
   rectangle.setOutlineColor(sf::Color::White);
 
-<<<<<<< Updated upstream
   item_menu_box.setSize(sf::Vector2f(width/2, height/4.5));
   item_menu_box.setPosition(width/60, height - height/4.1);
   item_menu_box.setFillColor(sf::Color::Black);
   item_menu_box.setOutlineThickness(4);
   item_menu_box.setOutlineColor(sf::Color::White);
 
-  
-  //player's battle sprite 
-=======
 
   //player's battle sprite
->>>>>>> Stashed changes
+
+  //player's battle sprite
   if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   }
   birdSprite.setTexture(birdTexture);
@@ -204,12 +195,6 @@ BattleMenu:: ~BattleMenu(){
 //says what happened last turn, and updates the health bar for visual
 void BattleMenu::updateOutput()
 {
-<<<<<<< Updated upstream
-  
-  
-=======
-
->>>>>>> Stashed changes
   if (firstMove){
     outputText.setString("You are in Battle!");
   }
@@ -282,12 +267,8 @@ void BattleMenu::updateOutput()
   //if you won or lost, output text
   if (logic.whoWon(enemyHP, userHP) != 2){
     showMenu = false;
-<<<<<<< Updated upstream
     enemySpecialMove.setString(" ");
-    
-=======
 
->>>>>>> Stashed changes
     std::cout<<"userHP"<<userHP<<" enemyHP"<<enemyHP<<" userDamage"<<userDamage<<" enemyDamage"<<enemyDamage<<std::endl;
 
 
@@ -336,7 +317,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(outputText);
 
   if (showMenu){
-    
+
     window.draw(instructions);
     updateOutput();
     window.draw(enemySpecialMove);
@@ -359,13 +340,10 @@ void BattleMenu::draw(sf::RenderWindow &window){
     if(showBattleBar){
       battleBar.update(window);
     }
-<<<<<<< Updated upstream
-=======
   }
   else{
 
   }
->>>>>>> Stashed changes
 
     if(showItem){
       window.draw(item_menu_box);
@@ -376,7 +354,6 @@ void BattleMenu::draw(sf::RenderWindow &window){
       }
     }
   }
-}
 
 //functions to navigate through menu options
 void BattleMenu::moveUp(){
@@ -455,13 +432,12 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
-    
+
 
 
 
     std::cout << "return" << std::endl;
 
-<<<<<<< Updated upstream
     if(!showBattleBar && !showItem){
 
       switch (getSelectedOption()){
@@ -490,7 +466,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           break;
         //evade
         case 2:
-        
+
           //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
           //also, maybe get enemy to defend for a random amount of damage
           //still might adjust speed for the indicator
@@ -514,13 +490,13 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           //std::string enemyDamageString = std::to_string(enemyDamage);
           showAttack = false;
           std::cout << "Item pressed" << std::endl;
-          
-          
+
+
           break;
       }
-    
+
     }
-    
+
     else if (showItem){
 
       switch (getSelectedItem()){
@@ -569,19 +545,18 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     }
   //after pressing a button, make sure the enemy special effect is in place.
 
-  
+
   enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar);
   enemyDamage = logic.getEnemyDamage();
   enemyDamageStored = enemyDamage;
-  
+
   userDamageStored = userDamage;
   if (!showBattleBar){
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
   }
   }
-  
-=======
+
     if(!showBattleBar){
 
     switch (getSelectedOption()){
@@ -641,10 +616,9 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 }
 
->>>>>>> Stashed changes
   //once we are in the battle bar view
   else if (showBattleBar && returnJustPressed){
-    
+
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
@@ -653,12 +627,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
       enemyDamage = logic.userDefend(enemyDamage, userDamage, userDefend);
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
       userDamageStored = userDamage;
-<<<<<<< Updated upstream
-      
       //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
-            
-      
-=======
+
 
 
 
@@ -666,7 +636,6 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 
 
->>>>>>> Stashed changes
       battleBar.barPressed();
       showBattleBar = false;
       returnJustPressed = false;
@@ -677,25 +646,17 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
     }
   }
-<<<<<<< Updated upstream
-  
   if (!invalid){
-    
+
     updateOutput();
   }
-  
+
   }
-}
+
 
 bool BattleMenu::isInMenu()
 {
   return inMenu;
 }
-=======
 
-  updateOutput();
-
-
-}
-}
->>>>>>> Stashed changes
+//  updateOutput();

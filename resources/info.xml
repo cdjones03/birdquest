@@ -2,11 +2,12 @@
 <section1 name="yes">
  <textures>
    <texture0 name="../resources/spritesheets/BirdKnight_spritesheet.png" x1="0" y1="0" x2="16" y2="16"/>
-   <texture1 name="../resources/tilesets/sewer_1_alter.png" x1="0" y1="48" x2="16" y2="16"/>
-   <texture2 name="../resources/spritesheets/Owl_OW.png" x1="0" y1="0" x2="16" y2="16"/>
+   <tileset1 name="../resources/tilesets/sewer_1_alter.png" x1="0" y1="48" x2="16" y2="16"/>  <!-- block puzzle blocks -->
+   <owl_overworld2 name="../resources/spritesheets/Owl_OW.png" x1="0" y1="0" x2="16" y2="16"/>
    <!--3 and 4 are Same texture but just different to be able to differentiate between fake and real-->
-   <texture3 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
-   <texture4 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
+   <fakekey3 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
+   <realkey4 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
+   <!--enemy textures-->
    <texture5 name="../resources/spritesheets/Snake_OW.png" x1="0" y1="0" x2="16" y2="16"/>
    <texture6 name="../resources/spritesheets/owl_1.png" x1="0" y1="0" x2="90" y2="90"/>
    <texture7 name="../resources/tilesets/sewer_1_alter.png" x1="288" y1="224" x2="16" y2="16"/>
@@ -14,13 +15,14 @@
    <texture9 name="../resources/tilesets/floor_switch.png" x1="16" y1="16" x2="16" y2="16"/>  <!-- on switch -->
    <texture10 name="../resources/tilesets/sewer_1_alter.png" x1="208" y1="32" x2="16" y2="16"/>  <!-- invisible block -->
    <texture11 name="../resources/tilesets/sewer_1_alter.png" x1="240" y1="80" x2="16" y2="16"/>  <!-- lava boxes -->
-   <texture7 name="../resources/spritesheets/empty.png" x1="0" y1="0" x2="16" y2="16"/>
+   <!--<texture7 name="../resources/spritesheets/empty.png" x1="0" y1="0" x2="16" y2="16"/>-->
+   <owl_overworld12 name="../resources/spritesheets/Owl_OW.png" x1="0" y1="0" x2="16" y2="16"/>
+   <owl_battle13 name="../resources/spritesheets/owl_1.png" x1="0" y1="0" x2="90" y2="90"/>
+   <snakeOW14 name="../resources/spritesheets/Snake_OW.png" x1="0" y1="0" x2="16" y2="16"/>
+
  </textures>
  <Sec1Scr0_D_Entrance_simple.xml>
-   <sprite1 texture="2" positionx="19" positiony="11"/>
-   <realkey texture="3" positionx="24" positiony="22"/>
-   <snake texture = "5" positionx="20" positiony="20"/>
-   <owl texture = "6" positionx="20" positiony="25"/>
+   <sprite1 texture="12" positionx="19" positiony="11"/>
  </Sec1Scr0_D_Entrance_simple.xml>
  <Sec1Scr1.xml>
   <sprite texture="1" positionx="20" positiony="11"/>
@@ -224,7 +226,7 @@
   <sprite1 texture="0" positionx="100" positiony="100"/>
 </Sec2Scr12.xml>
 <Sec3Scr1.xml>
-  <sprite1 texture="0" positionx="100" positiony="100"/>
+  <sprite1 texture="14" positionx="19" positiony="11"/>
 </Sec3Scr1.xml>
 <Sec3Scr2.xml>
   <sprite1 texture="0" positionx="100" positiony="100"/>

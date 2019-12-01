@@ -65,7 +65,7 @@ void LevelManager::loadLevels() {
   section1[31] = "../resources/xmlmaps/Sec3Scr9.xml";
   section1[32] = "../resources/xmlmaps/Sec3Scr10.xml";
   section1[33] = "../resources/xmlmaps/Sec3Scr11.xml";
-  
+
   //section1[34] = "../resources/xmlmaps/Sec4Scr1.xml"; //final boss room
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
@@ -210,30 +210,46 @@ void LevelManager::moveSprite(int spriteNum, int moveX, int moveY) {
   curSprites.at(spriteNum).move(moveX, moveY);
 }
 
-bool LevelManager::updateSprite(int x, int y) {
-  if(curSprites[0].getPosition().x > 25*16-16) {
-    velocity *= -1;
+int LevelManager::updateSprite(int x, int y) {
+  int ret = -1;
+  if(!curSprites.empty()) {
+    for(int count = 0; count < curSprites.size(); count++) {
+      if(getTexture(count) == 12) {
+        if(curSprites[count].getPosition().x > 25*16-16) {
+          velocity *= -1;
+        }
+        else if(curSprites[count].getPosition().x < 14*16+16) {
+          velocity *= -1;
+        }
+
+        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+          std::cout << "I See You!" << std::endl;
+          ret = 12;
+        }
+
+        curSprites[count].move(velocity, 0);
+      }
+
+      if(getTexture(count) == 14) {
+        if(curSprites[count].getPosition().x > 25*16-16) {
+          velocity *= -1;
+        }
+        else if(curSprites[count].getPosition().x < 14*16+16) {
+          velocity *= -1;
+        }
+
+        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+          std::cout << "I See You!" << std::endl;
+          ret = 14;
+        }
+
+        curSprites[count].move(velocity, 0);
+      }
+
+    }
   }
 
-  else if(curSprites[0].getPosition().x < 14*16+16) {
-    velocity *= -1;
-  }
-
-  curSprites[0].move(velocity, 0);
-
-  if(curSprites[0].getPosition().x == x && curSprites[0].getPosition().y < y){
-    //std::cout << "I See You!" << std::endl;
-    return true;
-  }
-
-  if(getTexture(0) == 2) {
-    //std::cout << "hello" << std::endl;
-  }
-
-
-
-
-  return false;
+  return ret;
 }
 
 int LevelManager::getTexture(int num) {

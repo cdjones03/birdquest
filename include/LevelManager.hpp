@@ -20,7 +20,7 @@ public:
   std::vector<sf::Sprite> getSprites();
   std::vector<sf::Texture> getTextures();
   void moveSprite(int spriteNum, int moveX, int moveY);
-  bool updateSprite(int x, int y);
+  int updateSprite(int x, int y);
   int getTexture(int num);
 
 private:

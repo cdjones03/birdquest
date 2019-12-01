@@ -42,7 +42,7 @@ int main(int argc, char** argv)
   BattleMenu battleMenu;
   bool inBattleMenu = false;
 
-  
+
 
   // Create pauseMenu object and boolean for if we are in the battle menu
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
@@ -100,11 +100,15 @@ int main(int argc, char** argv)
       deltaMs = clock.getElapsedTime().asMilliseconds();
       if(deltaMs > otherMs + 300) {
         otherMs = deltaMs;
-        std::cout << "other " << otherMs << std::endl;
-        if(levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y)) { //if it sees you, start battle
-          //inBattleMenu = true;
-          //battleMenu.inMenu = true;
-          //battleMenu.showMenu = true;
+        int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
+        if(enemyCheck >= 0) { //if it sees you, start battle
+          inBattleMenu = true;
+          battleMenu.inMenu = true;
+          battleMenu.showMenu = true;
+          //enemyCheck corresponds to the # of the texture in info.xml
+          //so if it's 12, its the owl
+          //if it's 14, its the snake
+          //i can add the others soon
         }
       }
 
@@ -118,16 +122,6 @@ int main(int argc, char** argv)
       battleMenu.item_1 = inventory.itemArray[1];
       battleMenu.item_2 = inventory.itemArray[2];
       battleMenu.item_3 = inventory.itemArray[3];
-
-      //std::cout << deltaMs << " " << otherMs << std::endl;
-
-      //std::cout << "x " << lastX << " y " << lastY << std::endl;
-      //deltaMs = clock.getElapsedTime().asMilliseconds();
-      //std::cout << deltaMs << std::endl;
-      if(deltaMs >= 2000) {
-        deltaMs -= 2000;
-        //birdSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
-      }
 
       if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
         inventory.addItem("Key");
@@ -172,34 +166,30 @@ int main(int argc, char** argv)
         //keypresses for when we are in the Stage
         if (!inBattleMenu && !inPauseMenu){
           //Handle input, delegate to HumanView.cpp
+          lastY = birdSprite.getPosition().y;
+          lastX = birdSprite.getPosition().x;
+
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 48, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-			      lastY = birdSprite.getPosition().y;
-            lastX = birdSprite.getPosition().x;
             humanView.movePlayer(App, birdSprite, HumanView::UP, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-			      lastY = birdSprite.getPosition().y;
-            lastX = birdSprite.getPosition().x;
             humanView.movePlayer(App, birdSprite, HumanView::DOWN, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-			      lastY = birdSprite.getPosition().y;
-            lastX = birdSprite.getPosition().x;
             humanView.movePlayer(App, birdSprite, HumanView::LEFT, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-			      lastY = birdSprite.getPosition().y;
-            lastX = birdSprite.getPosition().x;
             humanView.movePlayer(App, birdSprite, HumanView::RIGHT, levelManager);
           }
+
 
         }
 
@@ -216,7 +206,7 @@ int main(int argc, char** argv)
         //key presses for when we are in the pause menu
         else if (inPauseMenu){
           //here!
- 
+
 
           pauseMenu.processInputs(Event, App);
           //std::cout<<battleMenu.userHP<<std::endl;

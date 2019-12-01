@@ -108,48 +108,46 @@ bool LevelLogic::moveObject(sf::Sprite &thisSprite, int spriteNum, HumanView::Di
 //true = no collision; i.e. not an empty tile (collision of tiles in tilset)
 //collision for player
 bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager){
-  bool ret = false;
+  int checkX;
+  int checkY;
+  bool ret = true;
   switch(direction){
-    case HumanView::UP : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
-      if(checkX >= 0 && checkY >= 0) { //check if tile is empty
-        ret = true;
-      }
+    case HumanView::UP :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
+      break;
+    case HumanView::DOWN :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).y;
+      break;
+    case HumanView::LEFT :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
+      break;
+    case HumanView::RIGHT :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
     }
 
-    break;
-
-    case HumanView::DOWN : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).y;
-      if(checkX >= 0 && checkY >= 0) {
-          ret = true;
-        }
+  if(checkX < 0 && checkY < 0) {
+        ret = false;
+    }
+  if(checkX == 512 && checkY == 192) {
+        ret = false;
+    }
+  if(checkX == 544 && checkY == 48) {
+        ret = false;
+    }
+  if(checkX == 640 && checkY == 176) {
+        ret = false;
+    }
+  if(checkX == 544 && checkY == 160) {
+        ret = false;
+    }
+  if(checkX == 624 && checkY == 176) {
+        ret = false;
     }
 
-    break;
-
-    case HumanView::LEFT : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
-      if(checkX >= 0 && checkY >= 0) {
-          ret = true;
-        }
-      }
-
-    break;
-
-    case HumanView::RIGHT : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
-      if(checkX >= 0 && checkY >= 0) {
-          ret = true;
-        }
-    }
-
-    break;
-  }
 
   return ret;
 }
@@ -228,6 +226,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               std::cout << "You found the real key!" << std::endl;
               break;
             }
+<<<<<<< Updated upstream
 			
 			if (thisLevelManager.getTexture(x) == 8) {  //8 = texture number for the button
 				buttonArray.push_back(x);  //supposed to push current x onto array
@@ -250,6 +249,18 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
 			}
 			
 			
+=======
+            /*
+            else if(button) {
+              buttonArray.push(x)
+              if(buttonArray length == max length) {
+                check button array vs. correct answer
+                  if right -> solved
+                  if not -> reset
+              }
+            }
+            */
+>>>>>>> Stashed changes
             if(!moveObject(checkSprites.at(x), x, HumanView::UP, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;
@@ -322,6 +333,34 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
   }
 
   return thisRet;
+}
+
+bool LevelLogic::checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager) {
+  int checkX;
+  int checkY;
+  switch (direction) {
+    case HumanView::UP :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
+      break;
+    case HumanView::DOWN :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos + 16).y;
+      break;
+    case HumanView::LEFT :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos - 16, thisYPos).y;
+      break;
+    case HumanView::RIGHT :
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos).y;
+      break;
+  }
+  std::cout << checkX << " " << checkY << std::endl;
+  if(checkX == 576 && checkY == 192) { //ice tile texture
+    return true;
+  }
+return false;
 }
 
 /*

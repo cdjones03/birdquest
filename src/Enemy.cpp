@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #include "Enemy.h"
 #include <iostream>
 #include <cstdlib>
@@ -48,3 +49,10 @@ Enemy::EnemyType Enemy::getEnemyType()
     return type;
 }
 
+=======
+#include <Enemy.h>
+
+Enemy::Enemy(){
+    types = 4;
+}
+>>>>>>> Stashed changes

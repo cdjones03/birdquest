@@ -7,15 +7,40 @@ HumanView::HumanView(){
 
 }
 
-void HumanView::movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager) {
+void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager) {
   int x = thisSprite.getPosition().x;
   int y = thisSprite.getPosition().y;
+  sf::Clock clock;
+  bool check = false;
 
   switch(direction) {
     case UP :
     if(y >= moveVal) {
       if (LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager)) { //true = no collision
-        thisSprite.move(0, -moveVal);
+
+        while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x, y-16, direction, thisLevelManager))
+        {
+          check = true;
+          while(check){
+            if (clock.getElapsedTime().asSeconds() > 0.10f){
+              thisSprite.move(0, -moveVal);
+              y = thisSprite.getPosition().y;
+              thisApp.clear(sf::Color::Black);
+              thisLevelManager.drawMap(thisApp);
+              thisApp.draw(thisSprite);
+              thisApp.display();
+              clock.restart();
+              check = false;
+            }
+            else {
+              check = true;
+            }
+          }
+        }
+        if(!check) {
+          thisSprite.move(0, -moveVal);
+        }
+
       }
     }
     else {
@@ -29,7 +54,30 @@ void HumanView::movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &
     case DOWN :
     if(y < windowPixelHeight-moveVal){
       if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager)) {
-        thisSprite.move(0, moveVal);
+
+        while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x, y+16, direction, thisLevelManager))
+        {
+          check = true;
+          while(check){
+            if (clock.getElapsedTime().asSeconds() > 0.10f){
+              thisSprite.move(0, moveVal);
+              y = thisSprite.getPosition().y;
+              thisApp.clear(sf::Color::Black);
+              thisLevelManager.drawMap(thisApp);
+              thisApp.draw(thisSprite);
+              thisApp.display();
+              clock.restart();
+              check = false;
+            }
+            else {
+              check = true;
+            }
+          }
+        }
+        if(!check) {
+          thisSprite.move(0, moveVal);
+        }
+
       }
     }
     else {
@@ -43,7 +91,30 @@ void HumanView::movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &
     case LEFT :
       if(x >= moveVal) {
         if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager)) {
-          thisSprite.move(-moveVal, 0);
+
+          while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x-16, y, direction, thisLevelManager))
+          {
+            check = true;
+            while(check){
+              if (clock.getElapsedTime().asSeconds() > 0.10f){
+                thisSprite.move(-moveVal, 0);
+                x = thisSprite.getPosition().x;
+                thisApp.clear(sf::Color::Black);
+                thisLevelManager.drawMap(thisApp);
+                thisApp.draw(thisSprite);
+                thisApp.display();
+                clock.restart();
+                check = false;
+              }
+              else {
+                check = true;
+              }
+            }
+          }
+          if(!check) {
+            thisSprite.move(-moveVal, 0);
+          }
+
         }
       }
       else {
@@ -58,7 +129,31 @@ void HumanView::movePlayer(sf::Sprite &thisSprite, Dir direction, LevelManager &
     case RIGHT :
       if(x < windowPixelWidth-moveVal) {
         if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager)) {//if moving right, and tile to right is water, won't allow movement
+
+        while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x+16, y, direction, thisLevelManager))
+        {
+          check = true;
+          while(check){
+            if (clock.getElapsedTime().asSeconds() > 0.10f){
+              thisSprite.move(moveVal, 0);
+              x = thisSprite.getPosition().x;
+              thisApp.clear(sf::Color::Black);
+              thisLevelManager.drawMap(thisApp);
+              thisApp.draw(thisSprite);
+              thisApp.display();
+              clock.restart();
+              check = false;
+            }
+            else {
+              check = true;
+            }
+
+          }
+        }
+        if(!check) {
           thisSprite.move(moveVal, 0);
+        }
+
         }
       }
       else {

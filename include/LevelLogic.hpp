@@ -10,6 +10,7 @@ class LevelLogic {
 private:
 
   //bool checkForRealKey(int j);
+  const int moveVal = 16;
 
 public:
 
@@ -19,6 +20,7 @@ public:
   static bool checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
   static bool checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
 
+  static bool checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
 };
 
 #endif

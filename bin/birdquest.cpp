@@ -99,11 +99,12 @@ int main(int argc, char** argv)
   {
       deltaMs = clock.getElapsedTime().asMilliseconds();
       if(deltaMs > otherMs + 300) {
-        otherMs += 300;
+        otherMs = deltaMs;
+        std::cout << "other " << otherMs << std::endl;
         if(levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y)) { //if it sees you, start battle
-          inBattleMenu = true;
-          battleMenu.inMenu = true;
-          battleMenu.showMenu = true;
+          //inBattleMenu = true;
+          //battleMenu.inMenu = true;
+          //battleMenu.showMenu = true;
         }
       }
 
@@ -176,28 +177,28 @@ int main(int argc, char** argv)
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.movePlayer(birdSprite, HumanView::UP, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::UP, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.movePlayer(birdSprite, HumanView::DOWN, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::DOWN, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.movePlayer(birdSprite, HumanView::LEFT, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::LEFT, levelManager);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
 			      lastY = birdSprite.getPosition().y;
             lastX = birdSprite.getPosition().x;
-            humanView.movePlayer(birdSprite, HumanView::RIGHT, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::RIGHT, levelManager);
           }
 
         }
@@ -206,7 +207,7 @@ int main(int argc, char** argv)
         else if (inBattleMenu){
 
           battleMenu.processInputs(Event, App);
-          if (!battleMenu.inMenu){
+          if (!battleMenu.inMenu) {
             inBattleMenu = false;
           }
 
@@ -236,7 +237,7 @@ int main(int argc, char** argv)
       if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
-        
+
         if (itemView == true){
           App.draw(keySprite);
         }

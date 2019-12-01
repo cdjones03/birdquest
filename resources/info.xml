@@ -9,6 +9,7 @@
    <texture4 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
    <texture5 name="../resources/spritesheets/Snake_OW.png" x1="0" y1="0" x2="16" y2="16"/>
    <texture6 name="../resources/spritesheets/owl_1.png" x1="0" y1="0" x2="90" y2="90"/>
+<<<<<<< Updated upstream
    
    <texture7 name="../resources/tilesets/sewer_1_alter.png" x1="288" y1="224" x2="16" y2="16"/>
    <texture8 name="../resources/tilesets/floor_switch.png" x1="0" y1="0" x2="16" y2="16"/>  <!-- off switch -->
@@ -17,6 +18,9 @@
    <texture11 name="../resources/tilesets/sewer_1_alter.png" x1="240" y1="80" x2="16" y2="16"/>  <!-- lava boxes -->
 
    
+=======
+   <texture7 name="../resources/spritesheets/empty.png" x1="0" y1="0" x2="16" y2="16"/>
+>>>>>>> Stashed changes
  </textures>
  <Sec1Scr0_D_Entrance_simple.xml>
    <sprite1 texture="2" positionx="19" positiony="11"/>

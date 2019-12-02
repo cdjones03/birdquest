@@ -25,14 +25,13 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             break;
         case Snake:
             //if the enemy attacked, it has a chance to poison you, dealing extra damage over 3 turns
-            //still getting bug: for some reason it always poisons you on the first turn, and
-            //it will not poison you again after you are no longer poisoned.
+            //it will not poison you again after you are no longer poisoned? check.
             logic.SnakeBoss(enemyDamage, output, enemyDefend);
             break;
         
         case Cat:
         //actually going to switch enemy and user Damage randomly
-            logic.CatBoss(output, userDamage, item, userDefend);
+            logic.CatBoss(output, userDamage, item, userDefend, enemyDamage, enemyDefend);
             break;
 
         case FinalBoss:

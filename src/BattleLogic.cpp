@@ -158,10 +158,22 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output, bool& eDefend){
     */
 }
 
-void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend)
-{
-    confuse = (rand()%4);
+void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend, 
+    int& enemyDamage, bool&enemyDefend){
+    //Cat Boss has the chance to confuse you, which will switch your attacks     
+    if (!enemyDefend && !userDefend && !item){
+        //confuse = (rand()%4);
+        confuse = 1;
+        if (confuse == 1){
+            output.setString("The cat confused you!\nHe swapped his attack for yours!");
+            enemyDamageStored = enemyDamage;
+            enemyDamage = userDamage;
+            userDamage = enemyDamageStored;
+        }
+        
+    }
     
-    output.setString("The cat confused you!");
+    
+    
     
 }

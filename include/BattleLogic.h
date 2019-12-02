@@ -21,7 +21,8 @@ public:
 
     void OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& showBattleBar, sf::Text& output);
     void SnakeBoss(int& enemyDamage, sf::Text& output, bool& enemyDefend);
-    void CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend);
+    void CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend, 
+        int& enemyDamage, bool&enemyDefend);
     void FinalBoss();
 
     bool enemyDefend;
@@ -42,5 +43,6 @@ private:
     int turnsPoisoned;
     int userHP_;
     int enemyHP_;
+    int enemyDamageStored;
 
 };

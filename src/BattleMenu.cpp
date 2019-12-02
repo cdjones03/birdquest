@@ -30,11 +30,11 @@ BattleMenu::BattleMenu(){
 
 
   //create enemy object, for now, setting the type here
-  type = Enemy::Snake;
+  type = Enemy::Cat;
   enemy.setEnemyType(type);
-  type = enemy.getEnemyType();
+  type = enemy.type;
 
-  std::cout<<" HERE " << type << " HERE " <<std::endl;
+  //std::cout<<" HERE " << enemy.type << " HERE " <<std::endl;
 
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {

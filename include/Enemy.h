@@ -18,12 +18,11 @@ public:
     };
     EnemyType type;
     void setEnemyType(EnemyType newType);
-    EnemyType getEnemyType();
+    EnemyType getEnemyType(int& enemyCheck);
 
     void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend,
         bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
     void setEnemyDisplay(sf::Text& name, sf::Texture& texture);
-    void setSprite(sf::Sprite& sprite);
 
     BattleLogic logic;
     //int types;

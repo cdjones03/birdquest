@@ -50,6 +50,9 @@ int main(int argc, char** argv)
   // Create inventory object
   Inventory inventory;
 
+  //Create enemy object
+  Enemy enemy;
+
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
@@ -81,7 +84,7 @@ int main(int argc, char** argv)
         otherMs = deltaMs;
         int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
-          //std::cout << enemyCheck << std::endl;
+          std::cout <<"whichEnemy"<< enemyCheck << std::endl;
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
@@ -89,6 +92,12 @@ int main(int argc, char** argv)
           //so if it's 7, its the owl
           //if it's 9, its the snake
           //etc.
+          std::cout <<"dienemytype "<<enemy.getEnemyType(enemyCheck)<<std::endl;
+          //enemy.setEnemyType(enemyCheck);
+          if (enemyCheck == 11){
+            enemy.setEnemyType(Enemy::Cat);
+          }
+          
         }
       }
 

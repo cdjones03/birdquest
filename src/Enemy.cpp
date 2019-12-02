@@ -71,12 +71,13 @@ void Enemy::setEnemyDisplay(sf::Text& name, sf::Texture& texture){
   }
 }
 
-//sets the sprite to appear in the battleMenu based on the type
-void Enemy::setSprite(sf::Sprite& sprite){
 
-}
-
-Enemy::EnemyType Enemy::getEnemyType()
+Enemy::EnemyType Enemy::getEnemyType(int& enemyCheck)
 {
-    return type;
+    switch (enemyCheck){
+        case 11:
+            type = Cat;
+            return Cat;
+    }
+    //return type;
 }

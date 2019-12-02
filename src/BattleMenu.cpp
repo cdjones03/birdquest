@@ -26,6 +26,7 @@ BattleMenu::BattleMenu(){
   itemIndex = 0;
 
   result = -1;
+  item_used = -1;
 
 
   //create enemy object, right now setting type to ice owl
@@ -536,6 +537,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
             invalid = false;
+            item_used = 0;
+
           }
           else{
             invalid = true;
@@ -547,6 +550,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
             invalid = false;
+            item_used = 1;
+
           }
           else{
             invalid = true;
@@ -558,6 +563,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
             invalid = false;
+            item_used = 2;
+
           }
           else{
             invalid = true;
@@ -569,6 +576,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
             invalid = false;
+            item_used = 3;
+
           }
           else{
             invalid = true;

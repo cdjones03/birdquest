@@ -11,6 +11,7 @@ public:
     std::string itemArray[4] = {"-", "-", "-", "-"};
 
     void addItem(std::string item);
+    void useItem(int index);
     
 private:
         

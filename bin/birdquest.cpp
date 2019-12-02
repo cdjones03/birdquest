@@ -114,8 +114,14 @@ int main(int argc, char** argv)
       battleMenu.item_2 = inventory.itemArray[2];
       battleMenu.item_3 = inventory.itemArray[3];
 
+
+
       if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
         inventory.addItem("Key");
+        inventory.addItem("Potion");
+        inventory.addItem("Potion");
+        inventory.addItem("Potion");
+        inventory.addItem("Potion");
         itemView = false;
       }
 
@@ -193,6 +199,9 @@ int main(int argc, char** argv)
         else if (inBattleMenu){
 
           battleMenu.processInputs(Event, App);
+
+          inventory.useItem(battleMenu.item_used);
+        
           if (!battleMenu.inMenu) {
             inBattleMenu = false;
           }

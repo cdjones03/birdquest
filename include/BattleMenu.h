@@ -59,6 +59,8 @@ public:
     int getResult();
     void resetResult();
 
+    int item_used;
+
 private:
     int freeze;
     bool showAttack;

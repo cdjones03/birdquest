@@ -84,6 +84,8 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             output.setString("The cat confused you!");
             break;
 
+        case FinalBoss:
+            break;
 
     }
 }

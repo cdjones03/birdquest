@@ -19,7 +19,6 @@ public:
     int getUserDamage(int damage, bool magic, bool userDefend);
     int userDefend(int enemyDamage, int userDamage, bool defend);
 
-
     bool enemyDefend;
     //add a poison attack, that will cause consistent damage.
     bool enemyPoison;

@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E remove -f CMakeFiles\birdquest.dir/objects.a
-C:\mingw64\bin\ar.exe cr CMakeFiles\birdquest.dir/objects.a @CMakeFiles\birdquest.dir\objects1.rsp
-C:\mingw64\bin\g++.exe  -std=c++11 -g   -Wl,--whole-archive CMakeFiles\birdquest.dir/objects.a -Wl,--no-whole-archive  -o birdquest.exe -Wl,--out-implib,libbirdquest.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\birdquest.dir\linklibs.rsp

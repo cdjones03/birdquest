@@ -25,7 +25,7 @@
         <!--<malaphas15 />-->
     </textures>
     <Sec1Scr0_D_Entrance_simple.xml>
-        <sprite1 texture="2" positionx="20" positiony="20" alive="1"/>
+        <sprite1 texture="2" positionx="20" positiony="20" alive="0"/>
         <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
     </Sec1Scr0_D_Entrance_simple.xml>
     <Sec1Scr0_D_Entrance_simple_Open.xml>
@@ -144,8 +144,8 @@
         <catboss texture="12" positionx="17" positiony="10" alive="0"/>
     </Sec2Scr12.xml>
     <Sec3Scr1.xml>
-        <sprite1 texture="13" positionx="19" positiony="11" alive="1"/>
-        <sprite1 texture="2" positionx="20" positiony="20" alive="1"/>
+        <sprite1 texture="13" positionx="19" positiony="11" alive="0"/>
+        <sprite1 texture="2" positionx="20" positiony="20" alive="0"/>
     </Sec3Scr1.xml>
     <Sec3Scr2.xml/>
     <Sec3Scr3.xml/>

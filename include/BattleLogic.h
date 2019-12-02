@@ -20,7 +20,7 @@ public:
     int userDefend(int enemyDamage, int userDamage, bool defend);
 
     void OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& showBattleBar, sf::Text& output);
-    void SnakeBoss(int& enemyDamage, sf::Text& output);
+    void SnakeBoss(int& enemyDamage, sf::Text& output, bool& enemyDefend);
     void CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend);
     void FinalBoss();
 

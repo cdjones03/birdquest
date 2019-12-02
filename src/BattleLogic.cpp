@@ -4,7 +4,8 @@
 #include <random>
 
 BattleLogic::BattleLogic(){
-    enemyDefend = false;
+    //enemyDefend = false;
+    poisoned = false;
 
 }
 
@@ -114,16 +115,13 @@ void BattleLogic::OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& s
     }
 }
 
-void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
+void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output, bool& eDefend){
     //if the enemy attacked, it has a chance to poison you, dealing extra damage over 3 turns
-            //still getting bug: for some reason it always poisons you on the first turn, and 
-            //it will not poison you again after you are no longer poisoned.
-    //wasPoisonedLastTurn = false;
-    if (!enemyDefend && !poisoned){
+    if (!eDefend && !poisoned){
         poison = (rand()%3);
         std::cout<<"poison"<<poison<<std::endl;
         poisoned = false;
-        if (poison == 3){
+        if (poison == 1){
             poisoned = true;
             turnsPoisoned = 0;
         }
@@ -131,7 +129,7 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
             output.setString(" ");
         }
     }
-    if (enemyDefend){
+    if (eDefend){
         poisoned = false;
     }
     if (poisoned){
@@ -141,20 +139,16 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
             if (turnsPoisoned == 1){
                 output.setString("You have been poisoned!\nYou took 5 additional damage");
             }
-            else{
+            else if (turnsPoisoned >1){
                 output.setString("You are still poisoned!\nYou took 5 additional damage");
-            }
-            
+            }           
         }
         else{
             //wasPoisonedLastTurn = true;
             poisoned = false;
             output.setString("You are no longer poisoned!");
-            turnsPoisoned = 0;
-            
-        }
-        
-        
+            turnsPoisoned = 0;           
+        }         
     }
     /**
     if (!poisoned && !wasPoisonedLastTurn)

@@ -582,6 +582,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
   enemyDamage = logic.getEnemyDamage();
   enemyDamageStored = enemyDamage;
+  enemyDefend = logic.enemyDefend;
+  
   enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
 
 

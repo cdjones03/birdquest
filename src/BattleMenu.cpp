@@ -5,6 +5,7 @@
 //fix enemy block output
 //need to fix output for Special Moves, also for Ice Owl, try to have enemy never defend if you are frozen
 
+//the instructions now dont show up on the first move, i think they flash. need to fix
 BattleMenu::BattleMenu(){
   showMenu = true;
   firstMove = true;
@@ -33,7 +34,7 @@ BattleMenu::BattleMenu(){
 
 
   //create enemy object, for now, setting the type here
-  type = Enemy::Snake;
+  type = Enemy::Owl;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
 

@@ -15,4 +15,6 @@ public:
 private:
         
     int itemCount;
+    int potion_count;
+    int potion_index;
 };

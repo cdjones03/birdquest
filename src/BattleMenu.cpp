@@ -476,6 +476,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           showBattleBar = true;
           returnJustPressed = true;
           item = false;
+          invalid = false;
           break;
         //magic
         case 1:
@@ -488,6 +489,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           showBattleBar = true;
           returnJustPressed = true;
           item = false;
+          invalid = false;
           break;
         //evade
         case 2:
@@ -502,6 +504,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           showBattleBar = true;
           returnJustPressed = true;
           item = false;
+          invalid = false;
 
           //inMenu = false;
 
@@ -515,6 +518,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           //std::string enemyDamageString = std::to_string(enemyDamage);
           showAttack = false;
           std::cout << "Item pressed" << std::endl;
+          invalid = true;
 
 
           break;
@@ -528,9 +532,10 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
         case 0:
 
-          if (item_0 == "Key"){
+          if (item_0 != "Key" && item_0 != "-"){\
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+            invalid = false;
           }
           else{
             invalid = true;
@@ -538,9 +543,10 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
         case 1:
 
-          if (item_1 == "Key"){
+          if (item_1 != "Key" && item_1 != "-"){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+            invalid = false;
           }
           else{
             invalid = true;
@@ -548,9 +554,10 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
         case 2:
 
-          if (item_2 == "Key"){
+          if (item_2 != "Key" && item_2 != "-"){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+            invalid = false;
           }
           else{
             invalid = true;
@@ -558,9 +565,10 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
         case 3:
 
-          if (item_3 == "Key"){
+          if (item_3 != "Key" && item_3 != "-"){
             item = true;
             userHP = logic.healItem(enemyDamage, userHP);
+            invalid = false;
           }
           else{
             invalid = true;
@@ -576,7 +584,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 
   userDamageStored = userDamage;
-  if (!showBattleBar){
+  if (!showBattleBar && !invalid){
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
   }

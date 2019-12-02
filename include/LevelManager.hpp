@@ -27,6 +27,7 @@ public:
   int getCurrentMap();
 
   void switchPuzzleMap();
+  void deleteSprite();
 
 private:
 
@@ -35,7 +36,8 @@ private:
   TileMap map;
   std::vector<sf::Sprite> curSprites;
   std::vector<sf::Texture> curTextures;
-  tinyxml2::XMLDocument docu;
+  tinyxml2::XMLDocument org_doc;
+  tinyxml2::XMLDocument cur_doc;
   int velocity = 16;
   std::vector<int> textNums;
   int curMap;

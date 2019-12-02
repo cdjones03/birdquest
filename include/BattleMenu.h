@@ -21,7 +21,7 @@ public:
     void moveRight();
     bool isInMenu();
     void enemyEffect(sf::Text outpt, int userDamage, bool userDefend, bool item, bool showBattleBar);
-    
+
     int getSelectedOption(){
         return selectedIndex;
     }
@@ -56,25 +56,27 @@ public:
     Enemy enemy;
     Enemy::EnemyType type;
 
+    int getResult();
+    void resetResult();
 
 private:
     int freeze;
     bool showAttack;
     bool firstMove;
     bool invalid;
-    
+
 
     sf::Texture birdTexture;
     sf::Sprite birdSprite;
-	
+
 	sf::Texture bossTexture;
 	sf::Sprite bossSprite;
-    
+
     float width;
     float height;
 
     BattleBar battleBar;
-    
+
     int enemyHP;
     BattleLogic logic;
     int selectedIndex;
@@ -86,7 +88,7 @@ private:
     //sf::CircleShape enemy_sample;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
-    
+
     sf::Text instructions;
     sf::Text enemy_Text;
     sf::RectangleShape healthBar;
@@ -95,15 +97,17 @@ private:
     sf::RectangleShape enemy_remainingBar;
     sf::RectangleShape item_menu_box;
     bool showItem;
-    
+
     bool returnJustPressed;
-    
+
     int userDamageStored;
     bool magic;
-    
-    
+
+
     int userDefendStored;
     int enemyDamageStored;
 
     int itemIndex;
+
+    int result;
 };

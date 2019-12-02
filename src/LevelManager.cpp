@@ -14,22 +14,29 @@ Should make an array of screens per section of temple
 
 LevelManager::LevelManager(){
 
-}
+  //load textures for section
+  const char* name = "../resources/info.xml";
+  org_doc.LoadFile(name);
+  org_doc.SaveFile("../resources/cur_info.xml");
 
-//should be done once per branch of temple; total of 3 (?) times
-void LevelManager::loadLevels() {
+  tinyxml2::XMLElement *curElement = org_doc.FirstChildElement("section1")->FirstChildElement("textures");
+  curElement = curElement->FirstChildElement();
 
-  // create the tilemap from the level definition
+  int x1, y1, x2, y2;
+  //cycle through textures in info.xml, add to array curTextures
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    sf::Texture texture;
+    x1 = e->IntAttribute("x1");
+    y1 = e->IntAttribute("y1");
+    x2 = e->IntAttribute("x2");
+    y2 = e->IntAttribute("y2");
+    if(!texture.loadFromFile(e->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
+      std::cout << " error " << std::endl;
+    }
+    curTextures.push_back(texture);
+  }
+
   curScreenString = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
-  curMap = 0;
-  Screen screen0(curScreenString);
-  int tileWidth = screen0.getTileWidth();
-  int tileHeight = screen0.getTileHeight();
-  int width = screen0.getWidth();
-  int height = screen0.getHeight();
-  const char* tileset = screen0.getTileset();
-  curSprites = screen0.getSprites();
-
   section1[0] = curScreenString;
   section1[1] = "../resources/xmlmaps/Sec1Scr1.xml";
   section1[2] = "../resources/xmlmaps/Sec1Scr2.xml";
@@ -68,35 +75,34 @@ void LevelManager::loadLevels() {
   section1[33] = "../resources/xmlmaps/Sec3Scr11.xml";
 
   //section1[34] = "../resources/xmlmaps/Sec4Scr1.xml"; //final boss room
+}
+
+//should be done once per branch of temple; total of 3 (?) times
+void LevelManager::loadLevels() {
+
+  //load textures for section
+  const char* name = "../resources/info.xml";
+  org_doc.LoadFile(name);
+  org_doc.SaveFile("../resources/cur_info.xml");
+  cur_doc.LoadFile("../resources/cur_info.xml");
+
+  // create the tilemap from the level definition
+  curMap = 0;
+  Screen screen0(curScreenString);
+  int tileWidth = screen0.getTileWidth();
+  int tileHeight = screen0.getTileHeight();
+  int width = screen0.getWidth();
+  int height = screen0.getHeight();
+  const char* tileset = screen0.getTileset();
+  curSprites = screen0.getSprites();
 
   if (!map.load(tileset, sf::Vector2u(tileWidth, tileHeight),
   screen0.getTileString(), width, height)) { //vector is size of each tile in pixel
       exit(0);
     }
 
-  //load textures for section
-  const char* name = "../resources/info.xml";
-  docu.LoadFile(name);
-  tinyxml2::XMLElement *curElement = docu.FirstChildElement("section1")->FirstChildElement("textures");
-  //int length = curElement->IntAttribute("length");
-  curElement = curElement->FirstChildElement();
-
-  int x1, y1, x2, y2;
-  //cycle through textures in info.xml, add to array curTextures
-  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
-    sf::Texture texture;
-    x1 = e->IntAttribute("x1");
-    y1 = e->IntAttribute("y1");
-    x2 = e->IntAttribute("x2");
-    y2 = e->IntAttribute("y2");
-    if(!texture.loadFromFile(e->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
-      std::cout << " error " << std::endl;
-    }
-    curTextures.push_back(texture);
-  }
-
   //load textures for sprites for initial screen
-  curElement = docu.FirstChildElement("section1")->FirstChildElement("Sec1Scr0_D_Entrance_simple.xml")->FirstChildElement();
+  tinyxml2::XMLElement *curElement = cur_doc.FirstChildElement("section1")->FirstChildElement("Sec1Scr0_D_Entrance_simple.xml")->FirstChildElement();
   int textNum;
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
@@ -180,14 +186,18 @@ bool LevelManager::switchMap(int mapDir) {
 	const char *c = newStr.c_str(); //name of file without path
 
   textNums.clear();
-  tinyxml2::XMLElement* curElement = docu.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
+  const char* name = "../resources/cur_info.xml";
+  cur_doc.LoadFile(name);
+  tinyxml2::XMLElement* curElement = cur_doc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
   int textNum;
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
-    textNum = e->IntAttribute("texture");
-    textNums.push_back(textNum);
-    curSprites.at(x).setTexture(curTextures.at(textNum));
-    x++;
+    if(e -> IntAttribute("alive") == 0) {
+      textNum = e->IntAttribute("texture");
+      textNums.push_back(textNum);
+      curSprites.at(x).setTexture(curTextures.at(textNum));
+      x++;
+    }
   }
 
   curScreenString = newScreenString;
@@ -275,10 +285,6 @@ int LevelManager::updateSprite(int x, int y) {
         }
         curSprites[count].move(velocity, 0);
       }
-
-
-
-
     }
   }
 
@@ -330,7 +336,7 @@ void LevelManager::switchPuzzleMap() {
 	const char *c = newStr.c_str(); //name of file without path
 
   textNums.clear();
-  tinyxml2::XMLElement* curElement = docu.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
+  tinyxml2::XMLElement* curElement = cur_doc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
   int textNum;
   int x = 0;
   for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
@@ -341,4 +347,24 @@ void LevelManager::switchPuzzleMap() {
   }
 
   curScreenString = newScreenString;
+}
+
+void LevelManager::deleteSprite(){
+
+  std::string str { curScreenString };
+  std::string str2 ("Sec");
+  std::size_t found = str.find(str2);
+  std::string newStr = str.substr(found);
+	const char *c = newStr.c_str(); //name of file without path
+
+  const char* name = "../resources/cur_info.xml";
+  cur_doc.LoadFile(name);
+
+  tinyxml2::XMLElement* curElement = cur_doc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    e->SetAttribute("alive", "1");
+  }
+  cur_doc.SaveFile("../resources/cur_info.xml");
+  curSprites.pop_back();
+
 }

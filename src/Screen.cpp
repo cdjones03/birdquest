@@ -39,7 +39,7 @@ Screen::Screen(const char* fileName) {
   std::size_t found = str.find(str2);
   std::string newStr = str.substr(found);
 	const char *c = newStr.c_str(); //name of file without path
-  infoDoc.LoadFile("../resources/info.xml");
+  infoDoc.LoadFile("../resources/cur_info.xml");
   curElement = infoDoc.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
   if(curElement != NULL) {
     for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
@@ -47,7 +47,9 @@ Screen::Screen(const char* fileName) {
       int y = 16*e->IntAttribute("positiony");
       sf::Sprite newSprite;
       newSprite.setPosition(x, y);
-      spriteArr.push_back(newSprite);
+      if(e->IntAttribute("alive") == 0) {
+        spriteArr.push_back(newSprite);
+      }
     }
   }
 }

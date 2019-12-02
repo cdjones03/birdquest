@@ -230,6 +230,15 @@ int main(int argc, char** argv)
       //draw battleMenu
       else if (inBattleMenu && battleMenu.isInMenu()){
         battleMenu.draw(App);
+        if(battleMenu.getResult() == 0) {
+          std::cout << "      you won" << std::endl;
+          battleMenu.resetResult();
+          levelManager.deleteSprite();
+        }
+        else if(battleMenu.getResult() == 1) {
+          std::cout << "      you lost" << std::endl;
+          battleMenu.resetResult();
+        }
       }
 
       App.display();

@@ -2,6 +2,7 @@
 #include <HumanView.hpp>
 #include <LevelManager.hpp>
 #include <iostream>
+#include "../include/Inventory.h"
 
 std::vector<int> LevelLogic::buttonArray;
 
@@ -392,8 +393,9 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
 		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
             if(thisLevelManager.getTexture(x) == 2) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
-              //inventory.add(key)
+              //Inventory.addItem("Key");
               std::cout << "You found the real key!" << std::endl;
+
               break;
             }
 

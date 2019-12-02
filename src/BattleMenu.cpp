@@ -24,11 +24,16 @@ BattleMenu::BattleMenu(){
   width = 640.0;
   height = 640.0;
   itemIndex = 0;
+<<<<<<< HEAD
 
   result = -1;
 
 
   //create enemy object, right now setting type to ice owl
+=======
+  
+  //create enemy object, for now, setting the type here
+>>>>>>> c1af91feb4f093583e45dc672ad7e22139153ff1
   type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
@@ -58,7 +63,7 @@ BattleMenu::BattleMenu(){
   if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   }
   birdSprite.setTexture(birdTexture);
-  birdSprite.setPosition(420, 400);
+  birdSprite.setPosition(400, 400);
   birdSprite.setScale(2.0, 2.0);
 
   if(!bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){
@@ -111,6 +116,13 @@ BattleMenu::BattleMenu(){
   instructions.setCharacterSize(55);
   instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
   instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
+
+  item_instructions.setFont(font);
+  item_instructions.setFillColor(sf::Color::Magenta);
+  item_instructions.setStyle(sf::Text::Italic);
+  item_instructions.setCharacterSize(55);
+  item_instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
+  item_instructions.setString("Use the arrow keys to navigate the options,\nPress backspace to return to menu.");
 
   // red health bar for player in battle menu
   remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
@@ -359,6 +371,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
     }
 
     if(showItem){
+      window.draw(item_instructions);
       window.draw(item_menu_box);
 
       int j = 0;

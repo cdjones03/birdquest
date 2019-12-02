@@ -10,10 +10,8 @@ BattleLogic::BattleLogic(){
 
 int BattleLogic::updateHP(int damage, int HP)
 {
-    
     HP -= damage;
-    
-    
+
     return HP;
 }
 
@@ -34,8 +32,7 @@ int BattleLogic::whoWon(int enemyHP, int userHP)
     return 3;
 }
 
-
-//enemy will either choose to defend and attack for 0, or attack with damage between 1-30
+//enemy will either choose to defend and attack for 0, or attack with damage between 5-30
 int BattleLogic::getEnemyDamage()
 {   
     enemyDefend = false;
@@ -49,7 +46,7 @@ int BattleLogic::getEnemyDamage()
         damage = 0;
     }
     else{
-        damage = 1+(rand()%29);
+        damage = 5+(rand()%25);
     }
     
     return damage;

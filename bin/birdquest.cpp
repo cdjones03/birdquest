@@ -80,7 +80,7 @@ int main(int argc, char** argv)
   sf::Sprite keySprite;
   keySprite.setTexture(keyTexture);
   keySprite.setPosition(288, 400);
-  keySprite.setScale(0.5, 0.5);
+  keySprite.setScale(1, 1);
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -146,6 +146,11 @@ int main(int argc, char** argv)
           pauseMenu.itemText[1].setString(inventory.itemArray[1]);
           pauseMenu.itemText[2].setString(inventory.itemArray[2]);
           pauseMenu.itemText[3].setString(inventory.itemArray[3]);
+
+          if (inventory.itemArray[0] == "Key"){
+            
+            pauseMenu.keySprite.setPosition(550,320);
+          }
 
           //pauseMenu.HP
           pauseMenu.HP_string.setString("HP: "+std::to_string(userHP) + "/100");

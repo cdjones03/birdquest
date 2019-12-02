@@ -22,12 +22,16 @@ public:
   void moveSprite(int spriteNum, int moveX, int moveY);
   int updateSprite(int x, int y);
   int getTexture(int num);
+  void setButtonGreen(int spriteNum, int textNum);
+  void resetButtons();
   int getCurrentMap();
+
+  void switchPuzzleMap();
 
 private:
 
   const char* curScreenString;
-  const char* section1[34];
+  const char* section1[35];
   TileMap map;
   std::vector<sf::Sprite> curSprites;
   std::vector<sf::Texture> curTextures;

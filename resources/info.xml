@@ -7,7 +7,7 @@
    <realkey2 name="../resources/spritesheets/key.png" x1="3" y1="3" x2="32" y2="32"/>
    <!--buttons and boxes-->
    <texture3 name="../resources/tilesets/floor_switch.png" x1="0" y1="0" x2="16" y2="16"/>  <!-- off switch -->
-   <texture4 name="../resources/tilesets/floor_switch.png" x1="16" y1="16" x2="16" y2="16"/>  <!-- on switch -->
+   <texture4 name="../resources/tilesets/floor_switch.png" x1="0" y1="16" x2="16" y2="16"/>  <!-- on switch -->
    <texture5 name="../resources/tilesets/sewer_1_alter.png" x1="240" y1="80" x2="16" y2="16"/>  <!-- lava boxes -->
    <potion6 name="../resources/spritesheets/potion.png" x1="0" y1="0" x2="16" y2="16"/>
    <!--enemy textures-->
@@ -23,6 +23,7 @@
  </textures>
  <Sec1Scr0_D_Entrance_simple.xml>
    <sprite1 texture="9" positionx="20" positiony="20"/>
+   <potion texture = "6" positionx="25" positiony="28"/>
  </Sec1Scr0_D_Entrance_simple.xml>
  <Sec1Scr1.xml>
   <sprite texture="5" positionx="20" positiony="11"/>
@@ -126,26 +127,17 @@
 <Sec2Scr7.xml>
 </Sec2Scr7.xml>
 <Sec2Scr8.xml>
-  <button texture = "8" positionx="19" positiony="13"/>
-  <button texture = "8" positionx="21" positiony="13"/>
-  <button texture = "8" positionx="23" positiony="13"/>
-  <button texture = "8" positionx="25" positiony="13"/>
-  <invisible texture = "10" positionx="18" positiony="12"/>
-  <invisible texture = "10" positionx="18" positiony="13"/>
-  <invisible texture = "10" positionx="19" positiony="12"/>
-  <invisible texture = "10" positionx="20" positiony="12"/>
-  <invisible texture = "10" positionx="20" positiony="13"/>
-  <invisible texture = "10" positionx="21" positiony="12"/>
-  <invisible texture = "10" positionx="20" positiony="13"/>
-  <invisible texture = "10" positionx="22" positiony="12"/>
-  <invisible texture = "10" positionx="22" positiony="13"/>
-  <invisible texture = "10" positionx="23" positiony="12"/>
-  <invisible texture = "10" positionx="24" positiony="12"/>
-  <invisible texture = "10" positionx="24" positiony="13"/>
-  <invisible texture = "10" positionx="25" positiony="12"/>
-  <invisible texture = "10" positionx="26" positiony="12"/>
-  <invisible texture = "10" positionx="26" positiony="13"/>
+  <button texture = "3" positionx="19" positiony="13"/>
+  <button texture = "3" positionx="21" positiony="13"/>
+  <button texture = "3" positionx="23" positiony="13"/>
+  <button texture = "3" positionx="25" positiony="13"/>
 </Sec2Scr8.xml>
+<Sec2Scr8_Solved.xml>
+  <button texture = "4" positionx="19" positiony="13"/>
+  <button texture = "4" positionx="21" positiony="13"/>
+  <button texture = "4" positionx="23" positiony="13"/>
+  <button texture = "4" positionx="25" positiony="13"/>
+</Sec2Scr8_Solved.xml>
 <Sec2Scr9.xml>
 </Sec2Scr9.xml>
 <Sec2Scr10.xml>

@@ -290,6 +290,55 @@ int LevelManager::getTexture(int num) {
   return textNums[num];
 }
 
+void LevelManager::setButtonGreen(int spriteNum, int textNum) {
+  curSprites.at(spriteNum).setTexture(curTextures.at(4));
+}
+
+void LevelManager::resetButtons() {
+  for(int x = 0; x < curSprites.size(); x++) {
+    curSprites.at(x).setTexture(curTextures.at(3));; //draw screen's sprites
+  }
+}
+
 int LevelManager::getCurrentMap() {
   return curMap;
+}
+
+void LevelManager::switchPuzzleMap() {
+  section1[18] =  "../resources/xmlmaps/Sec2Scr8_Solved.xml";
+  const char* newScreenString = section1[18];
+  curMap = 18;
+
+  Screen newScreen(newScreenString);
+  int curTileWidth = newScreen.getTileWidth();
+  int curTileHeight =  newScreen.getTileHeight();
+  int curWidth = newScreen.getWidth();
+  int curHeight = newScreen.getHeight();
+  const char* curTileset = newScreen.getTileset();
+  curSprites = newScreen.getSprites();
+
+  if (!map.load(curTileset, sf::Vector2u(curTileWidth, curTileHeight),
+  newScreen.getTileString(), curWidth, curHeight)) { //vector is size of each tile in pixel
+      exit(0);
+    }
+
+  //load textures for new screen's sprites
+  std::string str { newScreenString };
+  std::string str2 ("Sec");
+  std::size_t found = str.find(str2);
+  std::string newStr = str.substr(found);
+	const char *c = newStr.c_str(); //name of file without path
+
+  textNums.clear();
+  tinyxml2::XMLElement* curElement = docu.FirstChildElement("section1")->FirstChildElement(c)->FirstChildElement();
+  int textNum;
+  int x = 0;
+  for(tinyxml2::XMLElement* e = curElement; e != NULL; e = e->NextSiblingElement()) {
+    textNum = e->IntAttribute("texture");
+    textNums.push_back(textNum);
+    curSprites.at(x).setTexture(curTextures.at(textNum));
+    x++;
+  }
+
+  curScreenString = newScreenString;
 }

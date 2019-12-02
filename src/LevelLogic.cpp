@@ -3,6 +3,8 @@
 #include <LevelManager.hpp>
 #include <iostream>
 
+std::vector<int> LevelLogic::buttonArray;
+
 LevelLogic::LevelLogic() {
 
 }
@@ -374,13 +376,10 @@ bool LevelLogic::checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir d
 }
 
 //collision of current screen's sprites
-bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager){
+bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp){
   std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
   bool thisRet = true;
-
-  int floorPuz [4] = {21,17,19,23}; //answer to the puzzle: x-value for switches 3,1,2,4
-  std::vector<int> buttonArray(4); //array for given answer
- // int buttonArray [4] = {};
+  int floorPuz [4] = {23,19,21,25}; //answer to the puzzle: x-value for switches 3,1,2,4
   int max_length = 4; //max number of button pushes
 
   switch(direction){
@@ -399,23 +398,35 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
             }
 
 			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
-				buttonArray.push_back(x);  //supposed to push current x onto array
-				std::cout << "button: " << buttonArray[0] << std::endl;  //print statements just for testing
-				std::cout << "button: " << buttonArray[1] << std::endl;
-				std::cout << "button: " << buttonArray[2] << std::endl;
-				std::cout << "button: " << buttonArray[3] << std::endl;
+        int what = checkSprites.at(x).getPosition().x/16;
+				buttonArray.push_back(what);  //supposed to push current x onto array
+				//print statements just for testing
+        for (int i = 0; i < buttonArray.size(); i++) {
+		         std::cout << "button " << i << " " << buttonArray.at(i) << std::endl;
+	      }
+        thisLevelManager.setButtonGreen(x, 4);
 				if(buttonArray.size() == max_length) {
-					for (int i = 0; i < 5; i++){ //loop thru both arrays to compare
-						if (buttonArray[i] != floorPuz[i]){
+					for (int i = 0; i < 4; i++){ //loop thru both arrays to compare
+						if (buttonArray.at(i) != floorPuz[i]){
 							std::cout << "Wrong" << std::endl;
+              buttonArray.clear();
+              thisLevelManager.resetButtons();
+              break;
 							//reset puzzle code here
 						}
 						else{
 							std::cout << "Solved!" << std::endl;
+              thisLevelManager.switchPuzzleMap();
+              thisApp.clear(sf::Color::Black);
+              thisLevelManager.drawMap(thisApp);
+              thisApp.display();
+              break;
 							//solved, remove lava from screen here
 						}
 					}
 				}
+        thisRet = false;
+        break;
 			}
 
             /*
@@ -449,6 +460,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               std::cout << "You found the real key!" << std::endl;
               break;
             }
+            if(thisLevelManager.getTexture(x) == 3) {
+              thisRet = false;
+              break;
+            }
             if(!moveObject(checkSprites.at(x), x, HumanView::DOWN, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;
@@ -469,6 +484,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               std::cout << "You found the real key!" << std::endl;
               break;
             }
+            if(thisLevelManager.getTexture(x) == 3) {
+              thisRet = false;
+              break;
+            }
             if(!moveObject(checkSprites.at(x), x, HumanView::LEFT, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;
@@ -487,6 +506,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 3) {
+              thisRet = false;
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::RIGHT, thisLevelManager)) { //if sprite moves, bird can move too

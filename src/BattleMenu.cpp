@@ -24,16 +24,14 @@ BattleMenu::BattleMenu(){
   width = 640.0;
   height = 640.0;
   itemIndex = 0;
-<<<<<<< HEAD
 
   result = -1;
 
 
   //create enemy object, right now setting type to ice owl
-=======
-  
+
+
   //create enemy object, for now, setting the type here
->>>>>>> c1af91feb4f093583e45dc672ad7e22139153ff1
   type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();

@@ -181,12 +181,14 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 128 && checkY == 176) { //section 1 water with white
         ret = false;
     }
+  /*
   if(checkX == 192 && checkY == 336) { //section 1 boss door
         ret = false;
     }
   if(checkX == 208 && checkY == 336) { //section 1 boss door
         ret = false;
     }
+  */
   if(checkX == 32 && checkY == 64) { //section 1 brick with line
         ret = false;
     }
@@ -234,6 +236,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
     }
 
   //section 2 no walk tiles
+  /*
   if(checkX == 288 && checkY == 224) { //lava
         ret = false;
     }
@@ -276,12 +279,14 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 288 && checkY == 208) {
         ret = false;
     }
+
   if(checkX == 448 && checkY == 336) { //section 2 boss door
         ret = false;
     }
   if(checkX == 464 && checkY == 336) { //section 2 boss door
         ret = false;
     }
+
   if(checkX == 352 && checkY == 64) { //section 2 fire brick
         ret = false;
     }
@@ -321,6 +326,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 720 && checkY == 336) { //section1 wall brick
         ret = false;
     }
+  */
 
 
   return ret;

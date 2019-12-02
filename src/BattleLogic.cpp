@@ -97,3 +97,77 @@ int BattleLogic::userDefend(int enemyDamage, int userDamage, bool defend){
     }
     return enemyDamage;
 }
+
+void BattleLogic::OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& showBattleBar, sf::Text& output){
+    //freeze the user 1 out of 4 times (can change for balance)
+    freeze = (rand()%4);
+    if (freeze == 0){
+        userDamage = 0;
+        userDefend = false;
+        item = false;
+        showBattleBar = false;
+        //logic.enemyDefend = false;
+        output.setString("The icy owl froze you!");
+    }
+    else{
+        output.setString(" ");
+    }
+}
+
+void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
+    //if the enemy attacked, it has a chance to poison you, dealing extra damage over 3 turns
+            //still getting bug: for some reason it always poisons you on the first turn, and 
+            //it will not poison you again after you are no longer poisoned.
+    //wasPoisonedLastTurn = false;
+    if (!enemyDefend && !poisoned){
+        poison = (rand()%3);
+        std::cout<<"poison"<<poison<<std::endl;
+        poisoned = false;
+        if (poison == 3){
+            poisoned = true;
+            turnsPoisoned = 0;
+        }
+        else{
+            output.setString(" ");
+        }
+    }
+    if (enemyDefend){
+        poisoned = false;
+    }
+    if (poisoned){
+        if (turnsPoisoned <= 2){
+            turnsPoisoned+=1;
+            enemyDamage += 5;
+            if (turnsPoisoned == 1){
+                output.setString("You have been poisoned!\nYou took 5 additional damage");
+            }
+            else{
+                output.setString("You are still poisoned!\nYou took 5 additional damage");
+            }
+            
+        }
+        else{
+            //wasPoisonedLastTurn = true;
+            poisoned = false;
+            output.setString("You are no longer poisoned!");
+            turnsPoisoned = 0;
+            
+        }
+        
+        
+    }
+    /**
+    if (!poisoned && !wasPoisonedLastTurn)
+    {
+        output.setString(" ");
+    }
+    */
+}
+
+void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend)
+{
+    confuse = (rand()%4);
+    
+    output.setString("The cat confused you!");
+    
+}

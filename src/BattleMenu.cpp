@@ -220,10 +220,7 @@ void BattleMenu::updateOutput()
     //for now, I think we only need to give the user instructions on navigating the menu once.
     if (!firstMove){
       instructions.setString(" ");
-      if (enemy.poisoned){
-        //enemySpecialMove.setString("You have been poisoned!\nYou took 5 additional damage.");
-
-  }
+      
     }
 
 
@@ -459,9 +456,6 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
 
-
-
-
     std::cout << "return" << std::endl;
 
     if(!showBattleBar && !showItem){
@@ -507,7 +501,6 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           item = false;
           invalid = false;
 
-          //inMenu = false;
 
           break;
         //item

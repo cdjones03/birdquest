@@ -22,7 +22,8 @@ public:
     void setEnemyType(EnemyType newType);
     EnemyType getEnemyType();
 
-    void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, bool& item, bool& showBattleBar);
+    void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, 
+        bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
     void snakeEffect();
     void catEffect();
     void owlEffect();
@@ -30,7 +31,11 @@ public:
     //int types;
     //BattleMenu bMenu;
     int freeze;
+    bool poisoned;
+    int turnsPoisoned;
 private:
     
+    bool wasPoisonedLastTurn;
+    int confuse;
     int poison;
 };

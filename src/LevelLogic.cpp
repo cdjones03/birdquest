@@ -134,7 +134,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
-  
+
   //section 1 no walk tiles
   if(checkX == 512 && checkY == 192) {
         ret = false;
@@ -391,14 +391,14 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
            //sprite to tile above
 
 		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 4) { //real key!
+            if(thisLevelManager.getTexture(x) == 2) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;
               break;
             }
 
-			if (thisLevelManager.getTexture(x) == 8) {  //8 = texture number for the button
+			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
 				buttonArray.push_back(x);  //supposed to push current x onto array
 				std::cout << "button: " << buttonArray[0] << std::endl;  //print statements just for testing
 				std::cout << "button: " << buttonArray[1] << std::endl;
@@ -443,7 +443,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos+16 == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 4) { //real key!
+            if(thisLevelManager.getTexture(x) == 2) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;
@@ -463,7 +463,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos-16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 4) { //real key!
+            if(thisLevelManager.getTexture(x) == 2) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;
@@ -483,7 +483,7 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos+16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 4) { //real key!
+            if(thisLevelManager.getTexture(x) == 2) { //real key!
               thisRet = false; //can change to true once key can be added to inventory
               //inventory.add(key)
               std::cout << "You found the real key!" << std::endl;

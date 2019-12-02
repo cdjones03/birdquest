@@ -78,8 +78,8 @@ void LevelManager::loadLevels() {
   const char* name = "../resources/info.xml";
   docu.LoadFile(name);
   tinyxml2::XMLElement *curElement = docu.FirstChildElement("section1")->FirstChildElement("textures");
-  int length = curElement->IntAttribute("length");
-  curElement = curElement->FirstChildElement("texture0");
+  //int length = curElement->IntAttribute("length");
+  curElement = curElement->FirstChildElement();
 
   int x1, y1, x2, y2;
   //cycle through textures in info.xml, add to array curTextures
@@ -216,7 +216,7 @@ int LevelManager::updateSprite(int x, int y) {
   int ret = -1;
   if(!curSprites.empty()) {
     for(int count = 0; count < curSprites.size(); count++) {
-      if(getTexture(count) == 12) {
+      if(getTexture(count) == 7) {
         if(curSprites[count].getPosition().x > 25*16-16) {
           velocity *= -1;
         }
@@ -226,13 +226,13 @@ int LevelManager::updateSprite(int x, int y) {
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           std::cout << "I See You!" << std::endl;
-          ret = 12;
+          ret = 7;
         }
 
         curSprites[count].move(velocity, 0);
       }
 
-      if(getTexture(count) == 14) {
+      if(getTexture(count) == 9) {
         if(curSprites[count].getPosition().x > 25*16-16) {
           velocity *= -1;
         }
@@ -242,7 +242,7 @@ int LevelManager::updateSprite(int x, int y) {
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           std::cout << "I See You!" << std::endl;
-          ret = 14;
+          ret = 9;
         }
 
         curSprites[count].move(velocity, 0);

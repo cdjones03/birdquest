@@ -92,13 +92,14 @@ int main(int argc, char** argv)
         otherMs = deltaMs;
         int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
+          //std::cout << enemyCheck << std::endl;
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
           //enemyCheck corresponds to the # of the texture in info.xml
-          //so if it's 12, its the owl
-          //if it's 14, its the snake
-          //i can add the others soon
+          //so if it's 7, its the owl
+          //if it's 9, its the snake
+          //etc.
         }
       }
 

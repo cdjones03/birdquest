@@ -24,14 +24,15 @@ BattleMenu::BattleMenu(){
   width = 640.0;
   height = 640.0;
   itemIndex = 0;
-
-
+  
+  
   //create enemy object, right now setting type to ice owl
-  type = Enemy::Owl;
+  type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
-
-  std::cout<<"type " << type<<std::endl;
+  
+  std::cout<<type<<std::endl;
+  
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
@@ -50,10 +51,8 @@ BattleMenu::BattleMenu(){
   item_menu_box.setOutlineThickness(4);
   item_menu_box.setOutlineColor(sf::Color::White);
 
-
-  //player's battle sprite
-
-  //player's battle sprite
+  
+  //player's battle sprite 
   if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   }
   birdSprite.setTexture(birdTexture);
@@ -75,7 +74,7 @@ BattleMenu::BattleMenu(){
   enemy_Text.setString("ENEMY");
   enemy_Text.setStyle(sf::Text::Bold);
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
-
+  
 
   // setup user and enemy HP text placement in battle menu
   userHP_Text.setFont(font);
@@ -99,7 +98,7 @@ BattleMenu::BattleMenu(){
   //setup text to display the enemy's special move based on its type (freeze, poison, etc.)
   enemySpecialMove.setFont(font);
   enemySpecialMove.setFillColor(sf::Color::Cyan);
-  enemySpecialMove.setCharacterSize(85);
+  enemySpecialMove.setCharacterSize(75);
   enemySpecialMove.setPosition(sf::Vector2f(width/2 - 250, height/2-25));
   enemySpecialMove.setString(" ");
 
@@ -195,7 +194,10 @@ BattleMenu:: ~BattleMenu(){
 //says what happened last turn, and updates the health bar for visual
 void BattleMenu::updateOutput()
 {
+  
+  
   if (firstMove){
+    //enemy.poisoned = false;
     outputText.setString("You are in Battle!");
   }
   if (showBattleBar){
@@ -205,8 +207,13 @@ void BattleMenu::updateOutput()
     //for now, I think we only need to give the user instructions on navigating the menu once.
     if (!firstMove){
       instructions.setString(" ");
+      if (enemy.poisoned){
+        //enemySpecialMove.setString("You have been poisoned!\nYou took 5 additional damage.");
+
+  }
     }
 
+    
     //instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
   }
   std::string userDamageString = std::to_string(userDamageStored);
@@ -229,6 +236,9 @@ void BattleMenu::updateOutput()
     // change later for variable width and height
     enemy_healthBar.setSize(sf::Vector2f(640/3.5 * enemyHP/100, 640/30));
   }
+  //if user is poisoned 
+  
+
   if (item){
     //for future, allow enemy to defend if you choose item, so he does no damage and you heal
     if (!logic.enemyDefend){
@@ -238,10 +248,10 @@ void BattleMenu::updateOutput()
       outputText.setString("You healed for 30 HP.\nEnemy tried to defend and did 0 damage.");
     }
 
-
+    
     }
   if (inMenu&&!firstMove&&!item){
-
+    
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random
       outputText.setString("Enemy blocked your attack.\nYou did "+userDamageString+" damage.");
@@ -256,8 +266,8 @@ void BattleMenu::updateOutput()
     if (!logic.enemyDefend && userDefend){
       outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDefendString+" damage.");
     }
-
-
+    
+    
   }
   /**
   if (type == Enemy::Owl && (enemy.freeze == 0)){
@@ -268,10 +278,10 @@ void BattleMenu::updateOutput()
   if (logic.whoWon(enemyHP, userHP) != 2){
     showMenu = false;
     enemySpecialMove.setString(" ");
-
+    
     std::cout<<"userHP"<<userHP<<" enemyHP"<<enemyHP<<" userDamage"<<userDamage<<" enemyDamage"<<enemyDamage<<std::endl;
-
-
+    
+    
     //if you won
     if (logic.whoWon(enemyHP, userHP) == 0){
       //sometimes we will win even though our HP is 0 or negative because we attacked the enemy first for
@@ -279,13 +289,13 @@ void BattleMenu::updateOutput()
       if (userHP <=0){
         userHP += enemyDamage;
       }
-
+    
       outputText.setString("You won!\nPress Enter to continue");
-
+    
     }
     //if you lost
     else if (logic.whoWon(enemyHP, userHP) == 1){
-
+      
       outputText.setString("You lost!\nPress Enter to continue");
 
     }
@@ -303,11 +313,11 @@ void BattleMenu::updateOutput()
       showBattleBar = false;
       firstMove = true;
       enemyHP = logic.resetHP(enemyHP);
-
+      
     }
-
-
-
+    
+    
+    
   }
 
 }
@@ -317,10 +327,13 @@ void BattleMenu::draw(sf::RenderWindow &window){
   window.draw(outputText);
 
   if (showMenu){
-
+    
     window.draw(instructions);
     updateOutput();
-    window.draw(enemySpecialMove);
+    if (!showBattleBar){
+      window.draw(enemySpecialMove);
+    }
+    
     window.draw(rectangle);
     window.draw(birdSprite);
     window.draw(bossSprite);
@@ -340,10 +353,6 @@ void BattleMenu::draw(sf::RenderWindow &window){
     if(showBattleBar){
       battleBar.update(window);
     }
-  }
-  else{
-
-  }
 
     if(showItem){
       window.draw(item_menu_box);
@@ -354,6 +363,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
       }
     }
   }
+}
 
 //functions to navigate through menu options
 void BattleMenu::moveUp(){
@@ -409,7 +419,7 @@ void BattleMenu::moveLeft(){
 }
 
 void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
-
+  
   if(event.type == sf::Event::KeyPressed)
   {
   //moving up,down, left, right to select options
@@ -432,9 +442,9 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
+    
 
-
-
+    
 
     std::cout << "return" << std::endl;
 
@@ -466,7 +476,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           break;
         //evade
         case 2:
-
+        
           //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
           //also, maybe get enemy to defend for a random amount of damage
           //still might adjust speed for the indicator
@@ -490,13 +500,13 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           //std::string enemyDamageString = std::to_string(enemyDamage);
           showAttack = false;
           std::cout << "Item pressed" << std::endl;
-
-
+          
+          
           break;
       }
-
+    
     }
-
+    
     else if (showItem){
 
       switch (getSelectedItem()){
@@ -545,118 +555,54 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     }
   //after pressing a button, make sure the enemy special effect is in place.
 
-
-  enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar);
   enemyDamage = logic.getEnemyDamage();
   enemyDamageStored = enemyDamage;
-
+  enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
+  
+  
   userDamageStored = userDamage;
   if (!showBattleBar){
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
   }
   }
-
-    if(!showBattleBar){
-
-    switch (getSelectedOption()){
-      //attack
-      case 0:
-        magic = false;
-        userDefend = false;
-        battleBar.indi.velocity = 1;
-        showAttack = true;
-        std::cout << "Attack pressed" << std::endl;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
-        break;
-      //magic
-      case 1:
-        magic = true;
-        userDefend = false;
-        //speed up battlebar
-        battleBar.indi.velocity = 2;
-        showAttack = true;
-        std::cout << "Magic pressed" << std::endl;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
-        break;
-      //evade
-      case 2:
-
-        //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
-        //also, maybe get enemy to defend for a random amount of damage
-        //still might adjust speed for the indicator
-        battleBar.indi.velocity = 1;
-        std::cout << "Defend pressed" << std::endl;
-        userDefend = true;
-        magic = false;
-        showBattleBar = true;
-        returnJustPressed = true;
-        item = false;
-
-        //inMenu = false;
-
-        break;
-      //item
-      case 3:
-        //healing with potion, need to fix
-        item = true;
-        userHP = logic.healItem(enemyDamage, userHP);
-        //std::string enemyDamageString = std::to_string(enemyDamage);
-        showAttack = false;
-        std::cout << "Item pressed" << std::endl;
-
-
-        break;
-    }
-  }
-
-}
-
+  
   //once we are in the battle bar view
   else if (showBattleBar && returnJustPressed){
-
+    //enemySpecialMove.setString(" ");
+    
     if(event.key.code == sf::Keyboard::Space){
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
       userDefendStored = userDamage;
-
+      
       enemyDamage = logic.userDefend(enemyDamage, userDamage, userDefend);
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
       userDamageStored = userDamage;
+      
       //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
-
-
-
-
-      //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
-
-
-
+            
+      
       battleBar.barPressed();
       showBattleBar = false;
       returnJustPressed = false;
-
+      
       userHP = logic.updateHP(enemyDamage, userHP);
-
+      
       enemyHP = logic.updateHP(userDamage, enemyHP);
-
+     
     }
   }
+  
   if (!invalid){
-
+    
     updateOutput();
   }
-
+  
   }
-
+}
 
 bool BattleMenu::isInMenu()
 {
   return inMenu;
 }
-
-//  updateOutput();

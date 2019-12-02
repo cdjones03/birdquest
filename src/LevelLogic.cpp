@@ -129,9 +129,13 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
       checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
     }
 
-  if(checkX < 0 && checkY < 0) {
+
+  if(checkX < 0 && checkY < 0) { // out of bounds! should not be needed
         ret = false;
     }
+
+  
+  //section 1 no walk tiles
   if(checkX == 512 && checkY == 192) {
         ret = false;
     }
@@ -145,6 +149,173 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
   if(checkX == 624 && checkY == 176) {
+        ret = false;
+    }
+  if(checkX == 144 && checkY == 192) { //section 1 outer tile
+        ret = false;
+    }
+  if(checkX == 144 && checkY == 48) { //section1 wall brick
+        ret = false;
+    }
+  if(checkX == 32 && checkY == 48) { //section1 wall brick
+        ret = false;
+    }
+  if(checkX == 176 && checkY == 80) { //section 1 sewer pipe
+        ret = false;
+    }
+  if(checkX == 192 && checkY == 80) { //section 1 sewer pipe
+        ret = false;
+    }
+  if(checkX == 208 && checkY == 80) { //section 1 sewer pipe
+        ret = false;
+    }
+  if(checkX == 0 && checkY == 144) { //section 1 water with white
+        ret = false;
+    }
+  if(checkX == 112 && checkY == 176) { //section 1 water with white
+        ret = false;
+    }
+  if(checkX == 128 && checkY == 176) { //section 1 water with white
+        ret = false;
+    }
+  if(checkX == 192 && checkY == 336) { //section 1 boss door
+        ret = false;
+    }
+  if(checkX == 208 && checkY == 336) { //section 1 boss door
+        ret = false;
+    }
+  if(checkX == 32 && checkY == 64) { //section 1 brick with line
+        ret = false;
+    }
+  if(checkX == 0 && checkY == 144) { //section 1 water corner
+        ret = false;
+    }
+  if(checkX == 176 && checkY == 144) { //section 1 sewer tile
+        ret = false;
+    }
+  if(checkX == 192 && checkY == 144) { //section 1 sewer tile
+        ret = false;
+    }
+  if(checkX == 208 && checkY == 144) { //section 1 sewer tile
+        ret = false;
+    }
+  if(checkX == 176 && checkY == 160) { //section1 water
+        ret = false;
+    }
+  if(checkX == 208 && checkY == 160) { //section 1 water
+        ret = false;
+    }
+  if(checkX == 32 && checkY == 48) { //section 1 fire
+        ret = false;
+    }
+  if(checkX == 64 && checkY == 80) { //section1 arch
+        ret = false;
+    }
+  if(checkX == 80 && checkY == 80) { //section 1 arch
+        ret = false;
+    }
+  if(checkX == 96 && checkY == 80) { //section 1 arch
+        ret = false;
+    }
+  if(checkX == 64 && checkY == 96) { //section 1 water out
+        ret = false;
+    }
+  if(checkX == 64 && checkY == 144) { //section 1 water out
+        ret = false;
+    }
+  if(checkX == 96 && checkY == 96) { //section 1 water out
+        ret = false;
+    }
+  if(checkX == 96 && checkY == 144) { //section 1 water out
+        ret = false;
+    }
+
+  //section 2 no walk tiles
+  if(checkX == 288 && checkY == 224) { //lava
+        ret = false;
+    }
+  if(checkX == 384 && checkY == 208) { //lava with fire
+        ret = false;
+    }
+  if(checkX == 400 && checkY == 304) { //lava with fire
+        ret = false;
+    }
+  if(checkX == 256 && checkY == 240) { //lava with fire
+        ret = false;
+    }
+  if(checkX == 256 && checkY == 272) { //lava with fire
+        ret = false;
+    }
+  if(checkX == 272 && checkY == 240) { //lava with fire
+        ret = false;
+    }
+  if(checkX == 496 && checkY == 16) { //section2 light brick
+        ret = false;
+    }
+  if(checkX == 496 && checkY == 32) { //section2 brick
+        ret = false;
+    }
+  if(checkX == 496 && checkY == 48) { //section 2 brick
+        ret = false;
+    }
+  if(checkX == 320 && checkY == 64) { //section 2 fire
+        ret = false;
+    }
+  if(checkX == 272 && checkY == 224) { //section 2 arch
+        ret = false;
+    }
+  if(checkX == 272 && checkY == 208) {
+        ret = false;
+    }
+  if(checkX == 304 && checkY == 208) {
+        ret = false;
+    }
+  if(checkX == 288 && checkY == 208) {
+        ret = false;
+    }
+  if(checkX == 448 && checkY == 336) { //section 2 boss door
+        ret = false;
+    }
+  if(checkX == 464 && checkY == 336) { //section 2 boss door
+        ret = false;
+    }
+  if(checkX == 352 && checkY == 64) { //section 2 fire brick
+        ret = false;
+    }
+  if(checkX == 320 && checkY == 64) { //section 2 fire brick
+        ret = false;
+    }
+  if(checkX == 288 && checkY == 224) { //lava fire
+        ret = false;
+    }
+  if(checkX == 496 && checkY == 32) { //brick
+        ret = false;
+    }
+
+  //section 3 no walk tiles
+
+  if(checkX == 528 && checkY == 160) { //arch
+        ret = false;
+    }
+  if(checkX == 528 && checkY == 176) {
+        ret = false;
+    }
+  if(checkX == 560 && checkY == 176) {
+        ret = false;
+    }
+  if(checkX == 528 && checkY == 192) { //water with dark spot
+        ret = false;
+    }
+  if(checkX == 560 && checkY == 176) { //arch
+        ret = false;
+    }
+  if(checkX == 650 && checkY == 160) {
+        ret = false;
+    }
+  if(checkX == 704 && checkY == 336) { //section 1 outer tile
+        ret = false;
+    }
+  if(checkX == 720 && checkY == 336) { //section1 wall brick
         ret = false;
     }
 

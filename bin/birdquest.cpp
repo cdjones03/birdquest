@@ -25,7 +25,6 @@ int main(int argc, char** argv)
   const int windowPixelWidth = windowTileWidth*16;
   const int windowPixelHeight = windowTileHeight*16;
   const int moveVal = 32;
-  bool view = false;
   int lastX = 352;
   int lastY = 352;
   int userHP;
@@ -82,15 +81,6 @@ int main(int argc, char** argv)
   keySprite.setTexture(keyTexture);
   keySprite.setPosition(288, 400);
   keySprite.setScale(0.5, 0.5);
-
-
-  sf::View view1(sf::FloatRect(150.f, 150.f, 250.f, 250.f));
-  //App.setView(view1);
-
-  sf::RectangleShape test;
-  test.setPosition(0, 240);
-  test.setSize(sf::Vector2f(150,100));
-  //test.setFillColor
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -220,8 +210,6 @@ int main(int argc, char** argv)
 
       //Display
       App.clear(sf::Color::Black);
-      if(view)
-        App.setView(view1);
 
       //draw map if not in battle
       if (!inBattleMenu){

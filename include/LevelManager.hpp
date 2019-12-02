@@ -22,6 +22,7 @@ public:
   void moveSprite(int spriteNum, int moveX, int moveY);
   int updateSprite(int x, int y);
   int getTexture(int num);
+  int getCurrentMap();
 
 private:
 
@@ -33,6 +34,7 @@ private:
   tinyxml2::XMLDocument docu;
   int velocity = 16;
   std::vector<int> textNums;
+  int curMap;
 
 };
 

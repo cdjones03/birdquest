@@ -21,6 +21,7 @@ void LevelManager::loadLevels() {
 
   // create the tilemap from the level definition
   curScreenString = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
+  curMap = 0;
   Screen screen0(curScreenString);
   int tileWidth = screen0.getTileWidth();
   int tileHeight = screen0.getTileHeight();
@@ -156,6 +157,7 @@ bool LevelManager::switchMap(int mapDir) {
   }
 
   const char* newScreenString = section1[newMap];
+  curMap = newMap;
 
   Screen newScreen(newScreenString);
   int curTileWidth = newScreen.getTileWidth();
@@ -254,4 +256,8 @@ int LevelManager::updateSprite(int x, int y) {
 
 int LevelManager::getTexture(int num) {
   return textNums[num];
+}
+
+int LevelManager::getCurrentMap() {
+  return curMap;
 }

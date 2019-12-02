@@ -228,7 +228,7 @@ int LevelManager::updateSprite(int x, int y) {
           std::cout << "I See You!" << std::endl;
           ret = 7;
         }
-
+        curSprites[count].move(velocity, 0);
       }
 
       if(getTexture(count) == 9) {
@@ -243,6 +243,7 @@ int LevelManager::updateSprite(int x, int y) {
           std::cout << "I See You!" << std::endl;
           ret = 9;
         }
+        curSprites[count].move(velocity, 0);
       }
 
       if(getTexture(count) == 11) {
@@ -257,6 +258,7 @@ int LevelManager::updateSprite(int x, int y) {
           std::cout << "I See You!" << std::endl;
           ret = 11;
         }
+        curSprites[count].move(velocity, 0);
       }
 
       if(getTexture(count) == 13) {
@@ -271,9 +273,10 @@ int LevelManager::updateSprite(int x, int y) {
           std::cout << "I See You!" << std::endl;
           ret = 13;
         }
+        curSprites[count].move(velocity, 0);
       }
 
-        curSprites[count].move(velocity, 0);
+
 
 
     }

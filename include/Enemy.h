@@ -22,9 +22,8 @@ public:
 
     void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend,
         bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
-    void snakeEffect();
-    void catEffect();
-    void owlEffect();
+    void setText(sf::Text& name);
+
     BattleLogic logic;
     //int types;
     //BattleMenu bMenu;

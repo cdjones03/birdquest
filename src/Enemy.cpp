@@ -40,6 +40,27 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
     }
 }
 
+void Enemy::setText(sf::Text& name){
+    //sets the Text to display the enemy's name in battleMenu based on what type it is
+    switch(type){
+    case Regular:
+      name.setString("ENEMY");
+      break;
+    case IceOwl:
+      name.setString("Ice Owl");
+      break;
+    case Snake:
+      name.setString("Snake Boss");
+      break;
+    case Cat: 
+      name.setString("Cat Boss");
+      break;
+    case FinalBoss:
+      name.setString("Malphas");
+      break;
+  }
+}
+
 Enemy::EnemyType Enemy::getEnemyType()
 {
     return type;

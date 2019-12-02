@@ -77,9 +77,9 @@ BattleMenu::BattleMenu(){
   enemy_Text.setFont(font);
   enemy_Text.setFillColor(sf::Color::White);
   enemy_Text.setCharacterSize(75);
-  enemy_Text.setString("ENEMY");
   enemy_Text.setStyle(sf::Text::Bold);
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
+  enemy.setText(enemy_Text);
 
 
   // setup user and enemy HP text placement in battle menu

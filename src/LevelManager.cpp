@@ -121,7 +121,6 @@ void LevelManager::loadLevels() {
 
 
 void LevelManager::drawMap(sf::RenderWindow &window) {
-  std::cout << " here " << curMap << std::endl;
   window.draw(map);
   if(!curSprites.empty()) {
     for(int x = 0; x < curSprites.size(); x++) {
@@ -406,15 +405,15 @@ void LevelManager::beatFirstSection() {
     section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";
   }
 }
-void LevelManager::beatSecondSection() {
 
+void LevelManager::beatSecondSection() {
   secondSectionDone = true;
   if(firstSectionDone && secondSectionDone && thirdSectionDone) {
     section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";
   }
 }
-void LevelManager::beatThirdSection() {
 
+void LevelManager::beatThirdSection() {
   thirdSectionDone = true;
   if(firstSectionDone && secondSectionDone && thirdSectionDone) {
     section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";

@@ -19,7 +19,6 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
     switch(type){
         case Regular:
             break;
-<<<<<<< HEAD
         case IceOwl:
         //freeze the user 1 out of 4 times (can change for balance)
             freeze = (rand()%4);
@@ -78,14 +77,14 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
                 output.setString(" ");
             }
 
-=======
+        /*
         case Owl:
             logic.OwlBoss(userDamage, userDefend, item, showBattleBar, output);
             break;
         case Snake:
-            logic.SnakeBoss(enemyDamage, output);       
->>>>>>> 1256301360721bc0e0ff16365dffd2d9e2ee3588
+            logic.SnakeBoss(enemyDamage, output);
             break;
+        */
         case Cat:
         //actually going to switch enemy and user Damage randomly
             logic.CatBoss(output, userDamage, item, userDefend);

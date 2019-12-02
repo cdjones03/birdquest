@@ -132,8 +132,6 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
       checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
     }
 
-  std::cout << checkX << " " << checkY << std::endl;
-
 
   if(checkX < 0 && checkY < 0) { // out of bounds! should not be needed
         ret = false;
@@ -614,15 +612,6 @@ bool LevelLogic::checkForKey(int checkNum, LevelManager &thisLevelManager) {
   return false;
 }
 
-/*
-bool LevelLogic::checkForRealKey() {
-  if(LevelManager.getTexture(x) == 4) { //real key!
-    thisRet = false; //can change to true once key can be added to inventory
-    //inventory.add(key)
-    std::cout << "You found the real key!" << std::endl;
-    break;
-}
-*/
 
 //Switch map IF
 //going left -> xpos >= moveVal; i.e. if moveVal = 32, if pos <= 32 switch to left map

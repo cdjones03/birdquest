@@ -110,6 +110,13 @@ BattleMenu::BattleMenu(){
   instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
   instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
 
+  item_instructions.setFont(font);
+  item_instructions.setFillColor(sf::Color::Magenta);
+  item_instructions.setStyle(sf::Text::Italic);
+  item_instructions.setCharacterSize(55);
+  item_instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
+  item_instructions.setString("Use the arrow keys to navigate the options,\nPress backspace to return to menu.");
+
   // red health bar for player in battle menu
   remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));
   remainingBar.setFillColor(sf::Color::Red);
@@ -355,6 +362,7 @@ void BattleMenu::draw(sf::RenderWindow &window){
     }
 
     if(showItem){
+      window.draw(item_instructions);
       window.draw(item_menu_box);
 
       int j = 0;

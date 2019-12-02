@@ -39,6 +39,9 @@ public:
 
 	Inventory inventory;
 	sf::Text itemText[maxItemOptions];
+
+	sf::Sprite keySprite;
+	
 private:
 	
 	std::string HPstr;
@@ -49,7 +52,7 @@ private:
 	sf::RectangleShape border;
 	sf::RectangleShape itemBorder;
 	sf::Texture keyTexture;
-	sf::Sprite keySprite;
+	
 	BattleMenu bMenu;
 	sf::Texture birdTexture;
 	sf::Sprite birdSprite;

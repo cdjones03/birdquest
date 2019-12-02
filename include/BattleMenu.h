@@ -88,6 +88,7 @@ private:
     sf::Text enemyHP_Text;
     
     sf::Text instructions;
+    sf::Text item_instructions;
     sf::Text enemy_Text;
     sf::RectangleShape healthBar;
     sf::RectangleShape remainingBar;

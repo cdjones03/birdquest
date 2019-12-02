@@ -14,7 +14,7 @@ PauseMenu::PauseMenu(float width, float height){
 	if (!font.loadFromFile("../resources/game_over.ttf")) {
   	//error
   	}
-  	if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(3, 3, 32, 32))){
+  	if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(0, 0, 16, 16))){
   	}
 
   	if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
@@ -115,6 +115,11 @@ PauseMenu::PauseMenu(float width, float height){
 	itemText[4].setCharacterSize(80);
   	itemText[4].setString("-Return-");
   	itemText[4].setPosition(sf::Vector2f(width/1.4, height/1.18-55));
+
+  	keySprite.setTexture(keyTexture);
+  	keySprite.setScale(2, 2);
+	//keySprite.setPosition(550,320);
+
   }
 
 PauseMenu:: ~PauseMenu(){
@@ -155,8 +160,6 @@ void PauseMenu::draw(sf::RenderWindow &window){
 //	itemText[itemCount].setString(inventory[itemCount]);
 //	itemCount++;
 
-//	keySprite.setTexture(keyTexture);
-//	keySprite.setPosition(550,320);
 //}
 
 void PauseMenu::moveUp(){
@@ -202,10 +205,13 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 				//item
 				case 0:
 					std::cout << "Item Pressed" << std::endl;
+
 					itemText[itemIndex].setFillColor(sf::Color::White);
 					itemIndex = 0;
 					itemText[itemIndex].setFillColor(sf::Color::Red);
+
 					inItem = true;
+
 					break;
 
 				//save

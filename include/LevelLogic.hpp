@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <HumanView.hpp>
 #include <LevelManager.hpp>
+#include "Inventory.h"
 
 class LevelLogic {
 
@@ -15,6 +16,8 @@ private:
   static std::vector<int> buttonArray; //array for given answer
   //const static int max_length = 4; //max number of button pushes
 
+
+
 public:
 
   LevelLogic();
@@ -24,6 +27,7 @@ public:
   static bool checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp);
 
   static bool checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
+
 };
 
 #endif

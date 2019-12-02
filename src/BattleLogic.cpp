@@ -164,9 +164,10 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
     */
 }
 
-void BattleLogic::CatBoss(sf::Text& output)
+void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend)
 {
     confuse = (rand()%4);
+    
     output.setString("The cat confused you!");
     
 }

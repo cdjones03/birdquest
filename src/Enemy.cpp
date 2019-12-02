@@ -26,8 +26,8 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             logic.SnakeBoss(enemyDamage, output);       
             break;
         case Cat:
-        //probably going to make this change the damage you dealt instead of the indicator
-            logic.CatBoss(output, userDamage, item);
+        //actually going to switch enemy and user Damage randomly
+            logic.CatBoss(output, userDamage, item, userDefend);
             break;
 
         case FinalBoss:

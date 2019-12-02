@@ -29,11 +29,8 @@ BattleMenu::BattleMenu(){
   item_used = -1;
 
 
-  //create enemy object, right now setting type to ice owl
-
-
   //create enemy object, for now, setting the type here
-  type = Enemy::Cat;
+  type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
 
@@ -65,21 +62,21 @@ BattleMenu::BattleMenu(){
   birdSprite.setPosition(415, 405);
   birdSprite.setScale(2.0, 2.0);
 
-  if(!bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){
-  }
+  // name and texture for enemy sprite
+  enemy_Text.setFont(font);
+  enemy_Text.setFillColor(sf::Color::White);
+  enemy_Text.setCharacterSize(75);
+  enemy_Text.setStyle(sf::Text::Bold);
+  enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
+  enemy.setEnemyDisplay(enemy_Text, bossTexture);
+  
   bossSprite.setTexture(bossTexture);
   bossSprite.setPosition(100, 30);
   bossSprite.setScale(2.0, 2.0);
 
 
 
-  // name for enemy sprite
-  enemy_Text.setFont(font);
-  enemy_Text.setFillColor(sf::Color::White);
-  enemy_Text.setCharacterSize(75);
-  enemy_Text.setStyle(sf::Text::Bold);
-  enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
-  enemy.setText(enemy_Text);
+  
 
 
   // setup user and enemy HP text placement in battle menu

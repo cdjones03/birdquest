@@ -22,17 +22,15 @@ public:
 
     void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend,
         bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
-    void setText(sf::Text& name);
+    void setEnemyDisplay(sf::Text& name, sf::Texture& texture);
+    void setSprite(sf::Sprite& sprite);
 
     BattleLogic logic;
     //int types;
     //BattleMenu bMenu;
-    int freeze;
-    bool poisoned;
-    int turnsPoisoned;
+    
 private:
-
-    bool wasPoisonedLastTurn;
-    int confuse;
-    int poison;
+    //can delete later
+    //int turnsPoisoned;
+    int temp;
 };

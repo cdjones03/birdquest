@@ -119,16 +119,20 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
             //still getting bug: for some reason it always poisons you on the first turn, and 
             //it will not poison you again after you are no longer poisoned.
     //wasPoisonedLastTurn = false;
-    if (!enemyDefend){
+    if (!enemyDefend && !poisoned){
         poison = (rand()%3);
         std::cout<<"poison"<<poison<<std::endl;
+        poisoned = false;
         if (poison == 3){
             poisoned = true;
+            turnsPoisoned = 0;
         }
         else{
-            poisoned = false;
             output.setString(" ");
         }
+    }
+    if (enemyDefend){
+        poisoned = false;
     }
     if (poisoned){
         if (turnsPoisoned <= 2){
@@ -152,8 +156,17 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output){
         
         
     }
+    /**
     if (!poisoned && !wasPoisonedLastTurn)
     {
         output.setString(" ");
     }
+    */
+}
+
+void BattleLogic::CatBoss(sf::Text& output)
+{
+    confuse = (rand()%4);
+    output.setString("The cat confused you!");
+    
 }

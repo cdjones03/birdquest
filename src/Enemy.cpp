@@ -27,8 +27,7 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             break;
         case Cat:
         //probably going to make this change the damage you dealt instead of the indicator
-            confuse = (rand()%4);
-            output.setString("The cat confused you!");
+            logic.CatBoss(output, userDamage, item);
             break;
 
         case FinalBoss:

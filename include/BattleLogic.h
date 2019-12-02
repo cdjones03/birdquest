@@ -21,6 +21,8 @@ public:
 
     void OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& showBattleBar, sf::Text& output);
     void SnakeBoss(int& enemyDamage, sf::Text& output);
+    void CatBoss(sf::Text& output, int& userDamage, bool&item);
+    void FinalBoss();
 
     bool enemyDefend;
     //add a poison attack, that will cause consistent damage.
@@ -34,6 +36,7 @@ private:
     int defend;
     int damage;
     int poison;
+    int confuse;
     bool poisoned;
     bool wasPoisonedLastTurn;
     int turnsPoisoned;

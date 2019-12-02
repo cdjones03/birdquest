@@ -33,7 +33,7 @@ BattleMenu::BattleMenu(){
 
 
   //create enemy object, for now, setting the type here
-  type = Enemy::Owl;
+  type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
 

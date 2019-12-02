@@ -22,7 +22,7 @@
    <!--<malaphas15 />-->
  </textures>
  <Sec1Scr0_D_Entrance_simple.xml>
-   <sprite1 texture="7" positionx="20" positiony="20"/>
+   <sprite1 texture="9" positionx="20" positiony="20"/>
  </Sec1Scr0_D_Entrance_simple.xml>
  <Sec1Scr1.xml>
   <sprite texture="5" positionx="20" positiony="11"/>
@@ -102,6 +102,7 @@
 <Sec1Scr10.xml>
 </Sec1Scr10.xml>
 <Sec2Scr1.xml>
+   <sprite1 texture="11" positionx="20" positiony="20"/>
 </Sec2Scr1.xml>
 <Sec2Scr2.xml>
   <box texture = "5" positionx="21" positiony="27"/>

@@ -58,6 +58,7 @@ public:
 
     int getResult();
     void resetResult();
+    int getType();
 
     int item_used;
 

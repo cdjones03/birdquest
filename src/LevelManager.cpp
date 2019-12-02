@@ -14,6 +14,10 @@ Should make an array of screens per section of temple
 
 LevelManager::LevelManager(){
 
+  firstSectionDone = false;
+  secondSectionDone = false;
+  thirdSectionDone = false;
+
   //load textures for section
   const char* name = "../resources/info.xml";
   org_doc.LoadFile(name);
@@ -74,7 +78,7 @@ LevelManager::LevelManager(){
   section1[32] = "../resources/xmlmaps/Sec3Scr10.xml";
   section1[33] = "../resources/xmlmaps/Sec3Scr11.xml";
 
-  //section1[34] = "../resources/xmlmaps/Sec4Scr1.xml"; //final boss room
+  section1[34] = "../resources/xmlmaps/Sec4Scr1.xml"; //final boss room
 }
 
 //should be done once per branch of temple; total of 3 (?) times
@@ -117,6 +121,7 @@ void LevelManager::loadLevels() {
 
 
 void LevelManager::drawMap(sf::RenderWindow &window) {
+  std::cout << " here " << curMap << std::endl;
   window.draw(map);
   if(!curSprites.empty()) {
     for(int x = 0; x < curSprites.size(); x++) {
@@ -388,4 +393,40 @@ void LevelManager::deleteSprite(){
   cur_doc.SaveFile("../resources/cur_info.xml");
   curSprites.pop_back();
 
+}
+
+void LevelManager::resetToStart(){
+  curScreenString = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple.xml";
+  loadLevels();
+}
+
+void LevelManager::beatFirstSection() {
+  firstSectionDone = true;
+  if(firstSectionDone && secondSectionDone && thirdSectionDone) {
+    section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";
+  }
+}
+void LevelManager::beatSecondSection() {
+
+  secondSectionDone = true;
+  if(firstSectionDone && secondSectionDone && thirdSectionDone) {
+    section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";
+  }
+}
+void LevelManager::beatThirdSection() {
+
+  thirdSectionDone = true;
+  if(firstSectionDone && secondSectionDone && thirdSectionDone) {
+    section1[0] = "../resources/xmlmaps/Sec1Scr0_D_Entrance_simple_Open.xml";
+  }
+}
+
+void LevelManager::foundFirstKey() {
+  section1[6] =  "../resources/xmlmaps/Sec1Scr6_Open.xml";
+}
+void LevelManager::foundSecondKey() {
+  section1[17] =  "../resources/xmlmaps/Sec2Scr7_Open.xml";
+}
+void LevelManager::foundThirdKey() {
+  section1[29] =  "../resources/xmlmaps/Sec3Scr7_Open.xml";
 }

@@ -3,6 +3,7 @@
 
 #include <LevelManager.hpp>
 #include <LevelManager.fwd.hpp>
+#include "Inventory.h"
 
 
 class HumanView {
@@ -12,7 +13,7 @@ public:
   HumanView();
   enum Dir { UP=0, DOWN=1, LEFT=2, RIGHT=3 };
 
-  void movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager);
+  void movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, Inventory &thisInventory);
 
 private:
 

@@ -2,12 +2,13 @@
 #include <HumanView.hpp>
 #include <LevelLogic.hpp>
 #include <iostream>
+#include "Inventory.h"
 
 HumanView::HumanView(){
 
 }
 
-void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager) {
+void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Dir direction, LevelManager &thisLevelManager, Inventory &thisInventory) {
   int x = thisSprite.getPosition().x;
   int y = thisSprite.getPosition().y;
   sf::Clock clock;
@@ -16,7 +17,7 @@ void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Di
   switch(direction) {
     case UP :
     if(y >= moveVal) {
-      if (LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp)) { //true = no collision
+      if (LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp, thisInventory)) { //true = no collision
 
         while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x, y-16, direction, thisLevelManager))
         {
@@ -53,7 +54,7 @@ void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Di
 
     case DOWN :
     if(y < windowPixelHeight-moveVal){
-      if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp)) {
+      if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp, thisInventory)) {
 
         while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x, y+16, direction, thisLevelManager))
         {
@@ -90,7 +91,7 @@ void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Di
 
     case LEFT :
       if(x >= moveVal) {
-        if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp)) {
+        if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp, thisInventory)) {
 
           while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x-16, y, direction, thisLevelManager))
           {
@@ -128,7 +129,7 @@ void HumanView::movePlayer(sf::RenderWindow& thisApp, sf::Sprite &thisSprite, Di
 
     case RIGHT :
       if(x < windowPixelWidth-moveVal) {
-        if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp)) {//if moving right, and tile to right is water, won't allow movement
+        if(LevelLogic::checkTileCollisionForPlayer(x, y, direction, thisLevelManager) && LevelLogic::checkSpriteCollision(x, y, direction, thisLevelManager, thisApp, thisInventory)) {//if moving right, and tile to right is water, won't allow movement
 
         while(LevelLogic::checkForIceTile(x, y, direction, thisLevelManager) && LevelLogic::checkTileCollisionForPlayer(x+16, y, direction, thisLevelManager))
         {

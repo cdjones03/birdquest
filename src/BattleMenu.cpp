@@ -37,7 +37,7 @@ BattleMenu::BattleMenu(){
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
 
-  std::cout<<type<<std::endl;
+  std::cout<<" HERE " << type << " HERE " <<std::endl;
 
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
@@ -647,4 +647,9 @@ int BattleMenu::getResult()
 void BattleMenu::resetResult()
 {
   result = -1;
+}
+
+int BattleMenu::getType()
+{
+  return type;
 }

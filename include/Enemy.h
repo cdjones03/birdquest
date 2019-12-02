@@ -3,7 +3,7 @@
 
 //For different enemyies, we want different status effects:
 //Snake: lingereing poison damage
-//Cat:  confusion aka unpredictable damage 
+//Cat:  confusion aka unpredictable damage
 //owl: Freezes a random option for a turn
 
 //final boss: does all 3 status effects
@@ -14,13 +14,13 @@ public:
     ~Enemy() = default;
     enum EnemyType
     {
-        Regular, Owl, Snake, Cat, FinalBoss
+        Regular, Snake, Cat, IceOwl, FinalBoss
     };
     EnemyType type;
     void setEnemyType(EnemyType newType);
     EnemyType getEnemyType();
 
-    void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, 
+    void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend,
         bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
     void snakeEffect();
     void catEffect();
@@ -32,7 +32,7 @@ public:
     bool poisoned;
     int turnsPoisoned;
 private:
-    
+
     bool wasPoisonedLastTurn;
     int confuse;
     int poison;

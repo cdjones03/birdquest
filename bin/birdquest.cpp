@@ -50,9 +50,6 @@ int main(int argc, char** argv)
   // Create inventory object
   Inventory inventory;
 
-  // Remains true untill item is picked up
-  bool itemView = true;
-
   // create the tilemap from the level definition
   LevelManager levelManager;
   levelManager.loadLevels();
@@ -69,18 +66,10 @@ int main(int argc, char** argv)
   }
 
   sf::Sprite birdSprite;
-  birdSprite.setPosition(200, 624); //start at bottom of hub
+  birdSprite.setPosition(lastX, lastY); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
-
-  sf::Texture keyTexture;
-  if(!keyTexture.loadFromFile("../resources/spritesheets/key.png", sf::IntRect(0, 0, 16, 16))){
-  }
-  sf::Sprite keySprite;
-  keySprite.setTexture(keyTexture);
-  keySprite.setPosition(288, 400);
-  keySprite.setScale(1, 1);
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -115,15 +104,14 @@ int main(int argc, char** argv)
       battleMenu.item_3 = inventory.itemArray[3];
 
 
-
-      if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y && itemView == true){
-        inventory.addItem("Key");
+      /*
+      if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y){
         inventory.addItem("Potion");
         inventory.addItem("Potion");
         inventory.addItem("Potion");
         inventory.addItem("Potion");
-        itemView = false;
       }
+      */
 
       // process events
       sf::Event Event;
@@ -154,7 +142,7 @@ int main(int argc, char** argv)
           pauseMenu.itemText[3].setString(inventory.itemArray[3]);
 
           if (inventory.itemArray[0] == "Key"){
-            
+
             pauseMenu.keySprite.setPosition(550,320);
           }
 
@@ -174,22 +162,22 @@ int main(int argc, char** argv)
           if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 48, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-            humanView.movePlayer(App, birdSprite, HumanView::UP, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::UP, levelManager, inventory);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 0, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-            humanView.movePlayer(App, birdSprite, HumanView::DOWN, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::DOWN, levelManager, inventory);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(48, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-            humanView.movePlayer(App, birdSprite, HumanView::LEFT, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::LEFT, levelManager, inventory);
           }
           else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             birdTexture.loadFromFile("../resources/spritesheets/BirdKnight_spritesheet.png", sf::IntRect(0, 16, 16, 16));
 			      birdSprite.setTexture(birdTexture);
-            humanView.movePlayer(App, birdSprite, HumanView::RIGHT, levelManager);
+            humanView.movePlayer(App, birdSprite, HumanView::RIGHT, levelManager, inventory);
           }
 
 
@@ -201,7 +189,7 @@ int main(int argc, char** argv)
           battleMenu.processInputs(Event, App);
 
           inventory.useItem(battleMenu.item_used);
-        
+
           if (!battleMenu.inMenu) {
             inBattleMenu = false;
           }
@@ -231,10 +219,6 @@ int main(int argc, char** argv)
         levelManager.drawMap(App);
         App.draw(birdSprite);
 
-        if (itemView == true){
-          App.draw(keySprite);
-        }
-
         //draw pauseMenu
         if (inPauseMenu && pauseMenu.inPause){
           pauseMenu.draw(App);
@@ -245,13 +229,49 @@ int main(int argc, char** argv)
       else if (inBattleMenu && battleMenu.isInMenu()){
         battleMenu.draw(App);
         if(battleMenu.getResult() == 0) {
-          std::cout << "      you won" << std::endl;
+          std::cout << "      you won   " << battleMenu.getType()<< std::endl;
+          switch(battleMenu.getType()) {
+            case 0:
+              break;
+            case 1:
+              levelManager.beatFirstSection();
+              break;
+            case 2:
+              levelManager.beatSecondSection();
+              break;
+            case 3:
+              levelManager.beatThirdSection();
+              break;
+            case 4:
+              //display end screen
+              break;
+          }
           battleMenu.resetResult();
           levelManager.deleteSprite();
         }
         else if(battleMenu.getResult() == 1) {
           std::cout << "      you lost" << std::endl;
+          int map = levelManager.getCurrentMap();
+          if(map >= 0 && map <= 10) {
+            levelManager.resetToStart();
+          }
+          else if(map >= 11 && map <= 22) {
+            levelManager.resetToStart();
+          }
+          else if(map >= 23 && map <= 33) {
+            levelManager.resetToStart();
+          }
+          else if(map == 34) {
+            levelManager.resetToStart();
+          }
+
           battleMenu.resetResult();
+          App.clear(sf::Color::Black);
+          birdSprite.setPosition(352, 352);
+          //levelManager.resetToStart();
+          levelManager.drawMap(App);
+          App.draw(birdSprite);
+          App.display();
         }
       }
 

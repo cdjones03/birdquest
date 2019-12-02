@@ -132,6 +132,8 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
       checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
     }
 
+  std::cout << checkX << " " << checkY << std::endl;
+
 
   if(checkX < 0 && checkY < 0) { // out of bounds! should not be needed
         ret = false;
@@ -181,14 +183,14 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 128 && checkY == 176) { //section 1 water with white
         ret = false;
     }
-  /*
+
   if(checkX == 192 && checkY == 336) { //section 1 boss door
         ret = false;
     }
   if(checkX == 208 && checkY == 336) { //section 1 boss door
         ret = false;
     }
-  */
+
   if(checkX == 32 && checkY == 64) { //section 1 brick with line
         ret = false;
     }
@@ -236,7 +238,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
     }
 
   //section 2 no walk tiles
-  /*
+
   if(checkX == 288 && checkY == 224) { //lava
         ret = false;
     }
@@ -326,7 +328,14 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 720 && checkY == 336) { //section1 wall brick
         ret = false;
     }
-  */
+
+  if(checkX == 208 && checkY == 32) { //final boss door
+        ret = false;
+    }
+  if(checkX == 224 && checkY == 32) { //final boss door
+        ret = false;
+    }
+
 
 
   return ret;
@@ -383,7 +392,7 @@ bool LevelLogic::checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir d
 }
 
 //collision of current screen's sprites
-bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp){
+bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp, Inventory &thisInventory){
   std::vector<sf::Sprite> checkSprites = thisLevelManager.getSprites();
   bool thisRet = true;
   int floorPuz [4] = {23,19,21,25}; //answer to the puzzle: x-value for switches 3,1,2,4
@@ -397,56 +406,52 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
            //sprite to tile above
 
 		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 2) { //real key!
-              thisRet = false; //can change to true once key can be added to inventory
-              //Inventory.addItem("Key");
-              std::cout << "You found the real key!" << std::endl;
-
+            if(checkForKey(x, thisLevelManager)) {
               break;
             }
 
-			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
-        int what = checkSprites.at(x).getPosition().x/16;
-				buttonArray.push_back(what);  //supposed to push current x onto array
-				//print statements just for testing
-        for (int i = 0; i < buttonArray.size(); i++) {
-		         std::cout << "button " << i << " " << buttonArray.at(i) << std::endl;
-	      }
-        thisLevelManager.setButtonGreen(x, 4);
-				if(buttonArray.size() == max_length) {
-					for (int i = 0; i < 4; i++){ //loop thru both arrays to compare
-						if (buttonArray.at(i) != floorPuz[i]){
-							std::cout << "Wrong" << std::endl;
-              buttonArray.clear();
-              thisLevelManager.resetButtons();
-              break;
-							//reset puzzle code here
-						}
-						else{
-							std::cout << "Solved!" << std::endl;
-              thisLevelManager.switchPuzzleMap();
-              thisApp.clear(sf::Color::Black);
-              thisLevelManager.drawMap(thisApp);
-              thisApp.display();
-              break;
-							//solved, remove lava from screen here
-						}
-					}
-				}
-        thisRet = false;
-        break;
-			}
+      			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
+              int what = checkSprites.at(x).getPosition().x/16;
+      				buttonArray.push_back(what);  //supposed to push current x onto array
+      				//print statements just for testing
+              for (int i = 0; i < buttonArray.size(); i++) {
+      		         std::cout << "button " << i << " " << buttonArray.at(i) << std::endl;
+      	      }
+              thisLevelManager.setButtonGreen(x, 4);
+      				if(buttonArray.size() == max_length) {
+      					for (int i = 0; i < 4; i++){ //loop thru both arrays to compare
+      						if (buttonArray.at(i) != floorPuz[i]){
+      							std::cout << "Wrong" << std::endl;
+                    buttonArray.clear();
+                    thisLevelManager.resetButtons();
+                    break;
+      							//reset puzzle code here
+      						}
+      						else{
+      							std::cout << "Solved!" << std::endl;
+                    thisLevelManager.switchPuzzleMap();
+                    thisApp.clear(sf::Color::Black);
+                    thisLevelManager.drawMap(thisApp);
+                    thisApp.display();
+                    break;
+      							//solved, remove lava from screen here
+      						}
+      					}
+      				}
 
-            /*
-            else if(button) {
-              buttonArray.push(x)
-              if(buttonArray length == max length) {
-                check button array vs. correct answer
-                  if right -> solved
-                  if not -> reset
-              }
+              thisRet = false;
+              break;
+			        }
+            if(thisLevelManager.getTexture(x) == 4) {
+              thisRet = false;
+              break;
             }
-            */
+            if(thisLevelManager.getTexture(x) == 6) { //potion
+              thisRet = true; //can change to true once key can be added to inventory
+              thisInventory.addItem("Potion");
+              thisLevelManager.deleteSprite();
+              break;
+            }
 
             if(!moveObject(checkSprites.at(x), x, HumanView::UP, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
@@ -462,14 +467,21 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos+16 == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 2) { //real key!
-              thisRet = false; //can change to true once key can be added to inventory
-              //inventory.add(key)
-              std::cout << "You found the real key!" << std::endl;
+            if(checkForKey(x, thisLevelManager)) {
               break;
             }
             if(thisLevelManager.getTexture(x) == 3) {
               thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 4) {
+              thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 6) { //potion
+              thisRet = true; //can change to true once key can be added to inventory
+              thisInventory.addItem("Potion");
+              thisLevelManager.deleteSprite();
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::DOWN, thisLevelManager)) { //if sprite moves, bird can move too
@@ -486,14 +498,21 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos-16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 2) { //real key!
-              thisRet = false; //can change to true once key can be added to inventory
-              //inventory.add(key)
-              std::cout << "You found the real key!" << std::endl;
+            if(checkForKey(x, thisLevelManager)) {
               break;
             }
             if(thisLevelManager.getTexture(x) == 3) {
               thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 4) {
+              thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 6) { //potion
+              thisRet = true; //can change to true once key can be added to inventory
+              thisInventory.addItem("Potion");
+              thisLevelManager.deleteSprite();
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::LEFT, thisLevelManager)) { //if sprite moves, bird can move too
@@ -510,14 +529,21 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       if(!checkSprites.empty()) {
         for(int x = 0; x < checkSprites.size(); x++) {
           if(thisXPos+16 == checkSprites.at(x).getPosition().x && thisYPos == checkSprites.at(x).getPosition().y) {
-            if(thisLevelManager.getTexture(x) == 2) { //real key!
-              thisRet = false; //can change to true once key can be added to inventory
-              //inventory.add(key)
-              std::cout << "You found the real key!" << std::endl;
+            if(checkForKey(x, thisLevelManager)) {
               break;
             }
             if(thisLevelManager.getTexture(x) == 3) {
               thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 4) {
+              thisRet = false;
+              break;
+            }
+            if(thisLevelManager.getTexture(x) == 6) { //potion
+              thisRet = true; //can change to true once key can be added to inventory
+              thisInventory.addItem("Potion");
+              thisLevelManager.deleteSprite();
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::RIGHT, thisLevelManager)) { //if sprite moves, bird can move too
@@ -560,6 +586,32 @@ bool LevelLogic::checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir dire
     return true;
   }
 return false;
+}
+
+void LevelLogic::addKey(LevelManager &thisLevelManager){
+  thisLevelManager.deleteSprite();
+  int map = thisLevelManager.getCurrentMap();
+  if(map >= 0 && map <= 10) {
+    thisLevelManager.foundFirstKey();
+  }
+  else if(map >= 11 && map <= 22) {
+    thisLevelManager.foundSecondKey();
+  }
+  else if(map >= 23 && map <= 33) {
+    thisLevelManager.foundThirdKey();
+  }
+  else if(map == 34) {
+
+  }
+}
+
+bool LevelLogic::checkForKey(int checkNum, LevelManager &thisLevelManager) {
+  if(thisLevelManager.getTexture(checkNum) == 2) { //real key!
+    addKey(thisLevelManager);
+    std::cout << "You found the real key!" << std::endl;
+    return true;
+  }
+  return false;
 }
 
 /*

@@ -15,6 +15,8 @@ private:
   //const static int floorPuz [4] = {21,17,19,23}; //answer to the puzzle: x-value for switches 3,1,2,4
   static std::vector<int> buttonArray; //array for given answer
   //const static int max_length = 4; //max number of button pushes
+  static void addKey(LevelManager &thisLevelManager);
+  static bool checkForKey(int checkNum, LevelManager &thisLevelManager);
 
 
 
@@ -24,7 +26,7 @@ public:
   static bool moveObject(sf::Sprite &thisSprite, int spriteNum, HumanView::Dir direction, LevelManager &thisLevelManager);
   static bool checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
   static bool checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
-  static bool checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp);
+  static bool checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager, sf::RenderWindow& thisApp, Inventory &thisInventory);
 
   static bool checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager);
 

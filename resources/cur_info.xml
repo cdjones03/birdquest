@@ -25,9 +25,13 @@
         <!--<malaphas15 />-->
     </textures>
     <Sec1Scr0_D_Entrance_simple.xml>
-        <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
+        <sprite1 texture="6" positionx="20" positiony="20" alive="1"/>
         <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
     </Sec1Scr0_D_Entrance_simple.xml>
+    <Sec1Scr0_D_Entrance_simple_Open.xml>
+        <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
+        <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
+    </Sec1Scr0_D_Entrance_simple_Open.xml>
     <Sec1Scr1.xml>
         <sprite texture="5" positionx="20" positiony="11"/>
         <sprite1 texture="5" positionx="28" positiony="11"/>
@@ -42,6 +46,7 @@
     <Sec1Scr4.xml/>
     <Sec1Scr5.xml/>
     <Sec1Scr6.xml/>
+    <Sec1Scr6_Open.xml/>
     <Sec1Scr7.xml/>
     <Sec1Scr8.xml/>
     <Sec1Scr9.xml>
@@ -118,6 +123,7 @@
     <Sec2Scr5.xml/>
     <Sec2Scr6.xml/>
     <Sec2Scr7.xml/>
+    <Sec2Scr7_Open.xml/>
     <Sec2Scr8.xml>
         <button texture="3" positionx="19" positiony="13"/>
         <button texture="3" positionx="21" positiony="13"/>
@@ -145,15 +151,12 @@
     <Sec3Scr5.xml/>
     <Sec3Scr6.xml/>
     <Sec3Scr7.xml/>
+    <Sec3Scr7_Open.xml/>
     <Sec3Scr8.xml>
         <owliceboss texture="14" positionx="17" positiony="10" alive="0"/>
     </Sec3Scr8.xml>
     <Sec3Scr9.xml/>
     <Sec3Scr10.xml/>
     <Sec3Scr11.xml/>
-    <!--
-<Sec4Scr1.xml>
-<sprite1 texture="0" positionx="100" positiony="100"/>
-</Sec4Scr1.xml>
-!-->
+    <Sec4Scr1.xml/>
 </section1>

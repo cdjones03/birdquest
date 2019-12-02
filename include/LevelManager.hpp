@@ -25,9 +25,18 @@ public:
   void setButtonGreen(int spriteNum, int textNum);
   void resetButtons();
   int getCurrentMap();
+  void resetToStart();
 
   void switchPuzzleMap();
   void deleteSprite();
+
+  void foundFirstKey();
+  void foundSecondKey();
+  void foundThirdKey();
+
+  void beatFirstSection();
+  void beatSecondSection();
+  void beatThirdSection();
 
 private:
 
@@ -41,6 +50,10 @@ private:
   int velocity = 16;
   std::vector<int> textNums;
   int curMap;
+
+  bool firstSectionDone;
+  bool secondSectionDone;
+  bool thirdSectionDone;
 
 };
 

@@ -1,11 +1,9 @@
 #pragma once
 #include "BattleLogic.h"
-//#include "BattleMenu.h"
-
 
 //For different enemyies, we want different status effects:
 //Snake: lingereing poison damage
-//Cat: Erratic velocity
+//Cat:  confusion aka unpredictable damage 
 //owl: Freezes a random option for a turn
 
 //final boss: does all 3 status effects
@@ -16,7 +14,7 @@ public:
     ~Enemy() = default;
     enum EnemyType
     {
-        Regular, Owl, Snake, Cat
+        Regular, Owl, Snake, Cat, FinalBoss
     };
     EnemyType type;
     void setEnemyType(EnemyType newType);

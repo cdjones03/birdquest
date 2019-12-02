@@ -25,8 +25,7 @@ BattleMenu::BattleMenu(){
   height = 640.0;
   itemIndex = 0;
   
-  
-  //create enemy object, right now setting type to ice owl
+  //create enemy object, for now, setting the type here
   type = Enemy::Snake;
   enemy.setEnemyType(type);
   type = enemy.getEnemyType();
@@ -56,7 +55,7 @@ BattleMenu::BattleMenu(){
   if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   }
   birdSprite.setTexture(birdTexture);
-  birdSprite.setPosition(420, 400);
+  birdSprite.setPosition(400, 400);
   birdSprite.setScale(2.0, 2.0);
 
   if(!bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){

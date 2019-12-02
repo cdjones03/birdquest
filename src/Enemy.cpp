@@ -30,7 +30,7 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             break;
         
         case Cat:
-        //actually going to switch enemy and user Damage randomly
+        //the enemy has a chance to steal your attack damage and cause you to attack for 0.
             logic.CatBoss(output, userDamage, item, userDefend, enemyDamage, enemyDefend);
             break;
 

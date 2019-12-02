@@ -62,7 +62,7 @@ BattleMenu::BattleMenu(){
   if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   }
   birdSprite.setTexture(birdTexture);
-  birdSprite.setPosition(400, 400);
+  birdSprite.setPosition(415, 405);
   birdSprite.setScale(2.0, 2.0);
 
   if(!bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){
@@ -583,9 +583,11 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   enemyDamage = logic.getEnemyDamage();
   enemyDamageStored = enemyDamage;
   enemyDefend = logic.enemyDefend;
+  //for the Cat effect, we need to get the battle bar damage first, so we will do that effect later
+  if (type != Enemy::Cat){
+    enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
+  }
   
-  enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
-
 
   userDamageStored = userDamage;
   if (!showBattleBar && !invalid){
@@ -605,9 +607,12 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
       enemyDamage = logic.userDefend(enemyDamage, userDamage, userDefend);
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
+      
+      if (type == Enemy::Cat){
+        enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
+        enemyDamageStored = enemyDamage;
+      }
       userDamageStored = userDamage;
-
-      //if enemy chose to defend, user damage is 0, later change to be userDamage-=10 or something
 
 
       battleBar.barPressed();

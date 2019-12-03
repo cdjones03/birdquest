@@ -116,8 +116,8 @@ PauseMenu::PauseMenu(float width, float height){
   	itemText[4].setString("-Return-");
   	itemText[4].setPosition(sf::Vector2f(width/1.4, height/1.18-55));
 
-  	keySprite.setTexture(keyTexture);
-  	keySprite.setScale(2, 2);
+  	//keySprite.setTexture(keyTexture);
+  	//keySprite.setScale(2, 2);
 	//keySprite.setPosition(550,320);
 
   }

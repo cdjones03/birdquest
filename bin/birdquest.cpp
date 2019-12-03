@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <TileMap.hpp>
 #include <iostream>
 #include <tinyxml2.h>
@@ -71,6 +72,30 @@ int main(int argc, char** argv)
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
+  //load the music files
+  sf::Music titleTheme;
+  sf::SoundBuffer bufferDungeon;
+  sf::SoundBuffer bufferBattle;
+  if (!titleTheme.openFromFile("../resources/sound/titleTheme.wav")) {
+    //error
+  }
+  if (!bufferDungeon.loadFromFile("../resources/sound/dungeonTheme.wav")) {
+    //error
+  }
+  if (!bufferBattle.loadFromFile("../resources/sound/battleTheme.wav")) {
+    //error
+  }
+
+
+  //sf::Sound titleTheme;
+  sf::Sound dungeonTheme;
+  sf::Sound battleTheme;
+  //titleTheme.setBuffer(bufferTitle);
+  dungeonTheme.setBuffer(bufferDungeon);
+  battleTheme.setBuffer(bufferBattle);
+
+  titleTheme.setLoop(true);
+  titleTheme.play();
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -140,6 +165,7 @@ int main(int argc, char** argv)
 
         //keypresses for when we are in the Stage
         else if (!inBattleMenu && !inPauseMenu){
+          titleTheme.stop();
           //Handle input, delegate to HumanView.cpp
           lastY = birdSprite.getPosition().y;
           lastX = birdSprite.getPosition().x;

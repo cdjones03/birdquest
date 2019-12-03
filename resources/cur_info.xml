@@ -25,7 +25,7 @@
         <malphas15 name="../resources/spritesheets/Malphas_resize.png" x1="0" y1="0" x2="90" y2="90"/>
     </textures>
     <Sec1Scr0_D_Entrance_simple.xml>
-        <realkey texture="2" positionx="9" positiony="16" alive="1"/>
+        <realkey texture="2" positionx="9" positiony="16"/>
         <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
     </Sec1Scr0_D_Entrance_simple.xml>
     <Sec1Scr0_D_Entrance_simple_Open.xml>
@@ -44,74 +44,74 @@
         <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr2.xml>
     <Sec1Scr3.xml>
-        <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
+        <sprite1 texture="6" positionx="20" positiony="20" alive="1"/>
     </Sec1Scr3.xml>
     <Sec1Scr4.xml>
         <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr4.xml>
     <Sec1Scr5.xml>
-        <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
+        <sprite1 texture="6" positionx="20" positiony="20" alive="1"/>
     </Sec1Scr5.xml>
     <Sec1Scr6.xml/>
     <Sec1Scr6_Open.xml/>
     <Sec1Scr7.xml>
-        <sprite1 texture="6" positionx="19" positiony="19" alive="0"/>
-        <sprite1 texture="6" positionx="20" positiony="19" alive="0"/>
+        <sprite1 texture="6" positionx="19" positiony="19" alive="1"/>
+        <sprite1 texture="6" positionx="20" positiony="19" alive="1"/>
     </Sec1Scr7.xml>
     <Sec1Scr8.xml>
         <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr8.xml>
     <Sec1Scr9.xml>
-        <fakekey texture="1" positionx="11" positiony="16"/>
-        <fakekey texture="1" positionx="13" positiony="16"/>
-        <fakekey texture="1" positionx="15" positiony="16"/>
-        <fakekey texture="1" positionx="17" positiony="16"/>
-        <fakekey texture="1" positionx="22" positiony="16"/>
-        <fakekey texture="1" positionx="24" positiony="16"/>
-        <fakekey texture="1" positionx="26" positiony="16"/>
-        <fakekey texture="1" positionx="28" positiony="16"/>
-        <fakekey texture="1" positionx="30" positiony="16"/>
-        <fakekey texture="1" positionx="9" positiony="18"/>
-        <fakekey texture="1" positionx="11" positiony="18"/>
-        <fakekey texture="1" positionx="13" positiony="18"/>
-        <fakekey texture="1" positionx="15" positiony="18"/>
-        <fakekey texture="1" positionx="17" positiony="18"/>
-        <fakekey texture="1" positionx="22" positiony="18"/>
-        <fakekey texture="1" positionx="24" positiony="18"/>
-        <fakekey texture="1" positionx="26" positiony="18"/>
-        <fakekey texture="1" positionx="28" positiony="18"/>
-        <fakekey texture="1" positionx="30" positiony="18"/>
-        <fakekey texture="1" positionx="9" positiony="20"/>
-        <fakekey texture="1" positionx="11" positiony="20"/>
-        <fakekey texture="1" positionx="13" positiony="20"/>
-        <fakekey texture="1" positionx="15" positiony="20"/>
-        <fakekey texture="1" positionx="17" positiony="20"/>
-        <fakekey texture="1" positionx="22" positiony="20"/>
-        <fakekey texture="1" positionx="24" positiony="20"/>
-        <fakekey texture="1" positionx="26" positiony="20"/>
-        <fakekey texture="1" positionx="28" positiony="20"/>
-        <fakekey texture="1" positionx="30" positiony="20"/>
-        <fakekey texture="1" positionx="9" positiony="22"/>
-        <fakekey texture="1" positionx="11" positiony="22"/>
-        <fakekey texture="1" positionx="13" positiony="22"/>
-        <fakekey texture="1" positionx="15" positiony="22"/>
-        <fakekey texture="1" positionx="17" positiony="22"/>
-        <fakekey texture="1" positionx="22" positiony="22"/>
-        <fakekey texture="1" positionx="24" positiony="22"/>
-        <fakekey texture="1" positionx="26" positiony="22"/>
-        <fakekey texture="1" positionx="28" positiony="22"/>
-        <fakekey texture="1" positionx="30" positiony="22"/>
-        <fakekey texture="1" positionx="9" positiony="24"/>
-        <fakekey texture="1" positionx="11" positiony="24"/>
-        <fakekey texture="1" positionx="13" positiony="24"/>
-        <fakekey texture="1" positionx="15" positiony="24"/>
-        <fakekey texture="1" positionx="17" positiony="24"/>
-        <fakekey texture="1" positionx="22" positiony="24"/>
-        <fakekey texture="1" positionx="24" positiony="24"/>
-        <fakekey texture="1" positionx="26" positiony="24"/>
-        <fakekey texture="1" positionx="28" positiony="24"/>
-        <fakekey texture="1" positionx="30" positiony="24"/>
-        <realkey texture="2" positionx="9" positiony="16"/>
+        <fakekey texture="1" positionx="11" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="13" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="15" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="17" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="22" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="24" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="26" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="28" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="30" positiony="16" alive="1"/>
+        <fakekey texture="1" positionx="9" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="11" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="13" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="15" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="17" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="22" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="24" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="26" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="28" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="30" positiony="18" alive="1"/>
+        <fakekey texture="1" positionx="9" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="11" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="13" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="15" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="17" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="22" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="24" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="26" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="28" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="30" positiony="20" alive="1"/>
+        <fakekey texture="1" positionx="9" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="11" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="13" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="15" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="17" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="22" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="24" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="26" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="28" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="30" positiony="22" alive="1"/>
+        <fakekey texture="1" positionx="9" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="11" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="13" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="15" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="17" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="22" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="24" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="26" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="28" positiony="24" alive="1"/>
+        <fakekey texture="1" positionx="30" positiony="24" alive="1"/>
+        <realkey texture="2" positionx="9" positiony="16" alive="1"/>
     </Sec1Scr9.xml>
     <Sec1Scr10.xml>
         <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>

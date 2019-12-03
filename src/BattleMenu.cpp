@@ -1,4 +1,5 @@
 #include "../include/BattleMenu.h"
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <cstdlib>
 #include <random>
@@ -36,6 +37,12 @@ BattleMenu::BattleMenu(){
   if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
   }
+
+  if (!attackBuffer.loadFromFile("../resources/sound/attack.wav")) {
+      //error
+  }
+
+  attackSound.setBuffer(attackBuffer);
 
   // border around the option in battle screen
   rectangle.setSize(sf::Vector2f(width/2, height/4.5));
@@ -589,6 +596,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if (!showBattleBar && !invalid){
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
+
   }
   }
 
@@ -597,6 +605,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     //enemySpecialMove.setString(" ");
 
     if(event.key.code == sf::Keyboard::Space){
+      attackSound.play();
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
       userDefendStored = userDamage;

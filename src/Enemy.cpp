@@ -5,6 +5,7 @@
 
 Enemy::Enemy(){
     //turnsPoisoned = 0;
+    count = 1;
 }
 
 //allows other classes to set the EnemyType
@@ -34,8 +35,20 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             logic.CatBoss(output, userDamage, item, userDefend, enemyDamage, enemyDefend);
             break;
 
-        case FinalBoss:
+        case FinalBoss: {
+            if(count % 3 == 0) {
+              logic.SnakeBoss(enemyDamage, output, enemyDefend);
+            }
+            else if(count % 3 == 1) {
+              logic.CatBoss(output, userDamage, item, userDefend, enemyDamage, enemyDefend);
+            }
+            else if(count % 3 == 2) {
+              logic.OwlBoss(userDamage,userDefend,item, showBattleBar, output);
+            }
+            count += 1;
+
             break;
+          }
 
     }
 }

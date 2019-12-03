@@ -239,7 +239,6 @@ int LevelManager::updateSprite(int x, int y) {
         }
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
-          std::cout << "I See You!" << std::endl;
           ret = 7;
         }
         curSprites[count].move(velocity, 0);
@@ -254,7 +253,6 @@ int LevelManager::updateSprite(int x, int y) {
         }
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
-          std::cout << "I See You!" << std::endl;
           ret = 9;
         }
         curSprites[count].move(velocity, 0);
@@ -262,7 +260,6 @@ int LevelManager::updateSprite(int x, int y) {
 
       if(getTexture(count) == 10) {
         if(y < 23*16){
-          std::cout << "I See You!" << std::endl;
           ret = 10;
         }
       }
@@ -276,7 +273,6 @@ int LevelManager::updateSprite(int x, int y) {
         }
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
-          std::cout << "I See You!" << std::endl;
           ret = 11;
         }
         curSprites[count].move(velocity, 0);
@@ -284,7 +280,6 @@ int LevelManager::updateSprite(int x, int y) {
 
       if(getTexture(count) == 12) {
         if(y < 23*16){
-          std::cout << "I See You!" << std::endl;
           ret = 12;
         }
       }
@@ -298,7 +293,6 @@ int LevelManager::updateSprite(int x, int y) {
         }
 
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
-          std::cout << "I See You!" << std::endl;
           ret = 13;
         }
         curSprites[count].move(velocity, 0);
@@ -306,14 +300,12 @@ int LevelManager::updateSprite(int x, int y) {
 
       if(getTexture(count) == 14) {
         if(y < 23*16){
-          std::cout << "I See You!" << std::endl;
           ret = 14;
         }
       }
 
       if(getTexture(count) == 15) {
         if(x >= 16*16 && x <= 23*16 && y <= 32*16 && y >= 28*16){
-          std::cout << "I See You!" << std::endl;
           ret = 15;
         }
       }

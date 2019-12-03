@@ -580,6 +580,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   enemyDefend = logic.enemyDefend;
   //for the Cat effect, we need to get the battle bar damage first, so we will do that effect later
   if (type != Enemy::Cat){
+    std::cout << " yes here " << std::endl;
     enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
   }
 

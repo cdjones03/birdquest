@@ -35,11 +35,11 @@ int BattleLogic::whoWon(int enemyHP, int userHP)
 
 //enemy will either choose to defend and attack for 0, or attack with damage between 5-30
 int BattleLogic::getEnemyDamage()
-{   
+{
     enemyDefend = false;
     defend = (rand()%5);
     std::cout << "defend " << defend << std::endl;
-    
+
     if (defend == 2){
         enemyDefend = true;
     }
@@ -49,7 +49,7 @@ int BattleLogic::getEnemyDamage()
     else{
         damage = 5+(rand()%25);
     }
-    
+
     return damage;
 }
 
@@ -58,11 +58,11 @@ int BattleLogic::resetHP(int HP){
 }
 
 int BattleLogic::healItem(int damage, int HP){
-    
+
     HP = updateHP(damage, HP) + 30;
     if ((HP) > 100){
           HP = 100 - damage;
-        } 
+        }
     return HP;
 }
 
@@ -82,7 +82,7 @@ int BattleLogic::getUserDamage(int damage, bool magic, bool userDefend){
           damage = 0;
         }
       }
-    
+
     return damage;
 }
 //could try to add this to getEnemyDamage, but for now this requires less refactoring
@@ -94,7 +94,7 @@ int BattleLogic::userDefend(int enemyDamage, int userDamage, bool defend){
         else if (enemyDamage < userDamage){
             enemyDamage = 0;
         }
-        
+
     }
     return enemyDamage;
 }
@@ -108,7 +108,7 @@ void BattleLogic::OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& s
         item = false;
         showBattleBar = false;
         //logic.enemyDefend = false;
-        output.setString("The icy owl froze you!");
+        output.setString("The Boss froze you!");
     }
     else{
         output.setString(" ");
@@ -141,14 +141,14 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output, bool& eDefend){
             }
             else if (turnsPoisoned >1){
                 output.setString("You are still poisoned!\nYou took 5 additional damage");
-            }           
+            }
         }
         else{
             //wasPoisonedLastTurn = true;
             poisoned = false;
             output.setString("You are no longer poisoned!");
-            turnsPoisoned = 0;           
-        }         
+            turnsPoisoned = 0;
+        }
     }
     /**
     if (!poisoned && !wasPoisonedLastTurn)
@@ -158,22 +158,21 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output, bool& eDefend){
     */
 }
 
-void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend, 
+void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&userDefend,
     int& enemyDamage, bool&enemyDefend){
-    //Cat Boss has the chance to confuse you, which will cause him to steal your attack, 
-    //and cause you to do 0 damage 
+    //Cat Boss has the chance to confuse you, which will cause him to steal your attack,
+    //and cause you to do 0 damage
     if (!enemyDefend && !userDefend && !item){
         confuse = (rand()%4);
-        //confuse = 1;
         if (confuse == 1){
-            output.setString("The cat confused you!\nHe stole your attack!");
+            output.setString("The Boss confused you!\nHe stole your attack!");
             //enemyDamageStored = enemyDamage;
             enemyDamage = userDamage;
             userDamage = 0;
         }
         else{
             output.setString(" ");
-        }      
+        }
     }
     else{
         output.setString(" ");

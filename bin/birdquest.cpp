@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include <HumanView.hpp>
 #include "TitleScreen.h"
+#include <EndScreen.hpp>
 
 using namespace std;
 
@@ -44,6 +45,10 @@ int main(int argc, char** argv)
   // Create titleScreen object and boolean for if we are in the title screen
   TitleScreen titleScreen(App.getSize().x, App.getSize().y);
   bool inTitle = true;
+
+  // Create endScreen object and boolean for if we are in the end screen
+  EndScreen endScreen(App.getSize().x, App.getSize().y);
+  bool inEnd = false;
 
   // Create inventory object
   Inventory inventory;
@@ -82,7 +87,6 @@ int main(int argc, char** argv)
         otherMs = deltaMs;
         int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
-          std::cout <<"whichEnemy"<< enemyCheck << std::endl;
           battleMenu.setEnemy(enemyCheck);
           inBattleMenu = true;
           battleMenu.inMenu = true;
@@ -199,8 +203,12 @@ int main(int argc, char** argv)
       //Display
       App.clear(sf::Color::Black);
 
-      if(inTitle && titleScreen.inTitle){
+      if(inTitle && titleScreen.isInTitle()){
         titleScreen.draw(App);
+      }
+
+      else if(inEnd && endScreen.isInEnd()){
+        endScreen.draw(App);
       }
 
       //draw map if not in battle
@@ -234,7 +242,7 @@ int main(int argc, char** argv)
               levelManager.beatThirdSection();
               break;
             case 4:
-              //display end screen
+              inEnd = true;
               break;
           }
           battleMenu.resetResult();

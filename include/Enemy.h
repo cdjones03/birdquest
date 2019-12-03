@@ -32,4 +32,5 @@ private:
     //can delete later
     //int turnsPoisoned;
     int temp;
+    int count;
 };

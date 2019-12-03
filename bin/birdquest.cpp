@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 {
   const int windowTileWidth = 40;
   const int windowTileHeight = 40;
-  const int windowPixelWidth = windowTileWidth*16;
+  const int windowPixelWidth = 853;
   const int windowPixelHeight = windowTileHeight*16;
   const int moveVal = 32;
   int lastX = 352;
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 
   // create main window; Style::Close disables resizing
   //The game should be played in an 800x600 window. Changing the size of the window sh
-  sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelWidth, 32), "BirdQuest!");//, sf::Style::Close);
+  sf::RenderWindow App(sf::VideoMode(windowPixelWidth, windowPixelHeight, 32), "BirdQuest!");//, sf::Style::Close);
   App.setFramerateLimit(60);
   //App.setKeyRepeatEnabled(false);
 

@@ -22,7 +22,7 @@
     <catBoss12 name="../resources/spritesheets/cat_boss.png" x1="0" y1="0" x2="90" y2="90"/>
     <ice_owl_overworld13 name="../resources/spritesheets/Owl_OW_ice.png" x1="0" y1="0" x2="16" y2="16"/>
     <IceOwlBoss14 name="../resources/spritesheets/owl_boss.png" x1="0" y1="0" x2="90" y2="90"/>
-    <!--<malaphas15 />-->
+    <malphas15 name = "../resources/spritesheets/Malphas_resize.png" x1="0" y1="0" x2="90" y2="90"/>
   </textures>
   <Sec1Scr0_D_Entrance_simple.xml>
       <sprite1 texture="2" positionx="20" positiony="20" alive="0"/>
@@ -188,5 +188,6 @@
   <Sec3Scr11.xml>
   </Sec3Scr11.xml>
   <Sec4Scr1.xml>
+    <finalboss texture="15" positionx="17" positiony="20" alive="0"/>
   </Sec4Scr1.xml>
 </section1>

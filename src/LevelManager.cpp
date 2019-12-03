@@ -310,6 +310,13 @@ int LevelManager::updateSprite(int x, int y) {
           ret = 14;
         }
       }
+
+      if(getTexture(count) == 15) {
+        if(x >= 16*16 && x <= 23*16 && y <= 32*16 && y >= 28*16){
+          std::cout << "I See You!" << std::endl;
+          ret = 15;
+        }
+      }
     }
   }
 

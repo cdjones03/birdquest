@@ -327,12 +327,14 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
+    
   if(checkX == 208 && checkY == 32) { //final boss door
         ret = false;
     }
   if(checkX == 224 && checkY == 32) { //final boss door
         ret = false;
     }
+
 
 
 

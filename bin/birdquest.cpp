@@ -11,11 +11,6 @@
 #include "Enemy.h"
 #include <HumanView.hpp>
 
-/*
-Note: for items, place sprite on map
-player walks over, press i, if coords are = , get item and remove sprite
-*/
-
 using namespace std;
 
 int main(int argc, char** argv)
@@ -40,8 +35,6 @@ int main(int argc, char** argv)
   //Create battleMenu object and boolean for if we are in the battle menu
   BattleMenu battleMenu;
   bool inBattleMenu = false;
-
-
 
   // Create pauseMenu object and boolean for if we are in the battle menu
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
@@ -111,16 +104,6 @@ int main(int argc, char** argv)
       battleMenu.item_1 = inventory.itemArray[1];
       battleMenu.item_2 = inventory.itemArray[2];
       battleMenu.item_3 = inventory.itemArray[3];
-
-
-      /*
-      if(birdSprite.getPosition().x == keySprite.getPosition().x && birdSprite.getPosition().y == keySprite.getPosition().y){
-        inventory.addItem("Potion");
-        inventory.addItem("Potion");
-        inventory.addItem("Potion");
-        inventory.addItem("Potion");
-      }
-      */
 
       // process events
       sf::Event Event;

@@ -34,8 +34,6 @@ BattleMenu::BattleMenu(){
   enemy.setEnemyType(type);
   type = enemy.type;
 
-  //std::cout<<" HERE " << enemy.type << " HERE " <<std::endl;
-
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
@@ -69,14 +67,14 @@ BattleMenu::BattleMenu(){
   enemy_Text.setStyle(sf::Text::Bold);
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
   enemy.setEnemyDisplay(enemy_Text, bossTexture);
-  
+
   bossSprite.setTexture(bossTexture);
   bossSprite.setPosition(100, 30);
   bossSprite.setScale(2.0, 2.0);
 
 
 
-  
+
 
 
   // setup user and enemy HP text placement in battle menu
@@ -217,7 +215,7 @@ void BattleMenu::updateOutput()
     //for now, I think we only need to give the user instructions on navigating the menu once.
     if (!firstMove){
       instructions.setString(" ");
-      
+
     }
 
 
@@ -584,7 +582,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if (type != Enemy::Cat){
     enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
   }
-  
+
 
   userDamageStored = userDamage;
   if (!showBattleBar && !invalid){
@@ -604,7 +602,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
       enemyDamage = logic.userDefend(enemyDamage, userDamage, userDefend);
       userDamage = logic.getUserDamage(userDamage, magic, userDefend);
-      
+
       if (type == Enemy::Cat){
         enemy.enemyEffect(enemySpecialMove, userDamage, userDefend, item, showBattleBar, enemyDefend, enemyDamage);
         enemyDamageStored = enemyDamage;

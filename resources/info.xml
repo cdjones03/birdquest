@@ -58,7 +58,6 @@
   <Sec1Scr8.xml>
   </Sec1Scr8.xml>
   <Sec1Scr9.xml>
-      <realkey texture="2" positionx="9" positiony="16"/>
       <fakekey texture="1" positionx="11" positiony="16"/>
       <fakekey texture="1" positionx="13" positiony="16"/>
       <fakekey texture="1" positionx="15" positiony="16"/>
@@ -108,6 +107,7 @@
       <fakekey texture="1" positionx="26" positiony="24"/>
       <fakekey texture="1" positionx="28" positiony="24"/>
       <fakekey texture="1" positionx="30" positiony="24"/>
+      <realkey texture="2" positionx="9" positiony="16"/>
   </Sec1Scr9.xml>
   <Sec1Scr10.xml>
     <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>
@@ -125,7 +125,7 @@
       <box texture="5" positionx="16" positiony="16"/>
       <box texture="5" positionx="15" positiony="26"/>
       <box texture="5" positionx="12" positiony="17"/>
-      <box texture="5" positionx="14" positiony="13"/>
+      <box texture="5" positionx="14" positiony="12"/>
   </Sec2Scr2.xml>
   <Sec2Scr3.xml>
   </Sec2Scr3.xml>

@@ -344,47 +344,41 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
 bool LevelLogic::checkTileCollision(int thisXPos, int thisYPos, HumanView::Dir direction, LevelManager &thisLevelManager){
   //16, 80 is circle tile
   bool ret = false;
+  int checkX;
+  int checkY;
   switch(direction){
     case HumanView::UP : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
-      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
-        ret = true;
-      }
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos - 16).y;
+      break;
     }
-
-    break;
-
     case HumanView::DOWN : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).y;
-      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
-          ret = true;
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos, thisYPos+16).y;
+      break;
     }
-  }
-
-    break;
-
     case HumanView::LEFT : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
-      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
-          ret = true;
-      }
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos-16, thisYPos).y;
+      break;
     }
-
-    break;
-
     case HumanView::RIGHT : {
-      int checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
-      int checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
-      if((checkX >= 0 && checkY >= 0) && (checkX != 16 || checkY != 80)) { //check if tile is empty
-          ret = true;
+      checkX = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).x;
+      checkY = thisLevelManager.getMap().getTexCoord(thisXPos+16, thisYPos).y;
+      break;
     }
   }
 
-    break;
-  }
+    if(checkX >= 0 && checkY >= 0) { //check if tile is empty
+      ret = true;
+    }
+    if(checkX == 16 && checkY == 80) {
+      ret = false;
+    }
+    if(checkX == 288 && checkY == 224) {
+      ret = false;
+    }
+
 
   return ret;
 }
@@ -606,7 +600,6 @@ void LevelLogic::addKey(LevelManager &thisLevelManager){
 bool LevelLogic::checkForKey(int checkNum, LevelManager &thisLevelManager) {
   if(thisLevelManager.getTexture(checkNum) == 2) { //real key!
     addKey(thisLevelManager);
-    std::cout << "You found the real key!" << std::endl;
     return true;
   }
   return false;

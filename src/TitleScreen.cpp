@@ -2,7 +2,6 @@
 #include <iostream>
 
 TitleScreen::TitleScreen(float width, float height){
-    
 
     if(!texture.loadFromFile("../resources/titlee.png")){
         }
@@ -19,11 +18,9 @@ TitleScreen::TitleScreen(float width, float height){
     text.setFillColor(sf::Color::White);
     text.setCharacterSize(75);
     text.setPosition(65, 0);
-    text.setString("The Evil Malphas has kidnapped the\nBird Princess of Featherfall Kingdom!\nIt's up to you, the loyal Bird Knight\nto embark on a quest to rescue her\nand restore peace.\nHowever, your power of flight\nhas also been taken!\nYou must defeat 3 bosses to gather\nthe keys before you can face Malphas.\n\n\n              Press Enter to continue...");
-    
+    text.setString("The Evil Malphas has kidnapped the\nBird Princess of Featherfall Kingdom!\nIt's up to you, the loyal Bird Knight\nto embark on a quest to rescue her\nand restore peace.\nHowever, your power of flight\nhas also been taken!\nYou must defeat three\n treacherous bosses to gather\nall three keys before you can face\n the malevolent Malphas . . .\n\n              Press Enter to continue!");    
 }
 TitleScreen:: ~TitleScreen(){
-
 }
 
 void TitleScreen::draw(sf::RenderWindow &window){
@@ -32,27 +29,22 @@ void TitleScreen::draw(sf::RenderWindow &window){
     }
     else{
         window.draw(text);
-    }
-    
+    }    
 }
 
 void TitleScreen::processInputs(sf::Event event){
     if(event.type == sf::Event::KeyPressed){
         if (inSprite){
-            if(event.key.code == sf::Keyboard::Return){
-
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
                 inSprite = false;
             }
         }
         else{
-            if(event.key.code == sf::Keyboard::Return){
-
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
                 inTitle = false;
             }
         }   
-    }
-        
-    
+    }  
 }
 
 bool TitleScreen::isInTitle(){

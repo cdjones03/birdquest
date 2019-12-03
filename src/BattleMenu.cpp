@@ -259,10 +259,10 @@ void BattleMenu::updateOutput()
   if (item){
     //for future, allow enemy to defend if you choose item, so he does no damage and you heal
     if (!logic.enemyDefend){
-      outputText.setString("You healed to 100 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy attacked for " +enemyDamageString+ " damage!");
     }
     else if (logic.enemyDefend){
-      outputText.setString("You healed to 100 HP.\nEnemy tried to defend and did 0 damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy tried to defend and did 0 damage!");
     }
 
 
@@ -271,17 +271,17 @@ void BattleMenu::updateOutput()
 
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random
-      outputText.setString("Enemy blocked your attack.\nYou did "+userDamageString+" damage.");
+      outputText.setString("Enemy blocked your attack.\nYou did "+userDamageString+" damage");
     }
     if (logic.enemyDefend && userDefend){
-      outputText.setString("You and enemy both defended\ndoing 0 damage each.");
+      outputText.setString("You and enemy both defended\ndoing 0 damage each");
     }
     if (!logic.enemyDefend && !userDefend){
-      outputText.setString("You attacked for "+userDamageString+" damage.\nEnemy attacked you for "+enemyDamageString+" damage.");
+      outputText.setString("You attacked for "+userDamageString+" damage\nEnemy attacked you for "+enemyDamageString+" damage");
     }
     //if user defended
     if (!logic.enemyDefend && userDefend){
-      outputText.setString("Enemy attacked for "+enemyDamageString+" damage.\nYou blocked "+userDefendString+" damage.");
+      outputText.setString("Enemy attacked for "+enemyDamageString+" damage\nYou blocked "+userDefendString+" damage");
     }
 
 
@@ -307,7 +307,7 @@ void BattleMenu::updateOutput()
         userHP += enemyDamage;
       }
 
-      outputText.setString("You won!\nPress Enter to continue");
+      outputText.setString("You won!\nPress Enter to continue.");
       result = 0;
 
     }
@@ -387,12 +387,12 @@ void BattleMenu::draw(sf::RenderWindow &window){
 
 //functions to navigate through menu options
 void BattleMenu::moveUp(){
-  if (selectedIndex - 1 == 0 || selectedIndex - 1 == 2 && showItem == false){
+  if (selectedIndex - 1 == 0 || (selectedIndex - 1 == 2 && showItem == false)){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex --;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
-  else if (itemIndex - 1 == 0 || itemIndex - 1 == 2 && showItem == true){
+  else if (itemIndex - 1 == 0 || (itemIndex - 1 == 2 && showItem == true)){
     itemText[itemIndex].setFillColor(sf::Color::Blue);
     itemIndex --;
     itemText[itemIndex].setFillColor(sf::Color::Red);
@@ -401,12 +401,12 @@ void BattleMenu::moveUp(){
 }
 
 void BattleMenu::moveDown(){
-  if (selectedIndex + 1 == 1 || selectedIndex + 1 == 3 && showItem == false){
+  if (selectedIndex + 1 == 1 || (selectedIndex + 1 == 3 && showItem == false)){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex ++;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
-  else if (itemIndex + 1 == 1 || itemIndex + 1 == 3 && showItem == true){
+  else if (itemIndex + 1 == 1 || (itemIndex + 1 == 3 && showItem == true)){
     itemText[itemIndex].setFillColor(sf::Color::Blue);
     itemIndex ++;
     itemText[itemIndex].setFillColor(sf::Color::Red);
@@ -415,12 +415,12 @@ void BattleMenu::moveDown(){
 }
 
 void BattleMenu::moveRight(){
-  if (selectedIndex + 2 == 3 || selectedIndex + 2 == 2 && showItem == false){
+  if (selectedIndex + 2 == 3 || (selectedIndex + 2 == 2 && showItem == false)){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex += 2;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
-  else if (itemIndex + 2 == 3 || itemIndex + 2 == 2 && showItem == true){
+  else if (itemIndex + 2 == 3 || (itemIndex + 2 == 2 && showItem == true)){
     itemText[itemIndex].setFillColor(sf::Color::Blue);
     itemIndex += 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
@@ -429,12 +429,12 @@ void BattleMenu::moveRight(){
 }
 
 void BattleMenu::moveLeft(){
-  if (selectedIndex - 2 == 0 || selectedIndex - 2 == 1 && showItem == false){
+  if (selectedIndex - 2 == 0 || (selectedIndex - 2 == 1 && showItem == false)){
     optionText[selectedIndex].setFillColor(sf::Color::Blue);
     selectedIndex -= 2;
     optionText[selectedIndex].setFillColor(sf::Color::Red);
   }
-  else if (itemIndex - 2 == 0 || itemIndex - 2 == 1 && showItem == true){
+  else if (itemIndex - 2 == 0 || (itemIndex - 2 == 1 && showItem == true)){
     itemText[itemIndex].setFillColor(sf::Color::Blue);
     itemIndex -= 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
@@ -448,24 +448,24 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   {
   //moving up,down, left, right to select options
 
-  if(event.key.code == sf::Keyboard::Up) {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
     moveUp();
   }
-  if(event.key.code == sf::Keyboard::Down) {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
     moveDown();
   }
-  if(event.key.code == sf::Keyboard::Right){
+  if((sf::Keyboard::isKeyPressed(sf::Keyboard::Right))){
     moveRight();
   }
-  if(event.key.code == sf::Keyboard::Left){
+  if((sf::Keyboard::isKeyPressed(sf::Keyboard::Left))){
     moveLeft();
   }
-  if(event.key.code == sf::Keyboard::BackSpace){
+  if((sf::Keyboard::isKeyPressed(sf::Keyboard::Up))){
     showItem = false;
     optionSound.play();
   }
   //once option is selected, do something
-  if(event.key.code == sf::Keyboard::Return) {
+  if((sf::Keyboard::isKeyPressed(sf::Keyboard::Return))) {
     firstMove = false;
     optionSound.play();
 

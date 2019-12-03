@@ -339,8 +339,6 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
     }
 
 
-
-  ret = true;
   return ret;
 }
 

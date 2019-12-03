@@ -170,12 +170,7 @@
         <catboss texture="12" positionx="17" positiony="10" alive="0"/>
     </Sec2Scr12.xml>
     <Sec3Scr1.xml>
-<<<<<<< Updated upstream
-        <realkey texture="2" positionx="9" positiony="16" alive="1"/>
-        <sprite1 texture="13" positionx="19" positiony="11" alive="1"/>
-=======
         <sprite1 texture="13" positionx="19" positiony="11" alive="0"/>
->>>>>>> Stashed changes
     </Sec3Scr1.xml>
     <Sec3Scr2.xml>
         <sprite1 texture="6" positionx="19" positiony="11" alive="0"/>

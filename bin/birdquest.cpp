@@ -26,6 +26,7 @@ int main(int argc, char** argv)
   int lastX = 352;
   int lastY = 352;
   int userHP;
+  int enemyCheck;
   string item;
 
 
@@ -111,7 +112,7 @@ int main(int argc, char** argv)
       if(deltaMs > otherMs + 300) {
         otherMs = deltaMs;
         if(!inBattleMenu) {
-        int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
+        enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
           battleMenu.setEnemy(enemyCheck);
           inBattleMenu = true;

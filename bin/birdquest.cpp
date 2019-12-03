@@ -87,14 +87,6 @@ int main(int argc, char** argv)
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
-
-          //enemyCheck corresponds to the # of the texture in info.xml
-          //so if it's 7, its the owl
-          //if it's 9, its the snake
-          //etc.
-          //std::cout <<"dienemytype "<<enemy.getEnemyType(enemyCheck)<<std::endl;
-
-
         }
       }
 

@@ -22,12 +22,12 @@ public:
 
     void enemyEffect(sf::Text& output, int& userDamage, bool& userDefend,
         bool& item, bool& showBattleBar, bool& enemyDefend, int& enemyDamage);
-    void setEnemyDisplay(sf::Text& name, sf::Texture& texture);
+    void setEnemyDisplay(sf::Text& name);
 
     BattleLogic logic;
     //int types;
     //BattleMenu bMenu;
-    
+
 private:
     //can delete later
     //int turnsPoisoned;

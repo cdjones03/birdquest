@@ -64,11 +64,11 @@ BattleMenu::BattleMenu(){
   enemy_Text.setCharacterSize(75);
   enemy_Text.setStyle(sf::Text::Bold);
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
-  enemy.setEnemyDisplay(enemy_Text, bossTexture);
+  //enemy.setEnemyDisplay(enemy_Text, bossTexture);
 
-  if(!bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))){
-    }
-  bossSprite.setTexture(bossTexture);
+  //if(!bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))){
+    //}
+  //bossSprite.setTexture(bossTexture);
   bossSprite.setPosition(100, 30);
   bossSprite.setScale(2.0, 2.0);
 
@@ -654,64 +654,82 @@ void BattleMenu::setEnemy(int enemyNum) {
   switch(enemyNum) {
     case 7: {
     type = Enemy::Regular;
-    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 8: {
     type = Enemy::Regular;
-    if(bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 9: {
     type = Enemy::Regular;
-    if(bossTexture.loadFromFile("../resources/spritesheets/Snake_OW.png", sf::IntRect(0, 0, 16, 16))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/Snake_OW.png", sf::IntRect(0, 0, 16, 16));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 10: {
     type = Enemy::Snake;
-    if(bossTexture.loadFromFile("../resources/spritesheets/snake_boss.png", sf::IntRect(0, 0, 90, 90))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/snake_boss.png", sf::IntRect(0, 0, 90, 90));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 11: {
     type = Enemy::Regular;
-    if(bossTexture.loadFromFile("../resources/spritesheets/Cat_OW.png", sf::IntRect(0, 0, 16, 16))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/Cat_OW.png", sf::IntRect(0, 0, 16, 16));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 12: {
     type = Enemy::Cat;
-    if(bossTexture.loadFromFile("../resources/spritesheets/cat_boss.png", sf::IntRect(0, 0, 90, 90))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/cat_boss.png", sf::IntRect(0, 0, 90, 90));
+    enemy.setEnemyType(type);
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 13: {
     type = Enemy::Regular;
-    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 14: {
     type = Enemy::IceOwl;
-    if(bossTexture.loadFromFile("../resources/spritesheets/owl_boss.png", sf::IntRect(0, 0, 90, 90))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/owl_boss.png", sf::IntRect(0, 0, 90, 90));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 
     case 15: {
     type = Enemy::FinalBoss;
-    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))) {
-      }
+    bossTexture.loadFromFile("../resources/spritesheets/Malphas.png", sf::IntRect(0, 0, 90, 90));
+    bossSprite.setTexture(bossTexture, true);
+    enemy.setEnemyType(type);
+    enemy.setEnemyDisplay(enemy_Text);
     break;
   }
 }

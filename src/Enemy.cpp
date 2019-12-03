@@ -40,33 +40,23 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
     }
 }
 
-void Enemy::setEnemyDisplay(sf::Text& name, sf::Texture& texture){
+void Enemy::setEnemyDisplay(sf::Text& name){
     //displays the enemy's name and sets sprite texture in battleMenu based on what type it is
     switch(type){
     case Regular:
       name.setString("ENEMY");
-      if(!texture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 16, 16))){
-        }
       break;
     case IceOwl:
       name.setString("Ice Owl");
-      if(!texture.loadFromFile("../resources/spritesheets/owl_boss.png", sf::IntRect(0, 0, 90, 90))){
-        }
       break;
     case Snake:
       name.setString("Snake Boss");
-      if(!texture.loadFromFile("../resources/spritesheets/snake_boss.png", sf::IntRect(0, 0, 90, 90))){
-        }
       break;
     case Cat:
       name.setString("Cat Boss");
-      if(!texture.loadFromFile("../resources/spritesheets/cat_boss.png", sf::IntRect(0, 0, 90, 90))){
-        }
       break;
     case FinalBoss:
       name.setString("Malphas");
-      if(!texture.loadFromFile("../resources/spritesheets/Malphas_front.png", sf::IntRect(0, 0, 90, 90))){
-        }
       break;
   }
 }

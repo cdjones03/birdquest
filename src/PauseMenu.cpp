@@ -201,15 +201,15 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 	if(event.type == sf::Event::KeyPressed){
 
-		if(event.key.code == sf::Keyboard::Up){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
 			moveUp();
 		}
 
-		else if(event.key.code == sf::Keyboard::Down){
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
 			moveDown();
 		}
 
-		else if(event.key.code == sf::Keyboard::Return && inItem == false){
+		else if((sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) && inItem == false){
 			switch (getSelectedOption()){
 				//item
 				case 0:
@@ -248,7 +248,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 		}
 	}
 
-	else if(event.key.code == sf::Keyboard::Return && inItem == true){
+	else if((sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) && inItem){
 		switch (getSelectedItem()){
 			//item 1
 			case 0:

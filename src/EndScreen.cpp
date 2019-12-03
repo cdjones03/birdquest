@@ -22,11 +22,10 @@ void EndScreen::draw(sf::RenderWindow &window){
 
 void EndScreen::processInputs(sf::Event event){
     if(event.type == sf::Event::KeyPressed){
-        if(event.key.code == sf::Keyboard::Return){
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
             inEnd = false;
         }
     }
-
 }
 
 bool EndScreen::isInEnd(){

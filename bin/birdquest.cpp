@@ -121,7 +121,7 @@ int main(int argc, char** argv)
           if (firstBTheme){
             dungeonTheme.stop();
             battleTheme.setLoop(true);
-            //battleTheme.play();
+            battleTheme.play();
             firstBTheme = false;
           }
         }
@@ -181,7 +181,7 @@ int main(int argc, char** argv)
         else if (!inBattleMenu && !inPauseMenu){
           if (firstDTheme){
             dungeonTheme.setLoop(true);
-            //dungeonTheme.play();
+            dungeonTheme.play();
             firstDTheme = false;
           }
           //Handle input, delegate to HumanView.cpp

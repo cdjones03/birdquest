@@ -111,7 +111,7 @@ int main(int argc, char** argv)
       deltaMs = clock.getElapsedTime().asMilliseconds();
       if(deltaMs > otherMs + 300) {
         otherMs = deltaMs;
-        if(!inBattleMenu) {
+        if(!battleMenu.isInMenu()) {
         enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
           battleMenu.setEnemy(enemyCheck);

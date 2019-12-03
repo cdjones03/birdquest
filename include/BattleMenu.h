@@ -4,6 +4,7 @@
 #include "BattleBar.h"
 #include "Indicator.h"
 #include "Enemy.h"
+#include <LevelManager.hpp>
 
 #define maxOptions 4
 
@@ -21,6 +22,7 @@ public:
     void moveRight();
     bool isInMenu();
     void enemyEffect(sf::Text outpt, int userDamage, bool userDefend, bool item, bool showBattleBar);
+    void setEnemy(int enemyNum);
 
     int getSelectedOption(){
         return selectedIndex;
@@ -72,8 +74,8 @@ private:
     sf::Texture birdTexture;
     sf::Sprite birdSprite;
 
-	sf::Texture bossTexture;
-	sf::Sprite bossSprite;
+	  sf::Texture bossTexture;
+  	sf::Sprite bossSprite;
 
     float width;
     float height;

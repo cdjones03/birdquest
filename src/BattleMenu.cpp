@@ -30,9 +30,7 @@ BattleMenu::BattleMenu(){
 
 
   //create enemy object, for now, setting the type here
-  type = Enemy::Cat;
   enemy.setEnemyType(type);
-  type = enemy.type;
 
 
   if (!font.loadFromFile("../resources/game_over.ttf")) {
@@ -68,6 +66,8 @@ BattleMenu::BattleMenu(){
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
   enemy.setEnemyDisplay(enemy_Text, bossTexture);
 
+  if(!bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))){
+    }
   bossSprite.setTexture(bossTexture);
   bossSprite.setPosition(100, 30);
   bossSprite.setScale(2.0, 2.0);
@@ -647,4 +647,73 @@ void BattleMenu::resetResult()
 int BattleMenu::getType()
 {
   return type;
+}
+
+void BattleMenu::setEnemy(int enemyNum) {
+
+  switch(enemyNum) {
+    case 7: {
+    type = Enemy::Regular;
+    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))) {
+      }
+    break;
+  }
+
+    case 8: {
+    type = Enemy::Regular;
+    if(bossTexture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))) {
+      }
+    break;
+  }
+
+    case 9: {
+    type = Enemy::Regular;
+    if(bossTexture.loadFromFile("../resources/spritesheets/Snake_OW.png", sf::IntRect(0, 0, 16, 16))) {
+      }
+    break;
+  }
+
+    case 10: {
+    type = Enemy::Snake;
+    if(bossTexture.loadFromFile("../resources/spritesheets/snake_boss.png", sf::IntRect(0, 0, 90, 90))) {
+      }
+    break;
+  }
+
+    case 11: {
+    type = Enemy::Regular;
+    if(bossTexture.loadFromFile("../resources/spritesheets/Cat_OW.png", sf::IntRect(0, 0, 16, 16))) {
+      }
+    break;
+  }
+
+    case 12: {
+    type = Enemy::Cat;
+    if(bossTexture.loadFromFile("../resources/spritesheets/cat_boss.png", sf::IntRect(0, 0, 90, 90))) {
+      }
+    break;
+  }
+
+    case 13: {
+    type = Enemy::Regular;
+    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))) {
+      }
+    break;
+  }
+
+    case 14: {
+    type = Enemy::IceOwl;
+    if(bossTexture.loadFromFile("../resources/spritesheets/owl_boss.png", sf::IntRect(0, 0, 90, 90))) {
+      }
+    break;
+  }
+
+    case 15: {
+    type = Enemy::FinalBoss;
+    if(bossTexture.loadFromFile("../resources/spritesheets/Owl_OW.png", sf::IntRect(0, 0, 16, 16))) {
+      }
+    break;
+  }
+}
+
 }

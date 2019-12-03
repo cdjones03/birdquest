@@ -436,3 +436,7 @@ void LevelManager::foundSecondKey() {
 void LevelManager::foundThirdKey() {
   section1[29] =  "../resources/xmlmaps/Sec3Scr7_Open.xml";
 }
+
+sf::Texture LevelManager::getEnemyTexture(int textureNum) {
+  return curTextures.at(textureNum);
+}

@@ -28,7 +28,7 @@ void Enemy::enemyEffect(sf::Text& output, int& userDamage, bool& userDefend, boo
             //it will not poison you again after you are no longer poisoned? check.
             logic.SnakeBoss(enemyDamage, output, enemyDefend);
             break;
-        
+
         case Cat:
         //the enemy has a chance to steal your attack damage and cause you to attack for 0.
             logic.CatBoss(output, userDamage, item, userDefend, enemyDamage, enemyDefend);
@@ -45,7 +45,7 @@ void Enemy::setEnemyDisplay(sf::Text& name, sf::Texture& texture){
     switch(type){
     case Regular:
       name.setString("ENEMY");
-      if(!texture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 90, 90))){
+      if(!texture.loadFromFile("../resources/spritesheets/owl_1.png", sf::IntRect(0, 0, 16, 16))){
         }
       break;
     case IceOwl:
@@ -58,7 +58,7 @@ void Enemy::setEnemyDisplay(sf::Text& name, sf::Texture& texture){
       if(!texture.loadFromFile("../resources/spritesheets/snake_boss.png", sf::IntRect(0, 0, 90, 90))){
         }
       break;
-    case Cat: 
+    case Cat:
       name.setString("Cat Boss");
       if(!texture.loadFromFile("../resources/spritesheets/cat_boss.png", sf::IntRect(0, 0, 90, 90))){
         }

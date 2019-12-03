@@ -78,19 +78,18 @@ int main(int argc, char** argv)
         int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
           std::cout <<"whichEnemy"<< enemyCheck << std::endl;
+          battleMenu.setEnemy(enemyCheck);
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
+
           //enemyCheck corresponds to the # of the texture in info.xml
           //so if it's 7, its the owl
           //if it's 9, its the snake
           //etc.
-          std::cout <<"dienemytype "<<enemy.getEnemyType(enemyCheck)<<std::endl;
-          //enemy.setEnemyType(enemyCheck);
-          if (enemyCheck == 11){
-            enemy.setEnemyType(Enemy::Cat);
-          }
-          
+          //std::cout <<"dienemytype "<<enemy.getEnemyType(enemyCheck)<<std::endl;
+
+
         }
       }
 
@@ -112,13 +111,6 @@ int main(int argc, char** argv)
         // Exit
         if(Event.type == sf::Event::Closed){
           App.close();
-        }
-        //press b to get to battleMenu.
-        //later, make it so that this can only occur when near an
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
-          inBattleMenu = true;
-          battleMenu.inMenu = true;
-          battleMenu.showMenu = true;
         }
         //press p to get to pauseMenu
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
@@ -220,7 +212,9 @@ int main(int argc, char** argv)
       //draw battleMenu
       else if (inBattleMenu && battleMenu.isInMenu()){
         battleMenu.draw(App);
+
         if(battleMenu.getResult() == 0) {
+
           std::cout << "      you won   " << battleMenu.getType()<< std::endl;
           switch(battleMenu.getType()) {
             case 0:

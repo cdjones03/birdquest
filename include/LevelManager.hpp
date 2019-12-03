@@ -38,6 +38,8 @@ public:
   void beatSecondSection();
   void beatThirdSection();
 
+  sf::Texture getEnemyTexture(int textureNum);
+
 private:
 
   const char* curScreenString;

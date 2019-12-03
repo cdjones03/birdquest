@@ -254,8 +254,8 @@ void BattleMenu::updateOutput()
     }
 
 
-    }
-  if (inMenu&&!firstMove&&!item){
+  }
+  if (inMenu && !firstMove&& !item && !invalid){
 
     if (logic.enemyDefend && !userDefend){
       //reflect how much your attack was and how much damage enemy defended. Make defended damage random

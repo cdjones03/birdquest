@@ -4,6 +4,7 @@
 #include "Inventory.h"
 #include <iostream>
 #include <string>
+#include <SFML/Audio.hpp>
 
 #define maxPauseOptions 3
 #define maxItemOptions 5
@@ -59,6 +60,9 @@ private:
 	//sf::RectangleShape healthBar;
 	sf::RectangleShape remainingBar;
 	sf::RectangleShape statusBorder;
+
+	sf::SoundBuffer pauseBuffer;
+	sf::Sound pauseSound;
 	
 
 	

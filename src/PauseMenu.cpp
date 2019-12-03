@@ -3,6 +3,7 @@
 #include "../include/Inventory.h"
 #include <iostream>
 #include <string>
+#include <SFML/Audio.hpp>
 
 PauseMenu::PauseMenu(float width, float height){
 	inPause = true;
@@ -19,6 +20,12 @@ PauseMenu::PauseMenu(float width, float height){
 
   	if(!birdTexture.loadFromFile("../resources/spritesheets/battlesprite_player.png", sf::IntRect(0, 0, 90, 90))){
   	}
+
+ 	if (!pauseBuffer.loadFromFile("../resources/sound/pause.wav")) {
+    	//error
+	}
+
+	pauseSound.setBuffer(pauseBuffer);
 
   	//health bar for the status update
   	birdSprite.setTexture(birdTexture);
@@ -173,6 +180,7 @@ void PauseMenu::moveUp(){
 		itemIndex--;
 		itemText[itemIndex].setFillColor(sf::Color::Red);
 	}
+	pauseSound.play();
 }
 
 void PauseMenu::moveDown(){
@@ -186,6 +194,7 @@ void PauseMenu::moveDown(){
 		itemIndex++;
 		itemText[itemIndex].setFillColor(sf::Color::Red);
 	}
+	pauseSound.play();
 }
 
 void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
@@ -211,6 +220,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					itemText[itemIndex].setFillColor(sf::Color::Red);
 
 					inItem = true;
+					pauseSound.play();
 
 					break;
 
@@ -219,6 +229,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					std::cout << "Status Pressed" << std::endl;		
 					//std::cout<<"here1:"<<HP;				
 					inStatus = !inStatus;
+					pauseSound.play();
 									
 					break;
 
@@ -231,6 +242,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 					moveUp();
 					moveUp();
 					inStatus = false;
+					pauseSound.play();
 					break;
 			}
 		}
@@ -241,26 +253,31 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 			//item 1
 			case 0:
 				std::cout << "Item 1 Pressed" << std::endl;
+				pauseSound.play();
 				break;
 
 			//item 2
 			case 1:
 				std::cout << "Item 2 Pressed" << std::endl;
+				pauseSound.play();
 				break;
 
 			//item 3
 			case 2:
 				std::cout << "Item 3 Pressed" << std::endl;
+				pauseSound.play();
 				break;
 
 			//item 4
 			case 3:
 				std::cout << "Item 4 Pressed" << std::endl;
+				pauseSound.play();
 				break;
 
 			//Return
 			case 4:
 				std::cout << "Return Pressed" << std::endl;
+				pauseSound.play();
 				inItem = false;
 				break;
 

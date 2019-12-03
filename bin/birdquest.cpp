@@ -74,25 +74,25 @@ int main(int argc, char** argv)
   //birdSprite.setScale(2,2);
   //load the music files
   sf::Music titleTheme;
-  sf::SoundBuffer bufferDungeon;
-  sf::SoundBuffer bufferBattle;
+  sf::Music dungeonTheme;
+  bool firstDTheme = true;
+  sf::Music battleTheme;
+  bool firstBTheme = true;
   if (!titleTheme.openFromFile("../resources/sound/titleTheme.wav")) {
     //error
   }
-  if (!bufferDungeon.loadFromFile("../resources/sound/dungeonTheme.wav")) {
+  if (!dungeonTheme.openFromFile("../resources/sound/dungeonTheme.wav")) {
     //error
   }
-  if (!bufferBattle.loadFromFile("../resources/sound/battleTheme.wav")) {
+  if (!battleTheme.openFromFile("../resources/sound/battleTheme.wav")) {
     //error
   }
 
 
   //sf::Sound titleTheme;
-  sf::Sound dungeonTheme;
-  sf::Sound battleTheme;
+
   //titleTheme.setBuffer(bufferTitle);
-  dungeonTheme.setBuffer(bufferDungeon);
-  battleTheme.setBuffer(bufferBattle);
+
 
   titleTheme.setLoop(true);
   titleTheme.play();
@@ -159,13 +159,18 @@ int main(int argc, char** argv)
         if (inTitle){
           titleScreen.processInputs(Event);
           if (!titleScreen.inTitle){
+            titleTheme.stop();
             inTitle = false;
           }
         }
 
         //keypresses for when we are in the Stage
         else if (!inBattleMenu && !inPauseMenu){
-          titleTheme.stop();
+          if (firstDTheme){
+            dungeonTheme.setLoop(true);
+            dungeonTheme.play();
+            firstDTheme = false;
+          }
           //Handle input, delegate to HumanView.cpp
           lastY = birdSprite.getPosition().y;
           lastX = birdSprite.getPosition().x;
@@ -196,6 +201,12 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
+          if (firstBTheme){
+            dungeonTheme.stop();
+            battleTheme.setLoop(true);
+            battleTheme.play();
+          }
+          
 
           battleMenu.processInputs(Event, App);
 
@@ -203,6 +214,7 @@ int main(int argc, char** argv)
 
           if (!battleMenu.inMenu) {
             inBattleMenu = false;
+            firstDTheme = true;
           }
 
         }

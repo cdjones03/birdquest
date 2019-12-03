@@ -137,7 +137,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
-    /*
+    
   //section 1 no walk tiles
   if(checkX == 512 && checkY == 192) {
         ret = false;
@@ -336,7 +336,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 224 && checkY == 32) { //final boss door
         ret = false;
     }
-*/
+
 
 
 

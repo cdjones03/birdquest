@@ -116,7 +116,7 @@ BattleMenu::BattleMenu(){
   item_instructions.setStyle(sf::Text::Italic);
   item_instructions.setCharacterSize(55);
   item_instructions.setPosition(sf::Vector2f(width/2 - 300, height/2 + 30));
-  item_instructions.setString("Use the arrow keys to navigate the options,\nPress backspace to return to menu.");
+  item_instructions.setString("\nPress backspace to return to menu.");
 
   // red health bar for player in battle menu
   remainingBar.setSize(sf::Vector2f(width/3.5, (height/30)));

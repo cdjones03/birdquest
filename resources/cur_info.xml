@@ -47,7 +47,7 @@
         <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr3.xml>
     <Sec1Scr4.xml>
-        <sprite1 texture="9" positionx="20" positiony="20" alive="1"/>
+        <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr4.xml>
     <Sec1Scr5.xml>
         <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
@@ -114,7 +114,7 @@
         <realkey texture="2" positionx="9" positiony="16"/>
     </Sec1Scr9.xml>
     <Sec1Scr10.xml>
-        <snakeboss texture="10" positionx="17" positiony="10" alive="1"/>
+        <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>
     </Sec1Scr10.xml>
     <Sec2Scr1.xml>
         <sprite1 texture="11" positionx="15" positiony="14" alive="0"/>

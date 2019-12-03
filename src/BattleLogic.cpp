@@ -130,7 +130,9 @@ void BattleLogic::SnakeBoss(int& enemyDamage, sf::Text& output, bool& eDefend){
         }
     }
     if (eDefend){
-        poisoned = false;
+        if (turnsPoisoned ==0){
+            poisoned = false;
+        }
     }
     if (poisoned){
         if (turnsPoisoned <= 2){

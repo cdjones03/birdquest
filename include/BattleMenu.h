@@ -122,4 +122,8 @@ private:
 
     sf::SoundBuffer attackBuffer;
     sf::Sound attackSound;
+
+    sf::SoundBuffer optionBuffer;
+    sf::Sound optionSound;
 };
+

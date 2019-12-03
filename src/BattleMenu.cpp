@@ -42,7 +42,12 @@ BattleMenu::BattleMenu(){
       //error
   }
 
+  if (!optionBuffer.loadFromFile("../resources/sound/option.wav")) {
+      //error
+  }
+
   attackSound.setBuffer(attackBuffer);
+  optionSound.setBuffer(optionBuffer);
 
   // border around the option in battle screen
   rectangle.setSize(sf::Vector2f(width/2, height/4.5));
@@ -392,6 +397,7 @@ void BattleMenu::moveUp(){
     itemIndex --;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveDown(){
@@ -405,6 +411,7 @@ void BattleMenu::moveDown(){
     itemIndex ++;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveRight(){
@@ -418,6 +425,7 @@ void BattleMenu::moveRight(){
     itemIndex += 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveLeft(){
@@ -431,6 +439,7 @@ void BattleMenu::moveLeft(){
     itemIndex -= 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
@@ -453,10 +462,12 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
   if(event.key.code == sf::Keyboard::BackSpace){
     showItem = false;
+    optionSound.play();
   }
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
+    optionSound.play();
 
     std::cout << "return" << std::endl;
 

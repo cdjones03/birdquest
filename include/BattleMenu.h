@@ -115,5 +115,5 @@ private:
 
     int itemIndex;
 
-    int result;
+    int result = -1;
 };

@@ -110,6 +110,7 @@ int main(int argc, char** argv)
       deltaMs = clock.getElapsedTime().asMilliseconds();
       if(deltaMs > otherMs + 300) {
         otherMs = deltaMs;
+        if(!inBattleMenu) {
         int enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
           battleMenu.setEnemy(enemyCheck);
@@ -122,9 +123,9 @@ int main(int argc, char** argv)
             battleTheme.play();
             firstBTheme = false;
           }
-          
         }
       }
+    }
 
       // update inventory in battle menu
       battleMenu.itemText[0].setString(inventory.itemArray[0]);
@@ -212,8 +213,8 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
-          
-          
+
+
 
           battleMenu.processInputs(Event, App);
 

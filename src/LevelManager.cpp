@@ -262,6 +262,7 @@ int LevelManager::updateSprite(int x, int y) {
         if(y < 23*16){
           ret = 10;
         }
+        std::cout << "I see you " << std::endl;
       }
 
       if(getTexture(count) == 11) {

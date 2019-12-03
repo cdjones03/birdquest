@@ -105,8 +105,8 @@
         <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>
     </Sec1Scr10.xml>
     <Sec2Scr1.xml>
-        <sprite1 texture="11" positionx="15" positiony="15" alive="0"/>
-        <sprite1 texture="2" positionx="20" positiony="20" alive="0"/>
+        <sprite1 texture="11" positionx="15" positiony="15" alive="1"/>
+        <sprite1 texture="2" positionx="20" positiony="20" alive="1"/>
     </Sec2Scr1.xml>
     <Sec2Scr2.xml>
         <box texture="5" positionx="21" positiony="27"/>

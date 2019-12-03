@@ -112,6 +112,13 @@ int main(int argc, char** argv)
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
+          if (firstBTheme){
+            dungeonTheme.stop();
+            battleTheme.setLoop(true);
+            battleTheme.play();
+            firstBTheme = false;
+          }
+          
         }
       }
 
@@ -201,19 +208,16 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
-          if (firstBTheme){
-            dungeonTheme.stop();
-            battleTheme.setLoop(true);
-            battleTheme.play();
-          }
+          
           
 
           battleMenu.processInputs(Event, App);
 
           inventory.useItem(battleMenu.item_used);
 
-          if (!battleMenu.inMenu) {
+          if (!battleMenu.isInMenu()) {
             inBattleMenu = false;
+            battleTheme.stop();
             firstDTheme = true;
           }
 

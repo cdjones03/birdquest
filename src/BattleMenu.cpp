@@ -254,10 +254,10 @@ void BattleMenu::updateOutput()
   if (item){
     //for future, allow enemy to defend if you choose item, so he does no damage and you heal
     if (!logic.enemyDefend){
-      outputText.setString("You healed for 30 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
     }
     else if (logic.enemyDefend){
-      outputText.setString("You healed for 30 HP.\nEnemy tried to defend and did 0 damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy tried to defend and did 0 damage.");
     }
 
 
@@ -530,7 +530,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
           if (item_0 != "Key" && item_0 != "-"){\
             item = true;
-            userHP = logic.healItem(enemyDamage, userHP);
+            userHP = logic.resetHP(userHP);
             invalid = false;
             item_used = 0;
 

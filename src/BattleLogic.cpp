@@ -101,7 +101,7 @@ int BattleLogic::userDefend(int enemyDamage, int userDamage, bool defend){
 
 void BattleLogic::OwlBoss(int& userDamage, bool& userDefend, bool& item, bool& showBattleBar, sf::Text& output){
     //freeze the user 1 out of 4 times (can change for balance)
-    freeze = (rand()%4);
+    freeze = (rand()%3);
     if (freeze == 0){
         userDamage = 0;
         userDefend = false;
@@ -165,7 +165,7 @@ void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&use
     //Cat Boss has the chance to confuse you, which will cause him to steal your attack,
     //and cause you to do 0 damage
     if (!enemyDefend && !userDefend && !item){
-        confuse = (rand()%4);
+        confuse = (rand()%3);
         if (confuse == 1){
             output.setString("The Boss confused you!\nHe stole your attack!");
             //enemyDamageStored = enemyDamage;

@@ -23,9 +23,9 @@
     <ice_owl_overworld13 name="../resources/spritesheets/Owl_OW_ice.png" x1="0" y1="0" x2="16" y2="16"/>
     <IceOwlBoss14 name="../resources/spritesheets/owl_boss.png" x1="0" y1="0" x2="90" y2="90"/>
     <malphas15 name = "../resources/spritesheets/Malphas_resize.png" x1="0" y1="0" x2="90" y2="90"/>
+    <princess16 name = "../resources/spritesheets/Princess_spritesheet.png" x1="0" y1="0" x2="16" y2="16"/>
   </textures>
   <Sec1Scr0_D_Entrance_simple.xml>
-      <realkey texture="2" positionx="9" positiony="16"/>
       <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
   </Sec1Scr0_D_Entrance_simple.xml>
   <Sec1Scr0_D_Entrance_simple_Open.xml>
@@ -119,6 +119,7 @@
     <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>
   </Sec1Scr10.xml>
   <Sec2Scr1.xml>
+      <realkey texture="2" positionx="9" positiony="16"/>
       <sprite1 texture="11" positionx="15" positiony="14" alive="0"/>
   </Sec2Scr1.xml>
   <Sec2Scr2.xml>
@@ -174,6 +175,7 @@
     <catboss texture="12" positionx="17" positiony="10" alive="0"/>
   </Sec2Scr12.xml>
   <Sec3Scr1.xml>
+      <realkey texture="2" positionx="9" positiony="16"/>
       <sprite1 texture="13" positionx="19" positiony="11" alive="0"/>
   </Sec3Scr1.xml>
   <Sec3Scr2.xml>
@@ -209,6 +211,7 @@
     <sprite1 texture="6" positionx="20" positiony="17" alive="0"/>
   </Sec3Scr11.xml>
   <Sec4Scr1.xml>
+    <princess texture = "16" positionx="19" positiony="18" alive="0"/>
     <finalboss texture="15" positionx="17" positiony="20" alive="0"/>
   </Sec4Scr1.xml>
 </section1>

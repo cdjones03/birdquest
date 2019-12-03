@@ -139,6 +139,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
 
 
   //section 1 no walk tiles
+
   if(checkX == 512 && checkY == 192) {
         ret = false;
     }
@@ -339,7 +340,7 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
 
 
 
-
+  ret = true;
   return ret;
 }
 

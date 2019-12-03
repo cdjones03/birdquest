@@ -170,6 +170,9 @@ void BattleLogic::CatBoss(sf::Text& output, int& userDamage, bool&item, bool&use
             //enemyDamageStored = enemyDamage;
             enemyDamage = userDamage;
             userDamage = 0;
+        }
+        else{
+            output.setString(" ");
         }      
     }
     else{

@@ -47,7 +47,7 @@ int BattleLogic::getEnemyDamage()
         damage = 0;
     }
     else{
-        damage = 5+(rand()%25);
+        damage = 1+(rand()%24);
     }
 
     return damage;

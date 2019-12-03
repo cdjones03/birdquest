@@ -111,7 +111,7 @@ int main(int argc, char** argv)
       deltaMs = clock.getElapsedTime().asMilliseconds();
       if(deltaMs > otherMs + 300) {
         otherMs = deltaMs;
-        if(!battleMenu.isInMenu()) {
+        if(!inBattleMenu) {
         enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
         if(enemyCheck >= 0) { //if it sees you, start battle
           battleMenu.setEnemy(enemyCheck);
@@ -221,7 +221,7 @@ int main(int argc, char** argv)
 
           inventory.useItem(battleMenu.item_used);
 
-          if (!battleMenu.isInMenu()) {
+          if (!inBattleMenu) {
             inBattleMenu = false;
             battleTheme.stop();
             firstDTheme = true;

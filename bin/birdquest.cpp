@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <TileMap.hpp>
 #include <iostream>
 #include <tinyxml2.h>
@@ -76,6 +77,30 @@ int main(int argc, char** argv)
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(lastX, lastY);
   //birdSprite.setScale(2,2);
+  //load the music files
+  sf::Music titleTheme;
+  sf::Music dungeonTheme;
+  bool firstDTheme = true;
+  sf::Music battleTheme;
+  bool firstBTheme = true;
+  if (!titleTheme.openFromFile("../resources/sound/titleTheme.wav")) {
+    //error
+  }
+  if (!dungeonTheme.openFromFile("../resources/sound/dungeonTheme.wav")) {
+    //error
+  }
+  if (!battleTheme.openFromFile("../resources/sound/battleTheme.wav")) {
+    //error
+  }
+
+
+  //sf::Sound titleTheme;
+
+  //titleTheme.setBuffer(bufferTitle);
+
+
+  titleTheme.setLoop(true);
+  titleTheme.play();
 
   // start main loop
   deltaMs = clock.getElapsedTime().asMilliseconds();
@@ -91,6 +116,13 @@ int main(int argc, char** argv)
           inBattleMenu = true;
           battleMenu.inMenu = true;
           battleMenu.showMenu = true;
+          if (firstBTheme){
+            dungeonTheme.stop();
+            battleTheme.setLoop(true);
+            battleTheme.play();
+            firstBTheme = false;
+          }
+          
         }
       }
 
@@ -138,12 +170,18 @@ int main(int argc, char** argv)
         if (inTitle){
           titleScreen.processInputs(Event);
           if (!titleScreen.inTitle){
+            titleTheme.stop();
             inTitle = false;
           }
         }
 
         //keypresses for when we are in the Stage
         else if (!inBattleMenu && !inPauseMenu){
+          if (firstDTheme){
+            dungeonTheme.setLoop(true);
+            dungeonTheme.play();
+            firstDTheme = false;
+          }
           //Handle input, delegate to HumanView.cpp
           lastY = birdSprite.getPosition().y;
           lastX = birdSprite.getPosition().x;
@@ -174,13 +212,17 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
+          
+          
 
           battleMenu.processInputs(Event, App);
 
           inventory.useItem(battleMenu.item_used);
 
-          if (!battleMenu.inMenu) {
+          if (!battleMenu.isInMenu()) {
             inBattleMenu = false;
+            battleTheme.stop();
+            firstDTheme = true;
           }
 
         }

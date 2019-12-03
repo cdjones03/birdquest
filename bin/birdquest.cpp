@@ -181,7 +181,7 @@ int main(int argc, char** argv)
         else if (!inBattleMenu && !inPauseMenu){
           if (firstDTheme){
             dungeonTheme.setLoop(true);
-            //dungeonTheme.play();
+            dungeonTheme.play();
             firstDTheme = false;
           }
           //Handle input, delegate to HumanView.cpp
@@ -221,7 +221,7 @@ int main(int argc, char** argv)
 
           inventory.useItem(battleMenu.item_used);
 
-          if (!inBattleMenu) {
+          if (!battleMenu.isInMenu()) {
             inBattleMenu = false;
             battleTheme.stop();
             firstDTheme = true;

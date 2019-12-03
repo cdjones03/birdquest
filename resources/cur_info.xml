@@ -116,12 +116,7 @@
         <snakeboss texture="10" positionx="17" positiony="10" alive="0"/>
     </Sec1Scr10.xml>
     <Sec2Scr1.xml>
-<<<<<<< HEAD
         <sprite1 texture="11" positionx="15" positiony="14" alive="0"/>
-=======
-        <sprite1 texture="11" positionx="15" positiony="15" alive="1"/>
-        <sprite1 texture="2" positionx="20" positiony="20" alive="1"/>
->>>>>>> b050b80d67c03883c006085fd7c3043917bb4afb
     </Sec2Scr1.xml>
     <Sec2Scr2.xml>
         <box texture="5" positionx="21" positiony="27"/>
@@ -135,7 +130,7 @@
         <box texture="5" positionx="14" positiony="12"/>
     </Sec2Scr2.xml>
     <Sec2Scr3.xml>
-        <sprite1 texture="11" positionx="20" positiony="16" alive="1"/>
+        <sprite1 texture="11" positionx="20" positiony="16" alive="0"/>
     </Sec2Scr3.xml>
     <Sec2Scr4.xml>
         <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
@@ -181,7 +176,7 @@
     </Sec3Scr2.xml>
     <Sec3Scr3.xml/>
     <Sec3Scr4.xml>
-        <sprite1 texture="2" positionx="19" positiony="11" alive="1"/>
+        <sprite1 texture="2" positionx="19" positiony="11" alive="0"/>
     </Sec3Scr4.xml>
     <Sec3Scr5.xml>
         <sprite1 texture="13" positionx="19" positiony="11" alive="0"/>

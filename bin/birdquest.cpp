@@ -221,7 +221,7 @@ int main(int argc, char** argv)
 
           inventory.useItem(battleMenu.item_used);
 
-          if (!battleMenu.isInMenu()) {
+          if (!inBattleMenu) {
             inBattleMenu = false;
             battleTheme.stop();
             firstDTheme = true;

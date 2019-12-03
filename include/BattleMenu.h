@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <SFML/Audio.hpp>
 #include "BattleLogic.h"
 #include "BattleBar.h"
 #include "Indicator.h"
@@ -74,7 +75,7 @@ private:
     sf::Texture birdTexture;
     sf::Sprite birdSprite;
 
-	  sf::Texture bossTexture;
+	sf::Texture bossTexture;
   	sf::Sprite bossSprite;
 
     float width;
@@ -93,6 +94,8 @@ private:
     //sf::CircleShape enemy_sample;
     sf::Text userHP_Text;
     sf::Text enemyHP_Text;
+
+
 
     sf::Text instructions;
     sf::Text item_instructions;
@@ -116,4 +119,11 @@ private:
     int itemIndex;
 
     int result = -1;
+
+    sf::SoundBuffer attackBuffer;
+    sf::Sound attackSound;
+
+    sf::SoundBuffer optionBuffer;
+    sf::Sound optionSound;
 };
+

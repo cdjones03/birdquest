@@ -1,4 +1,5 @@
 #include "../include/BattleMenu.h"
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <cstdlib>
 #include <random>
@@ -36,6 +37,17 @@ BattleMenu::BattleMenu(){
   if (!font.loadFromFile("../resources/game_over.ttf")) {
   //error
   }
+
+  if (!attackBuffer.loadFromFile("../resources/sound/attack.wav")) {
+      //error
+  }
+
+  if (!optionBuffer.loadFromFile("../resources/sound/option.wav")) {
+      //error
+  }
+
+  attackSound.setBuffer(attackBuffer);
+  optionSound.setBuffer(optionBuffer);
 
   // border around the option in battle screen
   rectangle.setSize(sf::Vector2f(width/2, height/4.5));
@@ -247,10 +259,10 @@ void BattleMenu::updateOutput()
   if (item){
     //for future, allow enemy to defend if you choose item, so he does no damage and you heal
     if (!logic.enemyDefend){
-      outputText.setString("You healed for 30 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy attacked for " +enemyDamageString+ " damage.");
     }
     else if (logic.enemyDefend){
-      outputText.setString("You healed for 30 HP.\nEnemy tried to defend and did 0 damage.");
+      outputText.setString("You healed to 100 HP.\nEnemy tried to defend and did 0 damage.");
     }
 
 
@@ -385,6 +397,7 @@ void BattleMenu::moveUp(){
     itemIndex --;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveDown(){
@@ -398,6 +411,7 @@ void BattleMenu::moveDown(){
     itemIndex ++;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveRight(){
@@ -411,6 +425,7 @@ void BattleMenu::moveRight(){
     itemIndex += 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::moveLeft(){
@@ -424,6 +439,7 @@ void BattleMenu::moveLeft(){
     itemIndex -= 2;
     itemText[itemIndex].setFillColor(sf::Color::Red);
   }
+  optionSound.play();
 }
 
 void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
@@ -446,10 +462,12 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
   if(event.key.code == sf::Keyboard::BackSpace){
     showItem = false;
+    optionSound.play();
   }
   //once option is selected, do something
   if(event.key.code == sf::Keyboard::Return) {
     firstMove = false;
+    optionSound.play();
 
     std::cout << "return" << std::endl;
 
@@ -523,7 +541,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
           if (item_0 != "Key" && item_0 != "-"){\
             item = true;
-            userHP = logic.healItem(enemyDamage, userHP);
+            userHP = logic.resetHP(userHP);
             invalid = false;
             item_used = 0;
 
@@ -589,6 +607,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if (!showBattleBar && !invalid){
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
+
   }
   }
 
@@ -597,6 +616,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
     //enemySpecialMove.setString(" ");
 
     if(event.key.code == sf::Keyboard::Space){
+      attackSound.play();
       std::cout << "pressed" << std::endl;
       userDamage = battleBar.getDamageDealt();
       userDefendStored = userDamage;

@@ -26,6 +26,10 @@
         <princess16 name="../resources/spritesheets/Princess_spritesheet.png" x1="0" y1="0" x2="16" y2="16"/>
     </textures>
     <Sec1Scr0_D_Entrance_simple.xml>
+<<<<<<< HEAD
+=======
+        <realkey texture="2" positionx="9" positiony="16"/>
+>>>>>>> c7361b5c3c1c8877066951fb36ff12f6cfd9a696
         <!-- alive value of 0 = yes; 1 = no (i.e. defeated do not show) -->
     </Sec1Scr0_D_Entrance_simple.xml>
     <Sec1Scr0_D_Entrance_simple_Open.xml>

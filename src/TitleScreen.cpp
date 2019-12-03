@@ -6,8 +6,11 @@ TitleScreen::TitleScreen(float width, float height){
 
     if(!texture.loadFromFile("../resources/titlee.png")){
         }
+
+    inTitle = true;
     sprite.setTexture(texture);
-    sprite.setPosition(width/2, height/2);
+    sprite.setScale(0.8, 0.8);
+    sprite.setPosition(0, 40);
 
 }
 TitleScreen:: ~TitleScreen(){
@@ -20,7 +23,7 @@ void TitleScreen::draw(sf::RenderWindow &window){
 
 void TitleScreen::processInputs(sf::Event event){
     if(event.type == sf::Event::KeyPressed){
-        if(event.key.code == sf::Keyboard::Enter){
+        if(event.key.code == sf::Keyboard::Return){
             inTitle = false;
         }
     }

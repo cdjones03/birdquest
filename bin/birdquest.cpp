@@ -10,6 +10,7 @@
 #include "Inventory.h"
 #include "Enemy.h"
 #include <HumanView.hpp>
+#include "TitleScreen.h"
 
 using namespace std;
 
@@ -36,9 +37,13 @@ int main(int argc, char** argv)
   BattleMenu battleMenu;
   bool inBattleMenu = false;
 
-  // Create pauseMenu object and boolean for if we are in the battle menu
+  // Create pauseMenu object and boolean for if we are in the pause menu
   PauseMenu pauseMenu(App.getSize().x, App.getSize().y);
   bool inPauseMenu = false;
+
+  // Create titleScreen object and boolean for if we are in the title screen
+  TitleScreen titleScreen(App.getSize().x, App.getSize().y);
+  bool inTitle = true;
 
   // Create inventory object
   Inventory inventory;
@@ -133,20 +138,24 @@ int main(int argc, char** argv)
           pauseMenu.itemText[2].setString(inventory.itemArray[2]);
           pauseMenu.itemText[3].setString(inventory.itemArray[3]);
 
-          if (inventory.itemArray[0] == "Key"){
-
-            pauseMenu.keySprite.setPosition(550,320);
-          }
-
           //pauseMenu.HP
-          pauseMenu.HP_string.setString("HP: "+std::to_string(userHP) + "/100");
+          pauseMenu.HP_string.setString("HP: "+ std::to_string(userHP) + "/100");
 
           //pauseMenu.HPstr = std::to_string(battleMenu.userHP);
           inPauseMenu = true;
           pauseMenu.inPause = true;
         }
+
+
+        if (inTitle){
+          titleScreen.processInputs(Event);
+          if (!titleScreen.inTitle){
+            inTitle = false;
+          }
+        }
+
         //keypresses for when we are in the Stage
-        if (!inBattleMenu && !inPauseMenu){
+        else if (!inBattleMenu && !inPauseMenu){
           //Handle input, delegate to HumanView.cpp
           lastY = birdSprite.getPosition().y;
           lastX = birdSprite.getPosition().x;
@@ -206,8 +215,12 @@ int main(int argc, char** argv)
       //Display
       App.clear(sf::Color::Black);
 
+      if(inTitle && titleScreen.inTitle){
+        titleScreen.draw(App);
+      }
+
       //draw map if not in battle
-      if (!inBattleMenu){
+      else if (!inBattleMenu){
         levelManager.drawMap(App);
         App.draw(birdSprite);
 

@@ -114,6 +114,7 @@ int main(int argc, char** argv)
         inBattleMenu = true;
         battleMenu.setInMenu(true);
         battleMenu.setShowMenu(true);
+        firstBTheme = true;
         if (firstBTheme){
           dungeonTheme.stop();
           battleTheme.setLoop(true);
@@ -144,10 +145,7 @@ int main(int argc, char** argv)
         }
         //press p to get to pauseMenu
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-          //userHP = battleMenu.userHP;
-          //pauseMenu.getUserHP(userHP);
           userHP = battleMenu.getUserHP();
-          //pauseMenu.HP = userHP;
           pauseMenu.setHealthBarSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
 
           pauseMenu.setItemText(0, inventory.getItemArrayItem(0));
@@ -209,9 +207,7 @@ int main(int argc, char** argv)
         else if (inBattleMenu){
 
           battleMenu.processInputs(Event, App);
-
           inventory.useItem(battleMenu.getItem_Used());
-
           if (!battleMenu.isInMenu()) {
             inBattleMenu = false;
             battleTheme.stop();

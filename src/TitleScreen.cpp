@@ -18,7 +18,7 @@ TitleScreen::TitleScreen(float width, float height){
     text.setFillColor(sf::Color::White);
     text.setCharacterSize(75);
     text.setPosition(65, 0);
-    text.setString("The Evil Malphas has kidnapped the\nBird Princess of Featherfall Kingdom!\nIt's up to you, the loyal Bird Knight\nto embark on a quest to rescue her\nand restore peace.\nHowever, your power of flight\nhas also been taken!\nYou must defeat three\n treacherous bosses to gather\nall three keys before you can face\n the malevolent Malphas . . .\n\n              Press Enter to continue!");    
+    text.setString("The Evil Malphas has kidnapped the\nBird Princess of Featherfall Kingdom!\nIt's up to you, the loyal Bird Knight\nto embark on a quest to rescue her\nand restore peace.\nHowever, your power of flight\nhas also been taken!\nYou must defeat three\n treacherous bosses to gather\nall three keys before you can face\n the malevolent Malphas . . .\n\nUse the arrow keys to move, and press P to pause.\n              Press Enter to continue!");    
 }
 TitleScreen:: ~TitleScreen(){
 }

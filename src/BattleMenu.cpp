@@ -211,21 +211,18 @@ void BattleMenu::updateOutput()
 
 
   if (firstMove){
-    //enemy.poisoned = false;
     outputText.setString("You are in Battle!");
   }
   if (showBattleBar){
     instructions.setString("Press Space to stop the blue bar.\nLand in the Green for maximum effectiveness!");
   }
   else{
-    //for now, I think we only need to give the user instructions on navigating the menu once.
+    //only need to give the user instructions on navigating the menu once.
     if (!firstMove){
       instructions.setString(" ");
 
     }
 
-
-    //instructions.setString("Use the arrow keys to navigate the options,\npress Enter to select your move.");
   }
   std::string userDamageString = std::to_string(userDamageStored);
   std::string enemyDamageString = std::to_string(enemyDamageStored);
@@ -280,11 +277,7 @@ void BattleMenu::updateOutput()
 
 
   }
-  /**
-  if (type == Enemy::Owl && (enemy.freeze == 0)){
-    enemySpecialMove.setString("The icy owl froze you!");
-  }
-  */
+
   //if you won or lost, output text
   if (logic.whoWon(enemyHP, userHP) != 2){
     showMenu = false;
@@ -326,16 +319,14 @@ void BattleMenu::updateOutput()
       showBattleBar = false;
       firstMove = true;
       enemyHP = logic.resetHP(enemyHP);
+      userHP = logic.resetHP(userHP);
 
     }
-
-
 
   }
 
 }
 void BattleMenu::draw(sf::RenderWindow &window){
-  //std::cout<<"userHP"<<userHP<<" enemyHP"<<enemyHP<<std::endl;
 
   window.draw(outputText);
 
@@ -472,7 +463,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
         case 0:
           magic = false;
           userDefend = false;
-          battleBar.indi.velocity = 1.5;
+          battleBar.indi.velocity = 1.75;
           showAttack = true;
           std::cout << "Attack pressed" << std::endl;
           showBattleBar = true;
@@ -485,7 +476,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           magic = true;
           userDefend = false;
           //speed up battlebar
-          battleBar.indi.velocity = 2.5;
+          battleBar.indi.velocity = 2.75;
           showAttack = true;
           std::cout << "Magic pressed" << std::endl;
           showBattleBar = true;
@@ -512,11 +503,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           break;
         //item
         case 3:
-          //healing with potion, need to fix
-          //item = true;
+          //healing with potion,
           showItem = true;
-          //userHP = logic.healItem(enemyDamage, userHP);
-          //std::string enemyDamageString = std::to_string(enemyDamage);
           showAttack = false;
           std::cout << "Item pressed" << std::endl;
           invalid = true;
@@ -606,9 +594,8 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
   }
 
-  //once we are in the battle bar view
+  //once we are in the battle bar view, check for user damage
   else if (showBattleBar && returnJustPressed){
-    //enemySpecialMove.setString(" ");
 
     if(event.key.code == sf::Keyboard::Space){
       attackSound.play();
@@ -645,6 +632,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   }
 }
 
+//checks if we should be in the battle menu
 bool BattleMenu::isInMenu()
 {
   return inMenu;
@@ -665,6 +653,7 @@ int BattleMenu::getType()
   return type;
 }
 
+//sets the enemy type, and texture/special moves based on the type
 void BattleMenu::setEnemy(int enemyNum) {
 
   switch(enemyNum) {

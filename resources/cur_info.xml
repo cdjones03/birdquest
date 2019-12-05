@@ -44,7 +44,7 @@
         <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr2.xml>
     <Sec1Scr3.xml>
-        <sprite1 texture="6" positionx="20" positiony="20" alive="1"/>
+        <sprite1 texture="6" positionx="20" positiony="20" alive="0"/>
     </Sec1Scr3.xml>
     <Sec1Scr4.xml>
         <sprite1 texture="9" positionx="20" positiony="20" alive="0"/>

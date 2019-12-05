@@ -109,24 +109,25 @@ int main(int argc, char** argv)
   while(App.isOpen())
   {
       deltaMs = clock.getElapsedTime().asMilliseconds();
-      if(deltaMs > otherMs + 300) {
-        otherMs = deltaMs;
-        if(!inBattleMenu) {
-        enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y);
-        if(enemyCheck >= 0) { //if it sees you, start battle
-          battleMenu.setEnemy(enemyCheck);
-          inBattleMenu = true;
-          battleMenu.inMenu = true;
-          battleMenu.showMenu = true;
-          if (firstBTheme){
-            dungeonTheme.stop();
-            battleTheme.setLoop(true);
-            battleTheme.play();
-            firstBTheme = false;
+      if(!inBattleMenu) {
+      enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y, deltaMs, otherMs);
+      if(enemyCheck >= 0) { //if it sees you, start battle
+        battleMenu.setEnemy(enemyCheck);
+        inBattleMenu = true;
+        battleMenu.inMenu = true;
+        battleMenu.showMenu = true;
+        if (firstBTheme){
+          dungeonTheme.stop();
+          battleTheme.setLoop(true);
+          battleTheme.play();
+          firstBTheme = false;
           }
         }
       }
+      if(deltaMs > otherMs + 300) {
+      otherMs = deltaMs;
     }
+
 
       // update inventory in battle menu
       battleMenu.itemText[0].setString(inventory.itemArray[0]);

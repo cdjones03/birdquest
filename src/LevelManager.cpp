@@ -226,7 +226,7 @@ void LevelManager::moveSprite(int spriteNum, int moveX, int moveY) {
   curSprites.at(spriteNum).move(moveX, moveY);
 }
 
-int LevelManager::updateSprite(int x, int y) {
+int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
   int ret = -1;
   if(!curSprites.empty()) {
     for(int count = 0; count < curSprites.size(); count++) {
@@ -241,7 +241,9 @@ int LevelManager::updateSprite(int x, int y) {
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 7;
         }
+        if(firstTime > secondTime + 300) {
         curSprites[count].move(velocity, 0);
+      }
       }
 
       if(getTexture(count) == 9) {
@@ -255,14 +257,15 @@ int LevelManager::updateSprite(int x, int y) {
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 9;
         }
+        if(firstTime > secondTime + 300) {
         curSprites[count].move(velocity, 0);
+      }
       }
 
       if(getTexture(count) == 10) {
         if(y < 23*16){
           ret = 10;
         }
-        std::cout << "I see you " << std::endl;
       }
 
       if(getTexture(count) == 11) {
@@ -276,7 +279,9 @@ int LevelManager::updateSprite(int x, int y) {
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 11;
         }
+        if(firstTime > secondTime + 300) {
         curSprites[count].move(velocity, 0);
+      }
       }
 
       if(getTexture(count) == 12) {
@@ -296,7 +301,9 @@ int LevelManager::updateSprite(int x, int y) {
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 13;
         }
+        if(firstTime > secondTime + 300) {
         curSprites[count].move(velocity, 0);
+      }
       }
 
       if(getTexture(count) == 14) {

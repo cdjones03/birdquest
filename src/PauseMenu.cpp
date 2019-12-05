@@ -302,4 +302,5 @@ void PauseMenu::setHPString(std::string newString) {
 
 void PauseMenu::setHealthBarSize(sf::Vector2f newVector) {
 	healthBar.setSize(newVector);
+	remainingBar.setSize(newVector);
 }

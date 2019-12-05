@@ -18,8 +18,6 @@ private:
   static void addKey(LevelManager &thisLevelManager);
   static bool checkForKey(int checkNum, LevelManager &thisLevelManager);
 
-
-
 public:
 
   LevelLogic();

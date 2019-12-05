@@ -147,16 +147,11 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
           userHP = battleMenu.getUserHP();
           pauseMenu.setHealthBarSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
-
           pauseMenu.setItemText(0, inventory.getItemArrayItem(0));
           pauseMenu.setItemText(1, inventory.getItemArrayItem(1));
           pauseMenu.setItemText(2, inventory.getItemArrayItem(2));
           pauseMenu.setItemText(3, inventory.getItemArrayItem(3));
-
-          //pauseMenu.HP
           pauseMenu.setHPString("HP: "+ std::to_string(userHP) + "/100");
-
-          //pauseMenu.HPstr = std::to_string(battleMenu.userHP);
           inPauseMenu = true;
           pauseMenu.setInPause(true);
         }

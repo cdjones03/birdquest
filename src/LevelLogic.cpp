@@ -28,8 +28,6 @@ bool LevelLogic::moveObject(sf::Sprite &thisSprite, int spriteNum, HumanView::Di
           for(int x = 0; x < checkSprites.size(); x++) {
             //if there's another sprite in that direction, dont let it move
             if(thisX == checkSprites.at(x).getPosition().x && thisY-16 == checkSprites.at(x).getPosition().y) {
-              std::cout << checkSprites.at(x).getPosition().x << " " << checkSprites.at(x).getPosition().y << std::endl;
-              std::cout << checkSprites.at(x).getTexture() << std::endl;
               moveRet = false;
               break;
             }
@@ -237,6 +235,12 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
   if(checkX == 128 && checkY == 176) { //section 1 corner
         ret = false;
     }
+  if(checkX == 16 && checkY == 144) { //section 1 corner
+        ret = false;
+    }
+  if(checkX == 32 && checkY == 144) { //section 1 corner
+        ret = false;
+    }
 
   //section 2 no walk tiles
 
@@ -409,22 +413,16 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
       			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
               int what = checkSprites.at(x).getPosition().x/16;
       				buttonArray.push_back(what);  //supposed to push current x onto array
-      				//print statements just for testing
-              for (int i = 0; i < buttonArray.size(); i++) {
-      		         std::cout << "button " << i << " " << buttonArray.at(i) << std::endl;
-      	      }
               thisLevelManager.setButtonGreen(x, 4);
       				if(buttonArray.size() == max_length) {
       					for (int i = 0; i < 4; i++){ //loop thru both arrays to compare
       						if (buttonArray.at(i) != floorPuz[i]){
-      							std::cout << "Wrong" << std::endl;
                     buttonArray.clear();
                     thisLevelManager.resetButtons();
                     break;
       							//reset puzzle code here
       						}
       						else{
-      							std::cout << "Solved!" << std::endl;
                     thisLevelManager.switchPuzzleMap();
                     thisApp.clear(sf::Color::Black);
                     thisLevelManager.drawMap(thisApp);

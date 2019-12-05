@@ -137,8 +137,6 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
-
-
   //section 1 no walk tiles
 
   if(checkX == 512 && checkY == 192) {
@@ -595,7 +593,6 @@ bool LevelLogic::checkForIceTile(int thisXPos, int thisYPos, HumanView::Dir dire
       checkY = thisLevelManager.getMap().getTexCoord(thisXPos + 16, thisYPos).y;
       break;
   }
-  //std::cout << " x " << checkX << " " << checkY << std::endl;
   if(checkX == 576 && checkY == 192) { //ice tile texture
     return true;
   }

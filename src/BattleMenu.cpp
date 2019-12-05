@@ -751,3 +751,34 @@ void BattleMenu::setEnemy(int enemyNum) {
 }
 
 }
+
+void BattleMenu::setInMenu(bool newVal) {
+  inMenu = newVal;
+}
+void BattleMenu::setShowMenu(bool newVal) {
+  showMenu = newVal;
+}
+void BattleMenu::setItem_Used(bool newVal) {
+  item_used = newVal;
+}
+bool BattleMenu::getItem_Used() {
+  return item_used;
+}
+int BattleMenu::getUserHP() {
+  return userHP;
+}
+void BattleMenu::setItemText(int index, std::string newString) {
+  itemText[index].setString(newString);
+}
+void BattleMenu::setItem0(std::string newString) {
+  item_0 = newString;
+}
+void BattleMenu::setItem1(std::string newString) {
+  item_1 = newString;
+}
+void BattleMenu::setItem2(std::string newString) {
+  item_2 = newString;
+}
+void BattleMenu::setItem3(std::string newString) {
+  item_3 = newString;
+}

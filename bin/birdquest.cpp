@@ -62,6 +62,7 @@ int main(int argc, char** argv)
   LevelManager levelManager;
   levelManager.loadLevels();
 
+  //create humanview
   HumanView humanView;
 
   sf::Clock clock;
@@ -77,7 +78,7 @@ int main(int argc, char** argv)
   birdSprite.setPosition(lastX, lastY); //start at bottom of hub
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(lastX, lastY);
-  //birdSprite.setScale(2,2);
+
   //load the music files
   sf::Music titleTheme;
   sf::Music dungeonTheme;
@@ -93,7 +94,6 @@ int main(int argc, char** argv)
   if (!battleTheme.openFromFile("../resources/sound/battleTheme.wav")) {
     //error
   }
-
   titleTheme.setLoop(true);
   titleTheme.play();
 
@@ -112,8 +112,8 @@ int main(int argc, char** argv)
       if(enemyCheck >= 0) { //if it sees you, start battle
         battleMenu.setEnemy(enemyCheck);
         inBattleMenu = true;
-        battleMenu.inMenu = true;
-        battleMenu.showMenu = true;
+        battleMenu.setInMenu(true);
+        battleMenu.setShowMenu(true);
         if (firstBTheme){
           dungeonTheme.stop();
           battleTheme.setLoop(true);
@@ -123,19 +123,16 @@ int main(int argc, char** argv)
         }
       }
 
-
-
-
       // update inventory in battle menu
-      battleMenu.itemText[0].setString(inventory.itemArray[0]);
-      battleMenu.itemText[1].setString(inventory.itemArray[1]);
-      battleMenu.itemText[2].setString(inventory.itemArray[2]);
-      battleMenu.itemText[3].setString(inventory.itemArray[3]);
+      battleMenu.setItemText(0, inventory.getItemArrayItem(0));
+      battleMenu.setItemText(1, inventory.getItemArrayItem(1));
+      battleMenu.setItemText(2, inventory.getItemArrayItem(2));
+      battleMenu.setItemText(3, inventory.getItemArrayItem(3));
 
-      battleMenu.item_0 = inventory.itemArray[0];
-      battleMenu.item_1 = inventory.itemArray[1];
-      battleMenu.item_2 = inventory.itemArray[2];
-      battleMenu.item_3 = inventory.itemArray[3];
+      battleMenu.setItem0(inventory.getItemArrayItem(0));
+      battleMenu.setItem1(inventory.getItemArrayItem(1));
+      battleMenu.setItem2(inventory.getItemArrayItem(2));
+      battleMenu.setItem3(inventory.getItemArrayItem(3));
 
       // process events
       sf::Event Event;
@@ -149,27 +146,27 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
           //userHP = battleMenu.userHP;
           //pauseMenu.getUserHP(userHP);
-          userHP = battleMenu.userHP;
+          userHP = battleMenu.getUserHP();
           //pauseMenu.HP = userHP;
-          pauseMenu.healthBar.setSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
+          pauseMenu.setHealthBarSize(sf::Vector2f(640/3.5 * userHP/100, 640/30));
 
-          pauseMenu.itemText[0].setString(inventory.itemArray[0]);
-          pauseMenu.itemText[1].setString(inventory.itemArray[1]);
-          pauseMenu.itemText[2].setString(inventory.itemArray[2]);
-          pauseMenu.itemText[3].setString(inventory.itemArray[3]);
+          pauseMenu.setItemText(0, inventory.getItemArrayItem(0));
+          pauseMenu.setItemText(1, inventory.getItemArrayItem(1));
+          pauseMenu.setItemText(2, inventory.getItemArrayItem(2));
+          pauseMenu.setItemText(3, inventory.getItemArrayItem(3));
 
           //pauseMenu.HP
-          pauseMenu.HP_string.setString("HP: "+ std::to_string(userHP) + "/100");
+          pauseMenu.setHPString("HP: "+ std::to_string(userHP) + "/100");
 
           //pauseMenu.HPstr = std::to_string(battleMenu.userHP);
           inPauseMenu = true;
-          pauseMenu.inPause = true;
+          pauseMenu.setInPause(true);
         }
 
 
         if (inTitle){
           titleScreen.processInputs(Event);
-          if (!titleScreen.inTitle){
+          if (!titleScreen.isInTitle()){
             titleTheme.stop();
             inTitle = false;
           }
@@ -182,7 +179,7 @@ int main(int argc, char** argv)
             dungeonTheme.play();
             firstDTheme = false;
           }
-          //Handle input, delegate to HumanView.cpp
+          //Handle input, delegate to HumanView.cpp, animate bird
           lastY = birdSprite.getPosition().y;
           lastX = birdSprite.getPosition().x;
 
@@ -206,8 +203,6 @@ int main(int argc, char** argv)
 			      birdSprite.setTexture(birdTexture);
             humanView.movePlayer(App, birdSprite, HumanView::RIGHT, levelManager, inventory);
           }
-
-
         }
 
         //key presses for when we are in the battle menu
@@ -215,7 +210,7 @@ int main(int argc, char** argv)
 
           battleMenu.processInputs(Event, App);
 
-          inventory.useItem(battleMenu.item_used);
+          inventory.useItem(battleMenu.getItem_Used());
 
           if (!battleMenu.isInMenu()) {
             inBattleMenu = false;
@@ -223,9 +218,8 @@ int main(int argc, char** argv)
             firstDTheme = true;
           }
 
+          //player beat enemy
           if(battleMenu.getResult() == 0) {
-
-            std::cout << "      you won   " << battleMenu.getType()<< std::endl;
             switch(battleMenu.getType()) {
               case 0: //beat regular enemy
                 break;
@@ -246,8 +240,8 @@ int main(int argc, char** argv)
             levelManager.deleteSprite();
           }
 
+          //player lost to enemy
           else if(battleMenu.getResult() == 1) {
-            std::cout << "      you lost" << std::endl;
             int map = levelManager.getCurrentMap();
             if(map >= 0 && map <= 10) {
               levelManager.resetToStart();
@@ -265,7 +259,6 @@ int main(int argc, char** argv)
             battleMenu.resetResult();
             App.clear(sf::Color::Black);
             birdSprite.setPosition(352, 352);
-            //levelManager.resetToStart();
             levelManager.drawMap(App);
             App.draw(birdSprite);
           }
@@ -274,13 +267,8 @@ int main(int argc, char** argv)
 
         //key presses for when we are in the pause menu
         else if (inPauseMenu){
-          //here!
-
-
           pauseMenu.processInputs(Event, App);
-          //std::cout<<battleMenu.userHP<<std::endl;
-
-          if (!pauseMenu.inPause){
+          if (!pauseMenu.isInPause()){
 
             inPauseMenu = false;
           }
@@ -304,7 +292,7 @@ int main(int argc, char** argv)
         App.draw(birdSprite);
 
         //draw pauseMenu
-        if (inPauseMenu && pauseMenu.inPause){
+        if (inPauseMenu && pauseMenu.isInPause()){
           pauseMenu.draw(App);
         }
 

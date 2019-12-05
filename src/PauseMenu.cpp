@@ -30,10 +30,9 @@ PauseMenu::PauseMenu(float width, float height){
   	//health bar for the status update
   	birdSprite.setTexture(birdTexture);
   	birdSprite.setPosition(sf::Vector2f(width/3.1, height/11));
-  	//birdSprite.setScale(0.25, 0.25);
 
   	//health bar for the status update
-	  
+
   	healthBar.setSize(sf::Vector2f(width/3.5, height/30));
   	healthBar.setFillColor(sf::Color(50, 255, 50));
   	healthBar.setPosition(sf::Vector2f(width/3.2, height/4.25));
@@ -44,9 +43,9 @@ PauseMenu::PauseMenu(float width, float height){
   	remainingBar.setOutlineThickness(3);
 
   	//text that shows user HP in status menu
-	HP = bMenu.userHP;
-	std::cout<<"here:"<<HP;
-	
+		HP = bMenu.userHP;
+	//std::cout<<"here:"<<HP;
+
 
   	HP_string.setFont(font);
   	HP_string.setCharacterSize(50);
@@ -75,7 +74,7 @@ PauseMenu::PauseMenu(float width, float height){
   	itemBorder.setOutlineThickness(4);
   	itemBorder.setOutlineColor(sf::Color::White);
 
-  
+
   	//position each option on the screen, with the color red if it is highlighted
   	optionText[0].setFont(font);
 	optionText[0].setCharacterSize(90);
@@ -116,7 +115,7 @@ PauseMenu::PauseMenu(float width, float height){
   	itemText[3].setPosition(sf::Vector2f(width/1.4, height/1.32-55));
 
   	itemText[4].setFont(font);
-	//want to make return a different color or style, 
+	//want to make return a different color or style,
 	//so that it doesn't look like it's in the list of items
 	//itemText[4].setFillColor(sf::Color::Green);
 	itemText[4].setCharacterSize(80);
@@ -158,7 +157,7 @@ void PauseMenu::draw(sf::RenderWindow &window){
 		for (; j < maxItemOptions; j++){
 			window.draw(itemText[j]);
 		}
-		window.draw(keySprite);	
+		window.draw(keySprite);
 	}
 }
 
@@ -213,7 +212,7 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 			switch (getSelectedOption()){
 				//item
 				case 0:
-					std::cout << "Item Pressed" << std::endl;
+					//std::cout << "Item Pressed" << std::endl;
 
 					itemText[itemIndex].setFillColor(sf::Color::White);
 					itemIndex = 0;
@@ -226,17 +225,17 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
 				//save
 				case 1:
-					std::cout << "Status Pressed" << std::endl;		
-					//std::cout<<"here1:"<<HP;				
+					//std::cout << "Status Pressed" << std::endl;
+					////std::cout<<"here1:"<<HP;
 					inStatus = !inStatus;
 					pauseSound.play();
-									
+
 					break;
 
 				//resume
-				
+
 				case 2:
-					std::cout << "Resume Pressed" << std::endl;
+					//std::cout << "Resume Pressed" << std::endl;
 					inPause = false;
 					//reset so items is selected first
 					moveUp();
@@ -252,31 +251,31 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 		switch (getSelectedItem()){
 			//item 1
 			case 0:
-				std::cout << "Item 1 Pressed" << std::endl;
+				////std::cout << "Item 1 Pressed" << std::endl;
 				pauseSound.play();
 				break;
 
 			//item 2
 			case 1:
-				std::cout << "Item 2 Pressed" << std::endl;
+				////std::cout << "Item 2 Pressed" << std::endl;
 				pauseSound.play();
 				break;
 
 			//item 3
 			case 2:
-				std::cout << "Item 3 Pressed" << std::endl;
+				////std::cout << "Item 3 Pressed" << std::endl;
 				pauseSound.play();
 				break;
 
 			//item 4
 			case 3:
-				std::cout << "Item 4 Pressed" << std::endl;
+				////std::cout << "Item 4 Pressed" << std::endl;
 				pauseSound.play();
 				break;
 
 			//Return
 			case 4:
-				std::cout << "Return Pressed" << std::endl;
+				////std::cout << "Return Pressed" << std::endl;
 				pauseSound.play();
 				inItem = false;
 				break;
@@ -287,4 +286,20 @@ void PauseMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 }
 bool PauseMenu::isInPause(){
 	return inPause;
+}
+
+void PauseMenu::setInPause(bool newVal) {
+	inPause = newVal;
+}
+
+void PauseMenu::setItemText(int index, std::string newString) {
+	itemText[index].setString(newString);
+}
+
+void PauseMenu::setHPString(std::string newString) {
+	HP_string.setString(newString);
+}
+
+void PauseMenu::setHealthBarSize(sf::Vector2f newVector) {
+	healthBar.setSize(newVector);
 }

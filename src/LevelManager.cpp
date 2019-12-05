@@ -36,7 +36,7 @@ LevelManager::LevelManager(){
     x2 = e->IntAttribute("x2");
     y2 = e->IntAttribute("y2");
     if(!texture.loadFromFile(e->Attribute("name"), sf::IntRect(x1, y1, x2, y2))) {
-      std::cout << " error " << std::endl;
+      std::cout << " texture load error " << std::endl;
     }
     curTextures.push_back(texture);
   }
@@ -131,7 +131,6 @@ void LevelManager::drawMap(sf::RenderWindow &window) {
 }
 
 //needs to switch based on given direction
-//should assume that collision checking has been already done
 //and loads new screen's sprites
 
 bool LevelManager::switchMap(int mapDir) {
@@ -240,7 +239,7 @@ void LevelManager::moveEnemy() {
         curSprites[count].move(velocity, 0);
       }
 
-      if(getTexture(count) == 9) {
+      if(getTexture(count) == 9) { //OW snake
         if(curSprites[count].getPosition().x > (25*16)-16) {
           velocity *= -1;
         }
@@ -250,7 +249,7 @@ void LevelManager::moveEnemy() {
         curSprites[count].move(velocity, 0);
       }
 
-      if(getTexture(count) == 11) {
+      if(getTexture(count) == 11) { //OW cat
         if(curSprites[count].getPosition().x > (25*16)-16) {
           velocity *= -1;
         }
@@ -260,7 +259,7 @@ void LevelManager::moveEnemy() {
         curSprites[count].move(velocity, 0);
       }
 
-      if(getTexture(count) == 13) {
+      if(getTexture(count) == 13) { //OW ice owl
         if(curSprites[count].getPosition().x > (25*16)-16) {
           velocity *= -1;
         }
@@ -273,6 +272,7 @@ void LevelManager::moveEnemy() {
   }
 }
 
+//used to detect if enemy sees you and return value to start battle
 int LevelManager::checkForEnemy(int x, int y) {
   int ret = -1;
   if(!curSprites.empty()) {

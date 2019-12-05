@@ -63,6 +63,19 @@ public:
     void resetResult();
     int getType();
 
+    void setInMenu(bool newVal);
+    void setShowMenu(bool newVal);
+    void setItem_Used(bool newVal);
+
+    void setItemText(int index, std::string newString);
+    void setItem0(std::string newString);
+    void setItem1(std::string newString);
+    void setItem2(std::string newString);
+    void setItem3(std::string newString);
+
+    bool getItem_Used();
+    int getUserHP();
+
     int item_used;
 
 private:
@@ -126,4 +139,3 @@ private:
     sf::SoundBuffer optionBuffer;
     sf::Sound optionSound;
 };
-

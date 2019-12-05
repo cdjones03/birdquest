@@ -29,11 +29,15 @@ public:
 	}
 	void getUserHP(int HP);
 	bool isInPause();
+	void setInPause(bool newVal);
 	bool inPause;
 	bool inItem;
 	bool inStatus;
-	
+
 	void processInputs(sf::Event event, sf::RenderWindow &window);
+	void setItemText(int index, std::string newString);
+	void setHPString(std::string newString);
+	void setHealthBarSize(sf::Vector2f newVector);
 	int HP;
 	sf::Text HP_string;
 	sf::RectangleShape healthBar;
@@ -42,9 +46,9 @@ public:
 	sf::Text itemText[maxItemOptions];
 
 	sf::Sprite keySprite;
-	
+
 private:
-	
+
 	std::string HPstr;
 	sf::Font font;
 	sf::Text optionText[maxPauseOptions];
@@ -53,7 +57,7 @@ private:
 	sf::RectangleShape border;
 	sf::RectangleShape itemBorder;
 	sf::Texture keyTexture;
-	
+
 	BattleMenu bMenu;
 	sf::Texture birdTexture;
 	sf::Sprite birdSprite;
@@ -63,8 +67,8 @@ private:
 
 	sf::SoundBuffer pauseBuffer;
 	sf::Sound pauseSound;
-	
 
-	
+
+
 
 };

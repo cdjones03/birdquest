@@ -35,7 +35,7 @@ void Inventory::useItem(int index){
 	if (index == potion_index){
 		if (potion_count == 0){
 			itemArray[itemCount] = "-";
-		} 
+		}
 		else {
 			potion_count--;
 			itemArray[potion_index] = "Potion x " + std::to_string(potion_count);
@@ -44,4 +44,8 @@ void Inventory::useItem(int index){
 	else {
 		itemArray[index] = "-";
 	}
+}
+
+std::string Inventory::getItemArrayItem(int index){
+	return itemArray[index];
 }

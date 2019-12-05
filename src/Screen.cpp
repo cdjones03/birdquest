@@ -11,6 +11,7 @@ Screen::Screen() {
 
 }
 
+//screen of temple, has tiles and sprites
 Screen::Screen(const char* fileName) {
 
   doc.LoadFile(fileName);

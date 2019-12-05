@@ -103,7 +103,7 @@ int main(int argc, char** argv)
   while(App.isOpen())
   {
       deltaMs = clock.getElapsedTime().asMilliseconds();
-      if(deltaMs > otherMs + 300) {
+      if(deltaMs > otherMs + 200) {
         otherMs = deltaMs;
         levelManager.moveEnemy();
       }
@@ -123,7 +123,7 @@ int main(int argc, char** argv)
         }
       }
 
-    
+
 
 
       // update inventory in battle menu

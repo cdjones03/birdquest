@@ -8,7 +8,7 @@
 
 /*
 
-Should make an array of screens per section of temple
+Should make an array of screens for temple.
 
 */
 
@@ -284,7 +284,7 @@ int LevelManager::checkForEnemy(int x, int y) {
       }
 
       if(getTexture(count) == 9) {
-        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+        if(curSprites[count].getPosition().x == x && (y - curSprites[count].getPosition().y) < 176 && (y - curSprites[count].getPosition().y) > 0){
           ret = 9;
         }
       }
@@ -296,7 +296,7 @@ int LevelManager::checkForEnemy(int x, int y) {
       }
 
       if(getTexture(count) == 11) {
-        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+        if(curSprites[count].getPosition().x == x && (y - curSprites[count].getPosition().y) < 272 && (y - curSprites[count].getPosition().y) > 0){
           ret = 11;
         }
       }
@@ -308,7 +308,7 @@ int LevelManager::checkForEnemy(int x, int y) {
       }
 
       if(getTexture(count) == 13) {
-        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+        if(curSprites[count].getPosition().x == x && (y - curSprites[count].getPosition().y) < 320 && (y - curSprites[count].getPosition().y) > 0){
           ret = 13;
         }
       }

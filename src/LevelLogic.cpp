@@ -137,7 +137,6 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
-  std::cout << checkX << " " << checkY << std::endl;
 
 
   //section 1 no walk tiles
@@ -343,7 +342,6 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
-  ret = true;
   return ret;
 }
 
@@ -405,10 +403,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
         for(int x = 0; x < checkSprites.size(); x++) {
            //sprite to tile above
 
-		  if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
-            if(checkForKey(x, thisLevelManager)) {
-              break;
-            }
+		        if(thisXPos == checkSprites.at(x).getPosition().x && thisYPos-16 == checkSprites.at(x).getPosition().y) {
+              if(checkForKey(x, thisLevelManager)) {
+                break;
+              }
 
       			if (thisLevelManager.getTexture(x) == 3) {  //3 = texture number for the button
               int what = checkSprites.at(x).getPosition().x/16;
@@ -452,6 +450,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               thisLevelManager.deleteSprite();
               break;
             }
+            if(thisLevelManager.getTexture(x) >= 7) { //enemy
+              thisRet = false;
+              break;
+            }
 
             if(!moveObject(checkSprites.at(x), x, HumanView::UP, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
@@ -482,6 +484,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               thisRet = true; //can change to true once key can be added to inventory
               thisInventory.addItem("Potion");
               thisLevelManager.deleteSprite();
+              break;
+            }
+            if(thisLevelManager.getTexture(x) >= 7) { //enemy
+              thisRet = false;
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::DOWN, thisLevelManager)) { //if sprite moves, bird can move too
@@ -515,6 +521,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               thisLevelManager.deleteSprite();
               break;
             }
+            if(thisLevelManager.getTexture(x) >= 7) { //enemy
+              thisRet = false;
+              break;
+            }
             if(!moveObject(checkSprites.at(x), x, HumanView::LEFT, thisLevelManager)) { //if sprite moves, bird can move too
               thisRet = false;
               break;
@@ -544,6 +554,10 @@ bool LevelLogic::checkSpriteCollision(int thisXPos, int thisYPos, HumanView::Dir
               thisRet = true; //can change to true once key can be added to inventory
               thisInventory.addItem("Potion");
               thisLevelManager.deleteSprite();
+              break;
+            }
+            if(thisLevelManager.getTexture(x) >= 7) { //enemy
+              thisRet = false;
               break;
             }
             if(!moveObject(checkSprites.at(x), x, HumanView::RIGHT, thisLevelManager)) { //if sprite moves, bird can move too

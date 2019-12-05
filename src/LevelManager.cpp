@@ -17,6 +17,7 @@ LevelManager::LevelManager(){
   firstSectionDone = false;
   secondSectionDone = false;
   thirdSectionDone = false;
+  velocity = 16;
 
   //load textures for section
   const char* name = "../resources/info.xml";
@@ -226,8 +227,7 @@ void LevelManager::moveSprite(int spriteNum, int moveX, int moveY) {
   curSprites.at(spriteNum).move(moveX, moveY);
 }
 
-int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
-  int ret = -1;
+void LevelManager::moveEnemy() {
   if(!curSprites.empty()) {
     for(int count = 0; count < curSprites.size(); count++) {
       if(getTexture(count) == 7) {
@@ -237,29 +237,56 @@ int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
         else if(curSprites[count].getPosition().x < 14*16+16) {
           velocity *= -1;
         }
-
-        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
-          ret = 7;
-        }
-        if(firstTime > secondTime + 300) {
         curSprites[count].move(velocity, 0);
-      }
       }
 
       if(getTexture(count) == 9) {
-        if(curSprites[count].getPosition().x > 25*16-16) {
+        if(curSprites[count].getPosition().x > (25*16)-16) {
           velocity *= -1;
         }
-        else if(curSprites[count].getPosition().x < 14*16+16) {
+        else if(curSprites[count].getPosition().x < (14*16)+16) {
           velocity *= -1;
         }
+        curSprites[count].move(velocity, 0);
+      }
 
+      if(getTexture(count) == 11) {
+        if(curSprites[count].getPosition().x > (25*16)-16) {
+          velocity *= -1;
+        }
+        else if(curSprites[count].getPosition().x < (14*16)+16) {
+          velocity *= -1;
+        }
+        curSprites[count].move(velocity, 0);
+      }
+
+      if(getTexture(count) == 13) {
+        if(curSprites[count].getPosition().x > (25*16)-16) {
+          velocity *= -1;
+        }
+        else if(curSprites[count].getPosition().x < (14*16)+16) {
+          velocity *= -1;
+        }
+        curSprites[count].move(velocity, 0);
+      }
+    }
+  }
+}
+
+int LevelManager::checkForEnemy(int x, int y) {
+  int ret = -1;
+  if(!curSprites.empty()) {
+    for(int count = 0; count < curSprites.size(); count++) {
+      if(getTexture(count) == 7) {
+        if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
+          ret = 7;
+        }
+      }
+
+      if(getTexture(count) == 9) {
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 9;
         }
-        if(firstTime > secondTime + 300) {
-        curSprites[count].move(velocity, 0);
-      }
       }
 
       if(getTexture(count) == 10) {
@@ -269,19 +296,9 @@ int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
       }
 
       if(getTexture(count) == 11) {
-        if(curSprites[count].getPosition().x > 25*16-16) {
-          velocity *= -1;
-        }
-        else if(curSprites[count].getPosition().x < 14*16+16) {
-          velocity *= -1;
-        }
-
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 11;
         }
-        if(firstTime > secondTime + 300) {
-        curSprites[count].move(velocity, 0);
-      }
       }
 
       if(getTexture(count) == 12) {
@@ -291,19 +308,9 @@ int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
       }
 
       if(getTexture(count) == 13) {
-        if(curSprites[count].getPosition().x > 25*16-16) {
-          velocity *= -1;
-        }
-        else if(curSprites[count].getPosition().x < 14*16+16) {
-          velocity *= -1;
-        }
-
         if(curSprites[count].getPosition().x == x && curSprites[count].getPosition().y < y){
           ret = 13;
         }
-        if(firstTime > secondTime + 300) {
-        curSprites[count].move(velocity, 0);
-      }
       }
 
       if(getTexture(count) == 14) {
@@ -319,7 +326,6 @@ int LevelManager::updateSprite(int x, int y, int firstTime, int secondTime) {
       }
     }
   }
-
 
   return ret;
 }
@@ -397,7 +403,9 @@ void LevelManager::deleteSprite(){
     e->SetAttribute("alive", "1");
   }
   cur_doc.SaveFile("../resources/cur_info.xml");
+  if(!curSprites.empty()) {
   curSprites.pop_back();
+}
 
 }
 

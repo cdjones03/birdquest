@@ -94,12 +94,6 @@ int main(int argc, char** argv)
     //error
   }
 
-
-  //sf::Sound titleTheme;
-
-  //titleTheme.setBuffer(bufferTitle);
-
-
   titleTheme.setLoop(true);
   titleTheme.play();
 
@@ -109,8 +103,12 @@ int main(int argc, char** argv)
   while(App.isOpen())
   {
       deltaMs = clock.getElapsedTime().asMilliseconds();
+      if(deltaMs > otherMs + 300) {
+        otherMs = deltaMs;
+        levelManager.moveEnemy();
+      }
       if(!inBattleMenu) {
-      enemyCheck = levelManager.updateSprite(birdSprite.getPosition().x, birdSprite.getPosition().y, deltaMs, otherMs);
+      enemyCheck = levelManager.checkForEnemy(birdSprite.getPosition().x, birdSprite.getPosition().y);
       if(enemyCheck >= 0) { //if it sees you, start battle
         battleMenu.setEnemy(enemyCheck);
         inBattleMenu = true;
@@ -124,9 +122,8 @@ int main(int argc, char** argv)
           }
         }
       }
-      if(deltaMs > otherMs + 300) {
-      otherMs = deltaMs;
-    }
+
+    
 
 
       // update inventory in battle menu
@@ -216,8 +213,6 @@ int main(int argc, char** argv)
         //key presses for when we are in the battle menu
         else if (inBattleMenu){
 
-
-
           battleMenu.processInputs(Event, App);
 
           inventory.useItem(battleMenu.item_used);
@@ -226,6 +221,53 @@ int main(int argc, char** argv)
             inBattleMenu = false;
             battleTheme.stop();
             firstDTheme = true;
+          }
+
+          if(battleMenu.getResult() == 0) {
+
+            std::cout << "      you won   " << battleMenu.getType()<< std::endl;
+            switch(battleMenu.getType()) {
+              case 0: //beat regular enemy
+                break;
+              case 1: //beat snake boss
+                levelManager.beatFirstSection();
+                break;
+              case 2: //beat cat boss
+                levelManager.beatSecondSection();
+                break;
+              case 3: //beat ice owl boss
+                levelManager.beatThirdSection();
+                break;
+              case 4: //beat final boss
+                inEnd = true;
+                break;
+            }
+            battleMenu.resetResult();
+            levelManager.deleteSprite();
+          }
+
+          else if(battleMenu.getResult() == 1) {
+            std::cout << "      you lost" << std::endl;
+            int map = levelManager.getCurrentMap();
+            if(map >= 0 && map <= 10) {
+              levelManager.resetToStart();
+            }
+            else if(map >= 11 && map <= 22) {
+              levelManager.resetToStart();
+            }
+            else if(map >= 23 && map <= 33) {
+              levelManager.resetToStart();
+            }
+            else if(map == 34) {
+              levelManager.resetToStart();
+            }
+
+            battleMenu.resetResult();
+            App.clear(sf::Color::Black);
+            birdSprite.setPosition(352, 352);
+            //levelManager.resetToStart();
+            levelManager.drawMap(App);
+            App.draw(birdSprite);
           }
 
         }
@@ -271,52 +313,6 @@ int main(int argc, char** argv)
       else if (inBattleMenu && battleMenu.isInMenu()){
         battleMenu.draw(App);
 
-        if(battleMenu.getResult() == 0) {
-
-          std::cout << "      you won   " << battleMenu.getType()<< std::endl;
-          switch(battleMenu.getType()) {
-            case 0:
-              break;
-            case 1:
-              levelManager.beatFirstSection();
-              break;
-            case 2:
-              levelManager.beatSecondSection();
-              break;
-            case 3:
-              levelManager.beatThirdSection();
-              break;
-            case 4:
-              inEnd = true;
-              break;
-          }
-          battleMenu.resetResult();
-          levelManager.deleteSprite();
-        }
-        else if(battleMenu.getResult() == 1) {
-          std::cout << "      you lost" << std::endl;
-          int map = levelManager.getCurrentMap();
-          if(map >= 0 && map <= 10) {
-            levelManager.resetToStart();
-          }
-          else if(map >= 11 && map <= 22) {
-            levelManager.resetToStart();
-          }
-          else if(map >= 23 && map <= 33) {
-            levelManager.resetToStart();
-          }
-          else if(map == 34) {
-            levelManager.resetToStart();
-          }
-
-          battleMenu.resetResult();
-          App.clear(sf::Color::Black);
-          birdSprite.setPosition(352, 352);
-          //levelManager.resetToStart();
-          levelManager.drawMap(App);
-          App.draw(birdSprite);
-          App.display();
-        }
       }
 
       App.display();

@@ -20,7 +20,8 @@ public:
   std::vector<sf::Sprite> getSprites();
   std::vector<sf::Texture> getTextures();
   void moveSprite(int spriteNum, int moveX, int moveY);
-  int updateSprite(int x, int y, int firstTime, int secondTime);
+  void moveEnemy();
+  int checkForEnemy(int x, int y);
   int getTexture(int num);
   void setButtonGreen(int spriteNum, int textNum);
   void resetButtons();
@@ -49,7 +50,7 @@ private:
   std::vector<sf::Texture> curTextures;
   tinyxml2::XMLDocument org_doc;
   tinyxml2::XMLDocument cur_doc;
-  int velocity = 16;
+  int velocity;
   std::vector<int> textNums;
   int curMap;
 

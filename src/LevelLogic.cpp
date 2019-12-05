@@ -137,6 +137,8 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
 
+  std::cout << checkX << " " << checkY << std::endl;
+
 
   //section 1 no walk tiles
 
@@ -233,6 +235,9 @@ bool LevelLogic::checkTileCollisionForPlayer(int thisXPos, int thisYPos, HumanVi
         ret = false;
     }
   if(checkX == 96 && checkY == 144) { //section 1 water out
+        ret = false;
+    }
+  if(checkX == 128 && checkY == 176) { //section 1 corner
         ret = false;
     }
 

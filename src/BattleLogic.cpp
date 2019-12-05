@@ -59,10 +59,11 @@ int BattleLogic::resetHP(int HP){
 
 int BattleLogic::healItem(int damage, int HP){
 
-    HP = updateHP(damage, HP) + 30;
-    if ((HP) > 100){
+    HP = updateHP(damage, HP) + 100;
+    std::cout << " dam " << damage << " " << HP << std::endl;
+    if (HP > 100){
           HP = 100 - damage;
-        }
+      }
     return HP;
 }
 

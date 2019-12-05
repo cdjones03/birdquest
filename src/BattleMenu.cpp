@@ -78,15 +78,9 @@ BattleMenu::BattleMenu(){
   enemy_Text.setPosition(sf::Vector2f(width/15 -30, height/5.8));
   //enemy.setEnemyDisplay(enemy_Text, bossTexture);
 
-  //if(!bossTexture.loadFromFile("../resources/spritesheets/Owl_OW_ice.png", sf::IntRect(0, 0, 16, 16))){
-    //}
-  //bossSprite.setTexture(bossTexture);
+
   bossSprite.setPosition(100, 30);
   bossSprite.setScale(2.0, 2.0);
-
-
-
-
 
 
   // setup user and enemy HP text placement in battle menu
@@ -460,7 +454,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   if((sf::Keyboard::isKeyPressed(sf::Keyboard::Left))){
     moveLeft();
   }
-  if((sf::Keyboard::isKeyPressed(sf::Keyboard::Up))){
+  if((sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))){
     showItem = false;
     optionSound.play();
   }
@@ -499,7 +493,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
           item = false;
           invalid = false;
           break;
-        //evade
+        //defend
         case 2:
 
           //later, maybe get the output to say how much damage the enemy actually did, instead of just how much he blocked
@@ -596,6 +590,7 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
   enemyDamage = logic.getEnemyDamage();
   enemyDamageStored = enemyDamage;
   enemyDefend = logic.enemyDefend;
+
   //for the Cat effect, we need to get the battle bar damage first, so we will do that effect later
   if (type != Enemy::Cat){
     std::cout << " yes here " << std::endl;
@@ -605,9 +600,9 @@ void BattleMenu::processInputs(sf::Event event, sf::RenderWindow &window){
 
   userDamageStored = userDamage;
   if (!showBattleBar && !invalid){
+    std::cout << " here bit " << std::endl;
     userHP = logic.updateHP(enemyDamage, userHP);
     enemyHP = logic.updateHP(userDamage, enemyHP);
-
   }
   }
 
